@@ -1,0 +1,30 @@
+<app-header titulo="Compartilhe"></app-header>
+<ion-content class="kw">
+
+    <ion-fab horizontal="center" vertical="center" slot="fixed">
+        <ion-fab-button color="light">
+            <ion-icon name="share"></ion-icon>
+        </ion-fab-button>
+        <ion-fab-list side="top">
+            <ion-fab-button color="primary" type="submit" (click)="facebookShare()">
+                <ion-icon name="logo-facebook"></ion-icon>
+            </ion-fab-button>
+        </ion-fab-list>
+        <ion-fab-list side="end">
+            <ion-fab-button color="dark" type="submit" (click)="whatsappShare()">
+                <ion-icon name="logo-whatsapp"></ion-icon>
+            </ion-fab-button>
+        </ion-fab-list>
+        <ion-fab-list side="bottom">
+            <ion-fab-button color="secondary" type="submit" (click)="instagramShare()">
+                <ion-icon name="logo-instagram"></ion-icon>
+            </ion-fab-button>
+        </ion-fab-list>
+        <ion-fab-list side="start">
+            <ion-fab-button color="light" type="submit" (click)="twitterShare()">
+                <ion-icon name="logo-twitter"></ion-icon>
+            </ion-fab-button>
+        </ion-fab-list>
+    </ion-fab>
+
+</ion-content>

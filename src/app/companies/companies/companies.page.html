@@ -1,0 +1,66 @@
+<app-header titulo="Quiosque"></app-header>
+<ion-content class="kw">
+    <div class="kw">
+        <ion-item class="kw">
+            <h4>Perfil</h4>
+        </ion-item>
+        <ion-item class="kw">
+            <ion-label position="floating">E-mail</ion-label>
+            <ion-input type="text" [(ngModel)]="email"></ion-input>
+        </ion-item>
+        <ion-item class="kw">
+            <ion-label position="floating">Senha</ion-label>
+            <ion-input type="password" [(ngModel)]="password"></ion-input>
+        </ion-item>
+        <ion-item class="kw">
+            <ion-label position="floating">Confirme a Senha</ion-label>
+            <ion-input type="password" [(ngModel)]="confirmPassword"></ion-input>
+        </ion-item>
+
+        <ion-item class="kw">
+            <ion-label position="floating">Nome Fantasia</ion-label>
+            <ion-input type="text" [(ngModel)]="companyName"></ion-input>
+        </ion-item>
+
+        <ion-item class="kw">
+            <ion-label position="floating">Nome Proprietario</ion-label>
+            <ion-input type="text" [(ngModel)]="businessman"></ion-input>
+        </ion-item>
+
+        <ion-item class="kw">
+            <ion-label position="floating">Celular</ion-label>
+            <ion-input type="text" [(ngModel)]="cellPhone" [brmasker]="{phone: true}"></ion-input>
+        </ion-item>
+
+        <ion-item class="kw">
+            <ion-label position="floating">Insc. Municipal</ion-label>
+            <ion-input type="text" [(ngModel)]="municipalResgistration"></ion-input>
+        </ion-item>
+
+        <ion-item class="kw">
+            <ion-label position="floating">UF</ion-label>
+            <ion-select [(ngModel)]="state" name="state" interface="alert" placeholder="Selecione o estado"
+                (ionChange)="loadCities()">
+                <ion-select-option *ngFor="let state of stateList" [value]="state.abbreviation">{{state.stateName}}</ion-select-option>
+            </ion-select>
+        </ion-item>
+
+        <ion-item class="kw">
+            <ion-label position="floating">Cidade</ion-label>
+            <ion-select [(ngModel)]="city" name="city" interface="alert" placeholder="Selecione a cidade">
+                <ion-select-option *ngFor="let city of cityList" [value]="city.ibge">{{city.cityName}}
+                </ion-select-option>
+            </ion-select>
+        </ion-item>
+
+        <ion-item class="kw">
+            <ion-label position="floating">Observacao</ion-label>
+            <ion-input type="text" [(ngModel)]="notes"></ion-input>
+        </ion-item>
+    </div>
+    <ion-button size="small" expand="block" type="submit" color="dark" (click)="registerCompany()" *ngIf="profileID == ''">
+        Confirmar</ion-button>
+    <ion-button size="small" expand="block" type="submit" color="dark" (click)="registerCompany()" *ngIf="profileID != ''">
+        Confirmar</ion-button>
+
+</ion-content>

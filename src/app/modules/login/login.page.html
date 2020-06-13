@@ -1,0 +1,27 @@
+<app-header titulo="Login"></app-header>
+<ion-content class="kw">
+    <div class="kw" *ngIf="!authService.getLoginSuccessful()">
+        <div class="kw">
+            <ion-item class="kw">
+                <h4>Login</h4>
+            </ion-item>
+            <ion-item class="kw">
+                <ion-label position="floating">E-mail</ion-label>
+                <ion-input type="text" [(ngModel)]="email"></ion-input>
+            </ion-item>
+            <ion-item class="kw">
+                <ion-label position="floating">Senha</ion-label>
+                <ion-input min="8" type="password" [(ngModel)]="password"></ion-input>
+            </ion-item>
+            <br>
+            <ion-button size="small" expand="block" type="submit" (click)="login()">Entrar</ion-button>
+            <ion-button size="small" expand="block" type="submit" (click)="registerProfile()">Cadastrar</ion-button>
+            <ion-button size="small" expand="block" type="submit" (click)="recoverPassword()">Lembrar senha</ion-button>
+        </div>
+    </div>
+    <div class="kw" *ngIf="authService.getLoginSuccessful()">
+        <ion-item class="kw">
+            <h4>VOCE ESTA LOGADO!!!!</h4>
+        </ion-item>
+    </div>
+</ion-content>

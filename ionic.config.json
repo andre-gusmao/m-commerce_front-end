@@ -1,0 +1,7 @@
+{
+  "name": "kioskwide",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

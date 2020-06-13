@@ -1,0 +1,14 @@
+<ion-header>
+  <ion-toolbar class="kw">
+    <ion-buttons slot="start">
+      <ion-menu-button auto-hide class="kw" menu="menut"></ion-menu-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button class="kw" type="submit" color="dark" (click)="authService.setLogout()">
+          <ion-icon slot="end" name="log-out"></ion-icon>
+        </ion-button>
+    </ion-buttons>
+    <ion-title *ngIf="authService.getLoginSuccessful()">Ola {{authService.getCustomerName()}}!</ion-title>
+    <ion-title *ngIf="!authService.getLoginSuccessful()">Ola! Seja bem vindo(a)!</ion-title>
+  </ion-toolbar>
+</ion-header>
