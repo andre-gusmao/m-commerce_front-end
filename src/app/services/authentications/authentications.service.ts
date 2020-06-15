@@ -10,7 +10,7 @@ export class AuthenticationsService {
 
   profileType = "";
   userLogin = "";
-  customerName = "";
+  userName = "";
   companyID = "";
   catalogID = "";
   profileID = "";
@@ -38,8 +38,8 @@ export class AuthenticationsService {
     this.userLogin = userLogin;
   }
 
-  setCustomerName(customerName: string) {
-    this.customerName = customerName;
+  setUserName(userName: string) {
+    this.userName = userName;
   }
 
   setTableID(tableID) {
@@ -70,10 +70,6 @@ export class AuthenticationsService {
     return this.userLogin;
   }
 
-  getCustomerName() {
-    return this.customerName;
-  }
-
   getCompanyID() {
     return this.companyID;
   }
@@ -98,7 +94,7 @@ export class AuthenticationsService {
 
     this.setProfileType("");
     this.setUserLogin("");
-    this.setCustomerName("");
+    this.setUserName("");
     this.setCompanyID("");
     this.setCatalogID("");
     this.setProfileID("");

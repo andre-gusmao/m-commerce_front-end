@@ -72,7 +72,7 @@ export class LoginPage implements OnInit {
 
         this.authService.setProfileType(dataResponse['profileType']);
         this.authService.setUserLogin(dataResponse['userLogin']);
-        this.authService.setCustomerName(dataResponse['userName']);
+        this.authService.setUserName(dataResponse['userName']);
         this.authService.setProfileID(dataResponse['profileID']);
         this.menuService.setMenu(dataResponse['profileType']);
         if (dataResponse['profileType'] == 'K') {
