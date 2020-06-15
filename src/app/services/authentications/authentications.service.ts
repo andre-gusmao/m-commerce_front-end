@@ -66,6 +66,10 @@ export class AuthenticationsService {
     return this.profileType;
   }
 
+  getUserName() {
+    return this.userName;
+  }
+
   getUserLogin() {
     return this.userLogin;
   }
