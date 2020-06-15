@@ -7,7 +7,7 @@ export class MenuService {
 
   public menu = [];
 
-  public menuD = [
+  public menu0 = [
     {
       "title": 'Login',
       "url": '/login',
@@ -20,7 +20,7 @@ export class MenuService {
     }
   ];
 
-  public menuT = [
+  public menu1 = [
     {
       "title": 'Login',
       "url": '/login',
@@ -68,7 +68,7 @@ export class MenuService {
     }
   ];
 
-  public menuK = [
+  public menu2 = [//companies
     {
       "title": 'Login',
       "url": '/login',
@@ -106,22 +106,52 @@ export class MenuService {
     }
   ];
 
+  public menu3 = [
+    {
+      "title": 'Login',
+      "url": '/login',
+      "icon": 'person'
+    },
+    {
+      "title": 'Compartilhe',
+      "url": '/share',
+      "icon": 'share'
+    }
+  ];
+
+  public menuD = [
+    {
+      "title": 'Login',
+      "url": '/login',
+      "icon": 'person'
+    },
+    {
+      "title": 'Compartilhe',
+      "url": '/share',
+      "icon": 'share'
+    }
+  ];
+
   constructor() { }
 
   setMenu(menu){
 
     switch(menu){
 
-      case "D"://default
-        this.menu = this.menuD;
+      case "0"://admin
+        this.menu = this.menu0;
       break;
 
-      case "K"://kiosk
-        this.menu = this.menuK;
+      case "1"://customers
+        this.menu = this.menu1;
       break;
 
-      case "T"://tourist
-        this.menu = this.menuT;
+      case "2"://companies
+        this.menu = this.menu2;
+      break;
+
+      case "3"://workers
+        this.menu = this.menu3;
       break;
 
       default:
