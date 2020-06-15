@@ -61,7 +61,7 @@ export class CompaniesPage implements OnInit {
       state: this.state,
       city: this.city,
       notes: this.notes,
-      profileType: 'K',
+      profileType: '2',
     }
 
     const fields = [
@@ -69,7 +69,7 @@ export class CompaniesPage implements OnInit {
       { value: this.password, message: 'Informe a senha' },
       { value: this.confirmPassword, message: 'Informe confirme a senha' },
       { value: this.companyName, message: 'Informe o nome fantasia' },
-      { value: this.businessman, message: 'Informe  o nome do proprietárioa' },
+      { value: this.businessman, message: 'Informe  o nome do proprietario' },
       { value: this.cellPhone, message: 'Informe o celular' },
       { value: this.state, message: 'Selecione o estado' },
       { value: this.city, message: 'Selecione a cidade' }
