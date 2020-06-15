@@ -27,6 +27,10 @@ const routes: Routes = [
     path: 'creditcards',
     loadChildren: () => import('./customers/creditcards/creditcards.module').then( m => m.CreditcardsPageModule)
   },
+  {
+    path: 'products-categories',
+    loadChildren: () => import('./companies/products-categories/products-categories.module').then( m => m.ProductsCategoriesPageModule)
+  },
 ];
 
 @NgModule({
