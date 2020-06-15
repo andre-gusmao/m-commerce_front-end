@@ -20,24 +20,12 @@ export class RequestsService {
     return headers;
   }
 
-  postRequest<Observable>(data: any, endpoint: string) {
+  postRequest(data: any, endpoint: string): Observable<any> {
     let url = environment.endpointURL + endpoint;
 
     data = JSON.stringify(data);
 
-    return this.http.post(url, data, {headers: this.getHeaders()})
-      .pipe(map((response: Response) => response));
-
-    /*
-    return this.http.post(url, JSON.stringify(data), { headers: this.getHeaders() }).pipe(
-      map(res => {
-        return res;
-      })
-    ).subscribe(value => {
-      console.log(value);
-    });
-    */
-
+    return this.http.post<any>(url, data, {headers: this.getHeaders()});
   }
 
   getUserService() {
