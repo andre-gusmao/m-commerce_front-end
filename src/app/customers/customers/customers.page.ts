@@ -37,7 +37,7 @@ export class CustomersPage implements OnInit {
   }
 
   ionViewWillEnter() {
-    //this.profileID = this.authService.getProfileID();
+    this.profileID = this.authService.getProfileID();
     if ((this.profileID != undefined) && (this.profileID != "")) {
       this.loadCustomerProfile(this.profileID);
     } else {
@@ -71,7 +71,61 @@ export class CustomersPage implements OnInit {
     });
   }
 
-  public CadTPerfil(){}
+  public registerCustomer(){
+
+    let dataRequest = {
+      name: this.name,
+      email: this.email.toLocaleLowerCase(),
+      cellPhone: this.cellPhone,
+      password: this.password,
+      state: this.state,
+      city: this.city,
+      profileType: '1',
+    }
+
+    const fields = [
+      { value: this.email, message: 'Informe o e-mail' },
+      { value: this.password, message: 'Informe a senha' },
+      { value: this.confirmPassword, message: 'Informe confirme a senha' },
+      { value: this.name, message: 'Informe o nome' },
+      { value: this.cellPhone, message: 'Informe o celular' },
+      { value: this.state, message: 'Selecione o estado' },
+      { value: this.city, message: 'Selecione a cidade' }
+    ]
+
+    if (this.toolsService.emptyField(fields) == false) {
+      return;
+    }
+
+    if (this.toolsService.validateEmail(this.email, true) == false) {
+      return;
+    }
+
+    if (this.toolsService.validatePassword(this.password, true) == false) {
+      return;
+    }
+
+    if (this.password != this.confirmPassword) {
+      this.toolsService.showToast('Senha e Confirme a senha devem ser iguais');
+    }
+
+    if (this.profileID != undefined && this.profileID != "") {//update
+      dataRequest['profileID'] = this.profileID;
+    }
+    
+    this.requestService.postRequest(dataRequest, 'customers/customers.php')
+      .subscribe(async dataResponse => {
+        
+        if (dataResponse['profileID']) {
+          this.profileID = dataResponse['profileID'];
+          this.authService.setProfileID(dataResponse['profileID']);
+        } 
+        this.toolsService.showToast(dataResponse['message']);
+      
+      }
+    );
+
+  }
 
   public loadCities(): void {
     this.toolsService.showLoading('Carregando cidades ...');
