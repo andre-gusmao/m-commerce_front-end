@@ -31,12 +31,12 @@ export class LoginPage implements OnInit {
   ngOnInit() { }
 
   ionViewWillEnter() {
-    //PERFIL QUIOSQUE
-    //this.email = 'quiosque@kw.com';
-    //this.password = 'quio2020';
-    //PERFIL TURISTA
-    this.email = 'turistas@kw.com';
-    this.password = 'turi2020';
+    // Company profile
+    this.email = 'quiosque@kw.com';
+    this.password = 'quio2020';
+    // Customer profile
+    // this.email = 'turistas@kw.com';
+    // this.password = 'turi2020';
 
   }
 
@@ -44,8 +44,8 @@ export class LoginPage implements OnInit {
 
     let dataRequest = {
       requisicao: 'login',
-      usuario: this.email,
-      senha: this.password
+      email: this.email,
+      password: this.password
     };
 
     const fields = [
@@ -65,14 +65,14 @@ export class LoginPage implements OnInit {
       return;
     }
 
-    this.requestService.postRequest(dataRequest, 'login.php')
-      .subscribe(async dataResponse => {
+    this.requestService.postRequest(dataRequest, 'login.php').subscribe(
+      async dataResponse => {
 
       if (dataResponse['success']) {
 
         this.authService.setProfileType(dataResponse['profileType']);
         this.authService.setUserLogin(dataResponse['userLogin']);
-        this.authService.setCustomerName(dataResponse['customerName']);
+        this.authService.setCustomerName(dataResponse['userName']);
         this.authService.setProfileID(dataResponse['profileID']);
         this.menuService.setMenu(dataResponse['profileType']);
         if (dataResponse['profileType'] == 'K') {
