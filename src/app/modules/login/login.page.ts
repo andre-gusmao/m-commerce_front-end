@@ -75,12 +75,12 @@ export class LoginPage implements OnInit {
         this.authService.setUserName(dataResponse['userName']);
         this.authService.setProfileID(dataResponse['profileID']);
         this.menuService.setMenu(dataResponse['profileType']);
-        if (dataResponse['profileType'] == 'K') {
+        if (dataResponse['profileType'] == '2') {
           this.authService.setCompanyID(dataResponse['profileID']);
         }
         this.authService.setLoginSuccessful(true);
         this.toolsService.showToast('Logado com sucesso');
-        if (dataResponse['profileType'] == "K") {
+        if (dataResponse['profileType'] == "2") {
           this.router.navigate(['/companies']);
         } else {
           this.router.navigate(['/customers']);
