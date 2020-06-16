@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { ToastController, LoadingController } from '@ionic/angular';
+import { ToastController, LoadingController, AlertController } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -9,15 +10,21 @@ export class ToolsService {
 
   constructor(
     private loadingCtrl: LoadingController,
-    public toast: ToastController
+    private router: Router,
+    public toast: ToastController,
+    public alertCtrl: AlertController
   ) { }
+
+  goToPage(_page: string){
+    this.router.navigate([_page]);
+  }
 
   async showToast(_message: string, _duration: number = 2000, _cssClass: string = 'cssToast') {
 
     const toast = await this.toast.create({
       message: _message,
       duration: _duration,
-      position: 'bottom',
+      position: 'bottom',      
       cssClass: _cssClass
     });
 
@@ -44,7 +51,7 @@ export class ToolsService {
   validateEmail(_email: string, _showToast: boolean = false) {
 
     let format = new RegExp("[a-zA-Z0-9\\._-]+@[a-zA-Z0-9]+\\.[a-zA-Z]");
-    let invalidChars = ["!", "#", "$", "%", "¨", "&", "*", "(", ")", "+", "=", "[", "]", "{", "}", "´", "`", "^", "~", "<", ">", ":", ";", "?", "/", "\\", "|", "\"", "'", "ª", "º", "ã", "õ", "â", "ê", "î", "ô", "û", "á", "é", "í", "ó", "ú", "à", "è", "ì", "ò", "ù", "ç"];
+    let invalidChars = ["!", "#", "$", "%", "ï¿½", "&", "*", "(", ")", "+", "=", "[", "]", "{", "}", "ï¿½", "`", "^", "~", "<", ">", ":", ";", "?", "/", "\\", "|", "\"", "'", "ï¿½", "ï¿½", "ï¿½", "ï¿½", "ï¿½", "ï¿½", "ï¿½", "ï¿½", "ï¿½", "ï¿½", "ï¿½", "ï¿½", "ï¿½", "ï¿½", "ï¿½", "ï¿½", "ï¿½", "ï¿½", "ï¿½", "ï¿½"];
     let isValid = true;
     let nFor = 0;
 
@@ -104,6 +111,15 @@ export class ToolsService {
   async hideLoading() {
     this.loading = false;
     return await this.loadingCtrl.dismiss().then(() => { });
+  }
+
+  async showAlert(_header: string = "AtenÃ§Ã£o", _subHeader: string = "Falha de conexÃ£o", _message: string = "Verifique sua conexÃ£o com a internet"){
+    const alert = this.alertCtrl.create({
+      header: _header,
+      subHeader: _subHeader,
+      message: _message,
+      buttons: ['Ok']
+    });
   }
 
 }
