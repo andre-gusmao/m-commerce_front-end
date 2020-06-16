@@ -90,7 +90,7 @@ export class AuthenticationsService {
     return this.profileID;
   }
 
-  getLoginSuccessful() {
+  getLoginSuccessful(): boolean {
     return this.isLogged;
   }
 
