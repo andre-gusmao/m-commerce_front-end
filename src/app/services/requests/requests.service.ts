@@ -41,10 +41,10 @@ export class RequestsService {
     return this.http.get(url, { headers: this.getHeaders() }).pipe(map(res => res));
   }
 
-  getRequestById(endpoint: string, paramName: string, paramValue: string)  {
+  getRequestById(endpoint: string, paramName: string, paramValue: string): Observable<any>   {
     let url = environment.endpointURL + endpoint + '?' + paramName + '=' + paramValue;
 
-    return this.http.get(url, { headers: this.getHeaders() }).pipe(map(res => res));
+    return this.http.get<any>(url, { headers: this.getHeaders() }).pipe(map(res => res));
   }
 
   putRequest(data: any, endpoint: string) {

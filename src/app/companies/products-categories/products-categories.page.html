@@ -1,25 +1,23 @@
-<app-header titulo="Categoria de Produtos"></app-header>
+<app-header></app-header>
 
 <ion-content>
 
-  <ion-content class="kw">
+  <ion-content>
 
-    <div class="kw">
+    <div>
 
-      <ion-item class="kw">
+      <ion-item>
         <h4>Grupos de Produtos</h4>
       </ion-item>
 
-      <ion-item class="kw">
+      <ion-item>
         <ion-label position="floating">Nome do Grupo</ion-label>
         <ion-input type="text" [(ngModel)]="product_category_name"></ion-input>
       </ion-item>
 
-      <ion-button size="small" expand="block" type="button" color="dark" (click)="registerProductCategory()"
-        *ngIf="id_product_category == undefined">Confirmar</ion-button>
-      <ion-button size="small" expand="block" type="button" color="dark" (click)="registerProductCategory()"
-        *ngIf="id_product_category != undefined">Salvar</ion-button>
-      <ion-button size="small" expand="block" type="button" color="dark" (click)="toolsService.goToPage(this.listPage)">Listar Grupos</ion-button>
+      <ion-button size="small" expand="block" type="button" (click)="registerProductCategory()" *ngIf="id_product_category == undefined">Confirmar</ion-button>
+      <ion-button size="small" expand="block" type="button" (click)="registerProductCategory()" *ngIf="id_product_category != undefined">Salvar</ion-button>
+      <ion-button size="small" expand="block" type="button" (click)="toolsService.goToPage(this.listPage)">Listar Grupos</ion-button>
 
     </div>
 

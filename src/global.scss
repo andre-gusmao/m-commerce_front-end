@@ -25,28 +25,17 @@
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
 
-.kw {
-    //--background: rgb(57,243,57);
-    --background: rgb(111, 175, 111);
-    //--background-activate: rgb(57,243,57);
-    --background-activate: rgb(111, 175, 111);
-    --color: black;
-    --border-style: solid;
-    --border-width: 0.0px;
-    --border-height: 0.0px;
-    --font-size: 13px;
-  }
-    
-.botao {
-    --background: rgb(15, 136, 15);
-    --background-activate: rgb(15, 136, 15);
-    --background-focused: rgb(15, 136, 15);
-    --background-hover: rgb(15, 136, 15);
-    --color-activated: black;
-    --color: black;
-  }
+.success {
+  --background: rgb(13, 83, 13);
+  --color: white;
+}
 
-  .cssToast {
-    --background: black;
-    --color: white;
-  }
+.warning {
+  --background: yellow;
+  --color:  black;
+}
+
+.danger {
+  --background: red;
+  --color: black;
+}

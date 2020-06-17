@@ -108,7 +108,8 @@ export class CompaniesPage implements OnInit {
 
   }
 
-  private loadCompanyProfile(profileID: string = ""): void {
+  private async loadCompanyProfile(profileID: string = "") {
+
     this.requestService.getRequestById('companies/companies.php','id',profileID).subscribe(async dataRes => {
       if (dataRes['success']) {
         this.email = dataRes['email'];
@@ -125,6 +126,7 @@ export class CompaniesPage implements OnInit {
         this.toolsService.showToast(dataRes['message']);
       }
     });
+
   }
 
   private cleanForm(): void {

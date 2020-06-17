@@ -1,8 +1,8 @@
 import {Component,OnInit} from '@angular/core';
 import {AlertController} from '@ionic/angular';
 import {AuthenticationsService} from 'src/app/services/authentications/authentications.service';
-import {RequestsService} from '../../services/requests/requests.service';
 import {ToolsService} from 'src/app/services/tools/tools.service';
+import {RequestsService} from '../../services/requests/requests.service';
 
 @Component({
   selector: 'app-products-categories-list',

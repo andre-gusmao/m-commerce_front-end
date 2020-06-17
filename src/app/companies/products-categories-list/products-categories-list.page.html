@@ -1,13 +1,13 @@
-<ion-header title="Lista Grupos"></ion-header>
+<app-header></app-header>
 
-<ion-content class="kw">
+<ion-content>
 
   <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
     <ion-refresher-content pullingIcon="arrow-dropdown" refreshingSpinner="circles" refreshingText="Carregando...">
     </ion-refresher-content>
   </ion-refresher>
 
-  <ion-item class="kw">
+  <ion-item>
     <h4>Grupos Cadastrados</h4>
   </ion-item>
 
@@ -19,7 +19,7 @@
         </ion-item-option>
       </ion-item-options>
 
-      <ion-item class="kw">
+      <ion-item>
         <ion-label>
           <h2>{{item.product_category_name}}</h2>
         </ion-label>
@@ -39,7 +39,7 @@
   </ion-infinite-scroll>
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button color="dark" (click)="insert()">
+    <ion-fab-button (click)="insert()">
       <ion-icon name="add-circle">
       </ion-icon>
     </ion-fab-button>

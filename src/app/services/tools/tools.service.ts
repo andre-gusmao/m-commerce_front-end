@@ -19,7 +19,7 @@ export class ToolsService {
     this.router.navigate([_page]);
   }
 
-  async showToast(_message: string, _duration: number = 2000, _cssClass: string = 'cssToast') {
+  async showToast(_message: string, _duration: number = 2000, _cssClass: string = 'success') {
 
     const toast = await this.toast.create({
       message: _message,

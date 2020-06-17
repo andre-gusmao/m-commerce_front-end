@@ -1,5 +1,5 @@
 import { Component,OnInit } from '@angular/core';
-import { Router,ActivatedRoute } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { AuthenticationsService } from '../../services/authentications/authentications.service';
 import { ToolsService } from 'src/app/services/tools/tools.service';
 import { RequestsService } from '../../services/requests/requests.service';
@@ -18,7 +18,6 @@ export class ProductsCategoriesPage implements OnInit {
   listPage: string = 'products-categories-list';
 
   constructor(
-    private router: Router,
     private activatedRoute: ActivatedRoute,
     public requestService: RequestsService,
     public toolsService: ToolsService,
@@ -64,10 +63,10 @@ export class ProductsCategoriesPage implements OnInit {
     }
 
     this.requestService.postRequest(dataRequest, this.url).subscribe(async dataResponse => {
-      if (dataResponse['sucess']) {
-        this.toolsService.showToast(dataResponse['message'],2000,'cssToast');
+      if (dataResponse['success']) {
+        this.toolsService.showToast(dataResponse['message'],2000,'success');
       }else{
-        this.toolsService.showToast(dataResponse['message'],2000,'cssToast');
+        this.toolsService.showToast(dataResponse['message'],2000,'warning');
       }
     });
 
@@ -94,7 +93,7 @@ export class ProductsCategoriesPage implements OnInit {
         } else {
 
           this.toolsService.hideLoading();
-          this.toolsService.showToast(alert, 2000, 'sucess');
+          this.toolsService.showToast(alert, 2000, 'success');
 
         }
 

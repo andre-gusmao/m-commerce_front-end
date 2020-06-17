@@ -81,7 +81,7 @@ export class MenuService {
     },
     {
       "title": 'Grupo de Produtos',
-      "url": '/products-categories',
+      "url": '/products-categories-list',
       "icon": 'albums'
     },
     {

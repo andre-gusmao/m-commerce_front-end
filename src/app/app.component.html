@@ -1,13 +1,13 @@
 <ion-app>
   <ion-menu side="start" menuId="menut" contentId="main">
     <ion-header>
-      <ion-toolbar class="kw">
+      <ion-toolbar>
         <ion-title>Kiosk Wide</ion-title>
       </ion-toolbar>
     </ion-header>
-    <ion-content class="kw">
+    <ion-content>
       <ion-menu-toggle auto-hide="false" *ngFor="let menu of menuService.menu">
-        <ion-item class="kw" routerLink="{{menu.url}}">
+        <ion-item routerLink="{{menu.url}}">
           <ion-icon slot="start" name="{{menu.icon}}"></ion-icon>
           <ion-label>{{menu.title}}</ion-label>
         </ion-item>

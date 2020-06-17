@@ -1,38 +1,38 @@
-<app-header titulo="customers"></app-header>
-<ion-content class="kw">
+<app-header></app-header>
+<ion-content>
 
-  <div class="kw">
+  <div>
 
-    <ion-item class="kw">
+    <ion-item>
       <h4>Perfil</h4>
     </ion-item>
 
-    <ion-item class="kw">
+    <ion-item>
       <ion-label position="floating">Nome</ion-label>
       <ion-input type="text" [(ngModel)]="name" required></ion-input>
     </ion-item>
 
-    <ion-item class="kw">
+    <ion-item>
       <ion-label position="floating">E-mail</ion-label>
       <ion-input type="text" [(ngModel)]="email"></ion-input>
     </ion-item>
 
-    <ion-item class="kw">
+    <ion-item>
       <ion-label position="floating">Celular</ion-label>
       <ion-input type="text" [(ngModel)]="cellPhone" [brmasker]="{phone: true}"></ion-input>
     </ion-item>
 
-    <ion-item class="kw">
+    <ion-item>
       <ion-label position="floating">Senha</ion-label>
       <ion-input type="password" [(ngModel)]="password"></ion-input>
     </ion-item>
 
-    <ion-item class="kw">
+    <ion-item>
       <ion-label position="floating">Confirme a Senha</ion-label>
       <ion-input type="password" [(ngModel)]="confirmPassword"></ion-input>
     </ion-item>
 
-    <ion-item class="kw">
+    <ion-item>
       <ion-label position="floating">UF</ion-label>
       <ion-select [(ngModel)]="state" name="state" interface="alert" placeholder="Selecione o estado"
         (ionChange)="loadCities()">
@@ -41,7 +41,7 @@
       </ion-select>
     </ion-item>
 
-    <ion-item class="kw">
+    <ion-item>
       <ion-label position="floating">Cidade</ion-label>
       <ion-select [(ngModel)]="city" name="city" interface="alert" placeholder="Selecione a cidade">
         <ion-select-option *ngFor="let city of cityList" [value]="city.ibge">{{city.cityName}}
@@ -49,9 +49,9 @@
       </ion-select>
     </ion-item>
 
-    <ion-button size="small" expand="block" type="submit" color="dark" (click)="registerCustomer()" *ngIf="profileID == ''">
+    <ion-button size="small" expand="block" type="submit" (click)="registerCustomer()" *ngIf="profileID == ''">
       Confirmar</ion-button>
-    <ion-button size="small" expand="block" type="submit" color="dark" (click)="registerCustomer()" *ngIf="profileID != ''">
+    <ion-button size="small" expand="block" type="submit" (click)="registerCustomer()" *ngIf="profileID != ''">
       Salvar</ion-button>
 
   </div>
