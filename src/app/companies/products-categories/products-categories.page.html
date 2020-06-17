@@ -16,11 +16,10 @@
       </ion-item>
 
       <ion-button size="small" expand="block" type="button" color="dark" (click)="registerProductCategory()"
-        *ngIf="cd_grupo_produto == undefined">Confirmar</ion-button>
+        *ngIf="id_product_category == undefined">Confirmar</ion-button>
       <ion-button size="small" expand="block" type="button" color="dark" (click)="registerProductCategory()"
-        *ngIf="cd_grupo_produto != undefined">Salvar</ion-button>
-      <ion-button size="small" expand="block" type="button" color="dark" (click)="toolsService.goToPage(this.listPage)">Listar
-        Grupos</ion-button>
+        *ngIf="id_product_category != undefined">Salvar</ion-button>
+      <ion-button size="small" expand="block" type="button" color="dark" (click)="toolsService.goToPage(this.listPage)">Listar Grupos</ion-button>
 
     </div>
 

@@ -39,6 +39,8 @@ export class ProductsCategoriesPage implements OnInit {
         this.cleanForm();
       }
       this.id_company = this.authService.getCompanyID();
+    } else {
+      this.authService.setLogout();
     }
   }
 
@@ -79,15 +81,15 @@ export class ProductsCategoriesPage implements OnInit {
       id_product_category: id_product_category,
     };
 
-    this.requestService.getRequestById(this.url, id_product_category).subscribe(async data => {
+    this.requestService.getRequestById(this.url, 'id',id_product_category).subscribe(async data => {
 
         var alert = data['msg'];
 
         if (data['success']) {
 
-          this.id_product_category = data['result']['id_product_category'];
-          this.id_company = data['result']['id_company'];
-          this.product_category_name = data['result']['product_category_name'];
+          this.id_product_category = data['result'][0]['id_product_category'];
+          this.id_company = data['result'][0]['id_company'];
+          this.product_category_name = data['result'][0]['product_category_name'];
 
         } else {
 

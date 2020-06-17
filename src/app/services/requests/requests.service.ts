@@ -41,8 +41,8 @@ export class RequestsService {
     return this.http.get(url, { headers: this.getHeaders() }).pipe(map(res => res));
   }
 
-  getRequestById(endpoint: string, paramID: string) {
-    let url = environment.endpointURL + endpoint + '?id=' + paramID;
+  getRequestById(endpoint: string, paramName: string, paramValue: string)  {
+    let url = environment.endpointURL + endpoint + '?' + paramName + '=' + paramValue;
 
     return this.http.get(url, { headers: this.getHeaders() }).pipe(map(res => res));
   }
@@ -53,8 +53,9 @@ export class RequestsService {
     return this.http.put(url, JSON.stringify(data), { headers: this.getHeaders() }).pipe(map(res => res));
   }
 
-  deleteRequest(endpoint: string, paramID: string) {
-    let url = environment.endpointURL + endpoint;
+  deleteRequest(endpoint: string, paramName: string, paramValue: string) {
+    //let url = environment.endpointURL + endpoint + '?' + paramName + '=' + paramValue;
+    let url = environment.endpointURL + endpoint + '/' + paramValue;
 
     return this.http.delete(url, { headers: this.getHeaders() }).pipe(map(res => res));
   }

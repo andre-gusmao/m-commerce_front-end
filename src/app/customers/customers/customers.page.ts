@@ -56,7 +56,7 @@ export class CustomersPage implements OnInit {
   }
 
   private loadCustomerProfile(profileID: string = ""): void {
-    this.requestService.getRequestById('customers/customers.php', profileID).subscribe(async dataRes => {
+    this.requestService.getRequestById('customers/customers.php', 'id',profileID).subscribe(async dataRes => {
       if (dataRes['success']) {
         this.name = dataRes['name'];
         this.email = dataRes['email'];
