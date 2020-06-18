@@ -43,7 +43,7 @@ export class ProductsCategoriesPage implements OnInit {
     }
   }
 
-  async registerProductCategory(){
+  async registerProductCategory() {
 
     let dataRequest = {
       product_category_name: this.product_category_name,
@@ -65,6 +65,7 @@ export class ProductsCategoriesPage implements OnInit {
     this.requestService.postRequest(dataRequest, this.url).subscribe(async dataResponse => {
       if (dataResponse['success']) {
         this.toolsService.showToast(dataResponse['message'],2000,'success');
+        this.toolsService.goToPage(this.listPage);
       }else{
         this.toolsService.showToast(dataResponse['message'],2000,'warning');
       }
@@ -72,7 +73,7 @@ export class ProductsCategoriesPage implements OnInit {
 
   }
 
-  private loadProductCategory(id_product_category) {
+  private loadProductCategory(id_product_category): void {
 
     this.toolsService.showLoading("Buscando grupo ...");
 

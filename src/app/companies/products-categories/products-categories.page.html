@@ -14,11 +14,15 @@
         <ion-label position="floating">Nome do Grupo</ion-label>
         <ion-input type="text" [(ngModel)]="product_category_name"></ion-input>
       </ion-item>
+    </div>
 
-      <ion-button size="small" expand="block" type="button" (click)="registerProductCategory()" *ngIf="id_product_category == undefined">Confirmar</ion-button>
-      <ion-button size="small" expand="block" type="button" (click)="registerProductCategory()" *ngIf="id_product_category != undefined">Salvar</ion-button>
-      <ion-button size="small" expand="block" type="button" (click)="toolsService.goToPage(this.listPage)">Listar Grupos</ion-button>
-
+    <div class="divCenter">
+      <ion-button size="small" fill="outline" shape="round" type="button" (click)="registerProductCategory()">
+        <ion-icon name="checkmark-circle"></ion-icon>Confirmar
+      </ion-button>
+      <ion-button size="small" fill="outline" shape="round" type="button" (click)="toolsService.goToPage(this.listPage)">
+        <ion-icon name="list"></ion-icon>Listar
+      </ion-button>
     </div>
 
   </ion-content>

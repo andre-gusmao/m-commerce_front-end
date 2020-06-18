@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-menu',
@@ -8,18 +7,10 @@ import { Router } from '@angular/router';
 })
 export class MenuComponent implements OnInit {
 
-  profileMenu = "";
+  constructor() { }
 
-  constructor(
-    private router: Router
-  ) { }
+  ngOnInit() {}
 
-  ngOnInit() {
-    console.log("perfil ngOnInit: " + this.profileMenu);
-  }
-
-  ionViewWillEnter(){
-    console.log("perfil ionViewWillEnter: " + this.profileMenu);
-  }
+  ionViewWillEnter(){}
 
 }

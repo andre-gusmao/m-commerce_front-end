@@ -41,7 +41,8 @@
             <ion-label position="floating">UF</ion-label>
             <ion-select [(ngModel)]="state" name="state" interface="alert" placeholder="Selecione o estado"
                 (ionChange)="loadCities()">
-                <ion-select-option *ngFor="let state of stateList" [value]="state.abbreviation">{{state.stateName}}</ion-select-option>
+                <ion-select-option *ngFor="let state of stateList" [value]="state.abbreviation">{{state.stateName}}
+                </ion-select-option>
             </ion-select>
         </ion-item>
 
@@ -58,9 +59,10 @@
             <ion-input type="text" [(ngModel)]="notes"></ion-input>
         </ion-item>
     </div>
-    <ion-button size="small" expand="block" type="submit" (click)="registerCompany()" *ngIf="profileID == ''">
-        Confirmar</ion-button>
-    <ion-button size="small" expand="block" type="submit" (click)="registerCompany()" *ngIf="profileID != ''">
-        Confirmar</ion-button>
+    <div class="divCenter">
+        <ion-button size="small" fill="outline" shape="round" (click)="registerCompany()">
+            <ion-icon name="checkmark-circle"></ion-icon>Confirmar
+        </ion-button>
+    </div>
 
 </ion-content>

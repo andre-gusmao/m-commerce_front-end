@@ -67,7 +67,6 @@ export class ProductsCategoriesListPage implements OnInit {
         }
 
       }, error => {
-        console.error("Erro ao carregar grupos")
         this.toolsService.showAlert();
       })
 

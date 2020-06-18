@@ -1,10 +1,10 @@
-import { async } from '@angular/core/testing';
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { AuthenticationsService } from '../../services/authentications/authentications.service';
-import { ToolsService } from 'src/app/services/tools/tools.service';
-import { RequestsService } from '../../services/requests/requests.service';
-import { CitiesService } from '../../services/cities/cities.service';
+import {  async } from '@angular/core/testing';
+import {  Component, OnInit } from '@angular/core';
+import {  Router } from '@angular/router';
+import {  AuthenticationsService } from '../../services/authentications/authentications.service';
+import {  ToolsService } from 'src/app/services/tools/tools.service';
+import {  RequestsService } from '../../services/requests/requests.service';
+import {  CitiesService } from '../../services/cities/cities.service';
 
 @Component({
   selector: 'app-companies',
@@ -34,7 +34,7 @@ export class CompaniesPage implements OnInit {
     public toolsService: ToolsService,
     public citiesService: CitiesService,
     public authService: AuthenticationsService
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.stateList = this.citiesService.getStateList();
@@ -65,14 +65,14 @@ export class CompaniesPage implements OnInit {
     }
 
     const fields = [
-      { value: this.email, message: 'Informe o e-mail' },
-      { value: this.password, message: 'Informe a senha' },
-      { value: this.confirmPassword, message: 'Informe confirme a senha' },
-      { value: this.companyName, message: 'Informe o nome fantasia' },
-      { value: this.businessman, message: 'Informe  o nome do proprietario' },
-      { value: this.cellPhone, message: 'Informe o celular' },
-      { value: this.state, message: 'Selecione o estado' },
-      { value: this.city, message: 'Selecione a cidade' }
+      { value: this.email, message: 'Informe o e-mail'      },
+      { value: this.password, message: 'Informe a senha'      },
+      { value: this.confirmPassword, message: 'Informe confirme a senha'      },
+      { value: this.companyName, message: 'Informe o nome fantasia'      },
+      { value: this.businessman, message: 'Informe  o nome do proprietario'      },
+      { value: this.cellPhone, message: 'Informe o celular'      },
+      { value: this.state, message: 'Selecione o estado'      },
+      { value: this.city, message: 'Selecione a cidade'      }
     ]
 
     if (this.toolsService.emptyField(fields) == false) {
@@ -91,26 +91,26 @@ export class CompaniesPage implements OnInit {
       this.toolsService.showToast('Senha e Confirme a senha devem ser iguais');
     }
 
-    if (this.profileID != undefined && this.profileID != "") {//update
+    if (this.profileID != undefined && this.profileID != "") { //update
       dataRequest['profileID'] = this.profileID;
     }
-    
+
     this.requestService.postRequest(dataRequest, 'companies/companies.php')
       .subscribe(async dataResponse => {
-        
+
         if (dataResponse['profileID']) {
           this.profileID = dataResponse['profileID'];
           this.authService.setProfileID(dataResponse['profileID']);
-        } 
+        }
         this.toolsService.showToast(dataResponse['message']);
-      
+
       });
 
   }
 
   private async loadCompanyProfile(profileID: string = "") {
 
-    this.requestService.getRequestById('companies/companies.php','id',profileID).subscribe(async dataRes => {
+    this.requestService.getRequestById('companies/companies.php', 'id', profileID).subscribe(async dataRes => {
       if (dataRes['success']) {
         this.email = dataRes['email'];
         this.password = dataRes['password'];

@@ -5,10 +5,10 @@
     </ion-buttons>
     <ion-buttons slot="end">
       <ion-button type="submit" (click)="authService.setLogout()">
-          <ion-icon slot="end" name="log-out"></ion-icon>
+          <ion-icon slot="end" name="log-out-outline"></ion-icon>
         </ion-button>
     </ion-buttons>
-    <ion-title *ngIf="authService.getLoginSuccessful()">Ola {{authService.getUserName()}}!</ion-title>
-    <ion-title *ngIf="!authService.getLoginSuccessful()">Ola! Seja bem vindo(a)!</ion-title>
+    <ion-title *ngIf="authService.getLoginSuccessful()">{{authService.getUserName()}}</ion-title>
+    <ion-title *ngIf="!authService.getLoginSuccessful()">Bem vindo(a)</ion-title>
   </ion-toolbar>
 </ion-header>

@@ -1,7 +1,7 @@
 <app-header></app-header>
 <ion-content>
     <div *ngIf="!authService.getLoginSuccessful()">
-        <div>
+        <div class="divCenter">
             <ion-item>
                 <h4>Login</h4>
             </ion-item>
@@ -14,12 +14,21 @@
                 <ion-input min="8" type="password" [(ngModel)]="password"></ion-input>
             </ion-item>
             <br>
-            <ion-button size="small" expand="block" type="submit" (click)="login()">Entrar</ion-button>
+            <!-- <ion-button size="small" expand="block" type="submit" (click)="login()">Entrar</ion-button>
             <ion-button size="small" expand="block" type="submit" (click)="registerProfile()">Cadastrar</ion-button>
-            <ion-button size="small" expand="block" type="submit" (click)="recoverPassword()">Lembrar senha</ion-button>
+            <ion-button size="small" expand="block" type="submit" (click)="recoverPassword()">Lembrar senha</ion-button> -->
+            <ion-button size="small" type="submit" fill="outline" shape="round" (click)="login()">
+                <ion-icon name="log-in-outline"></ion-icon>Entrar
+            </ion-button>
+            <ion-button size="small" type="submit" fill="outline" shape="round" (click)="registerProfile()">
+                <ion-icon name="add-outline"></ion-icon>Cadastrar
+            </ion-button>
+            <ion-button size="small" type="submit" fill="outline" shape="round" (click)="recoverPassword()">
+                <ion-icon name="lock-open-outline"></ion-icon>Lembrar senha
+            </ion-button>
         </div>
     </div>
-    <div *ngIf="authService.getLoginSuccessful()">
+    <div class="divCenter" *ngIf="authService.getLoginSuccessful()">
         <ion-item>
             <h4>VOCE ESTA LOGADO!!!!</h4>
         </ion-item>

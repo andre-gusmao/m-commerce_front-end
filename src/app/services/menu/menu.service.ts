@@ -20,7 +20,7 @@ export class MenuService {
     }
   ];
 
-  public menu1 = [
+  public menu1 = [//Customers
     {
       "title": 'Login',
       "url": '/login',
@@ -76,7 +76,7 @@ export class MenuService {
     },
     {
       "title": 'Quiosque',
-      "url": '/qquiosque',
+      "url": '/companies',
       "icon": 'business'
     },
     {
@@ -86,7 +86,7 @@ export class MenuService {
     },
     {
       "title": 'Produtos',
-      "url": '/qproduto',
+      "url": '/products-list',
       "icon": 'gift'
     },
     {
