@@ -38,7 +38,10 @@ export class ProductsListPage implements OnInit {
       this.start = 0;
       this.productList = [];
       this.id_company = this.authService.getCompanyID();
-      this.loadProducts();
+      //this.loadProducts();
+      console.info("Antes do carregaProd");
+      this.carregaProd()
+      console.info("Depois do carregaProd");
     } else {
       this.authService.setLogout();
     }
@@ -59,8 +62,15 @@ export class ProductsListPage implements OnInit {
       });
     }, 500);
   }
+//https://medium.com/@balramchavan/using-async-await-feature-in-angular-587dd56fdc77
+  async carregaProd(){
+    console.info("carregaProd inicio");
+    let prods = await this.requestService.getRequestById(this.url, 'company', '1').toPromise().then();
+    console.info("carregaProd termino");
+    return prods;
+  }
 
-  private loadProducts(){
+  private async loadProducts(){
 
     return new Promise(res => {
 

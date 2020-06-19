@@ -32,11 +32,11 @@ export class LoginPage implements OnInit {
 
   ionViewWillEnter() {
     // Company profile
-    this.email = 'quiosque@kw.com';
-    this.password = 'quio2020';
+    // this.email = 'quiosque@kw.com';
+    // this.password = 'quio2020';
     // Customer profile
-    // this.email = 'turistas@kw.com';
-    // this.password = 'turi2020';
+    this.email = 'turistas@kw.com';
+    this.password = 'turi2020';
 
   }
 
@@ -81,9 +81,9 @@ export class LoginPage implements OnInit {
         this.authService.setLoginSuccessful(true);
         this.toolsService.showToast('Logado com sucesso');
         if (dataResponse['profileType'] == "2") {
-          this.router.navigate(['/companies']);
+          this.router.navigate(['/login']);//companies
         } else {
-          this.router.navigate(['/customers']);
+          this.router.navigate(['/login']);//customers
         }
 
       } else {

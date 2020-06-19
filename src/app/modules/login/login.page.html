@@ -1,22 +1,19 @@
 <app-header></app-header>
 <ion-content>
     <div *ngIf="!authService.getLoginSuccessful()">
-        <div class="divCenter">
-            <ion-item>
-                <h4>Login</h4>
-            </ion-item>
-            <ion-item>
-                <ion-label position="floating">E-mail</ion-label>
-                <ion-input type="text" [(ngModel)]="email"></ion-input>
-            </ion-item>
-            <ion-item>
-                <ion-label position="floating">Senha</ion-label>
-                <ion-input min="8" type="password" [(ngModel)]="password"></ion-input>
-            </ion-item>
-            <br>
-            <!-- <ion-button size="small" expand="block" type="submit" (click)="login()">Entrar</ion-button>
-            <ion-button size="small" expand="block" type="submit" (click)="registerProfile()">Cadastrar</ion-button>
-            <ion-button size="small" expand="block" type="submit" (click)="recoverPassword()">Lembrar senha</ion-button> -->
+        <ion-item>
+            <h4>Login</h4>
+        </ion-item>
+        <ion-item>
+            <ion-label position="floating">E-mail</ion-label>
+            <ion-input type="text" [(ngModel)]="email"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label position="floating">Senha</ion-label>
+            <ion-input min="8" type="password" [(ngModel)]="password"></ion-input>
+        </ion-item>
+        <br>
+        <div style="text-align: center;">
             <ion-button size="small" type="submit" fill="outline" shape="round" (click)="login()">
                 <ion-icon name="log-in-outline"></ion-icon>Entrar
             </ion-button>
@@ -28,9 +25,9 @@
             </ion-button>
         </div>
     </div>
-    <div class="divCenter" *ngIf="authService.getLoginSuccessful()">
+    <div *ngIf="authService.getLoginSuccessful()">
         <ion-item>
-            <h4>VOCE ESTA LOGADO!!!!</h4>
+            <ion-label style="text-align: center;color: green;">VOCE ESTA LOGADO!!!!</ion-label>
         </ion-item>
     </div>
 </ion-content>

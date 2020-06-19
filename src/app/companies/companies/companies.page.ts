@@ -110,7 +110,7 @@ export class CompaniesPage implements OnInit {
 
   private async loadCompanyProfile(profileID: string = "") {
 
-    this.requestService.getRequestById('companies/companies.php', 'id', profileID).subscribe(async dataRes => {
+    await this.requestService.getRequestById('companies/companies.php', 'id', profileID).subscribe( dataRes => {
       if (dataRes['success']) {
         this.email = dataRes['email'];
         this.password = dataRes['password'];

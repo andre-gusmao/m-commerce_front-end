@@ -48,11 +48,11 @@
         </ion-select-option>
       </ion-select>
     </ion-item>
-
-    <ion-button size="small" expand="block" type="submit" (click)="registerCustomer()" *ngIf="profileID == ''">
-      Confirmar</ion-button>
-    <ion-button size="small" expand="block" type="submit" (click)="registerCustomer()" *ngIf="profileID != ''">
-      Salvar</ion-button>
+    <div style="text-align: center;">
+      <ion-button size="small" fill="outline" shape="round" type="submit" (click)="registerCustomer()">
+        <ion-icon name="checkmark-circle"></ion-icon>Confirmar
+      </ion-button>
+    </div>
 
   </div>
 

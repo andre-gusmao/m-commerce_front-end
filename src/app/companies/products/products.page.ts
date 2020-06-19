@@ -128,12 +128,12 @@ export class ProductsPage implements OnInit {
   
   }
 
-  public loadProductCategory(id_company) {
+  async loadProductCategory(id_company) {
 
     this.categoryList = [];
 
-    return new Promise(res => {
-
+    return await new Promise(res => {
+      
       this.requestService.getRequestById(this.urlCategory, 'company', this.id_company).subscribe(dataResponse => {
 
         for (let category of dataResponse['result']) {
