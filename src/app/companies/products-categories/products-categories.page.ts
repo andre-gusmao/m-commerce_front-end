@@ -83,8 +83,6 @@ export class ProductsCategoriesPage implements OnInit {
 
     this.requestService.getRequestById(this.url, 'id',id_product_category).subscribe(async data => {
 
-        var alert = data['msg'];
-
         if (data['success']) {
 
           this.id_product_category = data['result'][0]['id_product_category'];
@@ -94,7 +92,7 @@ export class ProductsCategoriesPage implements OnInit {
         } else {
 
           this.toolsService.hideLoading();
-          this.toolsService.showToast(alert, 2000, 'success');
+          this.toolsService.showToast(data['message'], 2000, 'success');
 
         }
 

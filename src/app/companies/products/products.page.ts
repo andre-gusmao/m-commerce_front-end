@@ -64,8 +64,6 @@ export class ProductsPage implements OnInit {
 
     this.requestService.getRequestById(this.url, 'id',id_product).subscribe(async data => {
 
-        var alert = data['msg'];
-
         if (data['success']) {
 
           this.id_product = data['result'][0]['id_product'];
@@ -79,7 +77,7 @@ export class ProductsPage implements OnInit {
         } else {
 
           this.toolsService.hideLoading();
-          this.toolsService.showToast(alert, 2000, 'success');
+          this.toolsService.showToast(data['message'], 2000, 'success');
 
         }
 

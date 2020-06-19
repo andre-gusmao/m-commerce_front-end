@@ -28,6 +28,10 @@ const routes: Routes = [
     loadChildren: () => import('./customers/creditcards/creditcards.module').then( m => m.CreditcardsPageModule)
   },
   {
+    path: 'creditcards/:id',
+    loadChildren: () => import('./customers/creditcards/creditcards.module').then( m => m.CreditcardsPageModule)
+  },
+  {
     path: 'products-categories',
     loadChildren: () => import('./companies/products-categories/products-categories.module').then( m => m.ProductsCategoriesPageModule)
   },
@@ -50,6 +54,10 @@ const routes: Routes = [
   {
     path: 'products-list',
     loadChildren: () => import('./companies/products-list/products-list.module').then( m => m.ProductsListPageModule)
+  },
+  {
+    path: 'creditcards-list',
+    loadChildren: () => import('./customers/creditcards-list/creditcards-list.module').then( m => m.CreditcardsListPageModule)
   },
 ];
 

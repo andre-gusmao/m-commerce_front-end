@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { AuthenticationsService } from '../../services/authentications/authentications.service';
 import { ToolsService } from 'src/app/services/tools/tools.service';
 import { RequestsService } from '../../services/requests/requests.service';
@@ -10,153 +10,125 @@ import { RequestsService } from '../../services/requests/requests.service';
   styleUrls: ['./creditcards.page.scss'],
 })
 export class CreditcardsPage implements OnInit {
-
-  numero: string;
-  nome_impresso: string;
-  mes_validade: string;
-  ano_validade: string;
-  cvv: string;
-  cd_bandeira: string;
-  cd_cartao: string;
+  
+  id_credit_card: string;
+  id_customer: string;
+  credit_card_number: string;
+  credit_card_printed_name: string;
+  credit_card_expiration_month: string;
+  credit_card_expiration_year: string;
+  credit_card_security_code: string;
+  credit_card_company: string;
+  url: string = 'customers/creditcards.php';
+  listPage: string = 'creditcards-list';
 
   constructor(
-    private router: Router,
+    private activatedRoute: ActivatedRoute,
     public requestService: RequestsService,
     public toolsService: ToolsService,
     public authService: AuthenticationsService
-  ) { }
-
-  ngOnInit() {
+  ) {
+    this.activatedRoute.params.subscribe(params => {
+      this.id_credit_card = params['id'];
+    });
   }
+
+  ngOnInit() {}
 
   ionViewWillEnter() {
-    //this.authService.isLoggedIn('Cartoes');
-    if (this.cd_cartao != undefined) {
-      this.CarregarCartao(this.cd_cartao);
+    if (this.authService.getLoginSuccessful()) {
+      if ((this.id_credit_card != undefined) && (this.id_credit_card != "")) {
+        this.loadCreditCard(this.id_credit_card);
+      } else {
+        this.cleanForm();
+      }
+      this.id_customer = this.authService.getProfileID();
+    } else {
+      this.authService.setLogout();
     }
   }
 
-  async CadCartoes() {
+  async registerCreditCard() {
 
-    if (this.numero == undefined || this.numero == "") {
-      this.toolsService.showToast('Preencha o numero');
+    let dataRequest = {
+      id_customer: this.id_customer,
+      credit_card_number: this.credit_card_number,
+      credit_card_printed_name: this.credit_card_printed_name,
+      credit_card_expiration_month: this.credit_card_expiration_month,
+      credit_card_expiration_year: this.credit_card_expiration_year,
+      credit_card_security_code: this.credit_card_security_code,
+      credit_card_company: this.credit_card_company
+    }
+
+    const fields = [
+      { value: this.credit_card_number, message: 'Informe o número'},
+      { value: this.credit_card_printed_name, message: 'Informe o nome'},
+      { value: this.credit_card_expiration_month, message: 'Informe o mês'},
+      { value: this.credit_card_expiration_year, message: 'Informe o ano'},
+      { value: this.credit_card_security_code, message: 'Informe o CVV'},
+      { value: this.credit_card_company, message: 'Selecione a bandeira do cartão'}
+    ]
+
+    if (this.toolsService.emptyField(fields) == false){
       return;
     }
 
-    if (this.nome_impresso == undefined || this.nome_impresso == "") {
-      this.toolsService.showToast('Preencha o nome');
-      return;
+    if (this.id_credit_card != undefined && this.id_credit_card != ""){
+      dataRequest['id_credit_card'] = this.id_credit_card;
     }
 
-    if (this.mes_validade == undefined || this.mes_validade == "") {
-      this.toolsService.showToast('Preencha o mes');
-      return;
-    }
+    this.requestService.postRequest(dataRequest, this.url).subscribe(async dataResponse => {
+      if (dataResponse['success']) {
+        this.toolsService.showToast(dataResponse['message'],2000,'success');
+        this.toolsService.goToPage(this.listPage);
+      }else{
+        this.toolsService.showToast(dataResponse['message'],2000,'warning');
+      }
+    });
 
-    if (this.ano_validade == undefined || this.ano_validade == "") {
-      this.toolsService.showToast('Preencha o ano');
-      return;
-    }
+  }
 
-    if (this.cvv == undefined || this.cvv == "") {
-      this.toolsService.showToast('Preencha o cvv');
-      return;
-    }
+  private loadCreditCard(id_credit_card: string): void {
 
-    if (this.cd_bandeira == undefined || this.cd_bandeira == "") {
-      this.toolsService.showToast('Selecione a bandeiras');
-      return;
-    }
+    this.toolsService.showLoading("Buscando cartões ...");
 
-    let dados = {
-      requisicao: 'inserir',
-      numero: this.numero,
-      nome_impresso: this.nome_impresso,
-      mes_validade: this.mes_validade,
-      ano_validade: this.ano_validade,
-      cvv: this.cvv,
-      cd_bandeira: this.cd_bandeira,
-      //cd_turista: this.authService.getCdPerfil(),
-      cd_cartao: "",
-    };
+    this.requestService.getRequestById(this.url, 'id',id_credit_card).subscribe(async data => {
 
-    if (this.cd_cartao != undefined && this.cd_cartao != "") {
-      dados['requisicao'] = 'editar';
-      dados['cd_cartao'] = this.cd_cartao;
-    }
-/*
-    this.provider.Api(dados, 'cartoes.php').subscribe(async data => {
+        if (data['success']) {
 
-      var alert = data['msg'];
+          this.id_credit_card = data['result'][0]['id_credit_card'];
+          this.id_customer = data['result'][0]['id_customer'];
+          this.credit_card_number = data['result'][0]['credit_card_number'];
+          this.credit_card_printed_name = data['result'][0]['credit_card_printed_name'];
+          this.credit_card_expiration_month = data['result'][0]['credit_card_expiration_month'];
+          this.credit_card_expiration_year = data['result'][0]['credit_card_expiration_year'];
+          this.credit_card_security_code = data['result'][0]['credit_card_security_code'];
+          this.credit_card_company = data['result'][0]['credit_card_company'];
 
-      if (data['success']) {
+        } else {
 
-        this.numero = "";
-        this.nome_impresso = "";
-        this.mes_validade = "";
-        this.ano_validade = "";
-        this.cvv = "";
-        this.cd_bandeira = "";
-        this.authService.fecharLoading();
-        this.toolsService.showToast(data['msg']);
-        this.router.navigate(['/listacartao']);
+          this.toolsService.hideLoading();
+          this.toolsService.showToast(data['message'], 2000, 'success');
 
-      } else {
+        }
 
-        this.authService.fecharLoading();
-        this.toolsService.showToast(alert);
-
+      }, error => {
+        this.toolsService.hideLoading();
+        this.toolsService.showAlert();
       }
 
-    }, error => {
-      this.authService.fecharLoading();
-      this.authService.alerta();
-    }
-
     );
-*/
+
+    this.toolsService.hideLoading();
   }
 
-  ListaCartao() {
-    this.router.navigate(['/listacartao']);
-  }
-
-  CarregarCartao(cd_cartao) {
-
-    this.toolsService.showToast("Aguarde ...");
-
-    let dados = {
-      requisicao: 'buscar',
-      cd_cartao: cd_cartao,
-    };
-/*
-    this.provider.Api(dados, 'cartoes.php').subscribe(async data => {
-
-      var alert = data['msg'];
-
-      if (data['success']) {
-
-        this.numero = data['result']['numero'];
-        this.nome_impresso = data['result']['nome_impresso'];
-        this.mes_validade = data['result']['mes_validade'];
-        this.ano_validade = data['result']['ano_validade'];
-        this.cvv = data['result']['cvv'];
-        this.cd_bandeira = data['result']['cd_bandeira'];
-
-      } else {
-
-        this.authService.fecharLoading();
-        this.toolsService.showToast(alert);
-
-      }
-
-    }, error => {
-      this.authService.fecharLoading();
-      this.authService.alerta();
-    }
-
-    );
-*/
-  }
+  private cleanForm() {
+    this.credit_card_number = "";
+    this.credit_card_printed_name = "";
+    this.credit_card_expiration_month = "";
+    this.credit_card_expiration_year = "";
+    this.credit_card_security_code = "";
+    this.credit_card_company = "";
+  };
 
 }

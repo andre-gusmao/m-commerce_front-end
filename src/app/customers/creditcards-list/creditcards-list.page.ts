@@ -1,22 +1,21 @@
-import {Component,OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {AlertController} from '@ionic/angular';
 import {AuthenticationsService} from 'src/app/services/authentications/authentications.service';
 import {ToolsService} from 'src/app/services/tools/tools.service';
 import {RequestsService} from '../../services/requests/requests.service';
 
 @Component({
-  selector: 'app-products-categories-list',
-  templateUrl: './products-categories-list.page.html',
-  styleUrls: ['./products-categories-list.page.scss'],
+  selector: 'app-creditcards-list',
+  templateUrl: './creditcards-list.page.html',
+  styleUrls: ['./creditcards-list.page.scss'],
 })
-export class ProductsCategoriesListPage implements OnInit {
+export class CreditcardsListPage implements OnInit {
 
-  listProdCateg: any[];
-  id_product_category: string = "";
-  id_company: string = "";
-  product_category_name: string = "";
-  url: string = 'companies/productscategories.php';
-  editPage: string = '/products-categories/';
+  cardList: any[];
+  id_credit_card: string;
+  id_customer: string;
+  url: string = 'customers/creditcards.php';
+  editPage: string = '/creditcards/';
   start: number = 0;
   limit: number = 10;
 
@@ -25,16 +24,16 @@ export class ProductsCategoriesListPage implements OnInit {
     public toolsService: ToolsService,
     public alertCtrl: AlertController,
     public authService: AuthenticationsService
-  ) {}
+  ) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   ionViewWillEnter() {    
     if (this.authService.getLoginSuccessful()) {
       this.start = 0;
-      this.listProdCateg = [];
-      this.id_company = this.authService.getCompanyID();
-      this.loadProductsCategories();
+      this.cardList = [];
+      this.id_customer = this.authService.getProfileID();
+      this.loadCreditCards();
     } else {
       this.authService.setLogout();
     }
@@ -50,20 +49,20 @@ export class ProductsCategoriesListPage implements OnInit {
   loadData(event) {
     this.start += this.limit;
     setTimeout(() => {
-      this.loadProductsCategories().then(() => {
+      this.loadCreditCards().then(() => {
         event.target.complete();
       });
     }, 500);
   }
 
-  private loadProductsCategories() {
+  private loadCreditCards(){
 
     return new Promise(res => {
 
-      this.requestService.getRequestById(this.url, 'company', this.id_company).subscribe(dataResponse => {
+      this.requestService.getRequestById(this.url, 'customer', this.id_customer).subscribe(dataResponse => {
 
         for (let prodCateg of dataResponse['result']) {
-          this.listProdCateg.push(prodCateg);
+          this.cardList.push(prodCateg);
         }
 
       }, error => {
@@ -71,18 +70,17 @@ export class ProductsCategoriesListPage implements OnInit {
       })
 
     });
+}
 
+  public edit(id_customer: string): void {
+    this.toolsService.goToPage(this.editPage + id_customer);
   }
 
-  public edit(id_product_category: string): void {
-    this.toolsService.goToPage(this.editPage + id_product_category);
-  }
-
-  public async delete(id_product_category: string) {
+  public async delete(id_customer: string){
 
     const question = await this.alertCtrl.create({
       header: "Atenção!",
-      message: "Confirma exclusão do grupo ?",
+      message: "Confirma exclusão do cartão ?",
       buttons: [{
           text: "Não",
           role: 'cancel',
@@ -91,14 +89,14 @@ export class ProductsCategoriesListPage implements OnInit {
         {
           text: "Sim",
           handler: () => {
-            this.requestService.deleteRequest(this.url, 'id', id_product_category).subscribe(dataResponse => {
+            this.requestService.deleteRequest(this.url, 'id', id_customer).subscribe(dataResponse => {
               if (dataResponse['success']) {
-                window.alert("Grupo excluído");
+                window.alert("Cartão excluído");
               } else {
-                window.alert("Grupo não foi excluído");
+                window.alert("Cartão não foi excluído");
               }
-              this.listProdCateg = [];
-              this.loadProductsCategories();
+              this.cardList = [];
+              this.loadCreditCards();
             }, error => {
               this.toolsService.showAlert();
             });

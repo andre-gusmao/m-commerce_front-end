@@ -48,7 +48,7 @@ export class MenuService {
     },
     {
       "title": 'Cartoes',
-      "url": '/creditcards',
+      "url": '/creditcards-list',
       "icon": 'card'
     },
     {

@@ -1,26 +1,24 @@
 <app-header></app-header>
-
 <ion-content>
 
   <div>
-
     <ion-item>
       <h4>Cartoes</h4>
     </ion-item>
 
     <ion-item>
       <ion-label position="floating">Numero</ion-label>
-      <ion-input type="number" [(ngModel)]="numero" value="numero"></ion-input>
+      <ion-input type="number" [(ngModel)]="credit_card_number" value="credit_card_number"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label position="floating">Nome</ion-label>
-      <ion-input type="text" [(ngModel)]="nome_impresso" value="nome_impresso"></ion-input>
+      <ion-input type="text" [(ngModel)]="credit_card_printed_name"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label position="floating">Mes</ion-label>
-      <ion-select [(ngModel)]="mes_validade" name="mes_validade" interface="alert" placeholder="Selecione o mes">
+      <ion-select [(ngModel)]="credit_card_expiration_month" name="credit_card_expiration_month" interface="alert" placeholder="Selecione o mes">
         <ion-select-option value="01">01 - Janeiro</ion-select-option>
         <ion-select-option value="02">02 - Feveiro</ion-select-option>
         <ion-select-option value="03">03 - Marco</ion-select-option>
@@ -38,7 +36,7 @@
 
     <ion-item>
       <ion-label position="floating">Ano</ion-label>
-      <ion-select [(ngModel)]="ano_validade" name="ano_validade" interface="alert" placeholder="Selecione o ano">
+      <ion-select [(ngModel)]="credit_card_expiration_year" name="credit_card_expiration_year" interface="alert" placeholder="Selecione o ano">
         <ion-select-option value="2020">2020</ion-select-option>
         <ion-select-option value="2021">2021</ion-select-option>
         <ion-select-option value="2022">2022</ion-select-option>
@@ -60,12 +58,12 @@
 
     <ion-item>
       <ion-label position="floating">CVV</ion-label>
-      <ion-input type="text" [(ngModel)]="cvv" maxlength="3"></ion-input>
+      <ion-input type="text" [(ngModel)]="credit_card_security_code" maxlength="3"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label position="floating">Bandeira do Cartao</ion-label>
-      <ion-select [(ngModel)]="cd_bandeira" name="cd_bandeira" interface="alert" placeholder="Selecione a bandeira">
+      <ion-select [(ngModel)]="credit_card_company" name="credit_card_company" interface="alert" placeholder="Selecione a bandeira">
         <ion-select-option value="1">Visa</ion-select-option>
         <ion-select-option value="2">Mastercard</ion-select-option>
         <ion-select-option value="3">Amex</ion-select-option>
@@ -74,10 +72,15 @@
       </ion-select>
     </ion-item>
 
-    <ion-button size="small" expand="block" type="submit" (click)="CadCartoes()" *ngIf="cd_cartao == undefined">Confirmar</ion-button>
-    <ion-button size="small" expand="block" type="submit" (click)="CadCartoes()" *ngIf="cd_cartao != undefined">Salvar</ion-button>
-    <ion-button size="small" expand="block" type="submit" (click)="ListaCartao()">Listar Cartoes
-    </ion-button>
+    <div style="text-align: center;">
+      <ion-button size="small" fill="outline" shape="round" type="submit" (click)="registerCreditCard()">
+        <ion-icon name="checkmark-circle"></ion-icon>Confirmar
+      </ion-button>
+      <ion-button size="small" fill="outline" shape="round" type="submit" (click)="toolsService.goToPage(this.listPage)">
+        <ion-icon name="checkmark-circle"></ion-icon>Listar
+      </ion-button>
+    </div>
+
   </div>
 
 </ion-content>
