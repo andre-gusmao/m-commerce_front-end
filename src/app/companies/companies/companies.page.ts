@@ -75,7 +75,7 @@ export class CompaniesPage implements OnInit {
       { value: this.city, message: 'Selecione a cidade'      }
     ]
 
-    if (this.toolsService.emptyField(fields) == false) {
+    if (this.toolsService.validField(fields) == false) {
       return;
     }
 

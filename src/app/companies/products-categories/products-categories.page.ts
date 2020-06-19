@@ -54,7 +54,7 @@ export class ProductsCategoriesPage implements OnInit {
       { value: this.product_category_name, message: 'Informe o nome do grupo'}
     ]
 
-    if (this.toolsService.emptyField(fields) == false){
+    if (this.toolsService.validField(fields) == false){
       return;
     }
 

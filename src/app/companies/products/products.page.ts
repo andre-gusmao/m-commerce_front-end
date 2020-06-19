@@ -107,7 +107,7 @@ export class ProductsPage implements OnInit {
       { value: this.id_product_category, message: 'Selecion o grupo'}
     ]
 
-    if (this.toolsService.emptyField(fields) == false){
+    if (this.toolsService.validField(fields) == false){
       return;
     }
 

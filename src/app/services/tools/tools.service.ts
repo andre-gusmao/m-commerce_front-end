@@ -32,12 +32,17 @@ export class ToolsService {
 
   }
 
-  emptyField(_fields) {
+  validField(_fields) {
 
     let isEmpty = true;
 
     for (var i in _fields) {
       if (_fields[i].value == undefined || _fields[i].value == "") {
+        isEmpty = false;
+        this.showToast(_fields[i].message);
+        break;
+      }
+      if (_fields[i].lenght != undefined && _fields[i].lenght != _fields[i].value.toString().length) {
         isEmpty = false;
         this.showToast(_fields[i].message);
         break;

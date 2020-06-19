@@ -53,7 +53,7 @@ export class LoginPage implements OnInit {
       { value: this.password, message: 'Informe a senha' }
     ]
 
-    if (this.toolsService.emptyField(fields) == false) {
+    if (this.toolsService.validField(fields) == false) {
       return;
     }
 
