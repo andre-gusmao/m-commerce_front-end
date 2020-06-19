@@ -6,7 +6,7 @@
       </ion-toolbar>
     </ion-header>
     <ion-content>
-      <ion-menu-toggle auto-hide="false" *ngFor="let menu of menuService.menu">
+      <ion-menu-toggle auto-hide="true" *ngFor="let menu of menuService.menu">
         <ion-item routerLink="{{menu.url}}">
           <ion-icon slot="start" name="{{menu.icon}}"></ion-icon>
           <ion-label>{{menu.title}}</ion-label>

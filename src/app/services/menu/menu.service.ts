@@ -11,12 +11,12 @@ export class MenuService {
     {
       "title": 'Login',
       "url": '/login',
-      "icon": 'person'
+      "icon": 'person-outline'
     },
     {
       "title": 'Compartilhe',
       "url": '/share',
-      "icon": 'share'
+      "icon": 'share-social-outline'
     }
   ];
 
@@ -24,47 +24,47 @@ export class MenuService {
     {
       "title": 'Login',
       "url": '/login',
-      "icon": 'person'
+      "icon": 'person-outline'
     },
     {
       "title": 'Perfil',
       "url": '/customers',
-      "icon": 'clipboard'
+      "icon": 'clipboard-outline'
     },
     {
       "title": 'Checkin',
       "url": '/checkin',
-      "icon": 'qr-scanner'
+      "icon": 'qr-code-outline'
     },
     {
       "title": 'Cardapio',
       "url": '/tcardapio',
-      "icon": 'list-box'
+      "icon": 'reader-outline'
     },
     {
       "title": 'Pedidos',
       "url": '/tpedido',
-      "icon": 'cart'
+      "icon": 'cart-outline'
     },
     {
       "title": 'Cartoes',
       "url": '/creditcards-list',
-      "icon": 'card'
+      "icon": 'card-outline'
     },
     {
       "title": 'Compartilhe',
       "url": '/share',
-      "icon": 'share'
+      "icon": 'share-social-outline'
     },
     {
       "title": 'Avaliar APP',
       "url": '/tavaliar',
-      "icon": 'thumbs-up'
+      "icon": 'thumbs-up-outline'
     },
     {
       "title": 'Termos',
       "url": '/ttermos',
-      "icon": 'paper'
+      "icon": 'create-outline'
     }
   ];
 
@@ -72,37 +72,37 @@ export class MenuService {
     {
       "title": 'Login',
       "url": '/login',
-      "icon": 'person',
+      "icon": 'person-outline',
     },
     {
       "title": 'Quiosque',
       "url": '/companies',
-      "icon": 'business'
+      "icon": 'business-outline'
     },
     {
       "title": 'Grupo de Produtos',
       "url": '/products-categories-list',
-      "icon": 'albums'
+      "icon": 'albums-outline'
     },
     {
       "title": 'Produtos',
       "url": '/products-list',
-      "icon": 'gift'
+      "icon": 'gift-outline'
     },
     {
       "title": 'Cardapio',
       "url": '/qcardapios',
-      "icon": 'book'
+      "icon": 'book-outline'
     },
     {
       "title": 'Entregadores',
       "url": '/qentregadores',
-      "icon": 'walk'
+      "icon": 'walk-outline'
     },
     {
       "title": 'Compartilhe',
       "url": '/share',
-      "icon": 'share'
+      "icon": 'share-social-outline'
     }
   ];
 
@@ -115,7 +115,7 @@ export class MenuService {
     {
       "title": 'Compartilhe',
       "url": '/share',
-      "icon": 'share'
+      "icon": 'share-social-outline'
     }
   ];
 
@@ -123,12 +123,12 @@ export class MenuService {
     {
       "title": 'Login',
       "url": '/login',
-      "icon": 'person'
+      "icon": 'person-outline'
     },
     {
       "title": 'Compartilhe',
       "url": '/share',
-      "icon": 'share'
+      "icon": 'share-social-outline'
     }
   ];
 
