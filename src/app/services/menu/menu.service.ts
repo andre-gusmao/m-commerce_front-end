@@ -39,7 +39,7 @@ export class MenuService {
     {
       "title": 'Cardapio',
       "url": '/tcardapio',
-      "icon": 'reader-outline'
+      "icon": 'book-outline'
     },
     {
       "title": 'Pedidos',
@@ -91,8 +91,13 @@ export class MenuService {
     },
     {
       "title": 'Cardapio',
-      "url": '/qcardapios',
+      "url": '/company-catalogs-list',
       "icon": 'book-outline'
+    },
+    {
+      "title": 'Items Cardapio',
+      "url": '/company-catalogs-list',
+      "icon": 'newspaper-outline'
     },
     {
       "title": 'Entregadores',
