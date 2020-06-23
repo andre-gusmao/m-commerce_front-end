@@ -1,0 +1,41 @@
+<app-header></app-header>
+<ion-content>
+
+  <div>
+
+    <ion-item>
+      <h4>Cardapios</h4>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Nome Cardapio</ion-label>
+      <ion-input type="text" [(ngModel)]="catalog_name"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Status</ion-label>
+
+      <ion-select *ngIf="id_catalog == undefined" [(ngModel)]="catalog_status" disabled="true" name="catalog_status" interface="alert" placeholder="Status do cardapio">
+        <ion-select-option value="A">Ativo</ion-select-option>
+        <ion-select-option value="I">Inativo</ion-select-option>
+      </ion-select>
+
+      <ion-select *ngIf="id_catalog != undefined" [(ngModel)]="catalog_status" name="catalog_status" interface="alert" placeholder="Status do cardapio">
+        <ion-select-option value="A">Ativo</ion-select-option>
+        <ion-select-option value="I">Inativo</ion-select-option>
+      </ion-select>
+
+    </ion-item>
+
+    <div style="text-align: center;">
+      <ion-button size="small" fill="outline" shape="round" type="submit" (click)="registerCompanyCatalogs()">
+        <ion-icon name="checkmark-circle"></ion-icon>Confirmar
+      </ion-button>
+      <ion-button size="small" fill="outline" shape="round" type="submit" (click)="toolsService.goToPage(this.listPage)">
+        <ion-icon name="list"></ion-icon>Listar
+      </ion-button>
+    </div>
+
+  </div>
+
+</ion-content>
