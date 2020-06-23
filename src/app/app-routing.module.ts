@@ -59,6 +59,30 @@ const routes: Routes = [
     path: 'creditcards-list',
     loadChildren: () => import('./customers/creditcards-list/creditcards-list.module').then( m => m.CreditcardsListPageModule)
   },
+  {
+    path: 'company-catalogs',
+    loadChildren: () => import('./companies/company-catalogs/company-catalogs.module').then( m => m.CompanyCatalogsPageModule)
+  },
+  {
+    path: 'company-catalogs/:id',
+    loadChildren: () => import('./companies/company-catalogs/company-catalogs.module').then( m => m.CompanyCatalogsPageModule)
+  },
+  {
+    path: 'company-catalogs-list',
+    loadChildren: () => import('./companies/company-catalogs-list/company-catalogs-list.module').then( m => m.CompanyCatalogsListPageModule)
+  },
+  {
+    path: 'company-catalogs-items',
+    loadChildren: () => import('./companies/company-catalogs-items/company-catalogs-items.module').then( m => m.CompanyCatalogsItemsPageModule)
+  },
+  {
+    path: 'company-catalogs-items/:id',
+    loadChildren: () => import('./companies/company-catalogs-items/company-catalogs-items.module').then( m => m.CompanyCatalogsItemsPageModule)
+  },
+  {
+    path: 'company-catalogs-items-list',
+    loadChildren: () => import('./companies/company-catalogs-items-list/company-catalogs-items-list.module').then( m => m.CompanyCatalogsItemsListPageModule)
+  },
 ];
 
 @NgModule({
