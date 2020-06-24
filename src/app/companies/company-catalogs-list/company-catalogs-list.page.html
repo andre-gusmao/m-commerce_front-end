@@ -16,7 +16,7 @@
         <ion-item-option (click)="edit(catalog.id_catalog)">
           <ion-icon name="create"></ion-icon>
         </ion-item-option>
-        <ion-item-option color="tertiary" (click)="itemsCatalog(catalog.id_catalog)">
+        <ion-item-option color="tertiary" (click)="itemsCatalog(catalog.id_catalog, catalog.catalog_name)">
           <ion-icon name="list"></ion-icon>
         </ion-item-option>
       </ion-item-options>
@@ -47,8 +47,8 @@
     </ion-infinite-scroll-content>
   </ion-infinite-scroll>
 
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button color="dark" (click)="insert()">
+  <ion-fab vertical="bottom" horizontal="center" slot="fixed">
+    <ion-fab-button size="small" (click)="insert()">
       <ion-icon name="add-circle">
       </ion-icon>
     </ion-fab-button>

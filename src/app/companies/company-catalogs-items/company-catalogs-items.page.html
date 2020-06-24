@@ -4,7 +4,7 @@
   <div>
 
     <ion-item>
-      <h4>Itens do Cardapio</h4>
+      <h4>{{catalog_name}}</h4>
     </ion-item>
 
     <ion-item>
@@ -17,15 +17,7 @@
 
     <ion-item>
       <ion-label position="floating">Status</ion-label>
-
-      <ion-select *ngIf="id_catalog_item == undefined" [(ngModel)]="catalog_item_status" disabled="true" name="catalog_item_status"
-        value="A" interface="alert" placeholder="Status do item">
-        <ion-select-option value="A">Ativo</ion-select-option>
-        <ion-select-option value="I">Inativo</ion-select-option>
-      </ion-select>
-
-      <ion-select *ngIf="id_catalog_item != undefined" [(ngModel)]="catalog_item_status" name="catalog_item_status" interface="alert"
-        placeholder="Status do item">
+      <ion-select [(ngModel)]="catalog_item_status" name="catalog_item_status" value="A" interface="alert" placeholder="Status do item">
         <ion-select-option value="A">Ativo</ion-select-option>
         <ion-select-option value="I">Inativo</ion-select-option>
       </ion-select>

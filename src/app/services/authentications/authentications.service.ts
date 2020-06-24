@@ -17,6 +17,7 @@ export class AuthenticationsService {
   tableID = "";
   isLogged = false;
   isLoading = false;
+  catalogName = ""
 
   constructor(
     private router: Router,
@@ -62,6 +63,10 @@ export class AuthenticationsService {
     this.isLogged = isLogged;
   }
 
+  setCatalogName(catalogName: string): void {
+    this.catalogName = catalogName;
+  }
+
   getProfileType() {
     return this.profileType;
   }
@@ -92,6 +97,10 @@ export class AuthenticationsService {
 
   getLoginSuccessful(): boolean {
     return this.isLogged;
+  }
+
+  getCatalogName(){
+    return this.catalogName;
   }
 
   async setLogout() {

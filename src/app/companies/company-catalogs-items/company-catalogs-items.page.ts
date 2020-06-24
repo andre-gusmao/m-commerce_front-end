@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { RequestsService } from 'src/app/services/requests/requests.service';
 import { ToolsService } from 'src/app/services/tools/tools.service';
-import { AlertController } from '@ionic/angular';
 import { AuthenticationsService } from 'src/app/services/authentications/authentications.service';
 
 @Component({
@@ -17,12 +16,15 @@ export class CompanyCatalogsItemsPage implements OnInit {
   id_catalog: string;
   id_product: string;
   catalog_item_status: string;
-  catalog_item_price: number;
-  catalog_item_note: number;
+  catalog_item_price: number = 0;
+  catalog_item_note: string;
+  catalog_name: string = "";
   productList: any = [];
   urlProduct: string = 'companies/products.php';
-  url: string = '';
-  listPage: string = 'company-catalogs-items-list';
+  url: string = 'companies/catalogsitems.php';
+  insertPage: string = 'company-catalogs-items/';
+  itemsList: string = 'company-catalogs-items-list/';
+  listPage: string = '';
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -31,7 +33,9 @@ export class CompanyCatalogsItemsPage implements OnInit {
     public authService: AuthenticationsService
   ) {
     this.activatedRoute.params.subscribe(params => {
-      this.id_catalog_item = params['id'];
+      this.id_catalog = params['id'];
+      this.listPage = this.itemsList + this.id_catalog;
+      this.catalog_name = this.authService.getCatalogName();
     });
   }
 
@@ -40,6 +44,7 @@ export class CompanyCatalogsItemsPage implements OnInit {
   ionViewWillEnter() {
     if(this.authService.getLoginSuccessful()) {
       this.id_company = this.authService.getCompanyID();
+      this.cleanForm();
       this.loadProducts();
     } else {
       this.authService.setLogout();
@@ -94,12 +99,20 @@ export class CompanyCatalogsItemsPage implements OnInit {
     this.requestService.postRequest(dataRequest, this.url).subscribe(async dataResponse => {
       if (dataResponse['success']) {
         this.toolsService.showToast(dataResponse['message'],2000,'success');
-        this.toolsService.goToPage(this.listPage);
+        this.cleanForm();
+        this.toolsService.goToPage(this.insertPage + this.id_catalog);
       }else{
         this.toolsService.showToast(dataResponse['message'],2000,'warning');
       }
     });
   
+  }
+
+  private cleanForm(): void {
+    this.id_product = "";
+    this.catalog_item_status = "";
+    this.catalog_item_price = 0;
+    this.catalog_item_note = "";
   }
 
 }

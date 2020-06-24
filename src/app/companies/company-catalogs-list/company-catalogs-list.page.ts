@@ -135,7 +135,8 @@ export class CompanyCatalogsListPage implements OnInit {
 
   }
 
-  public itemsCatalog(id_catalog){
+  public itemsCatalog(id_catalog,catalog_name){
+    this.authService.setCatalogName(catalog_name);
     this.toolsService.goToPage("/company-catalogs-items/" + id_catalog);
   }
 
