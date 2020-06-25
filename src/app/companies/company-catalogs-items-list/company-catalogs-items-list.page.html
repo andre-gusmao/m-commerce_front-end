@@ -20,20 +20,20 @@
 
             <ion-item>
 
-                <span style="color:dimgrey" *ngIf="item.status == 'I'">
-                    <ion-label>{{item.nome_produto}}</ion-label>
+                <span style="color:red" *ngIf="item.catalog_item_status == 'I'">
+                    <ion-label>{{item.product_name}}</ion-label>
                 </span>
-                <span *ngIf="item.status == 'A'">
-                    <ion-label>{{item.nome_produto}}</ion-label>
+                <span style="color:green" *ngIf="item.catalog_item_status == 'A'">
+                    <ion-label>{{item.product_name}}</ion-label>
                 </span>
 
-                <ion-label *ngIf="item.status == 'I'" class="ion-text-right"><span style="color:dimgrey">R$
-                        {{item.valor}}</span></ion-label>
-                <ion-label *ngIf="item.status == 'A'" class="ion-text-right">R$ {{item.valor}}</ion-label>
+                <ion-label *ngIf="item.catalog_item_status == 'I'" class="ion-text-right"><span style="color:dimgrey">R$
+                        {{item.catalog_item_price}}</span></ion-label>
+                <ion-label *ngIf="item.catalog_item_status == 'A'" class="ion-text-right">R$ {{item.catalog_item_price}}</ion-label>
 
             </ion-item>
             <ion-item-options side="end">
-                <ion-item-option color="success" (click)="statusItemCardapio(item.id_catalog_item ,item.status)">
+                <ion-item-option color="success" (click)="statusItemCardapio(item.id_catalog_item ,item.catalog_item_status)">
                     <ion-icon name="eye-off"></ion-icon>
                 </ion-item-option>
                 <ion-item-option color="danger" (click)="delete(item.id_catalog_item )">

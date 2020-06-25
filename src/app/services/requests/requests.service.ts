@@ -50,7 +50,9 @@ export class RequestsService {
   putRequest(data: any, endpoint: string) {
     let url = environment.endpointURL + endpoint;
 
-    return this.http.put(url, JSON.stringify(data), { headers: this.getHeaders() }).pipe(map(res => res));
+    data = JSON.stringify(data);
+
+    return this.http.put(url, data, { headers: this.getHeaders() }).pipe(map(res => res));
   }
 
   deleteRequest(endpoint: string, paramName: string, paramValue: string) {

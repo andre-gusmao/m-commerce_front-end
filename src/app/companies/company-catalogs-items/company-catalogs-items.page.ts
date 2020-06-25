@@ -36,6 +36,9 @@ export class CompanyCatalogsItemsPage implements OnInit {
       this.id_catalog = params['id'];
       this.listPage = this.itemsList + this.id_catalog;
       this.catalog_name = this.authService.getCatalogName();
+      if(params["cd"] != undefined && params["cd"] != ""){
+        this.id_catalog_item = params["cd"];        
+      }
     });
   }
 
@@ -46,9 +49,35 @@ export class CompanyCatalogsItemsPage implements OnInit {
       this.id_company = this.authService.getCompanyID();
       this.cleanForm();
       this.loadProducts();
+      this.loadCatalogItem();
     } else {
       this.authService.setLogout();
     }
+  }
+
+  private async loadCatalogItem(){
+
+    if(this.id_catalog_item != undefined && this.id_catalog_item != ""){
+
+      return new Promise(res => {
+
+        this.requestService.getRequestById(this.url, 'id', this.id_catalog_item).subscribe(async data => {
+
+          this.id_company = data['result'][0]['id_company'];
+          this.id_catalog = data['result'][0]['id_catalog'];
+          this.id_product = data['result'][0]['id_product'];
+          this.catalog_item_status = data['result'][0]['catalog_item_status'];
+          this.catalog_item_price = data['result'][0]['catalog_item_price'];
+          this.catalog_item_note = data['result'][0]['catalog_item_note'];
+
+        }, error => {
+          this.toolsService.showAlert();
+        })
+
+      });
+
+    }
+
   }
 
   private async loadProducts(){
@@ -84,6 +113,10 @@ export class CompanyCatalogsItemsPage implements OnInit {
       catalog_item_status: this.catalog_item_status,
       catalog_item_price: this.catalog_item_price,
       catalog_item_note: this.catalog_item_note
+    }
+
+    if(this.id_catalog_item != undefined && this.id_catalog_item != ""){
+      dataRequest['id_catalog_item'] = this.id_catalog_item;
     }
 
     const fields = [

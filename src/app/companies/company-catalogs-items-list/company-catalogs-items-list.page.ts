@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { RequestsService } from 'src/app/services/requests/requests.service';
 import { ToolsService } from 'src/app/services/tools/tools.service';
 import { AuthenticationsService } from 'src/app/services/authentications/authentications.service';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-company-catalogs-items-list',
@@ -11,17 +12,22 @@ import { AuthenticationsService } from 'src/app/services/authentications/authent
 })
 export class CompanyCatalogsItemsListPage implements OnInit {
   
+  //id_catalog_item: string;
   id_catalog: string;
   id_company: string;
   start: number = 0;
   limit: number = 5;
   catalog_name: string = "";
   listCatalogItems: any = [];
+  url: string = 'companies/catalogsitems.php';
+  urlItemList: string = 'company-catalogs-items-list/';
+  editPage: string = "company-catalogs-items/";
 
   constructor(
     private activatedRoute: ActivatedRoute,
     public requestService: RequestsService,
     public toolsService: ToolsService,
+    public alertCtrl: AlertController,
     public authService: AuthenticationsService
   ) {
     this.activatedRoute.params.subscribe(params => {
@@ -34,7 +40,10 @@ export class CompanyCatalogsItemsListPage implements OnInit {
 
   ionViewWillEnter() {
     if(this.authService.getLoginSuccessful()) {
+      this.start = 0;
+      this.listCatalogItems = [];
       this.id_company = this.authService.getCompanyID();
+      this.loadListCatalogItems();
     } else {
       this.authService.setLogout();
     }
@@ -56,12 +65,87 @@ export class CompanyCatalogsItemsListPage implements OnInit {
     }, 500);
   }
 
-  loadListCatalogItems(){}
+  private async loadListCatalogItems(){
 
-  edit(){}
+    return new Promise(res => {
 
-  delete(){}
+      this.requestService.getRequestById(this.url, 'catalog', this.id_catalog).subscribe(dataResponse => {
 
-  insert(){}
+        for (let itemCatalog of dataResponse['result']) {
+          this.listCatalogItems.push(itemCatalog);
+        }
+
+      }, error => {
+        this.toolsService.showAlert();
+      })
+
+    });
+  
+  }
+
+  public edit(id_catalog_item){
+    this.toolsService.goToPage(this.editPage + this.id_catalog + "/" + id_catalog_item)
+  }
+
+  public async delete(id_catalog_item){
+
+    const question = await this.alertCtrl.create({
+      header: "Atenção!",
+      message: "Confirma exclusão do item ?",
+      buttons: [{
+          text: "Não",
+          role: 'cancel',
+          handler: () => {}
+        },
+        {
+          text: "Sim",
+          handler: () => {
+            this.requestService.deleteRequest(this.url, 'id', id_catalog_item).subscribe(dataResponse => {
+              if (dataResponse['success']) {
+                window.alert("Item excluído");
+              } else {
+                window.alert("Item não foi excluído");
+              }
+              this.listCatalogItems = [];
+              this.loadListCatalogItems();
+            }, error => {
+              this.toolsService.showAlert();
+            });
+          }
+        }
+      ]
+    })
+    question.present();
+  
+  }
+
+  public insert(){
+    this.toolsService.goToPage(this.editPage + this.id_catalog);
+  }
+
+  async statusItemCardapio(id_catalog_item: string ,catalog_item_status: string){
+
+    let dataRequest = {
+      id_catalog_item: id_catalog_item,
+      catalog_item_status: ''
+    }
+
+    if(catalog_item_status === 'A'){
+      dataRequest.catalog_item_status = 'I';
+    } else {
+      dataRequest.catalog_item_status = 'A';
+    }
+
+    this.requestService.putRequest(dataRequest, this.url).subscribe(async dataResponse => {
+      if (dataResponse['success']) {
+        this.toolsService.showToast(dataResponse['message'],2000,'success');
+        this.doRefresh(event);
+      }else{
+        this.toolsService.showToast(dataResponse['message'],2000,'warning');
+      }
+    });
+  
+
+  }
 
 }
