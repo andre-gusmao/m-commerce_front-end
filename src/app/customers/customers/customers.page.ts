@@ -4,7 +4,6 @@ import { AuthenticationsService } from '../../services/authentications/authentic
 import { ToolsService } from 'src/app/services/tools/tools.service';
 import { RequestsService } from '../../services/requests/requests.service';
 import { CitiesService } from '../../services/cities/cities.service';
-import { isTabSwitch } from '@ionic/angular/directives/navigation/stack-utils';
 
 @Component({
   selector: 'app-customers',

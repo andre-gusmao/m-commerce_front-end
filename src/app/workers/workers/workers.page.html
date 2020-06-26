@@ -1,0 +1,59 @@
+<app-header></app-header>
+<ion-content>
+
+  <div>
+
+    <ion-item>
+      <h4>Entregadores</h4>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">CPF</ion-label>
+      <ion-input type="text" [(ngModel)]="worker_cpf"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Nome</ion-label>
+      <ion-input type="text" [(ngModel)]="worker_name"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Celular</ion-label>
+      <ion-input type="text" [(ngModel)]="worker_cell_phone" [brmasker]="{phone: true}"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Celular Status</ion-label>
+      <ion-select [(ngModel)]="worker_status" name="worker_status" interface="alert" placeholder="Selecione o status">
+        <ion-select-option value="A">Ativo</ion-select-option>
+        <ion-select-option value="I">Inativo</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">E-mail</ion-label>
+      <ion-input type="text" [(ngModel)]="worker_email"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Senha</ion-label>
+      <ion-input type="password" [(ngModel)]="worker_password"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Confirme a Senha</ion-label>
+      <ion-input type="password" [(ngModel)]="worker_confirm_password"></ion-input>
+    </ion-item>
+
+    <div style="text-align: center;">
+      <ion-button size="small" fill="outline" shape="round" type="submit" (click)="registerWorker()">
+        <ion-icon name="checkmark-circle"></ion-icon>Confirmar
+      </ion-button>
+      <ion-button size="small" fill="outline" shape="round" type="button" (click)="toolsService.goToPage(this.listPage)">
+        <ion-icon name="list"></ion-icon>Listar
+      </ion-button>
+    </div>
+
+  </div>
+
+</ion-content>

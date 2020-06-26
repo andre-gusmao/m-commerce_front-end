@@ -1,5 +1,4 @@
 import { Component,OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { RequestsService } from 'src/app/services/requests/requests.service';
 import { ToolsService } from 'src/app/services/tools/tools.service';
 import { AlertController } from '@ionic/angular';
@@ -23,7 +22,6 @@ export class CompanyCatalogsListPage implements OnInit {
   editPage: string = '/company-catalogs/';
 
   constructor(
-    private activatedRoute: ActivatedRoute,
     public requestService: RequestsService,
     public toolsService: ToolsService,
     public alertCtrl: AlertController,

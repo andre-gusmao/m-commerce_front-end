@@ -87,6 +87,18 @@ const routes: Routes = [
     path: 'company-catalogs-items-list/:id',
     loadChildren: () => import('./companies/company-catalogs-items-list/company-catalogs-items-list.module').then( m => m.CompanyCatalogsItemsListPageModule)
   },
+  {
+    path: 'workers',
+    loadChildren: () => import('./workers/workers/workers.module').then( m => m.WorkersPageModule)
+  },
+  {
+    path: 'workers-list',
+    loadChildren: () => import('./workers/workers-list/workers-list.module').then( m => m.WorkersListPageModule)
+  },
+  {
+    path: 'workers/:id',
+    loadChildren: () => import('./workers/workers/workers.module').then( m => m.WorkersPageModule)
+  },
 ];
 
 @NgModule({

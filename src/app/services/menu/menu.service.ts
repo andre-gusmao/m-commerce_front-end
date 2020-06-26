@@ -7,7 +7,7 @@ export class MenuService {
 
   public menu = [];
 
-  public menu0 = [
+  public menu0 = [//admin
     {
       "title": 'Login',
       "url": '/login',
@@ -101,7 +101,7 @@ export class MenuService {
     },
     {
       "title": 'Entregadores',
-      "url": '/qentregadores',
+      "url": '/workers-list',
       "icon": 'walk-outline'
     },
     {
@@ -111,7 +111,7 @@ export class MenuService {
     }
   ];
 
-  public menu3 = [
+  public menu3 = [//workers
     {
       "title": 'Login',
       "url": '/login',
