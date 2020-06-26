@@ -99,6 +99,10 @@ const routes: Routes = [
     path: 'workers/:id',
     loadChildren: () => import('./workers/workers/workers.module').then( m => m.WorkersPageModule)
   },
+  {
+    path: 'checkins',
+    loadChildren: () => import('./customers/checkins/checkins.module').then( m => m.CheckinsPageModule)
+  },
 ];
 
 @NgModule({

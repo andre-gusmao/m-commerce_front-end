@@ -33,7 +33,7 @@ export class MenuService {
     },
     {
       "title": 'Checkin',
-      "url": '/checkin',
+      "url": '/checkins',
       "icon": 'qr-code-outline'
     },
     {

@@ -1,0 +1,33 @@
+<app-header></app-header>
+
+<ion-content style="vertical-align: middle;">
+
+  <div style="text-align: center;" *ngIf="!authService.getCheckin()">
+
+    <div>
+      <ion-button size="default" fill="outline" shape="round" (click)="scanQRCode()">
+        <ion-icon name="qr-code"></ion-icon>Ler QRCode
+      </ion-button>
+    </div>
+
+    <div>
+      <ion-button size="default" fill="outline" shape="round" (click)="enterQRCode()">
+        <ion-icon slot="start" name="keypad"></ion-icon>Digitar Codigo
+      </ion-button>
+    </div>
+
+  </div>
+
+  <div style="text-align: center;" *ngIf="authService.getCheckin()">
+    <ion-title>Você está na mesa {{tableID}}</ion-title>
+  </div>
+
+</ion-content>
+
+<div style="text-align: center;" *ngIf="authService.getCheckin()">
+  <ion-footer>
+    <ion-button size="default" fill="outline" shape="round" (click)="checkOut()">
+      <ion-icon slot="start" name="open-outline"></ion-icon>Sair do quiosque
+    </ion-button>
+  </ion-footer>
+</div>

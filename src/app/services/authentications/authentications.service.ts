@@ -8,22 +8,41 @@ import { MenuService } from '../menu/menu.service';
 })
 export class AuthenticationsService {
 
-  profileType = "";
-  userLogin = "";
-  userName = "";
-  companyID = "";
-  catalogID = "";
-  profileID = "";
-  tableID = "";
-  isLogged = false;
-  isLoading = false;
-  catalogName = ""
+  profileType: string = "";
+  userLogin: string = "";
+  userName: string = "";
+  companyID: string = "";
+  catalogID: string = "";
+  profileID: string = "";
+  tableID: string = "";
+  isLogged: boolean = false;
+  isLoading: boolean = false;
+  catalogName: string = ""
+  appCatalog: any = [];
 
   constructor(
     private router: Router,
     public menuService: MenuService,
     public toolsService: ToolsService
   ) { }
+
+  setCheckin(QRCodeText: string): void {
+    let id_company: string = QRCodeText.substr(1,QRCodeText.indexOf('M')-1);
+    let id_table: string = QRCodeText.substr(QRCodeText.indexOf('M')+1);
+    this.setCompanyID(id_company);
+    this.setTableID(id_table);
+  }
+
+  setCheckOut(){
+    this.setCompanyID("");
+    this.setTableID("");
+  }
+
+  loadCatalog(){
+    if(this.tableID != "" && this.companyID != ""){
+      //LoadCatalog
+    }
+  }
 
   setProfileType(profileType: string) {
     this.profileType = profileType;
@@ -67,6 +86,14 @@ export class AuthenticationsService {
     this.catalogName = catalogName;
   }
 
+  getCheckin(): boolean{
+    let valid: boolean = true;
+    if (this.tableID === ""){
+      valid = false;
+    }
+    return valid;
+  }
+
   getProfileType() {
     return this.profileType;
   }
@@ -87,7 +114,7 @@ export class AuthenticationsService {
     return this.catalogID;
   }
 
-  getTableID() {
+  getTableID(): string {
     return this.tableID;
   }
 
