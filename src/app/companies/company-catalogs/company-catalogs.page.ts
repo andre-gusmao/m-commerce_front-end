@@ -14,6 +14,7 @@ export class CompanyCatalogsPage implements OnInit {
   id_catalog: string;
   id_company: string;
   catalog_name: string;
+  catalog_status: string;
   url: string = 'companies/companycatalogs.php';
   listPage: string = 'company-catalogs-list';
 
