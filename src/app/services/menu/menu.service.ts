@@ -38,7 +38,7 @@ export class MenuService {
     },
     {
       "title": 'Cardapio',
-      "url": '/tcardapio',
+      "url": '/customers-catalogs',
       "icon": 'book-outline'
     },
     {

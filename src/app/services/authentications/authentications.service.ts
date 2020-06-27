@@ -40,7 +40,7 @@ export class AuthenticationsService {
 
   loadCatalog(){
     if(this.tableID != "" && this.companyID != ""){
-      //LoadCatalog
+      //LoadCatalogu
     }
   }
 

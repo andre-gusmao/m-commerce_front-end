@@ -103,6 +103,14 @@ const routes: Routes = [
     path: 'checkins',
     loadChildren: () => import('./customers/checkins/checkins.module').then( m => m.CheckinsPageModule)
   },
+  {
+    path: 'customers-catalogs',
+    loadChildren: () => import('./customers/customers-catalogs/customers-catalogs.module').then( m => m.CustomersCatalogsPageModule)
+  },
+  {
+    path: 'item-details',
+    loadChildren: () => import('./customers/item-details/item-details.module').then( m => m.ItemDetailsPageModule)
+  },
 ];
 
 @NgModule({

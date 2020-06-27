@@ -10,7 +10,7 @@ import { AuthenticationsService } from 'src/app/services/authentications/authent
   styleUrls: ['./products.page.scss'],
 })
 export class ProductsPage implements OnInit {
-  
+
   id_product: string = "";
   id_company: string = "";
   id_product_category: string = "";
@@ -27,28 +27,31 @@ export class ProductsPage implements OnInit {
     public requestService: RequestsService,
     public toolsService: ToolsService,
     public authService: AuthenticationsService
-  ) { 
+  ) {
     this.activatedRoute.params.subscribe(params => {
       this.id_product = params['id'];
     });
   }
 
   ngOnInit() {
-    this.id_company = this.authService.getCompanyID();
-    if(this.id_company != undefined && this.id_company != ""){
-      this.loadProductCategory(this.id_company);
+    if (this.authService.getLoginSuccessful()) {
+      this.id_company = this.authService.getCompanyID();
+      if (this.id_company != undefined && this.id_company != "") {
+        this.loadProductCategory(this.id_company);
+      }
     }
   }
 
   ionViewWillEnter() {
     if (this.authService.getLoginSuccessful()) {
+      this.categoryList = [];
+      this.id_company = this.authService.getCompanyID();
+      this.categoryList = this.loadProductCategory(this.id_company);
       if ((this.id_product != undefined) && (this.id_product != "")) {
         this.loadProduct(this.id_product);
       } else {
         this.cleanForm();
       }
-      this.id_company = this.authService.getCompanyID();
-      this.categoryList = this.loadProductCategory(this.id_company);
     } else {
       this.authService.setLogout();
     }
@@ -62,7 +65,7 @@ export class ProductsPage implements OnInit {
       id_product: id_product,
     };
 
-    this.requestService.getRequestById(this.url, 'id',id_product).subscribe(async data => {
+    this.requestService.getRequestById(this.url, 'id', id_product).subscribe(async data => {
 
         if (data['success']) {
 
@@ -101,37 +104,45 @@ export class ProductsPage implements OnInit {
       product_picture: this.product_picture,
     }
 
-    const fields = [
-      { value: this.product_name, message: 'Informe o nome'},
-      { value: this.product_description, message: 'Informe a descrição'},
-      { value: this.id_product_category, message: 'Selecion o grupo'}
+    const fields = [{
+        value: this.product_name,
+        message: 'Informe o nome'
+      },
+      {
+        value: this.product_description,
+        message: 'Informe a descrição'
+      },
+      {
+        value: this.id_product_category,
+        message: 'Selecion o grupo'
+      }
     ]
 
-    if (this.toolsService.validField(fields) == false){
+    if (this.toolsService.validField(fields) == false) {
       return;
     }
 
-    if (this.id_product != undefined && this.id_product != ""){
+    if (this.id_product != undefined && this.id_product != "") {
       dataRequest['id_product'] = this.id_product;
     }
 
     this.requestService.postRequest(dataRequest, this.url).subscribe(async dataResponse => {
       if (dataResponse['success']) {
-        this.toolsService.showToast(dataResponse['message'],2000,'success');
+        this.toolsService.showToast(dataResponse['message'], 2000, 'success');
         this.toolsService.goToPage(this.listPage);
-      }else{
-        this.toolsService.showToast(dataResponse['message'],2000,'warning');
+      } else {
+        this.toolsService.showToast(dataResponse['message'], 2000, 'warning');
       }
     });
-  
+
   }
 
   async loadProductCategory(id_company) {
 
-    this.categoryList = [];
+    //this.categoryList = [];
 
     return await new Promise(res => {
-      
+
       this.requestService.getRequestById(this.urlCategory, 'company', this.id_company).subscribe(dataResponse => {
 
         for (let category of dataResponse['result']) {
@@ -146,7 +157,7 @@ export class ProductsPage implements OnInit {
 
   }
 
-  takePictures(){
+  takePictures() {
     window.alert("Em desenvolvimento");
   }
 

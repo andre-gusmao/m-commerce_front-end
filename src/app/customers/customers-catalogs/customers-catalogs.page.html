@@ -1,0 +1,21 @@
+<app-header></app-header>
+
+<ion-content>
+
+  <ion-list>
+    <ion-list-header>Cardápio</ion-list-header>
+
+    <ion-item (click)="showItem()" *ngFor="let item of appCatalog">
+      <ion-thumbnail slot="end">
+        <img src="../../../assets/aguacoco.jpg">
+      </ion-thumbnail>
+      <ion-label>
+        <h3>{{item.product_name}}</h3>
+        <p>{{item.product_description}}</p>
+        <p>{{item.catalog_item_price}}</p>
+      </ion-label>
+    </ion-item>
+
+  </ion-list>
+
+</ion-content>
