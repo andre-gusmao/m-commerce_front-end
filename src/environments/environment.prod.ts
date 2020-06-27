@@ -1,4 +1,4 @@
 export const environment = {
   production: false,
-  endpointURL: "/api/"
+  endpointURL: "http://kioskwide.com.br/api/"
 };
