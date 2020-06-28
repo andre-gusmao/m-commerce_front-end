@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { RequestsService } from 'src/app/services/requests/requests.service';
 import { ToolsService } from 'src/app/services/tools/tools.service';
 import { AlertController } from '@ionic/angular';
@@ -12,6 +12,14 @@ import { ItemDetailsPage } from '../item-details/item-details.page';
   styleUrls: ['./customers-catalogs.page.scss'],
 })
 export class CustomersCatalogsPage implements OnInit {
+  
+  @Input() id_item: string;
+  @Input() product_name: string;
+  @Input() item_price: number;
+  @Input() catalog_note: string;
+  @Input() customer_note: string;
+  @Input() quantity: number;
+  @Input() total_price: number;
 
   appCatalog: any = [];
   appGroups: any = [];
@@ -55,7 +63,6 @@ export class CustomersCatalogsPage implements OnInit {
           this.appCatalog.push(product);
         }
         this.loadGroups();
-        console.log("ok");
       }, error => {
         this.toolsService.showAlert();
       })
@@ -64,25 +71,45 @@ export class CustomersCatalogsPage implements OnInit {
 
   }
 
-  async showItem() {
+  async showItem(product: any) {
 
     const itemDetail = await this.modalCtrl.create({
-      component: ItemDetailsPage
+      component: ItemDetailsPage,
+      componentProps: {
+        id_item: product.id_catalog_item,
+        product_name: product.product_name,
+        item_price: product.catalog_item_price,
+        catalog_note: product.product_description,
+        customer_note: "",
+        quantity: 1,
+        total_price: 1 * product.catalog_item_price
+      }
     });
 
     await itemDetail.present();
 
+    const { data } = await itemDetail.onWillDismiss();
+    console.log("data: " + data.id_item);
+
   }
 
-  loadGroups(){
+  private loadGroups(): void {
 
+    let item = [];
+    let filGroup = [];
     let group = [];
     let name = ""
+    this.appGroups = [];
 
     for(let i = 0; i < this.appCatalog.length; i++){
       name = this.appCatalog[i].product_category_name;
       if(group.indexOf(name) === -1 ){
+
         group.push(name);
+        item = [];
+        item['name'] = name;
+        item['items'] = this.appCatalog.filter( (item) => { return item.product_category_name === name; } );
+        filGroup.push(item);
       }
     }
 

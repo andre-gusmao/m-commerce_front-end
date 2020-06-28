@@ -5,13 +5,37 @@
         <ion-icon name="arrow-back-outline"></ion-icon>Voltar
       </ion-button>
     </ion-buttons>
+    <ion-title>{{product_name}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
 
-  <div style="text-align: center; vertical-align: middle;">
-    <ion-label>Teste</ion-label>
-  </div>
+  <ion-card>
+    <img src="../../../assets/aguacoco.jpg">
+    <ion-card-subtitle>{{item_price | currency: 'BRL': true}}</ion-card-subtitle>
+    <ion-card-content>{{catalog_note}}</ion-card-content>
+
+    <ion-item>
+      <ion-label position="floating">Observação</ion-label>
+      <ion-input type="text" [(ngModel)]="customer_note"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-buttons>
+        <ion-button size="small" fill="outline" shape="round" (click)="decraseItem()">
+          <ion-icon name="remove-outline"></ion-icon>
+        </ion-button>
+        <ion-label> {{quantity}} </ion-label>
+        <ion-button size="small" fill="outline" shape="round" (click)="incraseItem()">
+          <ion-icon name="add-outline"></ion-icon>
+        </ion-button>
+        <ion-label>{{total_price | currency: 'BRL': true}}</ion-label>
+        <ion-button size="small" fill="outline" shape="round" (click)="registerItem()">
+          <ion-icon name="checkmark-circle"></ion-icon>Confirmar
+        </ion-button>
+      </ion-buttons>
+    </ion-item>
+  </ion-card>
 
 </ion-content>
