@@ -68,7 +68,7 @@ export class MenuService {
     },
     {
       "title": 'Sair',
-      "url": '/logout/s',
+      "url": '/logout',
       "icon": 'log-out-outline'
     }
   ];

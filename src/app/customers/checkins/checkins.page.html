@@ -4,7 +4,11 @@
 
   <div style="text-align: center;" *ngIf="!authService.getCheckin()">
 
-    <div>
+    <ion-item style="padding: 20px;">
+      <ion-label style="text-align: center;color: green;">Faça checkin no quiosque</ion-label>
+    </ion-item>
+
+    <div style="padding: 20px;">
       <ion-button size="default" fill="outline" shape="round" (click)="scanQRCode()">
         <ion-icon name="qr-code"></ion-icon>Ler QRCode
       </ion-button>

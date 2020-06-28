@@ -69,7 +69,7 @@ export class CheckinsPage implements OnInit {
             console.log('Confirma OK: ' + data.QRCodeText);
             if (this.validCatalog(data.QRCodeText) == true) {
               this.authService.setCheckin(data.QRCodeText);
-              this.toolsService.goToPage('/login');
+              this.toolsService.goToPage('/customers-catalogs');
             } else {
               this.toolsService.showToast("Código inválido");
             }

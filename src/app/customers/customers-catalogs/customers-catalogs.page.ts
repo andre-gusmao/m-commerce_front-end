@@ -32,8 +32,13 @@ export class CustomersCatalogsPage implements OnInit {
   ionViewWillEnter() {
     if (this.authService.getLoginSuccessful()) {
       this.id_company = this.authService.getCompanyID();
-      this.authService.loadCatalog();
-      this.loadCustomerCatalog();
+      if(this.authService.getTableID()){
+        this.authService.loadCatalog();
+        this.loadCustomerCatalog();
+      } else {
+        this.toolsService.showToast("Faça checkin para carregar o cardapio");
+        this.toolsService.goToPage('checkins');
+      }
     } else {
       this.appCatalog = [];
       this.authService.setLogout();
