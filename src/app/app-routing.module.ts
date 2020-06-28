@@ -12,6 +12,10 @@ const routes: Routes = [
     loadChildren: () => import('./modules/login/login.module').then( m => m.LoginPageModule)
   },
   {
+    path: 'login/:logout',
+    loadChildren: () => import('./modules/login/login.module').then( m => m.LoginPageModule)
+  },
+  {
     path: 'share',
     loadChildren: () => import('./modules/share/share.module').then( m => m.SharePageModule)
   },
@@ -110,6 +114,10 @@ const routes: Routes = [
   {
     path: 'item-details',
     loadChildren: () => import('./customers/item-details/item-details.module').then( m => m.ItemDetailsPageModule)
+  },
+  {
+    path: 'logout',
+    loadChildren: () => import('./modules/logout/logout.module').then( m => m.LogoutPageModule)
   },
 ];
 

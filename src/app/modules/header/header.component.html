@@ -4,8 +4,8 @@
       <ion-menu-button auto-hide menu="menut"></ion-menu-button>
     </ion-buttons>
     <ion-buttons slot="end">
-      <ion-button type="submit" (click)="authService.setLogout()">
-          <ion-icon slot="end" name="log-out-outline"></ion-icon>
+      <ion-button type="submit" *ngIf="authService.getTableID()">
+          <ion-icon slot="end" name="cart-outline"></ion-icon>
         </ion-button>
     </ion-buttons>
     <ion-title *ngIf="authService.getLoginSuccessful()">{{authService.getUserName()}}</ion-title>

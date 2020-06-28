@@ -65,6 +65,11 @@ export class MenuService {
       "title": 'Termos',
       "url": '/ttermos',
       "icon": 'create-outline'
+    },
+    {
+      "title": 'Sair',
+      "url": '/logout/s',
+      "icon": 'log-out-outline'
     }
   ];
 
@@ -108,6 +113,11 @@ export class MenuService {
       "title": 'Compartilhe',
       "url": '/share',
       "icon": 'share-social-outline'
+    },
+    {
+      "title": 'Sair',
+      "url": '/logout',
+      "icon": 'log-out-outline'
     }
   ];
 

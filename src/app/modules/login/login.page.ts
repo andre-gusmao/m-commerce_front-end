@@ -1,6 +1,5 @@
-import { async } from '@angular/core/testing';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { AuthenticationsService } from '../../services/authentications/authentications.service';
 import { RequestsService } from '../../services/requests/requests.service';
 import { ToolsService } from 'src/app/services/tools/tools.service';
@@ -21,12 +20,13 @@ export class LoginPage implements OnInit {
 
   constructor(
     private router: Router,
+    private activatedRoute: ActivatedRoute,
     public authService: AuthenticationsService,
     public requestService: RequestsService,
     public menuService: MenuService,
     public toolsService: ToolsService,
     public alertController: AlertController
-  ) { }
+  ) {}
 
   ngOnInit() { }
 
@@ -80,10 +80,10 @@ export class LoginPage implements OnInit {
         }
         this.authService.setLoginSuccessful(true);
         this.toolsService.showToast('Logado com sucesso');
-        if (dataResponse['profileType'] == "2") {
-          this.router.navigate(['/login']);//companies
-        } else {
-          this.router.navigate(['/login']);//customers
+        if (dataResponse['profileType'] == "2") {//companies
+          this.toolsService.goToPage('/company-catalogs-list');
+        } else {//customers
+          this.toolsService.goToPage('/checkins');
         }
 
       } else {
