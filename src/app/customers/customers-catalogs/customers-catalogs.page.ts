@@ -113,7 +113,7 @@ export class CustomersCatalogsPage implements OnInit {
       }
     }
 
-    this.appGroups = group;
+    this.appGroups = filGroup;
 
   }
 
