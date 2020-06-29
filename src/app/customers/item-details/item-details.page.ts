@@ -31,6 +31,12 @@ export class ItemDetailsPage implements OnInit {
 
   ngOnInit() { }
 
+  ionViewWillEnter() {
+    if (!this.authService.getLoginSuccessful()) {
+      this.authService.setLogout();
+    }
+  }
+
   public closeItemDetails(){
     this.modalCtrl.dismiss().then(
       () => { this.modalCtrl = null }
@@ -55,12 +61,27 @@ export class ItemDetailsPage implements OnInit {
   }
 
   public registerItem(){
+
     this.modalCtrl.dismiss({
       'dismissed': true,
       'id_item': this.id_item,
       'quantity': this.quantity,
-      'total_price': this.total_price
-    })
+      'total_price': this.total_price,
+      'customer_note': this.customer_note
+    });
+
+
   }
 
 }
+
+// component: ItemDetailsPage,
+// componentProps: {
+//   id_item: product.id_catalog_item,
+//   product_name: product.product_name,
+//   item_price: product.catalog_item_price,
+//   catalog_note: product.product_description,
+//   customer_note: "",
+//   quantity: 1,
+//   total_price: 1 * product.catalog_item_price
+// }

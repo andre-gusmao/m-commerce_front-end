@@ -119,6 +119,10 @@ const routes: Routes = [
     path: 'logout',
     loadChildren: () => import('./modules/logout/logout.module').then( m => m.LogoutPageModule)
   },
+  {
+    path: 'shopping-cart',
+    loadChildren: () => import('./customers/shopping-cart/shopping-cart.module').then( m => m.ShoppingCartPageModule)
+  },
 ];
 
 @NgModule({

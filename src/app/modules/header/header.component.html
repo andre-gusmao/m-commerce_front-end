@@ -4,7 +4,7 @@
       <ion-menu-button auto-hide menu="menut"></ion-menu-button>
     </ion-buttons>
     <ion-buttons slot="end">
-      <ion-button type="submit" *ngIf="authService.getTableID()">
+      <ion-button type="submit" *ngIf="authService.getTableID()" (click)="goToCart()">
           <ion-icon slot="end" name="cart-outline"></ion-icon>
         </ion-button>
     </ion-buttons>
