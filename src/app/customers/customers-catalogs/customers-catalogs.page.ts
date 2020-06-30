@@ -1,9 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { RequestsService } from 'src/app/services/requests/requests.service';
 import { ToolsService } from 'src/app/services/tools/tools.service';
-import { AlertController } from '@ionic/angular';
 import { AuthenticationsService } from 'src/app/services/authentications/authentications.service';
-import { ModalController, NavController } from '@ionic/angular';
+import { ModalController } from '@ionic/angular';
 import { ItemDetailsPage } from '../item-details/item-details.page';
 import { ShoppingCartService } from 'src/app/services/shopping-cart/shopping-cart.service'
 
@@ -16,11 +15,11 @@ export class CustomersCatalogsPage implements OnInit {
   
   @Input() id_item: string;
   @Input() product_name: string;
-  @Input() item_price: number;
+  @Input() item_price: number = 0;
   @Input() catalog_note: string;
   @Input() customer_note: string;
-  @Input() quantity: number;
-  @Input() total_price: number;
+  @Input() quantity: number = 0;
+  @Input() total_price: number = 0;
 
   appCatalog: any = [];
   appGroups: any = [];
@@ -33,31 +32,46 @@ export class CustomersCatalogsPage implements OnInit {
   constructor(
     public requestService: RequestsService,
     public toolsService: ToolsService,
-    public alertCtrl: AlertController,
     public authService: AuthenticationsService,
-    public navCtrl: NavController,
     public modalCtrl: ModalController,
     public ShopCartSrc: ShoppingCartService
   ) { }
 
-  ngOnInit() { }
-
-  ionViewWillEnter() {
+  ngOnInit() {
     if (this.authService.getLoginSuccessful()) {
-      this.id_company = this.authService.getCompanyID();
-      this.id_customer = this.authService.getProfileID();
-      if(this.authService.getTableID()){
-        this.authService.loadCatalog();
-        this.loadCustomerCatalog();
-        this.id_catalog = this.authService.getCatalogID();
-      } else {
-        this.toolsService.showToast("Faça checkin para carregar o cardapio");
-        this.toolsService.goToPage('checkins');
-      }
+      this.loadCatalog();
     } else {
       this.appCatalog = [];
+      this.appGroups = [];
       this.authService.setLogout();
     }
+  }
+
+  ionViewWillEnter() {
+    if (!this.authService.getLoginSuccessful()) {
+      this.appCatalog = [];
+      this.appGroups = [];
+      this.authService.setLogout();
+    } else {
+      if(this.appCatalog.length === 0){
+        this.loadCatalog();
+      }
+    }
+  }
+
+  private loadCatalog(){
+
+    this.id_company = this.authService.getCompanyID();
+    this.id_customer = this.authService.getProfileID();
+    if(this.authService.getTableID()){
+      this.authService.loadCatalog();
+      this.loadCustomerCatalog();
+      this.id_catalog = this.authService.getCatalogID();
+    } else {
+      this.toolsService.showToast("Faça checkin para carregar o cardapio");
+      this.toolsService.goToPage('checkins');
+    }
+
   }
 
   private async loadCustomerCatalog() {
@@ -154,10 +168,3 @@ export class CustomersCatalogsPage implements OnInit {
   }
 
 }
-// this.modalCtrl.dismiss({
-//   'dismissed': true,
-//   'id_item': this.id_item,
-//   'quantity': this.quantity,
-//   'total_price': this.total_price,
-//   'customer_note': this.customer_note
-// });

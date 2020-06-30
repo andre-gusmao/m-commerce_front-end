@@ -2,29 +2,57 @@
 
 <ion-content>
 
-  <div style="height: 87%; text-align: center;">
-    <ion-list>
-      <ion-list-header>Items pedido</ion-list-header>
-      <ion-item>
-        <ion-label>
-          <!-- <h3>{{item.product_name}}</h3>
-          <p>{{item.product_description}}</p>
-          <p>{{item.catalog_item_price | currency: 'BRL': true}}</p> -->
-          <h3>Casquinha de Siri</h3>
-          <p>Casquinha de Siri preparada com limão siciliano</p>
-          <p>R$ 15,00</p>
-        </ion-label>
-      </ion-item>
-    </ion-list>
+  <div *ngIf="totalOrder === 0" style="text-align: center;">
+    <ion-item>
+      <ion-label style="text-align: center;">Seu carrinho está vazio</ion-label>
+    </ion-item>
+    <ion-button size="small" fill="outline" shape="round" (click)="this.toolsService.goToPage('/customers-catalogs/')">
+      <ion-icon name="book-outline"></ion-icon>Cardápio
+    </ion-button>
   </div>
 
-  <div style="text-align: center;">
+  <div style="height: 87%; text-align: center;" *ngIf="totalOrder != 0">
+    <ion-list-header>
+      <ion-label>Suas escolhas</ion-label>
+    </ion-list-header>
+
+    <ion-list *ngFor="let listItems of orderItems[0].items">
+      <ion-item-sliding *ngFor="let item of listItems">
+
+        <ion-item-options side="start">
+          <ion-item-option (click)="decraseItem()">
+            <ion-icon name="remove-outline"></ion-icon>
+          </ion-item-option>
+        </ion-item-options>
+
+        <ion-item>
+          <ion-note slot="start">{{item.item_quantity}}</ion-note>
+          <ion-label>{{item.item_product_name}}</ion-label>
+          <ion-note slot="end">{{item.item_total_price | currency:"BRL":"symbol"}}</ion-note>
+        </ion-item>
+
+        <ion-item-options side="end">
+          <ion-item-option color="danger" (click)="incresaItem()">
+            <ion-icon name="add-outline"></ion-icon>
+          </ion-item-option>
+        </ion-item-options>
+
+      </ion-item-sliding>
+    </ion-list>
+
+  </div>
+
+  <div style="text-align: center;" *ngIf="totalOrder != 0">
     <ion-item>
-      <ion-title>Total R$ 150,50</ion-title>
+      <ion-title>{{totalOrder | currency:"BRL":"symbol"}}</ion-title>
     </ion-item>
+    <ion-button size="small" fill="outline" shape="round" (click)="this.toolsService.goToPage('/customers-catalogs/')">
+      <ion-icon name="book-outline"></ion-icon>Cardápio
+    </ion-button>
     <ion-button size="small" fill="outline" shape="round">
       <ion-icon name="restaurant-outline"></ion-icon>Fazer Pedido
     </ion-button>
   </div>
+
 
 </ion-content>

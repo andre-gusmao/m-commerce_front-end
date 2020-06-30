@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthenticationsService } from 'src/app/services/authentications/authentications.service';
+import { ToolsService } from 'src/app/services/tools/tools.service';
+import { ShoppingCartService } from 'src/app/services/shopping-cart/shopping-cart.service';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -7,11 +10,38 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ShoppingCartPage implements OnInit {
 
-  total: number = 150.50;
+  totalOrder: number = 0;
+  orderItems: any = [];
+  teste: string = "";
 
-  constructor() { }
+  constructor(
+    public toolsService: ToolsService,
+    public ShopCartSrc: ShoppingCartService,
+    public authService: AuthenticationsService
+  ) { }
 
-  ngOnInit() {
+  ngOnInit() {}
+
+  ionViewWillEnter() {
+    if (this.authService.getLoginSuccessful()) {
+      this.loadOrderItems();
+    } else {
+      this.authService.setLogout();
+    }
   }
+
+  private loadOrderItems(){
+    this.orderItems = [];
+    this.orderItems = this.ShopCartSrc.getOrderItems();
+    this.totalOrder = this.orderItems[0].order_total_price;
+    this.totalOrder = this.orderItems[0].items.reduce( (sum,item) => {
+      return sum + item[0].item_total_price;
+    }, 0);
+    this.teste = "teste";
+  }
+  
+  public decraseItem(){}
+
+  public incraseItem(){}
 
 }

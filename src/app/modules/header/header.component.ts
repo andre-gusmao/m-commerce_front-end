@@ -16,8 +16,4 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {}
 
-  public goToCart(){
-    this.toolsService.goToPage('/shopping-cart/');
-  }
-
 }

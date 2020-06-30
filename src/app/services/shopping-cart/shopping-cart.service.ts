@@ -29,7 +29,7 @@ export class ShoppingCartService {
     
     this.items = new Array(orderItem.items);
     this.orderItems[0].items.push(this.items);
-    console.log("teste");
+    //console.log("teste");
   }
 
   public updateOrder(){}
@@ -39,4 +39,8 @@ export class ShoppingCartService {
   async loadOrder(){}
 
   async registerOrder(){}
+
+  public getOrderItems(){
+    return this.orderItems;
+  }
 }
