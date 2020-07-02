@@ -21,7 +21,6 @@ export class CustomersCatalogsPage implements OnInit {
   @Input() quantity: number = 0;
   @Input() total_price: number = 0;
   
-  appGroups: any = [];
   id_catalog: string = "";
   id_product: string = "";
   url: string = 'customers/catalogs.php';
@@ -38,14 +37,14 @@ export class CustomersCatalogsPage implements OnInit {
     if (this.authService.getLoginSuccessful()) {
       this.loadCatalog();
     } else {
-      this.appGroups = [];
+      this.ShopCartSrc.appCategory = [];
       this.authService.setLogout();
     }
   }
 
   ionViewWillEnter() {
     if (!this.authService.getLoginSuccessful()) {
-      this.appGroups = [];
+      this.ShopCartSrc.appCategory = [];
       this.authService.setLogout();
     } else {
       if(!this.ShopCartSrc.catalogLoaded()){
@@ -143,7 +142,7 @@ export class CustomersCatalogsPage implements OnInit {
     let filGroup = [];
     let group = [];
     let name = ""
-    this.appGroups = [];
+    this.ShopCartSrc.appCategory = [];
 
     for(let i = 0; i < this.ShopCartSrc.appCatalog.length; i++){
       name = this.ShopCartSrc.appCatalog[i].product_category_name;
@@ -157,7 +156,7 @@ export class CustomersCatalogsPage implements OnInit {
       }
     }
 
-    this.appGroups = filGroup;
+    this.ShopCartSrc.appCategory = filGroup;
 
   }
 

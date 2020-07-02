@@ -7,6 +7,7 @@ export class ShoppingCartService {
 
   orderItems: any = [];
   appCatalog: any = [];
+  appCategory: any = [];
   items: any = [];
 
   constructor() { }
@@ -47,6 +48,14 @@ export class ShoppingCartService {
 
   public catalogLoaded(): boolean {
     if(this.appCatalog.length === 0){
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  public categoriesLoaded(): boolean {
+    if(this.appCategory.length === 0){
       return false;
     } else {
       return true;
