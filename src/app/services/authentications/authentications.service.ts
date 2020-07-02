@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToolsService } from '../tools/tools.service';
 import { MenuService } from '../menu/menu.service';
+import { ShoppingCartService } from 'src/app/services/shopping-cart/shopping-cart.service'
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +24,8 @@ export class AuthenticationsService {
   constructor(
     private router: Router,
     public menuService: MenuService,
-    public toolsService: ToolsService
+    public toolsService: ToolsService,
+    public ShopCartSrc: ShoppingCartService
   ) { }
 
   setCheckin(QRCodeText: string): void {
@@ -36,6 +38,7 @@ export class AuthenticationsService {
   setCheckOut(){
     this.setCompanyID("");
     this.setTableID("");
+    this.ShopCartSrc.appCatalog = [];
   }
 
   loadCatalog(){

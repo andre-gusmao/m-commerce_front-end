@@ -20,8 +20,7 @@ export class CustomersCatalogsPage implements OnInit {
   @Input() customer_note: string;
   @Input() quantity: number = 0;
   @Input() total_price: number = 0;
-
-  appCatalog: any = [];
+  
   appGroups: any = [];
   id_catalog: string = "";
   id_product: string = "";
@@ -39,7 +38,6 @@ export class CustomersCatalogsPage implements OnInit {
     if (this.authService.getLoginSuccessful()) {
       this.loadCatalog();
     } else {
-      this.appCatalog = [];
       this.appGroups = [];
       this.authService.setLogout();
     }
@@ -47,11 +45,10 @@ export class CustomersCatalogsPage implements OnInit {
 
   ionViewWillEnter() {
     if (!this.authService.getLoginSuccessful()) {
-      this.appCatalog = [];
       this.appGroups = [];
       this.authService.setLogout();
     } else {
-      if(this.appCatalog.length === 0){
+      if(!this.ShopCartSrc.catalogLoaded()){
         this.loadCatalog();
       }
     }
@@ -60,7 +57,7 @@ export class CustomersCatalogsPage implements OnInit {
   private loadCatalog(){
     
     if(this.authService.getTableID()){
-      if(this.appCatalog.length === 0){
+      if(!this.ShopCartSrc.catalogLoaded()){
         this.loadCustomerCatalog();
       }
       this.id_catalog = this.authService.getCatalogID();
@@ -78,9 +75,9 @@ export class CustomersCatalogsPage implements OnInit {
       this.requestService.getRequestById(this.url, 'company', this.authService.getCompanyID()).subscribe(dataResponse => {
 
         for (let product of dataResponse['result']) {
-          this.appCatalog.push(product);
+          this.ShopCartSrc.appCatalog.push(product);
         }
-        //this.appCatalog = Object.freeze(this.appCatalog);
+        //this.ShopCartSrc.appCatalog = Object.freeze(this.ShopCartSrc.appCatalog);
         this.authService.setCatalogID(dataResponse['result'][0].id_catalog);
         this.id_catalog = dataResponse['result'][0].id_catalog;
         this.loadGroups();
@@ -148,14 +145,14 @@ export class CustomersCatalogsPage implements OnInit {
     let name = ""
     this.appGroups = [];
 
-    for(let i = 0; i < this.appCatalog.length; i++){
-      name = this.appCatalog[i].product_category_name;
+    for(let i = 0; i < this.ShopCartSrc.appCatalog.length; i++){
+      name = this.ShopCartSrc.appCatalog[i].product_category_name;
       if(group.indexOf(name) === -1 ){
 
         group.push(name);
         item = [];
         item['name'] = name;
-        item['items'] = this.appCatalog.filter( (item) => { return item.product_category_name === name; } );
+        item['items'] = this.ShopCartSrc.appCatalog.filter( (item) => { return item.product_category_name === name; } );
         filGroup.push(item);
       }
     }

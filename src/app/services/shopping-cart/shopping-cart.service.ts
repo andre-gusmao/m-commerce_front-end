@@ -6,6 +6,7 @@ import { Injectable } from '@angular/core';
 export class ShoppingCartService {
 
   orderItems: any = [];
+  appCatalog: any = [];
   items: any = [];
 
   constructor() { }
@@ -42,5 +43,13 @@ export class ShoppingCartService {
 
   public getOrderItems(){
     return this.orderItems;
+  }
+
+  public catalogLoaded(): boolean {
+    if(this.appCatalog.length === 0){
+      return false;
+    } else {
+      return true;
+    }
   }
 }
