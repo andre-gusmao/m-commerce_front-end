@@ -1,19 +1,9 @@
-import {
-  Component,
-  OnInit
-} from '@angular/core';
-import {
-  AlertController
-} from '@ionic/angular';
-import {
-  RequestsService
-} from 'src/app/services/requests/requests.service';
-import {
-  ToolsService
-} from 'src/app/services/tools/tools.service';
-import {
-  AuthenticationsService
-} from 'src/app/services/authentications/authentications.service';
+import { Component, OnInit } from '@angular/core';
+import { AlertController } from '@ionic/angular';
+import { RequestsService } from 'src/app/services/requests/requests.service';
+import { ToolsService } from 'src/app/services/tools/tools.service';
+import { AuthenticationsService } from 'src/app/services/authentications/authentications.service';
+import { ShoppingCartService } from 'src/app/services/shopping-cart/shopping-cart.service'
 
 @Component({
   selector: 'app-checkins',
@@ -29,16 +19,17 @@ export class CheckinsPage implements OnInit {
     public requestService: RequestsService,
     public toolsService: ToolsService,
     public alertCtrl: AlertController,
-    public authService: AuthenticationsService
+    public authService: AuthenticationsService,
+    public ShopCartSrc: ShoppingCartService
   ) {}
 
   ngOnInit() {}
 
   ionViewWillEnter() {
-    this.tableID = this.authService.getTableID();
     if (!this.authService.getLoginSuccessful()) {
       this.authService.setLogout();
     }
+    this.tableID = this.authService.getTableID();
   }
 
   scanQRCode() {}
@@ -80,7 +71,7 @@ export class CheckinsPage implements OnInit {
     await msgPrompt.present();
   }
 
-  validCatalog(QRCodeText: string): boolean {
+  public validCatalog(QRCodeText: string): boolean {
     let valid: boolean = true;
 
     if (QRCodeText.length > 0) {
@@ -95,13 +86,13 @@ export class CheckinsPage implements OnInit {
       }
 
       return valid;
-    }
-
-    checkOut() {
-      this.authService.setCheckOut();
-    }
-
   }
+
+  public checkOut() {
+      this.authService.setCheckOut();
+  }
+
+}
 
   /*
 

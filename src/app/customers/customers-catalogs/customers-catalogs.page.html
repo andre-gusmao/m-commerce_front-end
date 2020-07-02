@@ -6,10 +6,10 @@
     <ion-slide *ngFor="let group of appGroups">
       <div style="width: 100%;">
 
-      <ion-list>
-        <ion-list-header>{{group.name}}</ion-list-header>
+        <ion-list>
+          <ion-list-header>{{group.name}}</ion-list-header>
 
-        <ion-item (click)="showItem(item)" *ngFor="let item of group.items">
+          <ion-item (click)="showItem(item)" *ngFor="let item of group.items">
             <ion-thumbnail slot="end">
               <img src="../../../assets/aguacoco.jpg">
             </ion-thumbnail>
@@ -18,10 +18,10 @@
               <p>{{item.product_description}}</p>
               <p>{{item.catalog_item_price | currency:"BRL":"symbol"}}</p>
             </ion-label>
-        </ion-item>
+          </ion-item>
 
-      </ion-list>
-    </div>
+        </ion-list>
+      </div>
 
     </ion-slide>
 

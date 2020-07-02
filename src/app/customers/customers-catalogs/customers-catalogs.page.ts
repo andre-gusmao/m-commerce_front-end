@@ -23,8 +23,6 @@ export class CustomersCatalogsPage implements OnInit {
 
   appCatalog: any = [];
   appGroups: any = [];
-  id_company: string = "";
-  id_customer: string = "";
   id_catalog: string = "";
   id_product: string = "";
   url: string = 'customers/catalogs.php';
@@ -60,12 +58,11 @@ export class CustomersCatalogsPage implements OnInit {
   }
 
   private loadCatalog(){
-
-    this.id_company = this.authService.getCompanyID();
-    this.id_customer = this.authService.getProfileID();
+    
     if(this.authService.getTableID()){
-      this.authService.loadCatalog();
-      this.loadCustomerCatalog();
+      if(this.appCatalog.length === 0){
+        this.loadCustomerCatalog();
+      }
       this.id_catalog = this.authService.getCatalogID();
     } else {
       this.toolsService.showToast("Faça checkin para carregar o cardapio");
@@ -78,11 +75,12 @@ export class CustomersCatalogsPage implements OnInit {
 
     return new Promise(res => {
 
-      this.requestService.getRequestById(this.url, 'company', this.id_company).subscribe(dataResponse => {
+      this.requestService.getRequestById(this.url, 'company', this.authService.getCompanyID()).subscribe(dataResponse => {
 
         for (let product of dataResponse['result']) {
           this.appCatalog.push(product);
         }
+        //this.appCatalog = Object.freeze(this.appCatalog);
         this.authService.setCatalogID(dataResponse['result'][0].id_catalog);
         this.id_catalog = dataResponse['result'][0].id_catalog;
         this.loadGroups();
@@ -112,15 +110,14 @@ export class CustomersCatalogsPage implements OnInit {
     await itemDetail.present();
 
     const { data } = await itemDetail.onWillDismiss();
-    //console.log("data: " + data.id_item);
     this.id_item = data.id_item;
     this.quantity = data.quantity;
     this.customer_note = data.customer_note;
 
     let orderItem = {
       //id_order: auto
-      id_company: this.id_company,
-      id_customer: this.id_customer,
+      id_company: this.authService.getCompanyID(),
+      id_customer: this.authService.getProfileID(),
       order_total_price: data.total_price,
       order_status: "Nao enviado",
       order_payment_status: "Pendente",
