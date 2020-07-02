@@ -127,7 +127,9 @@ export class CustomersCatalogsPage implements OnInit {
       }
     }
 
-    this.ShopCartSrc.insertOrder(orderItem);
+    if(data.quantity > 0){
+      this.ShopCartSrc.insertOrder(orderItem);
+    }
 
   }
 

@@ -40,12 +40,15 @@ export class ShoppingCartPage implements OnInit {
       }, 0);
     }
   }
-  
-  public decraseItem(){
-    console.info("decraseItem");
+
+  public upItem(i: number = 0){
+    this.ShopCartSrc.incraseItem(i);
+    this.ionViewWillEnter();
   }
 
-  public incraseItem(){
-    console.info("incraseItem");}
+  public downItem(i: number = 0){
+    this.ShopCartSrc.decraseItem(i);
+    this.ionViewWillEnter();
+  }
 
 }

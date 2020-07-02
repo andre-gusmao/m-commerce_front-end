@@ -31,7 +31,23 @@ export class ShoppingCartService {
     
     this.items = new Array(orderItem.items);
     this.orderItems[0].items.push(this.items);
-    //console.log("teste");
+  }
+
+  public decraseItem(i: number = 0){
+    if(this.orderItems[0].items[i][0].item_quantity == 1){      
+      this.orderItems[0].items.splice(i,1);
+      console.log("Excluiu o item")
+    } else {
+      this.orderItems[0].items[i][0].item_quantity -= 1;
+      this.orderItems[0].items[i][0].item_total_price = this.orderItems[0].items[i][0].item_quantity * this.orderItems[0].items[i][0].item_unit_price;
+      console.log("Reduziu o item")
+    }
+  }
+
+  public incraseItem(i: number = 0){
+    console.info("Aumentou o item");
+    this.orderItems[0].items[i][0].item_quantity += 1;
+    this.orderItems[0].items[i][0].item_total_price = this.orderItems[0].items[i][0].item_quantity * this.orderItems[0].items[i][0].item_unit_price;
   }
 
   public updateOrder(){}
