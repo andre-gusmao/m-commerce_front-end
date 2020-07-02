@@ -16,4 +16,7 @@ export class LogoutPage implements OnInit {
 
   ngOnInit() {}
 
+  ionViewWillEnter() {
+    this.authService.setLogout();
+  }
 }

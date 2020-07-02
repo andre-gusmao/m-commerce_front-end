@@ -132,6 +132,7 @@ export class AuthenticationsService {
 
   async setLogout() {
 
+    this.setCheckOut();
     this.setProfileType("");
     this.setUserLogin("");
     this.setUserName("");
