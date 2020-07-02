@@ -20,9 +20,7 @@ export class CustomersCatalogsPage implements OnInit {
   @Input() customer_note: string;
   @Input() quantity: number = 0;
   @Input() total_price: number = 0;
-  
-  id_catalog: string = "";
-  id_product: string = "";
+
   url: string = 'customers/catalogs.php';
 
   constructor(
@@ -59,7 +57,6 @@ export class CustomersCatalogsPage implements OnInit {
       if(!this.ShopCartSrc.catalogLoaded()){
         this.loadCustomerCatalog();
       }
-      this.id_catalog = this.authService.getCatalogID();
     } else {
       this.toolsService.showToast("Faça checkin para carregar o cardapio");
       this.toolsService.goToPage('checkins');
@@ -76,9 +73,7 @@ export class CustomersCatalogsPage implements OnInit {
         for (let product of dataResponse['result']) {
           this.ShopCartSrc.appCatalog.push(product);
         }
-        //this.ShopCartSrc.appCatalog = Object.freeze(this.ShopCartSrc.appCatalog);
         this.authService.setCatalogID(dataResponse['result'][0].id_catalog);
-        this.id_catalog = dataResponse['result'][0].id_catalog;
         this.loadGroups();
       }, error => {
         this.toolsService.showAlert();
@@ -122,7 +117,7 @@ export class CustomersCatalogsPage implements OnInit {
       items: {
         //id_order_item: auto,
         //id_order: auto,
-        id_catalog: this.id_catalog,
+        id_catalog: this.authService.getCatalogID(),
         id_product: product.id_product,
         item_product_name: product.product_name,
         item_quantity: data.quantity,
