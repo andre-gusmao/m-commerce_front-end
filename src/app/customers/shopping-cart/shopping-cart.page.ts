@@ -33,15 +33,19 @@ export class ShoppingCartPage implements OnInit {
   private loadOrderItems(){
     this.orderItems = [];
     this.orderItems = this.ShopCartSrc.getOrderItems();
-    this.totalOrder = this.orderItems[0].order_total_price;
-    this.totalOrder = this.orderItems[0].items.reduce( (sum,item) => {
-      return sum + item[0].item_total_price;
-    }, 0);
-    this.teste = "teste";
+    if(this.orderItems.length > 0) {
+      this.totalOrder = this.orderItems[0].order_total_price;
+      this.totalOrder = this.orderItems[0].items.reduce( (sum,item) => {
+        return sum + item[0].item_total_price;
+      }, 0);
+    }
   }
   
-  public decraseItem(){}
+  public decraseItem(){
+    console.info("decraseItem");
+  }
 
-  public incraseItem(){}
+  public incraseItem(){
+    console.info("incraseItem");}
 
 }

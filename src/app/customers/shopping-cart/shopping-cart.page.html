@@ -11,36 +11,74 @@
     </ion-button>
   </div>
 
-  <div style="height: 87%; text-align: center;" *ngIf="totalOrder != 0">
+  <!-- SOLUCAO COM ION-GRID -->
+  <div *ngIf="totalOrder != 0">
+    <ion-grid *ngFor="let listItems of orderItems[0].items" style="width: 100%;">
+      <ion-row *ngFor="let item of listItems">
+        <ion-col size="3">
+          <ion-icon color="primary" size="smaller" name="remove-outline" (click)="decraseItem()"></ion-icon>
+          <ion-text>&nbsp;{{item.item_quantity}}&nbsp;</ion-text>
+          <ion-icon color="primary" size="smaller" name="add-outline" (click)="incraseItem()"></ion-icon>
+        </ion-col>
+        <ion-col size="6">
+          <ion-text>{{item.item_product_name}}</ion-text>
+        </ion-col>
+        <ion-col size="3">
+          <ion-text style="font-size: small;">{{item.item_total_price | currency:"BRL":"symbol"}}</ion-text>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+  <!-- SOLUCAO COM ION-GRID + CSS -->
+  <!-- <div *ngIf="totalOrder != 0">
+    <ion-grid *ngFor="let listItems of orderItems[0].items" style="width: 100%;">
+      <ion-row *ngFor="let item of listItems">
+        <ion-col size="1" class="btnremove">
+          <ion-icon size="smaller" name="remove-outline" (click)="decraseItem()"></ion-icon>
+        </ion-col>
+        <ion-col size="1" class="colqty">
+          <ion-text style="font-size: small;">{{item.item_quantity}}</ion-text>
+        </ion-col>
+        <ion-col size="1">
+          <ion-col size="1" class="btnadd">
+          <ion-icon name="add-outline" (click)="incraseItem()"></ion-icon>
+        </ion-col>
+        <ion-col size="6">
+          <ion-text>{{item.item_product_name}}</ion-text>
+        </ion-col>
+        <ion-col size="3">
+          <ion-text style="font-size: small;">{{item.item_total_price | currency:"BRL":"symbol"}}</ion-text>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div> -->
+
+  <!-- SOLUCAO COM ITEM SLIDING-->
+  <!-- <div style="height: 87%; text-align: center;" *ngIf="totalOrder != 0">
     <ion-list-header>
       <ion-label>Suas escolhas</ion-label>
     </ion-list-header>
-
     <ion-list *ngFor="let listItems of orderItems[0].items">
       <ion-item-sliding *ngFor="let item of listItems">
-
         <ion-item-options side="start">
           <ion-item-option (click)="decraseItem()">
             <ion-icon name="remove-outline"></ion-icon>
           </ion-item-option>
         </ion-item-options>
-
         <ion-item>
           <ion-note slot="start">{{item.item_quantity}}</ion-note>
           <ion-label>{{item.item_product_name}}</ion-label>
           <ion-note slot="end">{{item.item_total_price | currency:"BRL":"symbol"}}</ion-note>
         </ion-item>
-
         <ion-item-options side="end">
           <ion-item-option color="danger" (click)="incresaItem()">
             <ion-icon name="add-outline"></ion-icon>
           </ion-item-option>
         </ion-item-options>
-
       </ion-item-sliding>
     </ion-list>
-
-  </div>
+  </div> -->
 
   <div style="text-align: center;" *ngIf="totalOrder != 0">
     <ion-item>
@@ -53,6 +91,5 @@
       <ion-icon name="restaurant-outline"></ion-icon>Fazer Pedido
     </ion-button>
   </div>
-
 
 </ion-content>
