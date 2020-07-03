@@ -50,6 +50,14 @@ export class ShoppingCartService {
     this.orderItems[0].items[i][0].item_total_price = this.orderItems[0].items[i][0].item_quantity * this.orderItems[0].items[i][0].item_unit_price;
   }
 
+  public haveItem(){
+    if(this.orderItems.length >= 0) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   public updateOrder(){}
 
   public deleteOrder(){}

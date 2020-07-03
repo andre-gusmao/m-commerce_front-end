@@ -149,4 +149,12 @@ export class AuthenticationsService {
     this.router.navigate(['/login']);
 
   }
+
+  public fullCart(){
+    if( this.getTableID() && this.ShopCartSrc.haveItem() ) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 }
