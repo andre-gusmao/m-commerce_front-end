@@ -123,6 +123,10 @@ const routes: Routes = [
     path: 'shopping-cart',
     loadChildren: () => import('./customers/shopping-cart/shopping-cart.module').then( m => m.ShoppingCartPageModule)
   },
+  {
+    path: 'customers-term',
+    loadChildren: () => import('./customers/customers-term/customers-term.module').then( m => m.CustomersTermPageModule)
+  },
 ];
 
 @NgModule({

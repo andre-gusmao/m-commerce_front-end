@@ -63,7 +63,7 @@ export class MenuService {
     },
     {
       "title": 'Termos',
-      "url": '/ttermos',
+      "url": '/customers-term',
       "icon": 'create-outline'
     },
     {
