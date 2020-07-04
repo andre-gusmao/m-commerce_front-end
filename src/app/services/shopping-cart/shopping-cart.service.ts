@@ -36,11 +36,9 @@ export class ShoppingCartService {
   public decraseItem(i: number = 0){
     if(this.orderItems[0].items[i][0].item_quantity == 1){      
       this.orderItems[0].items.splice(i,1);
-      console.log("Excluiu o item")
     } else {
       this.orderItems[0].items[i][0].item_quantity -= 1;
       this.orderItems[0].items[i][0].item_total_price = this.orderItems[0].items[i][0].item_quantity * this.orderItems[0].items[i][0].item_unit_price;
-      console.log("Reduziu o item")
     }
   }
 
@@ -85,4 +83,6 @@ export class ShoppingCartService {
       return true;
     }
   }
+
+  public placeOrders(){}
 }

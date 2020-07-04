@@ -50,7 +50,6 @@ export class ItemDetailsPage implements OnInit {
 
   public totalizeItem(){
     this.total_price = this.item_price * this.quantity;
-    console.log("quantity: " + this.quantity + " total_price: " + this.total_price);
   }
 
   public registerItem(){
