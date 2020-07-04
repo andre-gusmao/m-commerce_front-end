@@ -35,10 +35,16 @@ export class RequestsService {
       error => error.json('erreur dans lurl'));*/
   }
 
-  getRequest(data: any, endpoint: string) {
+  // getRequest(data: any, endpoint: string) {
+  //   let url = environment.endpointURL + endpoint;
+
+  //   return this.http.get(url, { headers: this.getHeaders() }).pipe(map(res => res));
+  // }
+
+  getRequest(endpoint: string, paramName: string, paramValue: string): Observable<any>   {
     let url = environment.endpointURL + endpoint;
 
-    return this.http.get(url, { headers: this.getHeaders() }).pipe(map(res => res));
+    return this.http.get<any>(url, { headers: this.getHeaders() }).pipe(map(res => res));
   }
 
   getRequestById(endpoint: string, paramName: string, paramValue: string): Observable<any>   {

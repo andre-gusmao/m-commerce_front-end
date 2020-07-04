@@ -4,11 +4,17 @@
 
   <div *ngIf="totalOrder === 0" style="text-align: center;">
     <ion-item>
-      <ion-label style="text-align: center;">Seu carrinho está vazio</ion-label>
+      <ion-label style="text-align: center;">Seu pedido está vazio</ion-label>
     </ion-item>
     <ion-button size="small" fill="outline" shape="round" (click)="this.toolsService.goToPage('/customers-catalogs/')">
       <ion-icon name="book-outline"></ion-icon>Cardápio
     </ion-button>
+  </div>
+
+  <div *ngIf="totalOrder != 0" style="text-align: center;">
+    <ion-item>
+      <ion-label style="text-align: center;">Itens no seu pedido</ion-label>
+    </ion-item>
   </div>
 
   <!-- SOLUCAO COM ION-GRID -->

@@ -86,11 +86,11 @@ export class ShoppingCartPage implements OnInit {
     console.log(dataRequest);
 
     this.requestService.postRequest(dataRequest, this.url).subscribe(async dataResponse => {
-      if (dataResponse['success']) {
-        this.toolsService.showToast(dataResponse['message'],2000,'success');
+      if (dataResponse[0]['success']) {
+        this.toolsService.showToast(dataResponse[0]['message'],2000,'success');
         this.toolsService.goToPage(this.listPage);
       }else{
-        this.toolsService.showToast(dataResponse['message'],2000,'warning');
+        this.toolsService.showToast(dataResponse[0]['message'],2000,'warning');
       }
       console.log('dataResponse');
       console.log(dataResponse);

@@ -129,6 +129,7 @@ export class CustomersCatalogsPage implements OnInit {
 
     if(data.quantity > 0){
       this.ShopCartSrc.insertOrder(orderItem);
+      this.toolsService.showToast(orderItem.items.item_product_name + " adicionado ao pedido");
     }
 
   }

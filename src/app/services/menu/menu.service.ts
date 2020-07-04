@@ -43,7 +43,7 @@ export class MenuService {
     },
     {
       "title": 'Pedidos',
-      "url": '/tpedido',
+      "url": '/customers-orders',
       "icon": 'cart-outline'
     },
     {
