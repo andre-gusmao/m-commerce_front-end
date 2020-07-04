@@ -21,7 +21,7 @@ export class CustomersOrdersPage implements OnInit {
   ) {}
 
   ngOnInit() {}
-
+  asdf
   ionViewWillEnter() {
     if (this.authService.getLoginSuccessful()) {
       this.orderList = [];
@@ -56,7 +56,7 @@ export class CustomersOrdersPage implements OnInit {
         for (let order of dataResponse['result']) {
           this.orderList.push(order);
         }
-        console.log("asdf");
+        console.log("loadOrders");
 
       }, error => {
         this.toolsService.showAlert();

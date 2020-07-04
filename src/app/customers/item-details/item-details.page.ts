@@ -72,8 +72,8 @@ export class ItemDetailsPage implements OnInit {
 //   id_company: this.authService.getCompanyID(),
 //   id_customer: this.authService.getProfileID(),
 //   order_total_price: data.total_price,
-//   order_status: "Nao enviado",
-//   order_payment_status: "Pendente",
+//   order_status: 1,
+//   order_payment_status: 1,
 //   order_payment_method: "Cartao de Credito",
 //   id_payment_method: "1",
 //   items: {

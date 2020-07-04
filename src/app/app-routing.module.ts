@@ -131,6 +131,10 @@ const routes: Routes = [
     path: 'customers-orders',
     loadChildren: () => import('./customers/customers-orders/customers-orders.module').then( m => m.CustomersOrdersPageModule)
   },
+  {
+    path: 'customers-orders-detail',
+    loadChildren: () => import('./customers/customers-orders-detail/customers-orders-detail.module').then( m => m.CustomersOrdersDetailPageModule)
+  },
 ];
 
 @NgModule({

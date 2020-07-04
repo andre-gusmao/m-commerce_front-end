@@ -110,10 +110,10 @@ export class CustomersCatalogsPage implements OnInit {
       id_company: this.authService.getCompanyID(),
       id_customer: this.authService.getProfileID(),
       order_total_price: data.total_price,
-      order_status: "Nao enviado",
-      order_payment_status: "Pendente",
+      order_status: 1,
+      order_payment_status: 1,
       order_payment_method: "Cartao de Credito",
-      id_payment_method: "1",
+      id_payment_method: 1,
       items: {
         //id_order_item: auto,
         //id_order: auto,
@@ -129,7 +129,7 @@ export class CustomersCatalogsPage implements OnInit {
 
     if(data.quantity > 0){
       this.ShopCartSrc.insertOrder(orderItem);
-      this.toolsService.showToast(orderItem.items.item_product_name + " adicionado ao pedido");
+      this.toolsService.showToast(orderItem.items.item_product_name + " adicionado ao pedido", 1000, 'Tertiary');
     }
 
   }

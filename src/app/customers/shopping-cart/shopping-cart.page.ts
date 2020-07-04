@@ -58,33 +58,30 @@ export class ShoppingCartPage implements OnInit {
   public async registerOrder(){
 
     let dataRequest = {
-      id_company: 1,
-      id_customer: 1,
-      order_total_price: 11.11,
-      order_status: 1,
-      order_payment_status: 1,
-      order_payment_method: 'CARTAO DE CREDITO',
+      id_company: this.authService.getCompanyID(),
+      id_customer: this.authService.getProfileID(),
+      order_total_price: this.ShopCartSrc.orderItems[0].order_total_price,
+      order_status: this.ShopCartSrc.orderItems[0].order_status,
+      order_payment_status: this.ShopCartSrc.orderItems[0].order_payment_status,
+      order_payment_method: this.ShopCartSrc.orderItems[0].order_payment_method,
       items: []
     }
     console.log(dataRequest);
-    // for(i = 0; i <= this.orderItems.length; i++){
-    for(let i = 1; i <= 2; i++){
+    for(let i = 0; i < this.orderItems[0].items.length; i++){
       dataRequest.items.push(
         {
-          id_catalog: 1,
-          id_product: i,
-          item_product_name: 'Produto ' + i.toString(),
-          item_quantity: i,
-          item_unit_price: i * 1,
-          item_total_price: i * 10,
-          item_note: 'Observacao ' + i.toString()
+          id_catalog: this.authService.getCatalogID(),
+          id_product: this.ShopCartSrc.orderItems[0].items[i][0].id_product,
+          item_product_name: this.ShopCartSrc.orderItems[0].items[i][0].item_product_name,
+          item_quantity: this.ShopCartSrc.orderItems[0].items[i][0].item_quantity,
+          item_unit_price: this.ShopCartSrc.orderItems[0].items[i][0].item_unit_price,
+          item_total_price: this.ShopCartSrc.orderItems[0].items[i][0].item_quantity * this.ShopCartSrc.orderItems[0].items[i][0].item_unit_price,
+          item_note: this.ShopCartSrc.orderItems[0].items[i][0].item_note
         }
       );
     }
-
-    console.log('dataRequest');
+    console.log("registerOrder");
     console.log(dataRequest);
-
     this.requestService.postRequest(dataRequest, this.url).subscribe(async dataResponse => {
       if (dataResponse[0]['success']) {
         this.toolsService.showToast(dataResponse[0]['message'],2000,'success');
@@ -92,8 +89,6 @@ export class ShoppingCartPage implements OnInit {
       }else{
         this.toolsService.showToast(dataResponse[0]['message'],2000,'warning');
       }
-      console.log('dataResponse');
-      console.log(dataResponse);
     });
 
   }

@@ -1,0 +1,21 @@
+.grid {
+    padding: 0px;
+    display: grid;
+    grid-template-columns: 10% 80% 10%;
+    grid-gap: 0px;
+}
+
+.item {
+    padding: 0px;
+}
+
+.item.item-1 {
+    grid-row-start: 1;
+    grid-row-end: 3;
+}
+
+.item.item-4 {
+    grid-row-start: 1;
+    grid-column-start: 3;
+    grid-row-end: 3;
+}
