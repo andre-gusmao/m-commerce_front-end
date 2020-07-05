@@ -66,7 +66,7 @@ export class ShoppingCartPage implements OnInit {
       order_payment_method: this.ShopCartSrc.orderItems[0].order_payment_method,
       items: []
     }
-    console.log(dataRequest);
+    
     for(let i = 0; i < this.orderItems[0].items.length; i++){
       dataRequest.items.push(
         {
@@ -80,8 +80,7 @@ export class ShoppingCartPage implements OnInit {
         }
       );
     }
-    console.log("registerOrder");
-    console.log(dataRequest);
+    
     this.requestService.postRequest(dataRequest, this.url).subscribe(async dataResponse => {
       if (dataResponse[0]['success']) {
         this.toolsService.showToast(dataResponse[0]['message'],2000,'success');

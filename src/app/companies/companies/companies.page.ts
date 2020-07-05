@@ -110,21 +110,29 @@ export class CompaniesPage implements OnInit {
 
   private async loadCompanyProfile(profileID: string = "") {
 
-    await this.requestService.getRequestById('companies/companies.php', 'id', profileID).subscribe( dataRes => {
-      if (dataRes['success']) {
-        this.email = dataRes['email'];
-        this.password = dataRes['password'];
-        this.confirmPassword = dataRes['password'];
-        this.companyName = dataRes['companyName'];
-        this.businessman = dataRes['businessman'];
-        this.cellPhone = dataRes['cellPhone'];
-        this.municipalResgistration = dataRes['municipalResgistration'];
-        this.state = dataRes['state'];
-        this.city = dataRes['city'];
-        this.notes = dataRes['notes'];
-      } else {
-        this.toolsService.showToast(dataRes['message']);
-      }
+    return new Promise(res => {
+
+      this.requestService.getRequestById('companies/companies.php', 'id', profileID).subscribe( dataRes => {
+
+        if (dataRes['success']) {
+          this.email = dataRes['email'];
+          this.password = dataRes['password'];
+          this.confirmPassword = dataRes['password'];
+          this.companyName = dataRes['companyName'];
+          this.businessman = dataRes['businessman'];
+          this.cellPhone = dataRes['cellPhone'];
+          this.municipalResgistration = dataRes['municipalResgistration'];
+          this.state = dataRes['state'];
+          this.city = dataRes['city'];
+          this.notes = dataRes['notes'];
+        } else {
+          this.toolsService.showToast(dataRes['message']);
+        }
+
+      }, error => {
+        this.toolsService.showAlert();
+      })
+
     });
 
   }

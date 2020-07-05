@@ -80,6 +80,16 @@ export class MenuService {
       "icon": 'person-outline',
     },
     {
+      "title": 'Pedidos',
+      "url": '/company-orders',
+      "icon": 'cart-outline'
+    },
+    {
+      "title": 'Faturamento',
+      "url": '/company-billing',
+      "icon": 'cash-outline'
+    },
+    {
       "title": 'Quiosque',
       "url": '/companies',
       "icon": 'business-outline'

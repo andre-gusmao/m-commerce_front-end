@@ -135,6 +135,22 @@ const routes: Routes = [
     path: 'customers-orders-detail',
     loadChildren: () => import('./customers/customers-orders-detail/customers-orders-detail.module').then( m => m.CustomersOrdersDetailPageModule)
   },
+  {
+    path: 'company-orders',
+    loadChildren: () => import('./companies/company-orders/company-orders.module').then( m => m.CompanyOrdersPageModule)
+  },
+  {
+    path: 'company-order-details',
+    loadChildren: () => import('./companies/company-order-details/company-order-details.module').then( m => m.CompanyOrderDetailsPageModule)
+  },
+  {
+    path: 'company-billing',
+    loadChildren: () => import('./companies/company-billing/company-billing.module').then( m => m.CompanyBillingPageModule)
+  },
+  {
+    path: 'company-billing-details',
+    loadChildren: () => import('./companies/company-billing-details/company-billing-details.module').then( m => m.CompanyBillingDetailsPageModule)
+  },
 ];
 
 @NgModule({
