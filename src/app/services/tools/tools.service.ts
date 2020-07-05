@@ -127,4 +127,30 @@ export class ToolsService {
     });
   }
 
+  public decodeOrderStatus(status: string = ""){
+
+    let statusText: string = "";
+
+    switch (status){
+      case "1":
+        statusText = "Esperando Pagto.";
+        break;
+      case "2":
+        statusText = "Em preparo";
+        break;
+      case "3":
+        statusText = "Enviado";
+        break;
+      case "4":
+        statusText = "Entregue";
+        break;
+      case "5":
+        statusText = "Cancelado";
+        break;
+      default:
+        statusText = "Indefinido";
+    }
+    return statusText;
+  }
+
 }

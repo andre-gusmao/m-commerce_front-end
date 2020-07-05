@@ -4,7 +4,7 @@ import { ToolsService } from 'src/app/services/tools/tools.service';
 import { AuthenticationsService } from 'src/app/services/authentications/authentications.service';
 import { ModalController } from '@ionic/angular';
 import { ItemDetailsPage } from '../item-details/item-details.page';
-import { ShoppingCartService } from 'src/app/services/shopping-cart/shopping-cart.service'
+import { ShoppingCartService } from 'src/app/services/shopping-cart/shopping-cart.service';
 
 @Component({
   selector: 'app-customers-catalogs',

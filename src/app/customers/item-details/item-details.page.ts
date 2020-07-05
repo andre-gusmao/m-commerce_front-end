@@ -66,25 +66,3 @@ export class ItemDetailsPage implements OnInit {
   }
 
 }
-
-// let orderItem = {
-//   //id_order: auto
-//   id_company: this.authService.getCompanyID(),
-//   id_customer: this.authService.getProfileID(),
-//   order_total_price: data.total_price,
-//   order_status: 1,
-//   order_payment_status: 1,
-//   order_payment_method: "Cartao de Credito",
-//   id_payment_method: "1",
-//   items: {
-//     //id_order_item: auto,
-//     //id_order: auto,
-//     id_catalog: this.authService.getCatalogID(),
-//     id_product: product.id_product,
-//     item_product_name: product.product_name,
-//     item_quantity: data.quantity,
-//     item_unit_price: product.catalog_item_price,
-//     item_total_price: data.total_price,
-//     item_note: data.customer_note
-//   }
-// }

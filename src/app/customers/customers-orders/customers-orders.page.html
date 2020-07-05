@@ -13,7 +13,7 @@
       <div class="item item-2">{{order.company_name}}</div>
       <div class="item item-3">Pedido: {{order.id_order}} Status: {{order.order_status}}</div>
       <div class="item item-4">
-        <ion-icon size="large" name="information-circle-outline"></ion-icon>
+        <ion-icon size="large" name="information-circle-outline" (click)="showOrder(order)"></ion-icon>
       </div>
     </div>
 
