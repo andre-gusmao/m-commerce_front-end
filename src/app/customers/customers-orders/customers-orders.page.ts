@@ -12,7 +12,6 @@ import { ModalController } from '@ionic/angular';
 })
 export class CustomersOrdersPage implements OnInit {
   
-  @Input() id_order: string;
   orderList: any = [];
   url: string = 'customers/orders.php';
   catalog: string = '/customers-catalogs';

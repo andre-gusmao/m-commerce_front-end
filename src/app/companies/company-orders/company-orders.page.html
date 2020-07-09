@@ -1,9 +1,47 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>company-orders</ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-header></app-header>
 
 <ion-content>
+
+  <ion-grid>
+    <ion-row style="text-align: center;">
+      <ion-col size="12"><b>Painel de Pedidos</b></ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="2">N.&#176;</ion-col>
+      <ion-col size="2">Data</ion-col>
+      <ion-col size="3">Status</ion-col>
+      <ion-col class="ion-text-end" size="3">Valor</ion-col>
+      <ion-col size="2">&nbsp;</ion-col>
+    </ion-row>
+
+    <ion-row *ngFor="let order of orderList; let i = index;">
+      <ion-col size="2">
+        <ion-text [ngClass]="(i % 2 == 0) ? 'odd' : 'even'">
+          {{order.id_order}}
+        </ion-text>
+      </ion-col>
+      <ion-col size="2">
+        <ion-text [ngClass]="(i % 2 == 0) ? 'odd' : 'even'">
+          {{order.order_date}}
+        </ion-text>
+      </ion-col>
+      <ion-col size="3">
+        <ion-text [ngClass]="(i % 2 == 0) ? 'odd' : 'even'">
+          {{order.order_status}}
+        </ion-text>
+      </ion-col>
+      <ion-col class="ion-text-end" size="3">
+        <ion-text [ngClass]="(i % 2 == 0) ? 'odd' : 'even'">
+          {{order.order_total_price}}
+        </ion-text>
+      </ion-col>
+      <ion-col class="ion-text-end" size="2">
+        <ion-text [ngClass]="(i % 2 == 0) ? 'odd' : 'even'">
+          <ion-icon name="options-outline" (click)="actionWithOrder(order.id_order,order.order_status)"></ion-icon>
+        </ion-text>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
 </ion-content>

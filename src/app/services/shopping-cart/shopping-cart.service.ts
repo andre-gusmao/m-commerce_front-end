@@ -5,13 +5,18 @@ import { Injectable } from '@angular/core';
 })
 export class ShoppingCartService {
 
+  /* customer objects */
   orderItems: any = [];
   appCatalog: any = [];
   appCategory: any = [];
   items: any = [];
 
+  /* company objects */
+  companyOrders: any = [];
+
   constructor() { }
 
+  /* customer functions */
   public insertOrder(orderItem){
 
     let order = {
@@ -72,14 +77,6 @@ export class ShoppingCartService {
     }
   }
 
-  public updateOrder(){}
-
-  public deleteOrder(){}
-
-  async loadOrder(){}
-
-  async registerOrder(){}
-
   public getOrderItems(){
     return this.orderItems;
   }
@@ -100,5 +97,15 @@ export class ShoppingCartService {
     }
   }
 
-  public placeOrders(){}
+  /* company functions */
+  public getCompanyOrders(){
+    return this.companyOrders;
+  }
+
+  public setCompanyOrders(order: any = []){
+    if(order){
+      this.companyOrders.push(order);
+    }
+  }
+  
 }
