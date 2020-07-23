@@ -44,8 +44,8 @@ export class LoginPage implements OnInit {
 
     let dataRequest = {
       requisicao: 'login',
-      email: this.email,
-      password: this.password
+      email: btoa(this.email),
+      password: btoa(this.password)
     };
 
     const fields = [
