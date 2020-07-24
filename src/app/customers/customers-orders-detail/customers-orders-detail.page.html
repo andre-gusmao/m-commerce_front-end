@@ -11,7 +11,7 @@
       <ion-col size="12">Pedido: {{id_order}} &nbsp;-&nbsp; Status: {{order_status}}</ion-col>
     </ion-row>
     <ion-row *ngFor="let item of itemsList">
-      <ion-col size="6">{{item.item_quantity | number:0}}x&nbsp;-&nbsp;{{item.item_product_name}}</ion-col>
+      <ion-col size="6">{{item.item_quantity}}x&nbsp;-&nbsp;{{item.item_product_name}}</ion-col>
       <ion-col size="6" class="ion-text-end">{{item.item_total_price | currency:"BRL":"symbol"}}</ion-col>
     </ion-row>
     <ion-row >

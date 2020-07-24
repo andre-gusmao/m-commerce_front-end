@@ -52,8 +52,8 @@ export class CompaniesPage implements OnInit {
   async registerCompany() {
 
     let dataRequest = {
-      email: this.email.toLocaleLowerCase(),
-      password: this.password,
+      email: btoa(this.email.toLocaleLowerCase()),
+      password: btoa(this.password),
       companyName: this.companyName,
       cellPhone: this.cellPhone,
       businessman: this.businessman,
@@ -103,7 +103,7 @@ export class CompaniesPage implements OnInit {
           this.authService.setProfileID(dataResponse['profileID']);
         }
         this.toolsService.showToast(dataResponse['message']);
-
+        this.toolsService.goToPage('/login');
       });
 
   }

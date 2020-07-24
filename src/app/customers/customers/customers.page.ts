@@ -74,9 +74,9 @@ export class CustomersPage implements OnInit {
 
     let dataRequest = {
       name: this.name,
-      email: this.email.toLocaleLowerCase(),
+      email: btoa(this.email.toLocaleLowerCase()),
       cellPhone: this.cellPhone,
-      password: this.password,
+      password: btoa(this.password),
       state: this.state,
       city: this.city,
       profileType: '1',
@@ -120,7 +120,7 @@ export class CustomersPage implements OnInit {
           this.authService.setProfileID(dataResponse['profileID']);
         } 
         this.toolsService.showToast(dataResponse['message']);
-      
+        this.toolsService.goToPage('/login');
       }
     );
 

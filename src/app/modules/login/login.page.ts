@@ -81,7 +81,7 @@ export class LoginPage implements OnInit {
         this.authService.setLoginSuccessful(true);
         this.toolsService.showToast('Logado com sucesso');
         if (dataResponse['profileType'] == "2") {//companies
-          this.toolsService.goToPage('/company-catalogs-list');
+          this.toolsService.goToPage('/company-orders');
         } else {//customers
           this.toolsService.goToPage('/checkins');
         }
