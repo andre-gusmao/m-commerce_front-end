@@ -58,6 +58,8 @@ export class ProductsCategoriesListPage implements OnInit {
 
   private loadProductsCategories() {
 
+    this.listProdCateg = [];
+
     return new Promise(res => {
 
       this.requestService.getRequestById(this.url, 'company', this.id_company).subscribe(dataResponse => {

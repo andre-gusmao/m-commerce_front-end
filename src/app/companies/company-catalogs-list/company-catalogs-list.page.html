@@ -21,7 +21,7 @@
         </ion-item-option>
       </ion-item-options>
 
-      <ion-item>
+      <ion-item (click)="itemsCatalog(catalog.id_catalog, catalog.catalog_name)">
         <ion-label>
           <h2 *ngIf="catalog.catalog_status == 'I'">{{catalog.catalog_name}}</h2>
           <h2 *ngIf="catalog.catalog_status == 'A'"><b>{{catalog.catalog_name}}</b></h2>

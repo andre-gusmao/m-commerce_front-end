@@ -67,6 +67,8 @@ export class CompanyCatalogsItemsListPage implements OnInit {
 
   private async loadListCatalogItems(){
 
+    this.listCatalogItems = [];
+
     return new Promise(res => {
 
       this.requestService.getRequestById(this.url, 'catalog', this.id_catalog).subscribe(dataResponse => {
@@ -84,7 +86,7 @@ export class CompanyCatalogsItemsListPage implements OnInit {
   }
 
   public edit(id_catalog_item){
-    this.toolsService.goToPage(this.editPage + this.id_catalog + "/" + id_catalog_item)
+    this.toolsService.goToPage(this.editPage + this.id_catalog + "/" + id_catalog_item + this.requestService.getKWToken())
   }
 
   public async delete(id_catalog_item){

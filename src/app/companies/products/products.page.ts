@@ -46,7 +46,7 @@ export class ProductsPage implements OnInit {
     if (this.authService.getLoginSuccessful()) {
       this.categoryList = [];
       this.id_company = this.authService.getCompanyID();
-      this.categoryList = this.loadProductCategory(this.id_company);
+      //this.categoryList = this.loadProductCategory(this.id_company);
       if ((this.id_product != undefined) && (this.id_product != "")) {
         this.loadProduct(this.id_product);
       } else {
@@ -71,7 +71,7 @@ export class ProductsPage implements OnInit {
 
           this.id_product = data['result'][0]['id_product'];
           this.id_company = data['result'][0]['id_company'];
-          this.categoryList = this.loadProductCategory(this.id_company);
+          //this.categoryList = this.loadProductCategory(this.id_company);
           this.id_product_category = data['result'][0]['id_product_category'];
           this.product_name = data['result'][0]['product_name'];
           this.product_description = data['result'][0]['product_description'];
@@ -114,7 +114,7 @@ export class ProductsPage implements OnInit {
       },
       {
         value: this.id_product_category,
-        message: 'Selecion o grupo'
+        message: 'Selecione o grupo'
       }
     ]
 
@@ -139,7 +139,7 @@ export class ProductsPage implements OnInit {
 
   async loadProductCategory(id_company) {
 
-    //this.categoryList = [];
+    this.categoryList = [];
 
     return await new Promise(res => {
 

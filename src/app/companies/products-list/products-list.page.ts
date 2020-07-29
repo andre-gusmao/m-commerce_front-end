@@ -62,6 +62,8 @@ export class ProductsListPage implements OnInit {
 
   private async loadProducts(){
 
+    this.productList = [];
+
     return new Promise(res => {
 
       this.requestService.getRequestById(this.url, 'company', this.id_company).subscribe(dataResponse => {
