@@ -53,7 +53,8 @@ export class CustomersOrdersDetailPage implements OnInit {
         for (let item of dataResponse['result']) {
           this.company_name = item.company_name;
           this.order_date = item.order_date;
-          this.order_status = this.toolsService.decodeOrderStatus( item.order_status );
+          //this.order_status = this.toolsService.decodeOrderStatus( item.order_status );
+          this.order_status = item.order_status;
           this.order_total_price = item.order_total_price;
           this.itemsList.push(item);
         }

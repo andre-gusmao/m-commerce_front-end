@@ -2,6 +2,11 @@
 
 <ion-content>
 
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content pullingIcon="arrow-dropdown" refreshingSpinner="circles" refreshingText="Carregando...">
+    </ion-refresher-content>
+  </ion-refresher>
+
   <ion-grid>
     <ion-row style="text-align: center;">
       <ion-col size="12"><b>Painel de Pedidos</b></ion-col>
@@ -43,5 +48,10 @@
       </ion-col>
     </ion-row>
   </ion-grid>
+
+  <ion-infinite-scroll (ionInfinite)="loadData($event)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Carregando mais dados">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 
 </ion-content>

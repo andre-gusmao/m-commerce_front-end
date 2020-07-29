@@ -15,7 +15,7 @@ export class CompanyOrdersPage implements OnInit {
   @Input() id_order: string;
   orderList: any = [];
   url: string = 'customers/orders.php';
-  orderAccepted: string = "0";
+  newStatus: string = "0";
 
   constructor(
     public requestService: RequestsService,
@@ -34,13 +34,28 @@ export class CompanyOrdersPage implements OnInit {
     }
   }
 
+  doRefresh(event) {
+    setTimeout(() => {
+      this.ionViewWillEnter();
+      event.target.complete();
+    }, 500);
+  }
+
+  loadData(event) {
+    setTimeout(() => {
+      this.loadOrders().then(() => {
+        event.target.complete();
+      });
+    }, 500);
+  }
+
   public loadOrders() {
 
     this.orderList = [];
 
     return new Promise(res => {
 
-      this.requestService.getRequestById(this.url, 'company', '1'/*this.authService.getProfileID()*/).subscribe(dataResponse => {
+      this.requestService.getRequestById(this.url, 'company', this.authService.getProfileID()).subscribe(dataResponse => {
 
         for (let order of dataResponse['result']) {
           this.orderList.push(order);
@@ -70,24 +85,22 @@ export class CompanyOrdersPage implements OnInit {
     await orderDetails.present();
 
     const { data } = await orderDetails.onWillDismiss();
-    this.orderAccepted = data.orderAccepted;
+    this.newStatus = data.newStatus;
 
-    if(this.orderAccepted != '0'){
+    if(this.newStatus != '0'){
 
-      if(this.orderAccepted === "Y") {
-        dataRequest.order_status = "1";//pendente
-      } else if (this.orderAccepted === "N") {
-        dataRequest.order_status = "5";//cancelado
-      }
+      dataRequest.order_status = this.newStatus;
 
       this.requestService.putRequest(dataRequest, this.url).subscribe(async dataResponse => {
         if (dataResponse['success']) {
           this.toolsService.showToast(dataResponse['message'],2000,'success');
-          //this.ionViewWillEnter();
+          this.ionViewWillEnter();
         }else{
           this.toolsService.showToast(dataResponse['message'],2000,'warning');
         }
       });
+
+    } else {//deviverOder
 
     }
 

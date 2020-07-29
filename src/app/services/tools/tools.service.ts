@@ -133,13 +133,13 @@ export class ToolsService {
 
     switch (status){
       case "1":
-        statusText = "Esperando Pagto.";
+        statusText = "Aguardando Pagto.";
         break;
       case "2":
-        statusText = "Em preparo";
+        statusText = "Pago";
         break;
       case "3":
-        statusText = "Enviado";
+        statusText = "Em Produção";
         break;
       case "4":
         statusText = "Entregue";

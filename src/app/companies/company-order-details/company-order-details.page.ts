@@ -16,6 +16,7 @@ export class CompanyOrderDetailsPage implements OnInit {
   order_date: string;
   order_time: string;
   order_status: string;
+  order_status_text: string;
   order_total_price: string;
   itemsList: any = [];
   url: string = 'customers/orders.php';
@@ -48,7 +49,8 @@ export class CompanyOrderDetailsPage implements OnInit {
           this.company_name = item.company_name;
           this.order_date = item.order_date;
           this.order_time = item.order_time;
-          this.order_status = this.toolsService.decodeOrderStatus( item.order_status );
+          this.order_status = item.order_status;
+          this.order_status_text = item.order_status_text;
           this.order_total_price = item.order_total_price;
           this.itemsList.push(item);
         }
@@ -61,12 +63,13 @@ export class CompanyOrderDetailsPage implements OnInit {
 
   }
 
-  public closeOrder(Accepted: string = '0'){
+  public updateOrder(status: string = '0'){
 
     this.modalCtrl.dismiss({
       'dismissed': true,
-      'orderAccepted': Accepted
+      'newStatus': status
     });
+
   }
 
 }

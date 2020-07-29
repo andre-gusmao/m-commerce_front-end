@@ -4,9 +4,10 @@
       <ion-menu-button auto-hide menu="menut"></ion-menu-button>
     </ion-buttons>
     <ion-buttons slot="end">
-      <ion-button type="submit" *ngIf="authService.getTableID()" (click)="this.toolsService.goToPage('/shopping-cart/');">
-          <ion-icon slot="end" name="cart-outline"></ion-icon>
-        </ion-button>
+      <ion-button type="submit" *ngIf="authService.getTableID()"
+        (click)="this.toolsService.goToPage('/shopping-cart/');">
+        <ion-icon slot="end" name="cart-outline"></ion-icon>
+      </ion-button>
     </ion-buttons>
     <ion-title *ngIf="authService.getLoginSuccessful()">{{authService.getUserName()}}</ion-title>
     <ion-title *ngIf="!authService.getLoginSuccessful()">Bem vindo(a)</ion-title>
