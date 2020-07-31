@@ -8,12 +8,13 @@
 
   <ion-item *ngFor="let order of orderList">
 
-    <div class="grid">
+    <div class="grid" (click)="showOrder(order)">      
       <div class="item item-1">{{order.order_date}}</div>
       <div class="item item-2">{{order.company_name}}</div>
       <div class="item item-3">Pedido: {{order.id_order}} Status: {{order.order_status}}</div>
       <div class="item item-4">
-        <ion-icon size="large" name="information-circle-outline" (click)="showOrder(order)"></ion-icon>
+        {{order.order_total_price | currency:"BRL":"symbol"}}
+        <!-- <ion-icon size="large" name="information-circle-outline"></ion-icon> -->
       </div>
     </div>
 

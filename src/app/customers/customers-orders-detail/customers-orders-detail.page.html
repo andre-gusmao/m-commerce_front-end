@@ -8,15 +8,15 @@
 
   <ion-grid>
     <ion-row>
-      <ion-col size="12">Pedido: {{id_order}} &nbsp;-&nbsp; Status: {{order_status}}</ion-col>
+      <ion-col size="12"><b>Pedido&nbsp;{{id_order}} &nbsp;-&nbsp; {{order_status}} &nbsp;-&nbsp; {{order_date}}</b></ion-col>
     </ion-row>
     <ion-row *ngFor="let item of itemsList">
       <ion-col size="6">{{item.item_quantity}}x&nbsp;-&nbsp;{{item.item_product_name}}</ion-col>
       <ion-col size="6" class="ion-text-end">{{item.item_total_price | currency:"BRL":"symbol"}}</ion-col>
     </ion-row>
     <ion-row >
-      <ion-col class="ion-text-start">Data:&nbsp;{{order_date}}</ion-col>
-      <ion-col class="ion-text-end">Total&nbsp;{{order_total_price | currency:"BRL":"symbol"}}</ion-col>
+      <!-- <ion-col class="ion-text-start">Data:&nbsp;{{order_date}}</ion-col> -->
+      <ion-col class="ion-text-end"><b>Total&nbsp;{{order_total_price | currency:"BRL":"symbol"}}</b></ion-col>
     </ion-row>
   </ion-grid>
 

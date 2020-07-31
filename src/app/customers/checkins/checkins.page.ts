@@ -32,7 +32,9 @@ export class CheckinsPage implements OnInit {
     this.tableID = this.authService.getTableID();
   }
 
-  scanQRCode() {}
+  scanQRCode() {
+    this.toolsService.showToast("Em desenvolvimento");
+  }
 
   async enterQRCode() {
 
