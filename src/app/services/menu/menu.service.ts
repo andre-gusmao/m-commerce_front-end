@@ -58,7 +58,7 @@ export class MenuService {
     },
     {
       "title": 'Avaliar APP',
-      "url": '/tavaliar',
+      "url": '/customers-feedback',
       "icon": 'thumbs-up-outline'
     },
     {

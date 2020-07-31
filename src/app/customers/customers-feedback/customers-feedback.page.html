@@ -1,0 +1,30 @@
+<app-header></app-header>
+<ion-content>
+
+  <div>
+
+    <div style="text-align: center;">
+      <h4>Olá! {{authService.getUserName()}}</h4>
+    </div>
+
+    <div style="padding: 10px;">
+      <ion-label>Sugestões, elogios ou reclamações? Queremos ouvir você.</ion-label>
+    </div>
+    <div style="padding: 10px;">
+      <ion-textarea 
+        name="feedback" 
+        clearOnEdit="true" 
+        rows="6"
+        style="background: rgb(163, 196, 235); border: 1px solid black;">
+      </ion-textarea>
+    </div>
+
+    <div style="text-align: center;">
+      <ion-button size="small" fill="outline" shape="round" type="submit" (click)="registerFeedback()">
+        <ion-icon name="checkmark-circle"></ion-icon>Confirmar
+      </ion-button>
+    </div>
+
+  </div>
+
+</ion-content>

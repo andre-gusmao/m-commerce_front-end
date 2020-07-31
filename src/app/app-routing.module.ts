@@ -151,6 +151,10 @@ const routes: Routes = [
     path: 'company-billing-details',
     loadChildren: () => import('./companies/company-billing-details/company-billing-details.module').then( m => m.CompanyBillingDetailsPageModule)
   },
+  {
+    path: 'customers-feedback',
+    loadChildren: () => import('./customers/customers-feedback/customers-feedback.module').then( m => m.CustomersFeedbackPageModule)
+  },
 ];
 
 @NgModule({
