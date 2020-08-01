@@ -35,8 +35,8 @@ export class LoginPage implements OnInit {
     // this.email = 'quiosque@kw.com';
     // this.password = 'quio2020';
     // Customer profile
-    // this.email = 'turistas@kw.com';
-    // this.password = 'turi2020';
+    this.email = 'turistas@kw.com';
+    this.password = 'turi2020';
 
   }
 

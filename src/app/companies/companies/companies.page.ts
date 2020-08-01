@@ -151,13 +151,13 @@ export class CompaniesPage implements OnInit {
   }
 
   public loadCities(): void {
-    this.toolsService.showLoading('Carregando cidades ...');
+    //this.toolsService.showLoading('Carregando cidades ...');
     this.city = "";
     if (this.state) {
       this.cityList = [];
       this.cityList = this.citiesService.citiesByState(this.state);
     }
-    this.toolsService.hideLoading();
+    //this.toolsService.hideLoading();
   }
 
 }
