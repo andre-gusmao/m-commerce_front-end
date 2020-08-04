@@ -101,8 +101,8 @@ export class AuthenticationsService {
     return this.profileType;
   }
 
-  getUserName() {
-    return this.userName;
+  getUserName() {    
+    return this.userName.substring(0,this.userName.indexOf(' '));
   }
 
   getUserLogin() {
