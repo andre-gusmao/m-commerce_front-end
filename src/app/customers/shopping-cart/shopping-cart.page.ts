@@ -85,6 +85,7 @@ export class ShoppingCartPage implements OnInit {
       if (dataResponse[0]['success']) {
         this.toolsService.showToast(dataResponse[0]['message'],2000,'success');
         this.toolsService.goToPage(this.listPage);
+        this.ShopCartSrc.clearOrderItems();
       }else{
         this.toolsService.showToast(dataResponse[0]['message'],2000,'warning');
       }

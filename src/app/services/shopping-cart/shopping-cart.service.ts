@@ -38,7 +38,7 @@ export class ShoppingCartService {
     
     this.items = new Array(orderItem.items);
     this.orderItems[0].items.push(this.items);
-    this.incresaTotalOrder();
+    this.refreshTotalOrder();
   }
 
   public decraseItem(i: number = 0){
@@ -48,24 +48,18 @@ export class ShoppingCartService {
       this.orderItems[0].items[i][0].item_quantity -= 1;
       this.orderItems[0].items[i][0].item_total_price = this.orderItems[0].items[i][0].item_quantity * this.orderItems[0].items[i][0].item_unit_price;
     }
-    this.decresaTotalOrder();
+    this.refreshTotalOrder();
   }
 
   public incraseItem(i: number = 0){
     this.orderItems[0].items[i][0].item_quantity += 1;
     this.orderItems[0].items[i][0].item_total_price = this.orderItems[0].items[i][0].item_quantity * this.orderItems[0].items[i][0].item_unit_price;
-    this.incresaTotalOrder();
+    this.refreshTotalOrder();
   }
 
-  public incresaTotalOrder(){
+  public refreshTotalOrder(){
     this.orderItems[0].order_total_price = this.orderItems[0].items.reduce( (sum,item) => {
       return sum + item[0].item_total_price;
-    }, 0);
-  }
-
-  public decresaTotalOrder(){
-    this.orderItems[0].order_total_price = this.orderItems[0].items.reduce( (sum,item) => {
-      return sum - item[0].item_total_price;
     }, 0);
   }
 
@@ -95,6 +89,15 @@ export class ShoppingCartService {
     } else {
       return true;
     }
+  }
+
+  public clearOrderItems(){
+
+    while(this.orderItems[0].items.length){
+      this.orderItems[0].items.pop();
+    }
+    this.orderItems.pop();
+
   }
 
   /* company functions */
