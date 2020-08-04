@@ -13,6 +13,7 @@ import { ModalController } from '@ionic/angular';
 export class CustomersOrdersPage implements OnInit {
   
   orderList: any = [];
+  hasOrders: boolean = false;
   url: string = 'customers/orders.php';
   catalog: string = '/customers-catalogs';
 
@@ -55,8 +56,15 @@ export class CustomersOrdersPage implements OnInit {
 
       this.requestService.getRequestById(this.url, 'customer', this.authService.getProfileID()).subscribe(dataResponse => {
 
-        for (let order of dataResponse['result']) {
-          this.orderList.push(order);
+        if(dataResponse['result']) {
+
+          for (let order of dataResponse['result']) {
+            this.orderList.push(order);
+          }
+          this.hasOrders = true;
+
+        } else {
+          this.hasOrders = false;
         }
 
       }, error => {
