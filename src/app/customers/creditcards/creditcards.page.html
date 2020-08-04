@@ -37,22 +37,7 @@
     <ion-item>
       <ion-label position="floating">Ano</ion-label>
       <ion-select [(ngModel)]="credit_card_expiration_year" name="credit_card_expiration_year" interface="alert" placeholder="Selecione o ano">
-        <ion-select-option value="2020">2020</ion-select-option>
-        <ion-select-option value="2021">2021</ion-select-option>
-        <ion-select-option value="2022">2022</ion-select-option>
-        <ion-select-option value="2023">2023</ion-select-option>
-        <ion-select-option value="2024">2024</ion-select-option>
-        <ion-select-option value="2025">2025</ion-select-option>
-        <ion-select-option value="2026">2026</ion-select-option>
-        <ion-select-option value="2027">2027</ion-select-option>
-        <ion-select-option value="2028">2028</ion-select-option>
-        <ion-select-option value="2029">2029</ion-select-option>
-        <ion-select-option value="2030">2030</ion-select-option>
-        <ion-select-option value="2031">2031</ion-select-option>
-        <ion-select-option value="2022">2032</ion-select-option>
-        <ion-select-option value="2033">2033</ion-select-option>
-        <ion-select-option value="2034">2034</ion-select-option>
-        <ion-select-option value="2035">2035</ion-select-option>
+        <ion-select-option *ngFor="let year of listYear" value="year">{{year}}</ion-select-option>
       </ion-select>
     </ion-item>
 

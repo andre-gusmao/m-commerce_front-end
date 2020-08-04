@@ -19,6 +19,7 @@ export class CreditcardsPage implements OnInit {
   credit_card_expiration_year: string;
   credit_card_security_code: string;
   credit_card_company: string;
+  listYear: any = [];
   url: string = 'customers/creditcards.php';
   listPage: string = 'creditcards-list';
 
@@ -33,7 +34,9 @@ export class CreditcardsPage implements OnInit {
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.createListYear();
+  }
 
   ionViewWillEnter() {
     if (this.authService.getLoginSuccessful()) {
@@ -63,8 +66,8 @@ export class CreditcardsPage implements OnInit {
     const fields = [
       { value: this.credit_card_number, message: 'Informe um cartão válido', length: 16},
       { value: this.credit_card_printed_name, message: 'Informe o nome'},
-      { value: this.credit_card_expiration_month, message: 'Informe o mês (mm)', length: 2},
-      { value: this.credit_card_expiration_year, message: 'Informe o ano', length: 4},
+      { value: this.credit_card_expiration_month, message: 'Selecione o mês', length: 2},
+      { value: this.credit_card_expiration_year, message: 'Selecione o ano', length: 4},
       { value: this.credit_card_security_code, message: 'Informe o CVV', length: 3},
       { value: this.credit_card_company, message: 'Selecione a bandeira do cartão'}
     ]
@@ -130,5 +133,14 @@ export class CreditcardsPage implements OnInit {
     this.credit_card_security_code = "";
     this.credit_card_company = "";
   };
+
+  private createListYear(){
+    let now = new Date();
+    let year = now.getFullYear();
+    let i = 0;
+    for(i = 0; i <= 15; i++){
+      this.listYear.push(year+i);
+    }
+  }
 
 }
