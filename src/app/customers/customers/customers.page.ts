@@ -83,11 +83,11 @@ export class CustomersPage implements OnInit {
     }
 
     const fields = [
+      { value: this.name, message: 'Informe o nome' },
       { value: this.email, message: 'Informe o e-mail' },
+      { value: this.cellPhone, message: 'Informe o celular' },
       { value: this.password, message: 'Informe a senha' },
       { value: this.confirmPassword, message: 'Informe confirme a senha' },
-      { value: this.name, message: 'Informe o nome' },
-      { value: this.cellPhone, message: 'Informe o celular' },
       { value: this.state, message: 'Selecione o estado' },
       { value: this.city, message: 'Selecione a cidade' }
     ]
@@ -106,6 +106,7 @@ export class CustomersPage implements OnInit {
 
     if (this.password != this.confirmPassword) {
       this.toolsService.showToast('Senha e Confirme a senha devem ser iguais');
+      return;
     }
 
     if (this.profileID != undefined && this.profileID != "") {//update
