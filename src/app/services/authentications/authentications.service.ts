@@ -31,6 +31,7 @@ export class AuthenticationsService {
   setCheckin(QRCodeText: string): void {
     let id_company: string = QRCodeText.substr(1,QRCodeText.indexOf('M')-1);
     let id_table: string = QRCodeText.substr(QRCodeText.indexOf('M')+1);
+    this.setCheckOut();
     this.setCompanyID(id_company);
     this.setTableID(id_table);
   }
@@ -38,7 +39,10 @@ export class AuthenticationsService {
   setCheckOut(){
     this.setCompanyID("");
     this.setTableID("");
+    this.ShopCartSrc.orderItems = [];
     this.ShopCartSrc.appCatalog = [];
+    this.ShopCartSrc.appCategory = [];
+    this.ShopCartSrc.items = [];
   }
 
   loadCatalog(){
