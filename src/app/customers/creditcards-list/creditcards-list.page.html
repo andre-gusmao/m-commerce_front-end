@@ -7,7 +7,11 @@
     </ion-refresher-content>
   </ion-refresher>
 
-  <ion-item>
+  <ion-item *ngIf="!hasCard">
+    <h4>Você ainda não castrou cartão</h4>
+  </ion-item>
+
+  <ion-item *ngIf="hasCard">
     <h4>Cartões</h4>
   </ion-item>
 
@@ -33,11 +37,6 @@
       </ion-item-options>
     </ion-item-sliding>
   </ion-list>
-
-  <ion-infinite-scroll (ionInfinite)="loadData($event)">
-    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Carregando mais dados">
-    </ion-infinite-scroll-content>
-  </ion-infinite-scroll>
 
   <ion-fab vertical="bottom" horizontal="center" slot="fixed">
     <ion-fab-button size="small" (click)="insert()">

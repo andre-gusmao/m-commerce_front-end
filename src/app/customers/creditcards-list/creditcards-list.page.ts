@@ -18,6 +18,7 @@ export class CreditcardsListPage implements OnInit {
   editPage: string = '/creditcards/';
   start: number = 0;
   limit: number = 10;
+  hasCard: boolean = false;
 
   constructor(
     public requestService: RequestsService,
@@ -61,8 +62,15 @@ export class CreditcardsListPage implements OnInit {
 
       this.requestService.getRequestById(this.url, 'customer', this.id_customer).subscribe(dataResponse => {
 
-        for (let prodCateg of dataResponse['result']) {
-          this.cardList.push(prodCateg);
+        if (dataResponse['success']) {
+
+          for (let prodCateg of dataResponse['result']) {
+            this.cardList.push(prodCateg);
+          }
+          this.hasCard = true;
+
+        } else {
+          this.hasCard = false;
         }
 
       }, error => {
