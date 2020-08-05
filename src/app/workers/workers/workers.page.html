@@ -9,12 +9,12 @@
 
     <ion-item>
       <ion-label position="floating">CPF</ion-label>
-      <ion-input type="text" [(ngModel)]="worker_cpf"></ion-input>
+      <ion-input type="text" maxlength="11" [(ngModel)]="worker_cpf"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label position="floating">Nome</ion-label>
-      <ion-input type="text" [(ngModel)]="worker_name"></ion-input>
+      <ion-input type="text" maxlength="70" [(ngModel)]="worker_name"></ion-input>
     </ion-item>
 
     <ion-item>
@@ -32,17 +32,17 @@
 
     <ion-item>
       <ion-label position="floating">E-mail</ion-label>
-      <ion-input type="text" [(ngModel)]="worker_email"></ion-input>
+      <ion-input type="text" maxlength="100" [(ngModel)]="worker_email"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label position="floating">Senha</ion-label>
-      <ion-input type="password" [(ngModel)]="worker_password"></ion-input>
+      <ion-input type="password" maxlength="25" [(ngModel)]="worker_password"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label position="floating">Confirme a Senha</ion-label>
-      <ion-input type="password" [(ngModel)]="worker_confirm_password"></ion-input>
+      <ion-input type="password" maxlength="25" [(ngModel)]="worker_confirm_password"></ion-input>
     </ion-item>
 
     <div style="text-align: center;">

@@ -62,15 +62,19 @@ export class WorkersPage implements OnInit {
     }
 
     const fields = [
-      { value: this.worker_cpf, message: 'Informe o CPF'},
+      { value: this.worker_cpf, message: 'Informe o CPF', lenght: 11},
       { value: this.worker_name, message: 'Informe o nome'},
-      { value: this.worker_cell_phone, message: 'Informe o celular'},
+      { value: this.worker_cell_phone, message: 'Informe o celular', lenght: 15},
       { value: this.worker_status, message: 'Informe o status'},
       { value: this.worker_email, message: 'Informe o e-mail'},
       { value: this.worker_password, message: 'Informe a senha'}
     ]
 
     if (this.toolsService.validField(fields) == false){
+      return;
+    }
+
+    if(this.toolsService.isValidCPF(this.worker_cpf) == false){
       return;
     }
 
