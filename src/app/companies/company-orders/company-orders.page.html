@@ -20,7 +20,7 @@
       <ion-col size="2">&nbsp;</ion-col>
     </ion-row>
 
-    <ion-row *ngFor="let order of orderList; let i = index;">
+    <ion-row *ngFor="let order of orderList; let i = index;" (click)="actionWithOrder(order.id_order)">
       <ion-col size="2">
         <ion-text [ngClass]="(i % 2 == 0) ? 'odd' : 'even'">
           {{order.id_order}}
@@ -43,7 +43,7 @@
       </ion-col>
       <ion-col class="ion-text-end" size="2">
         <ion-text [ngClass]="(i % 2 == 0) ? 'odd' : 'even'">
-          <ion-icon name="options-outline" (click)="actionWithOrder(order.id_order)"></ion-icon>
+          <ion-icon name="options-outline"></ion-icon>
         </ion-text>
       </ion-col>
     </ion-row>
