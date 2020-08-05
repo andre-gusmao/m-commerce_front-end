@@ -109,11 +109,11 @@ export class MenuService {
       "url": '/company-catalogs-list',
       "icon": 'book-outline'
     },
-    {
-      "title": 'Items Cardapio',
-      "url": '/company-catalogs-list',
-      "icon": 'newspaper-outline'
-    },
+    // {
+    //   "title": 'Items Cardapio',
+    //   "url": '/company-catalogs-list',
+    //   "icon": 'newspaper-outline'
+    // },
     {
       "title": 'Entregadores',
       "url": '/workers-list',
