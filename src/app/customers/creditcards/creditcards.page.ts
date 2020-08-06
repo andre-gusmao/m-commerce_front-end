@@ -93,7 +93,7 @@ export class CreditcardsPage implements OnInit {
 
   private loadCreditCard(id_credit_card: string): void {
 
-    this.toolsService.showLoading("Buscando cartões ...");
+    //this.toolsService.showLoading("Buscando cartões ...");
 
     this.requestService.getRequestById(this.url, 'id',id_credit_card).subscribe(async data => {
 

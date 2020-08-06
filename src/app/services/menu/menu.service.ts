@@ -51,11 +51,11 @@ export class MenuService {
       "url": '/creditcards-list',
       "icon": 'card-outline'
     },
-    {
-      "title": 'Compartilhe',
-      "url": '/share',
-      "icon": 'share-social-outline'
-    },
+    // {
+    //   "title": 'Compartilhe',
+    //   "url": '/share',
+    //   "icon": 'share-social-outline'
+    // },
     {
       "title": 'Avaliar APP',
       "url": '/customers-feedback',

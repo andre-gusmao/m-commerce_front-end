@@ -91,13 +91,13 @@ export class ProductsCategoriesPage implements OnInit {
 
         } else {
 
-          this.toolsService.hideLoading();
+          //this.toolsService.hideLoading();
           this.toolsService.showToast(data['message'], 2000, 'success');
 
         }
 
       }, error => {
-        this.toolsService.hideLoading();
+        //this.toolsService.hideLoading();
         this.toolsService.showAlert();
       }
 
