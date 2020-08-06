@@ -37,6 +37,7 @@ export class CompanyCatalogsPage implements OnInit {
         this.loadCompanyCatalogs(this.id_catalog);
       } else {
         this.cleanForm();
+        this.catalog_status = "I";
       }
       this.id_company = this.authService.getCompanyID();
     } else {
@@ -76,7 +77,7 @@ export class CompanyCatalogsPage implements OnInit {
 
   private loadCompanyCatalogs(id_catalog: string){
 
-    this.toolsService.showLoading("Buscando grupo ...");
+    //this.toolsService.showLoading("Buscando grupo ...");
 
     let dataRequest = {
       id_catalog: id_catalog,
@@ -89,22 +90,23 @@ export class CompanyCatalogsPage implements OnInit {
           this.id_catalog = data['result'][0]['id_catalog'];
           this.id_company = data['result'][0]['id_company'];
           this.catalog_name = data['result'][0]['catalog_name'];
+          this.catalog_status = data['result'][0]['catalog_status'];
 
         } else {
 
-          this.toolsService.hideLoading();
+          //this.toolsService.hideLoading();
           this.toolsService.showToast(data['message'], 2000, 'success');
 
         }
 
       }, error => {
-        this.toolsService.hideLoading();
+        //this.toolsService.hideLoading();
         this.toolsService.showAlert();
       }
 
     );
 
-    this.toolsService.hideLoading();
+    //this.toolsService.hideLoading();
   }
 
   private cleanForm() {

@@ -141,7 +141,8 @@ export class CompanyCatalogsItemsListPage implements OnInit {
     this.requestService.putRequest(dataRequest, this.url).subscribe(async dataResponse => {
       if (dataResponse['success']) {
         this.toolsService.showToast(dataResponse['message'],2000,'success');
-        this.doRefresh(event);
+        this.listCatalogItems = [];
+        this.loadListCatalogItems();
       }else{
         this.toolsService.showToast(dataResponse['message'],2000,'warning');
       }

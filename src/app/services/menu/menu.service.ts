@@ -119,11 +119,11 @@ export class MenuService {
       "url": '/workers-list',
       "icon": 'walk-outline'
     },
-    {
-      "title": 'Compartilhe',
-      "url": '/share',
-      "icon": 'share-social-outline'
-    },
+    // {
+    //   "title": 'Compartilhe',
+    //   "url": '/share',
+    //   "icon": 'share-social-outline'
+    // },
     {
       "title": 'Sair',
       "url": '/logout',

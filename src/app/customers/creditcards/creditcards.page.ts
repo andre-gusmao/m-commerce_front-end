@@ -110,19 +110,19 @@ export class CreditcardsPage implements OnInit {
 
         } else {
 
-          this.toolsService.hideLoading();
+          //this.toolsService.hideLoading();
           this.toolsService.showToast(data['message'], 2000, 'success');
 
         }
 
       }, error => {
-        this.toolsService.hideLoading();
+        //this.toolsService.hideLoading();
         this.toolsService.showAlert();
       }
 
     );
 
-    this.toolsService.hideLoading();
+    //this.toolsService.hideLoading();
   }
 
   private cleanForm() {

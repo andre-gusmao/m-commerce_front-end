@@ -8,7 +8,6 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { HeaderComponent } from '../app/modules/header/header.component';
-import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 
 @NgModule({
   declarations: [
@@ -24,7 +23,6 @@ import { SocialSharing } from '@ionic-native/social-sharing/ngx';
   providers: [
     StatusBar,
     SplashScreen,
-    SocialSharing,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

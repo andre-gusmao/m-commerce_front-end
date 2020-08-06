@@ -92,7 +92,8 @@ export class WorkersListPage implements OnInit {
     this.requestService.putRequest(dataRequest, this.url).subscribe(async dataResponse => {
       if (dataResponse['success']) {
         this.toolsService.showToast(dataResponse['message'],2000,'success');
-        this.doRefresh(event);
+        this.listWorkers = [];
+        this.loadWorkers();
       }else{
         this.toolsService.showToast(dataResponse['message'],2000,'warning');
       }

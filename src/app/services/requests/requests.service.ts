@@ -13,7 +13,7 @@ export class RequestsService {
     private http: HttpClient
   ) { }
 
-  getKWToken() {
+  getKWToken(URLToken: boolean = true) {
     let kw: string = "";
     let now = new Date();
     let year = now.getFullYear().toString();
@@ -22,7 +22,11 @@ export class RequestsService {
     let hour = now.getHours();
     let key = year.toString() + month.toString() + day.toString() + "kw" + hour.toString()
 
-    kw = '?token=' + btoa(key);
+    if(URLToken == true) {
+      kw = '?token=' + btoa(key);
+    } else {
+      kw = btoa(key);
+    }
 
     return kw;
   }
@@ -38,32 +42,48 @@ export class RequestsService {
     return headers;
   }
 
+  getHeadersToken() {
+    const headers = new HttpHeaders()
+      .set('Access-Control-Allow-Origin', '*')
+      .set('Access-Control-Expose-Headers', 'Content-Length, X-JSON')
+      .set('Access-Control-Allow-Methods', 'GET,POST,PATCH,PUT,DELETE,OPTIONS')
+      .set('Access-Control-Allow-Headers', '*')
+      .set('Accept', '*/*')
+      .set('Content-Type', 'application/json')
+      .set('token', this.getKWToken(false));
+    return headers;
+  }
+
   postRequest(data: any, endpoint: string): Observable<any> {
-    let url = environment.endpointURL + endpoint + this.getKWToken();
+    //let url = environment.endpointURL + endpoint + this.getKWToken();
+    let url = environment.endpointURL + endpoint;
     let headers = this.getHeaders();
     data = JSON.stringify(data);
     return this.http.post<any>(url, data, {headers});
   }
 
   getRequest(endpoint: string, paramName: string, paramValue: string): Observable<any>   {
-    let url = environment.endpointURL + endpoint + this.getKWToken();
+    // let url = environment.endpointURL + endpoint + this.getKWToken();
+    let url = environment.endpointURL + endpoint;
     return this.http.get<any>(url, { headers: this.getHeaders() }).pipe(map(res => res));
   }
 
   getRequestById(endpoint: string, paramName: string, paramValue: string): Observable<any>   {
-    let url = environment.endpointURL + endpoint + this.getKWToken() + '&' + paramName + '=' + paramValue;
+    // let url = environment.endpointURL + endpoint + this.getKWToken() + '&' + paramName + '=' + paramValue;
+    let url = environment.endpointURL + endpoint + '?' + paramName + '=' + paramValue;
     return this.http.get<any>(url, { headers: this.getHeaders() }).pipe(map(res => res));
   }
 
   putRequest(data: any, endpoint: string) {
-    let url = environment.endpointURL + endpoint + this.getKWToken();
+    //let url = environment.endpointURL + endpoint + this.getKWToken();
+    let url = environment.endpointURL + endpoint;
     data = JSON.stringify(data);
     return this.http.put(url, data, { headers: this.getHeaders() }).pipe(map(res => res));
   }
 
   deleteRequest(endpoint: string, paramName: string, paramValue: string) {
     //let url = environment.endpointURL + endpoint + '?' + paramName + '=' + paramValue;
-    let url = environment.endpointURL + endpoint + '/' + paramValue + this.getKWToken();
-    return this.http.delete(url, { headers: this.getHeaders() }).pipe(map(res => res));
+    let url = environment.endpointURL + endpoint + '/' + paramValue;
+    return this.http.delete<any>(url, { headers: this.getHeaders() }).pipe(map(res => res));
   }
 }

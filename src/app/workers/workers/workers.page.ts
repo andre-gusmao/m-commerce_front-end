@@ -107,7 +107,7 @@ export class WorkersPage implements OnInit {
 
   private loadWorkers(id_worker: string): void {
 
-    this.toolsService.showLoading("Buscando entregador ...");
+    //this.toolsService.showLoading("Buscando entregador ...");
 
     let dataRequest = {
       id_worker: id_worker,
@@ -129,19 +129,19 @@ export class WorkersPage implements OnInit {
 
         } else {
 
-          this.toolsService.hideLoading();
+          //this.toolsService.hideLoading();
           this.toolsService.showToast(data['message'], 2000, 'success');
 
         }
 
       }, error => {
-        this.toolsService.hideLoading();
+        //this.toolsService.hideLoading();
         this.toolsService.showAlert();
       }
 
     );
 
-    this.toolsService.hideLoading();
+    //this.toolsService.hideLoading();
   
   }
 

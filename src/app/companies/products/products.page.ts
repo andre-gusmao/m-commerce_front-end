@@ -59,7 +59,7 @@ export class ProductsPage implements OnInit {
 
   private loadProduct(id_product): void {
 
-    this.toolsService.showLoading("Buscando produto ...");
+    //this.toolsService.showLoading("Buscando produto ...");
 
     let dataRequest = {
       id_product: id_product,
@@ -79,19 +79,19 @@ export class ProductsPage implements OnInit {
 
         } else {
 
-          this.toolsService.hideLoading();
+          //this.toolsService.hideLoading();
           this.toolsService.showToast(data['message'], 2000, 'success');
 
         }
 
       }, error => {
-        this.toolsService.hideLoading();
+        //this.toolsService.hideLoading();
         this.toolsService.showAlert();
       }
 
     );
 
-    this.toolsService.hideLoading();
+    //this.toolsService.hideLoading();
   }
 
   async registerProduct() {

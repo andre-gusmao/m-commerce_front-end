@@ -75,7 +75,7 @@ export class ProductsCategoriesPage implements OnInit {
 
   private loadProductCategory(id_product_category): void {
 
-    this.toolsService.showLoading("Buscando grupo ...");
+    //this.toolsService.showLoading("Buscando grupo ...");
 
     let dataRequest = {
       id_product_category: id_product_category,
@@ -103,7 +103,7 @@ export class ProductsCategoriesPage implements OnInit {
 
     );
 
-    this.toolsService.hideLoading();
+    //this.toolsService.hideLoading();
   }
 
   private cleanForm() {

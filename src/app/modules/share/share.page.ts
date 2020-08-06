@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 
 @Component({
   selector: 'app-share',
@@ -10,29 +9,29 @@ export class SharePage implements OnInit {
 
   mensagem: string = "Esse app do KioskWide é d+!!!";
 
-  constructor(private socialSharing: SocialSharing) { }
+  constructor() { }
 
   ngOnInit() {
   }
 
-  facebookShare(){
+  public facebookShare(){
     console.log("facebook: " + this.mensagem);
-    this.socialSharing.shareViaFacebook(this.mensagem, null, null);
+    // this.socialSharing.shareViaFacebook(this.mensagem, null, null);
    }
    
-   whatsappShare(){
+  public whatsappShare(){
      console.log("whatsapp: " + this.mensagem);
-     this.socialSharing.shareViaWhatsApp(this.mensagem, null, null);
+    //  this.socialSharing.shareViaWhatsApp(this.mensagem, null, null);
   }
   
-  instagramShare(){
+  public instagramShare(){
     console.log("instagram: " + this.mensagem);
-    this.socialSharing.shareViaInstagram(this.mensagem, null);
+    // this.socialSharing.shareViaInstagram(this.mensagem, null);
   }
   
-  twitterShare(){
+  public twitterShare(){
     console.log("twitter: " + this.mensagem);
-    this.socialSharing.shareViaTwitter(this.mensagem, null, null);
+    // this.socialSharing.shareViaTwitter(this.mensagem, null, null);
   }
 
 }
