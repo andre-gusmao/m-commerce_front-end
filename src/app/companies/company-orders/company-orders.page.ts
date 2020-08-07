@@ -94,15 +94,13 @@ export class CompanyOrdersPage implements OnInit {
       this.requestService.putRequest(dataRequest, this.url).subscribe(async dataResponse => {
         if (dataResponse['success']) {
           this.toolsService.showToast(dataResponse['message'],2000,'success');
-          this.ionViewWillEnter();
+          this.loadOrders();
         }else{
           this.toolsService.showToast(dataResponse['message'],2000,'warning');
         }
       });
 
-    } else {//deviverOder
-
-    }
+    } 
 
   }
 
