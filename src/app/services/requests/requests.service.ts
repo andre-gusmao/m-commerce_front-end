@@ -77,13 +77,15 @@ export class RequestsService {
   putRequest(data: any, endpoint: string) {
     //let url = environment.endpointURL + endpoint + this.getKWToken();
     let url = environment.endpointURL + endpoint;
+    let headers = this.getHeaders();
     data = JSON.stringify(data);
-    return this.http.put(url, data, { headers: this.getHeaders() }).pipe(map(res => res));
+    return this.http.put(url, data, {headers});
   }
 
   deleteRequest(endpoint: string, paramName: string, paramValue: string) {
     //let url = environment.endpointURL + endpoint + '?' + paramName + '=' + paramValue;
     let url = environment.endpointURL + endpoint + '/' + paramValue;
-    return this.http.delete<any>(url, { headers: this.getHeaders() }).pipe(map(res => res));
+    let headers = this.getHeaders();
+    return this.http.delete<any>(url, {headers}).pipe(map(res => res));
   }
 }
