@@ -106,7 +106,7 @@ export class AuthenticationsService {
   }
 
   getUserName() {    
-    return this.userName.substring(0,this.userName.indexOf(' '));
+    return this.userName;
   }
 
   getUserLogin() {
