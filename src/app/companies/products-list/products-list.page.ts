@@ -86,6 +86,11 @@ export class ProductsListPage implements OnInit {
 
   public async delete(id_product){
 
+    let dataRequest = {
+      id_product: id_product,
+      request_type: 'delete',
+    }
+
     const question = await this.alertCtrl.create({
       header: "Atenção!",
       message: "Confirma exclusão do produto ?",
@@ -97,7 +102,7 @@ export class ProductsListPage implements OnInit {
         {
           text: "Sim",
           handler: () => {
-            this.requestService.deleteRequest(this.url, 'id', id_product).subscribe(dataResponse => {
+            this.requestService.postRequest(dataRequest, this.url).subscribe(async dataResponse => {
               if (dataResponse['success']) {
                 window.alert("Produto excluído");
               } else {

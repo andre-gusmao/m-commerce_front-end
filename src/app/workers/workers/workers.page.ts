@@ -92,6 +92,7 @@ export class WorkersPage implements OnInit {
 
     if (this.id_worker != undefined && this.id_worker != ""){
       dataRequest['id_worker'] = this.id_worker;
+      dataRequest['request_type'] = 'update';
     }
 
     this.requestService.postRequest(dataRequest, this.url).subscribe(async dataResponse => {

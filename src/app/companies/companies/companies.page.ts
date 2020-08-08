@@ -62,6 +62,7 @@ export class CompaniesPage implements OnInit {
       city: this.city,
       notes: this.notes,
       profileType: '2',
+      request_type: '',
     }
 
     const fields = [
@@ -93,18 +94,18 @@ export class CompaniesPage implements OnInit {
 
     if (this.profileID != undefined && this.profileID != "") { //update
       dataRequest['profileID'] = this.profileID;
+      dataRequest['request_type'] = 'update';
     }
 
-    this.requestService.postRequest(dataRequest, 'companies/companies.php')
-      .subscribe(async dataResponse => {
-
+    this.requestService.postRequest(dataRequest, 'companies/companies.php').subscribe(async dataResponse => {
         if (dataResponse['profileID']) {
           this.profileID = dataResponse['profileID'];
           this.authService.setProfileID(dataResponse['profileID']);
         }
         this.toolsService.showToast(dataResponse['message']);
         this.toolsService.goToPage('/login');
-      });
+      }
+    );
 
   }
 

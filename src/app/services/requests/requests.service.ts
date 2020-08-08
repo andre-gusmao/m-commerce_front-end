@@ -74,12 +74,12 @@ export class RequestsService {
     return this.http.get<any>(url, { headers: this.getHeaders() }).pipe(map(res => res));
   }
 
-  putRequest(data: any, endpoint: string) {
+  putRequest(data: any, endpoint: string): Observable<any> {
     //let url = environment.endpointURL + endpoint + this.getKWToken();
     let url = environment.endpointURL + endpoint;
     let headers = this.getHeaders();
     data = JSON.stringify(data);
-    return this.http.put(url, data, {headers});
+    return this.http.put<any>(url, data, {headers});
   }
 
   deleteRequest(endpoint: string, paramName: string, paramValue: string) {

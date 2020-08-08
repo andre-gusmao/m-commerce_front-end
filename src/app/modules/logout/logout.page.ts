@@ -18,5 +18,6 @@ export class LogoutPage implements OnInit {
 
   ionViewWillEnter() {
     this.authService.setLogout();
+    navigator['app'].exitApp();
   }
 }

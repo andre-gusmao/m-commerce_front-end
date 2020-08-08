@@ -80,6 +80,7 @@ export class CustomersPage implements OnInit {
       state: this.state,
       city: this.city,
       profileType: '1',
+      request_type: '',
     }
 
     const fields = [
@@ -111,11 +112,10 @@ export class CustomersPage implements OnInit {
 
     if (this.profileID != undefined && this.profileID != "") {//update
       dataRequest['profileID'] = this.profileID;
+      dataRequest['request_type'] = 'update';
     }
     
-    this.requestService.postRequest(dataRequest, 'customers/customers.php')
-      .subscribe(async dataResponse => {
-        
+    this.requestService.postRequest(dataRequest, 'customers/customers.php').subscribe(async dataResponse => {        
         if (dataResponse['profileID']) {
           this.profileID = dataResponse['profileID'];
           this.authService.setProfileID(dataResponse['profileID']);

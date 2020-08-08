@@ -102,20 +102,13 @@ export class ProductsPage implements OnInit {
       product_name: this.product_name,
       product_description: this.product_description,
       product_picture: this.product_picture,
+      request_type: '',
     }
 
-    const fields = [{
-        value: this.product_name,
-        message: 'Informe o nome'
-      },
-      {
-        value: this.product_description,
-        message: 'Informe a descrição'
-      },
-      {
-        value: this.id_product_category,
-        message: 'Selecione o grupo'
-      }
+    const fields = [
+      { value: this.product_name, message: 'Informe o nome' },
+      { value: this.product_description, message: 'Informe a descrição' },
+      { value: this.id_product_category, message: 'Selecione o grupo' }
     ]
 
     if (this.toolsService.validField(fields) == false) {
@@ -124,6 +117,7 @@ export class ProductsPage implements OnInit {
 
     if (this.id_product != undefined && this.id_product != "") {
       dataRequest['id_product'] = this.id_product;
+      dataRequest['request_type'] = 'update';
     }
 
     this.requestService.postRequest(dataRequest, this.url).subscribe(async dataResponse => {

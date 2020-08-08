@@ -82,6 +82,11 @@ export class ProductsCategoriesListPage implements OnInit {
 
   public async delete(id_product_category: string) {
 
+    let dataRequest = {
+      id_product_category: id_product_category,
+      request_type: 'delete',
+    }
+
     const question = await this.alertCtrl.create({
       header: "Atenção!",
       message: "Confirma exclusão do grupo ?",
@@ -93,7 +98,7 @@ export class ProductsCategoriesListPage implements OnInit {
         {
           text: "Sim",
           handler: () => {
-            this.requestService.deleteRequest(this.url, 'id', id_product_category).subscribe(dataResponse => {
+            this.requestService.postRequest(dataRequest, this.url).subscribe(async dataResponse => {
               if (dataResponse['success']) {
                 window.alert("Grupo excluído");
               } else {

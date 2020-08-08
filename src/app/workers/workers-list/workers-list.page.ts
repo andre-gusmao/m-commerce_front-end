@@ -80,6 +80,7 @@ export class WorkersListPage implements OnInit {
     let dataRequest = {
       id_worker: id_worker,
       id_company: this.id_company,
+      request_type: 'status',
       worker_status: ''
     }
 
@@ -89,7 +90,7 @@ export class WorkersListPage implements OnInit {
       dataRequest.worker_status = 'A';
     }
 
-    this.requestService.putRequest(dataRequest, this.url).subscribe(async dataResponse => {
+    this.requestService.postRequest(dataRequest, this.url).subscribe(async dataResponse => {
       if (dataResponse['success']) {
         this.toolsService.showToast(dataResponse['message'],2000,'success');
         this.listWorkers = [];
@@ -107,6 +108,11 @@ export class WorkersListPage implements OnInit {
 
   public async delete(id_worker: string){
 
+    let dataRequest = {
+      id_worker: id_worker,
+      request_type: 'delete'
+    }
+
     const question = await this.alertCtrl.create({
       header: "Atenção!",
       message: "Confirma exclusão do entregador ?",
@@ -118,7 +124,7 @@ export class WorkersListPage implements OnInit {
         {
           text: "Sim",
           handler: () => {
-            this.requestService.deleteRequest(this.url, 'id', id_worker).subscribe(dataResponse => {
+            this.requestService.postRequest(dataRequest, this.url).subscribe(async dataResponse => {
               if (dataResponse['success']) {
                 window.alert("Entregador excluído");
               } else {

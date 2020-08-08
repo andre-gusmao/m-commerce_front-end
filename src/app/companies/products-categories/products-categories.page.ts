@@ -47,7 +47,8 @@ export class ProductsCategoriesPage implements OnInit {
 
     let dataRequest = {
       product_category_name: this.product_category_name,
-      id_company: this.id_company
+      id_company: this.id_company,
+      request_type: ''
     }
 
     const fields = [
@@ -60,6 +61,7 @@ export class ProductsCategoriesPage implements OnInit {
 
     if (this.id_product_category != undefined && this.id_product_category != ""){
       dataRequest['id_product_category'] = this.id_product_category;
+      dataRequest['request_type'] = 'update';
     }
 
     this.requestService.postRequest(dataRequest, this.url).subscribe(async dataResponse => {

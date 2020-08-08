@@ -91,6 +91,11 @@ export class CompanyCatalogsItemsListPage implements OnInit {
 
   public async delete(id_catalog_item){
 
+    let dataRequest = {
+      id_catalog_item: id_catalog_item,
+      request_type: 'delete',
+    }
+
     const question = await this.alertCtrl.create({
       header: "Atenção!",
       message: "Confirma exclusão do item ?",
@@ -102,7 +107,7 @@ export class CompanyCatalogsItemsListPage implements OnInit {
         {
           text: "Sim",
           handler: () => {
-            this.requestService.deleteRequest(this.url, 'id', id_catalog_item).subscribe(dataResponse => {
+            this.requestService.postRequest(dataRequest, this.url).subscribe(async dataResponse => {
               if (dataResponse['success']) {
                 window.alert("Item excluído");
               } else {
@@ -129,6 +134,7 @@ export class CompanyCatalogsItemsListPage implements OnInit {
 
     let dataRequest = {
       id_catalog_item: id_catalog_item,
+      request_type: 'status',
       catalog_item_status: ''
     }
 
@@ -138,7 +144,7 @@ export class CompanyCatalogsItemsListPage implements OnInit {
       dataRequest.catalog_item_status = 'A';
     }
 
-    this.requestService.putRequest(dataRequest, this.url).subscribe(async dataResponse => {
+    this.requestService.postRequest(dataRequest, this.url).subscribe(async dataResponse => {
       if (dataResponse['success']) {
         this.toolsService.showToast(dataResponse['message'],2000,'success');
         this.listCatalogItems = [];

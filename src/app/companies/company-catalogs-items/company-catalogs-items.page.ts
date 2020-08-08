@@ -112,11 +112,13 @@ export class CompanyCatalogsItemsPage implements OnInit {
       id_product: this.id_product,
       catalog_item_status: this.catalog_item_status,
       catalog_item_price: this.catalog_item_price,
-      catalog_item_note: this.catalog_item_note
+      catalog_item_note: this.catalog_item_note,
+      request_type: '',
     }
 
     if(this.id_catalog_item != undefined && this.id_catalog_item != ""){
       dataRequest['id_catalog_item'] = this.id_catalog_item;
+      dataRequest['request_type'] = 'update';
     }
 
     const fields = [

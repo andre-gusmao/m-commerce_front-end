@@ -84,7 +84,12 @@ export class CreditcardsListPage implements OnInit {
     this.toolsService.goToPage(this.editPage + id_customer);
   }
 
-  public async delete(id_customer: string){
+  public async delete(id_credit_card: string){
+
+    let dataRequest = {
+      id_credit_card: id_credit_card,
+      request_type: 'delete'
+    }
 
     const question = await this.alertCtrl.create({
       header: "Atenção!",
@@ -97,7 +102,7 @@ export class CreditcardsListPage implements OnInit {
         {
           text: "Sim",
           handler: () => {
-            this.requestService.deleteRequest(this.url, 'id', id_customer).subscribe(dataResponse => {
+            this.requestService.postRequest(dataRequest, this.url).subscribe(async dataResponse => {
               if (dataResponse['success']) {
                 window.alert("Cartão excluído");
               } else {

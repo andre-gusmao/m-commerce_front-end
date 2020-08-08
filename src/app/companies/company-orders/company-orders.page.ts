@@ -91,7 +91,7 @@ export class CompanyOrdersPage implements OnInit {
 
       dataRequest.order_status = this.newStatus;
 
-      this.requestService.putRequest(dataRequest, this.url).subscribe(async dataResponse => {
+      this.requestService.postRequest(dataRequest, this.url).subscribe(async dataResponse => {
         if (dataResponse['success']) {
           this.toolsService.showToast(dataResponse['message'],2000,'success');
           this.loadOrders();

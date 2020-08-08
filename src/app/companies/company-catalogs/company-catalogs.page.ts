@@ -49,7 +49,8 @@ export class CompanyCatalogsPage implements OnInit {
 
     let dataRequest = {
       id_company: this.id_company,
-      catalog_name: this.catalog_name
+      catalog_name: this.catalog_name,
+      request_type: ''
     }
 
     const fields = [
@@ -62,6 +63,7 @@ export class CompanyCatalogsPage implements OnInit {
 
     if (this.id_catalog != undefined && this.id_catalog != ""){
       dataRequest['id_catalog'] = this.id_catalog;
+      dataRequest['request_type'] = 'update';
     }
 
     this.requestService.postRequest(dataRequest, this.url).subscribe(async dataResponse => {

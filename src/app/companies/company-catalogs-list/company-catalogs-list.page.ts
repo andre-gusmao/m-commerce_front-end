@@ -80,6 +80,11 @@ export class CompanyCatalogsListPage implements OnInit {
 
   public async delete(id_catalog) {
 
+    let dataRequest = {
+      id_catalog: id_catalog,
+      request_type: 'delete',
+    }
+
     const question = await this.alertCtrl.create({
       header: "Atenção!",
       message: "Confirma exclusão do cardápio ?",
@@ -91,7 +96,7 @@ export class CompanyCatalogsListPage implements OnInit {
         {
           text: "Sim",
           handler: () => {
-            this.requestService.deleteRequest(this.url, 'id', id_catalog).subscribe(dataResponse => {
+            this.requestService.postRequest(dataRequest, this.url).subscribe(async dataResponse => {
               if (dataResponse['success']) {
                 window.alert("Cardápio excluído");
               } else {
@@ -118,6 +123,7 @@ export class CompanyCatalogsListPage implements OnInit {
     let dataRequest = {
       id_catalog: id_catalog,
       id_company: this.id_company,
+      request_type: 'status',
       catalog_status: 'A'
     }
 

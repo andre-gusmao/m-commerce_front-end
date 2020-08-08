@@ -60,7 +60,8 @@ export class CreditcardsPage implements OnInit {
       credit_card_expiration_month: this.credit_card_expiration_month,
       credit_card_expiration_year: this.credit_card_expiration_year,
       credit_card_security_code: this.credit_card_security_code,
-      credit_card_company: this.credit_card_company
+      credit_card_company: this.credit_card_company,
+      request_type: ''
     }
 
     const fields = [
@@ -78,6 +79,7 @@ export class CreditcardsPage implements OnInit {
 
     if (this.id_credit_card != undefined && this.id_credit_card != ""){
       dataRequest['id_credit_card'] = this.id_credit_card;
+      dataRequest['request_type'] = 'update';
     }
 
     this.requestService.postRequest(dataRequest, this.url).subscribe(async dataResponse => {
