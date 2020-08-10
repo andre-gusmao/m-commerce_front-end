@@ -1,7 +1,8 @@
+import { async } from '@angular/core/testing';
 import { environment } from './../../../environments/environment';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { map } from 'rxjs/operators';
+import { map, retry, catchError } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -12,6 +13,10 @@ export class RequestsService {
   constructor(
     private http: HttpClient
   ) { }
+
+  public delay(ms: number) {
+    return new Promise( resolve => setTimeout(resolve, ms) );
+  }
 
   getKWToken(URLToken: boolean = true) {
     let kw: string = "";
@@ -37,8 +42,9 @@ export class RequestsService {
       .set('Access-Control-Expose-Headers', 'Content-Length, X-JSON')
       .set('Access-Control-Allow-Methods', 'GET,POST,PATCH,PUT,DELETE,OPTIONS')
       .set('Access-Control-Allow-Headers', '*')
-      .set('Accept', '*/*')
-      .set('Content-Type', 'application/json');
+      .set('Accept', 'application/json, text/plain, */*')
+      .set('Accept-Language', 'pt-BR,pt;q=0.9,en-US;q=0.8,en;q=0.7')
+      .set('Content-Type', 'application/json;charset=UTF-8')
     return headers;
   }
 
@@ -59,19 +65,27 @@ export class RequestsService {
     let url = environment.endpointURL + endpoint;
     let headers = this.getHeaders();
     data = JSON.stringify(data);
-    return this.http.post<any>(url, data, {headers});
+    return this.http.post<any>(url, data, {headers})
+      .pipe(
+        map(res => res)
+      );
   }
 
   getRequest(endpoint: string, paramName: string, paramValue: string): Observable<any>   {
     // let url = environment.endpointURL + endpoint + this.getKWToken();
     let url = environment.endpointURL + endpoint;
-    return this.http.get<any>(url, { headers: this.getHeaders() }).pipe(map(res => res));
+    let headers = this.getHeaders();
+    // return this.http.get<any>(url, {headers}).pipe(map(res => res));
+    return this.http.get<any>(url, {headers});
   }
 
   getRequestById(endpoint: string, paramName: string, paramValue: string): Observable<any>   {
     // let url = environment.endpointURL + endpoint + this.getKWToken() + '&' + paramName + '=' + paramValue;
     let url = environment.endpointURL + endpoint + '?' + paramName + '=' + paramValue;
-    return this.http.get<any>(url, { headers: this.getHeaders() }).pipe(map(res => res));
+    let headers = this.getHeaders();
+    // return this.http.get(url, {headers}).pipe(map(res => res));
+    // return this.http.get(url, {headers});
+    return this.http.get(url);
   }
 
   putRequest(data: any, endpoint: string): Observable<any> {
@@ -88,4 +102,5 @@ export class RequestsService {
     let headers = this.getHeaders();
     return this.http.delete<any>(url, {headers}).pipe(map(res => res));
   }
+
 }
