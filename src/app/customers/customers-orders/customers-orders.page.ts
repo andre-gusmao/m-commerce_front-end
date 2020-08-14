@@ -56,7 +56,7 @@ export class CustomersOrdersPage implements OnInit {
 
       this.requestService.getRequestById(this.url, 'customer', this.authService.getProfileID()).subscribe(dataResponse => {
 
-        if(dataResponse['result']) {
+        if(dataResponse['success']) {
 
           for (let order of dataResponse['result']) {
             this.orderList.push(order);
