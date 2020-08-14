@@ -19,6 +19,7 @@ export class ProductsCategoriesListPage implements OnInit {
   editPage: string = '/products-categories/';
   start: number = 0;
   limit: number = 10;
+  hashCategory: boolean = false;
 
   constructor(
     public requestService: RequestsService,
@@ -57,21 +58,20 @@ export class ProductsCategoriesListPage implements OnInit {
   }
 
   private async loadProductsCategories() {
-
     return new Promise(res => {
-
       this.requestService.getRequestById(this.url, 'company', this.id_company).subscribe(dataResponse => {
-
-        for (let prodCateg of dataResponse['result']) {
+        if(dataResponse['success']) {
+          for (let prodCateg of dataResponse['result']) {
           this.listProdCateg.push(prodCateg);
+          }
+          this.hashCategory = true;
+        } else {
+          this.hashCategory = false;
         }
-
       }, error => {
         this.toolsService.showAlert();
       })
-
     });
-
   }
 
   public edit(id_product_category: string): void {
