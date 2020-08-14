@@ -16,6 +16,7 @@ export class CompanyOrdersPage implements OnInit {
   orderList: any = [];
   url: string = 'customers/orders.php';
   newStatus: string = "0";
+  hasOrders: boolean = false;
 
   constructor(
     public requestService: RequestsService,
@@ -29,6 +30,11 @@ export class CompanyOrdersPage implements OnInit {
   ionViewWillEnter() {
     if (this.authService.getLoginSuccessful()) {
       this.loadOrders();
+      if(this.hasOrders) {
+        console.info("hasOrders");
+      } else {
+        console.warn("hasOrders");
+      }
     } else {
       this.authService.setLogout();
     }
@@ -56,11 +62,14 @@ export class CompanyOrdersPage implements OnInit {
     return new Promise(res => {
 
       this.requestService.getRequestById(this.url, 'company', this.authService.getProfileID()).subscribe(dataResponse => {
-
-        for (let order of dataResponse['result']) {
-          this.orderList.push(order);
+        if(dataResponse['success']) {
+          for (let order of dataResponse['result']) {
+            this.orderList.push(order);
+          }
+          this.hasOrders = true;
+        } else {
+          this.hasOrders = false;
         }
-
       }, error => {
         this.toolsService.showAlert();
       })
