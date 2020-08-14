@@ -22,6 +22,7 @@ export class ProductsListPage implements OnInit {
   editPage: string = '/products/';
   start: number = 0;
   limit: number = 10;
+  hasProduct: boolean = false;
 
 
   constructor(
@@ -61,23 +62,21 @@ export class ProductsListPage implements OnInit {
   }
 
   private async loadProducts(){
-
     this.productList = [];
-
     return new Promise(res => {
-
       this.requestService.getRequestById(this.url, 'company', this.id_company).subscribe(dataResponse => {
-
-        for (let product of dataResponse['result']) {
-          this.productList.push(product);
+        if(dataResponse['success']) {
+          for (let product of dataResponse['result']) {
+            this.productList.push(product);
+          }
+          this.hasProduct = true;
+        } else {
+          this.hasProduct = false;
         }
-
       }, error => {
         this.toolsService.showAlert();
       })
-
     });
-
   }
 
   public edit(id_product: string){
