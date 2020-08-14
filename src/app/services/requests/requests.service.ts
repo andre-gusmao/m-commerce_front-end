@@ -1,8 +1,7 @@
-import { async } from '@angular/core/testing';
 import { environment } from './../../../environments/environment';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { map, retry, catchError } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -65,27 +64,21 @@ export class RequestsService {
     let url = environment.endpointURL + endpoint;
     let headers = this.getHeaders();
     data = JSON.stringify(data);
-    return this.http.post<any>(url, data, {headers})
-      .pipe(
-        map(res => res)
-      );
+    return this.http.post<any>(url, data, {headers}).pipe(map(res => res));
   }
 
   getRequest(endpoint: string, paramName: string, paramValue: string): Observable<any>   {
     // let url = environment.endpointURL + endpoint + this.getKWToken();
     let url = environment.endpointURL + endpoint;
     let headers = this.getHeaders();
-    // return this.http.get<any>(url, {headers}).pipe(map(res => res));
-    return this.http.get<any>(url, {headers});
+    return this.http.get<any>(url, {headers}).pipe(map(res => res));
   }
 
   getRequestById(endpoint: string, paramName: string, paramValue: string): Observable<any>   {
     // let url = environment.endpointURL + endpoint + this.getKWToken() + '&' + paramName + '=' + paramValue;
     let url = environment.endpointURL + endpoint + '?' + paramName + '=' + paramValue;
     let headers = this.getHeaders();
-    // return this.http.get(url, {headers}).pipe(map(res => res));
-    // return this.http.get(url, {headers});
-    return this.http.get(url);
+    return this.http.get(url, {headers}).pipe(map(res => res));
   }
 
   putRequest(data: any, endpoint: string): Observable<any> {
