@@ -56,9 +56,7 @@ export class ProductsCategoriesListPage implements OnInit {
     }, 500);
   }
 
-  private loadProductsCategories() {
-
-    this.listProdCateg = [];
+  private async loadProductsCategories() {
 
     return new Promise(res => {
 
