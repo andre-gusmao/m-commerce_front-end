@@ -1,47 +1,41 @@
 <app-header></app-header>
 <ion-content style="color: black;">
-
-    <ion-item>
-      <h4>Produtos</h4>
-    </ion-item>
-
-    <ion-item>
-      <ion-label position="floating">Nome</ion-label>
-      <ion-input type="text" [(ngModel)]="product_name"></ion-input>
-    </ion-item>
-
-    <ion-item>
-      <ion-label position="floating">Descricao</ion-label>
-      <ion-input type="text" [(ngModel)]="product_description"></ion-input>
-    </ion-item>
-
-    <ion-item>
-      <ion-label position="floating">Grupo de Produto</ion-label>
-      <ion-select [(ngModel)]="id_product_category" name="id_product_category" interface="alert"
-        placeholder="Selecione o grupo">
-        <ion-select-option *ngFor="let category of categoryList" [value]="category.id_product_category">{{category.product_category_name}}
-        </ion-select-option>
-      </ion-select>
-    </ion-item>
-
-    <ion-card>
-      <ion-card-header>Foto</ion-card-header>
-      <ion-card-content>
-        <!-- <img *ngIf="novaFoto == undefined" src="">
+  <ion-item>
+    <h4>Produtos</h4>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">Nome</ion-label>
+    <ion-input type="text" [(ngModel)]="product_name"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">Descricao</ion-label>
+    <ion-input maxlength="50" type="text" [(ngModel)]="product_description"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">Grupo de Produto</ion-label>
+    <ion-select [(ngModel)]="id_product_category" name="id_product_category" interface="alert"
+      placeholder="Selecione o grupo">
+      <ion-select-option *ngFor="let category of categoryList" [value]="category.id_product_category">
+        {{category.product_category_name}}
+      </ion-select-option>
+    </ion-select>
+  </ion-item>
+  <ion-card>
+    <ion-card-header>Foto</ion-card-header>
+    <ion-card-content>
+      <!-- <img *ngIf="novaFoto == undefined" src="">
         <img *ngIf="novaFoto != undefined" [src]="novaFoto"> -->
-      </ion-card-content>
-    </ion-card>
-
-    <div style="text-align: center;">
-      <ion-button size="small" fill="outline" shape="round" (click)="takePictures()">
-        <ion-icon name="camera"></ion-icon>Fotografar
-      </ion-button>
-      <ion-button size="small" fill="outline" shape="round" (click)="registerProduct()">
-        <ion-icon name="checkmark-circle"></ion-icon>Confirmar
-      </ion-button>
-      <ion-button size="small" fill="outline" shape="round" (click)="toolsService.goToPage(this.listPage)">
-        <ion-icon name="list"></ion-icon>Listar
-      </ion-button>
-    </div>
-
+    </ion-card-content>
+  </ion-card>
+  <div style="text-align: center;">
+    <ion-button size="small" fill="outline" shape="round" (click)="takePictures()">
+      <ion-icon name="camera"></ion-icon>Fotografar
+    </ion-button>
+    <ion-button size="small" fill="outline" shape="round" (click)="registerProduct()">
+      <ion-icon name="checkmark-circle"></ion-icon>Confirmar
+    </ion-button>
+    <ion-button size="small" fill="outline" shape="round" (click)="toolsService.goToPage(this.listPage)">
+      <ion-icon name="list"></ion-icon>Listar
+    </ion-button>
+  </div>
 </ion-content>
