@@ -11,8 +11,7 @@ import { AlertController } from '@ionic/angular';
   styleUrls: ['./company-catalogs-items-list.page.scss'],
 })
 export class CompanyCatalogsItemsListPage implements OnInit {
-  
-  //id_catalog_item: string;
+
   id_catalog: string;
   id_company: string;
   start: number = 0;
@@ -22,6 +21,7 @@ export class CompanyCatalogsItemsListPage implements OnInit {
   url: string = 'companies/catalogsitems.php';
   urlItemList: string = 'company-catalogs-items-list/';
   editPage: string = "company-catalogs-items/";
+  hasItem: boolean = false;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -66,36 +66,32 @@ export class CompanyCatalogsItemsListPage implements OnInit {
   }
 
   private async loadListCatalogItems(){
-
     this.listCatalogItems = [];
-
     return new Promise(res => {
-
       this.requestService.getRequestById(this.url, 'catalog', this.id_catalog).subscribe(dataResponse => {
-
-        for (let itemCatalog of dataResponse['result']) {
-          this.listCatalogItems.push(itemCatalog);
+        if(dataResponse['success']) {
+          for (let itemCatalog of dataResponse['result']) {
+            this.listCatalogItems.push(itemCatalog);
+          }
+          this.hasItem = true;
+        } else {
+          this.hasItem = false;
         }
-
       }, error => {
         this.toolsService.showAlert();
       })
-
-    });
-  
+    });  
   }
 
   public edit(id_catalog_item){
-    this.toolsService.goToPage(this.editPage + this.id_catalog + "/" + id_catalog_item + this.requestService.getKWToken())
+    this.toolsService.goToPage(this.editPage + this.id_catalog + "/" + id_catalog_item)
   }
 
   public async delete(id_catalog_item){
-
     let dataRequest = {
       id_catalog_item: id_catalog_item,
       request_type: 'delete',
     }
-
     const question = await this.alertCtrl.create({
       header: "Atenção!",
       message: "Confirma exclusão do item ?",
@@ -122,8 +118,7 @@ export class CompanyCatalogsItemsListPage implements OnInit {
         }
       ]
     })
-    question.present();
-  
+    question.present();  
   }
 
   public insert(){
@@ -131,19 +126,16 @@ export class CompanyCatalogsItemsListPage implements OnInit {
   }
 
   async statusItemCardapio(id_catalog_item: string ,catalog_item_status: string){
-
     let dataRequest = {
       id_catalog_item: id_catalog_item,
       request_type: 'status',
       catalog_item_status: ''
     }
-
     if(catalog_item_status === 'A'){
       dataRequest.catalog_item_status = 'I';
     } else {
       dataRequest.catalog_item_status = 'A';
     }
-
     this.requestService.postRequest(dataRequest, this.url).subscribe(async dataResponse => {
       if (dataResponse['success']) {
         this.toolsService.showToast(dataResponse['message'],2000,'success');
@@ -153,8 +145,5 @@ export class CompanyCatalogsItemsListPage implements OnInit {
         this.toolsService.showToast(dataResponse['message'],2000,'warning');
       }
     });
-  
-
   }
-
 }
