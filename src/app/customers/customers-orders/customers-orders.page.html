@@ -1,43 +1,32 @@
 <app-header></app-header>
 <ion-content>
-
   <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
-    <ion-refresher-content pullingIcon="chevron-down-circle-outline" refreshingSpinner="circles" refreshingText="Carregando...">
+    <ion-refresher-content pullingIcon="chevron-down-circle-outline" refreshingSpinner="circles"
+      refreshingText="Carregando...">
     </ion-refresher-content>
   </ion-refresher>
-
   <div *ngIf="!hasOrders">
     <ion-item class="ion-no-padding;">
       <h5>Você ainda não fez pedidos</h5>
     </ion-item>
   </div>
-
   <div *ngIf="hasOrders">
-
-      <ion-item class="ion-no-padding;">
-        <h5>Pedidos realizados</h5>
-      </ion-item>
-
-      <ion-item *ngFor="let order of orderList">
-
-        <div class="grid" (click)="showOrder(order)">
-          <div class="item item-1">{{order.order_date}}</div>
-          <div class="item item-2">{{order.company_name}}</div>
-          <div class="item item-3">Pedido: {{order.id_order}} Status: {{order.order_status}}</div>
-          <div class="item item-4">
-            {{order.order_total_price | currency:"BRL":"symbol"}}
-            <!-- <ion-icon size="large" name="information-circle-outline"></ion-icon> -->
-          </div>
-        </div>
-
+    <ion-item class="ion-no-padding;">
+      <h5>Pedidos realizados</h5>
+    </ion-item>
+    <ion-item *ngFor="let order of orderList">
+      <div class="grid" (click)="showOrder(order)">
+        <div class="item item-1">{{order.order_date}}</div>
+        <div class="item item-2">{{order.company_name}}</div>
+        <div class="item item-3">Pedido: {{order.id_order}} Status: {{order.order_status}}</div>
+        <div class="item item-4">{{order.order_total_price | currency:"BRL":"symbol"}}</div>
+      </div>
     </ion-item>
   </div>
-
   <ion-fab vertical="bottom" horizontal="center" slot="fixed">
     <ion-fab-button size="small" (click)="toolsService.goToPage(catalog)">
       <ion-icon name="book-outline">
       </ion-icon>
     </ion-fab-button>
   </ion-fab>
-
 </ion-content>
