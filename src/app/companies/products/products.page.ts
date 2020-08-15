@@ -46,7 +46,7 @@ export class ProductsPage implements OnInit {
     if (this.authService.getLoginSuccessful()) {
       this.categoryList = [];
       this.id_company = this.authService.getCompanyID();
-      //this.categoryList = this.loadProductCategory(this.id_company);
+      this.loadProductCategory(this.id_company);
       if ((this.id_product != undefined) && (this.id_product != "")) {
         this.loadProduct(this.id_product);
       } else {
@@ -57,41 +57,26 @@ export class ProductsPage implements OnInit {
     }
   }
 
-  private loadProduct(id_product): void {
-
-    //this.toolsService.showLoading("Buscando produto ...");
-
+  private async loadProduct(id_product): void {
     let dataRequest = {
       id_product: id_product,
     };
-
     this.requestService.getRequestById(this.url, 'id', id_product).subscribe(async data => {
-
         if (data['success']) {
-
           this.id_product = data['result'][0]['id_product'];
           this.id_company = data['result'][0]['id_company'];
-          //this.categoryList = this.loadProductCategory(this.id_company);
+          this.loadProductCategory(this.id_company);
           this.id_product_category = data['result'][0]['id_product_category'];
           this.product_name = data['result'][0]['product_name'];
           this.product_description = data['result'][0]['product_description'];
           this.product_picture = data['result'][0]['product_picture'];
-
         } else {
-
-          //this.toolsService.hideLoading();
           this.toolsService.showToast(data['message'], 2000, 'success');
-
         }
-
       }, error => {
-        //this.toolsService.hideLoading();
         this.toolsService.showAlert();
       }
-
     );
-
-    //this.toolsService.hideLoading();
   }
 
   async registerProduct() {
@@ -132,27 +117,20 @@ export class ProductsPage implements OnInit {
   }
 
   async loadProductCategory(id_company) {
-
     this.categoryList = [];
-
     return await new Promise(res => {
-
       this.requestService.getRequestById(this.urlCategory, 'company', this.id_company).subscribe(dataResponse => {
-
         for (let category of dataResponse['result']) {
           this.categoryList.push(category);
         }
-
       }, error => {
         this.toolsService.showAlert();
       })
-
     });
-
   }
 
   takePictures() {
-    window.alert("Em desenvolvimento");
+    this.toolsService.showToast("Em desenvolvimento", 2000, 'warning');
   }
 
   private cleanForm(): void {
