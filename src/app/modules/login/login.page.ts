@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
 import { AuthenticationsService } from '../../services/authentications/authentications.service';
 import { RequestsService } from '../../services/requests/requests.service';
 import { ToolsService } from 'src/app/services/tools/tools.service';
@@ -19,8 +18,6 @@ export class LoginPage implements OnInit {
   isEmpty: boolean = false;
 
   constructor(
-    private router: Router,
-    private activatedRoute: ActivatedRoute,
     public authService: AuthenticationsService,
     public requestService: RequestsService,
     public menuService: MenuService,
@@ -30,47 +27,30 @@ export class LoginPage implements OnInit {
 
   ngOnInit() { }
 
-  ionViewWillEnter() {
-    // Company profile
-    // this.email = 'quiosque@kw.com';
-    // this.password = 'quio2020';
-    // Customer profile
-    // this.email = 'turistas@kw.com';
-    // this.password = 'turi2020';
-    // this.email = 'cgmarques@gmail.com';
-    // this.password = 'cris2020';
-  }
+  ionViewWillEnter() {}
 
   async login() {
-
     let dataRequest = {
       requisicao: 'login',
-      email: btoa(this.email),
-      password: btoa(this.password)
+      email: btoa(this.email.toLocaleLowerCase()),
+      password: btoa(this.password.toLocaleLowerCase())
     };
-
     const fields = [
       { value: this.email, message: 'Informe o e-mail' },
       { value: this.password, message: 'Informe a senha' }
     ]
-
     if (this.toolsService.validField(fields) == false) {
       return;
     }
-
     if (this.toolsService.validateEmail(this.email, true) == false) {
       return;
     }
-
     if (this.toolsService.validatePassword(this.password, true) == false) {
       return;
     }
-
     this.requestService.postRequest(dataRequest, 'login.php').subscribe(
       async dataResponse => {
-
       if (dataResponse['success']) {
-
         this.authService.setProfileType(dataResponse['profileType']);
         this.authService.setUserLogin(dataResponse['userLogin']);
         this.authService.setUserName(dataResponse['userName']);
@@ -86,35 +66,28 @@ export class LoginPage implements OnInit {
         } else {//customers
           this.toolsService.goToPage('/checkins');
         }
-
       } else {
         this.toolsService.showToast(dataResponse['message']);
       }
-
       this.email = "";
       this.password = "";
-
     });
-
   }
 
   async registerProfile() {
-
     const alert = await this.alertController.create({
       header: 'Me conta ...',
       //subHeader: 'Subtitle',
-      message: 'Com qual perfil deseja se cadeastrar ?',
+      message: 'Com qual perfil deseja se cadastrar ?',
       buttons: [{
         text: 'Quiosque',
-        handler: () => { this.router.navigate(['/companies']); }
+        handler: () => { this.toolsService.goToPage('/companies'); }
       }, {
         text: 'Turista',
-        handler: () => { this.router.navigate(['/customers']); }
+        handler: () => { this.toolsService.goToPage('/customers'); }
       }]
     });
-
     await alert.present();
-
   }
 
   recoverPassword() {

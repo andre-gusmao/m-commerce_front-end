@@ -53,7 +53,7 @@ export class CompaniesPage implements OnInit {
 
     let dataRequest = {
       email: btoa(this.email.toLocaleLowerCase()),
-      password: btoa(this.password),
+      password: btoa(this.password.toLocaleLowerCase()),
       companyName: this.companyName,
       cellPhone: this.cellPhone,
       businessman: this.businessman,

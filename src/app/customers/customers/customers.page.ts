@@ -76,7 +76,7 @@ export class CustomersPage implements OnInit {
       name: this.name,
       email: btoa(this.email.toLocaleLowerCase()),
       cellPhone: this.cellPhone,
-      password: btoa(this.password),
+      password: btoa(this.password.toLocaleLowerCase()),
       state: this.state,
       city: this.city,
       profileType: '1',
