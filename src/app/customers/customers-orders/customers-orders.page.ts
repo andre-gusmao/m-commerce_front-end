@@ -14,6 +14,7 @@ export class CustomersOrdersPage implements OnInit {
   
   orderList: any = [];
   hasOrders: boolean = false;
+  id_customer = this.authService.getProfileID();
   url: string = 'customers/orders.php';
   catalog: string = '/customers-catalogs';
 
@@ -50,42 +51,33 @@ export class CustomersOrdersPage implements OnInit {
     }, 500);
   }
 
-  public loadOrders() {
-
+  public async loadOrders() {
+    this.orderList = [];
     return new Promise(res => {
-
-      this.requestService.getRequestById(this.url, 'customer', this.authService.getProfileID()).subscribe(dataResponse => {
-
+      this.requestService.getRequestById(this.url, 'customer', this.id_customer).subscribe(dataResponse => {
         if(dataResponse['success']) {
-
           for (let order of dataResponse['result']) {
             this.orderList.push(order);
           }
           this.hasOrders = true;
-
         } else {
           this.hasOrders = false;
         }
-
       }, error => {
         this.toolsService.showAlert();
       })
-
     });
   }
 
   async showOrder(order: any){
-
     const orderDetails = await this.modalCtrl.create({
       component: CustomersOrdersDetailPage,
       componentProps: {
         id_order: order.id_order
       }
     });
-
     await orderDetails.present();
     orderDetails.onWillDismiss();
-
   }
 
 }
