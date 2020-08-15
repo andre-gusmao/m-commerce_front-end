@@ -20,6 +20,7 @@ export class WorkersListPage implements OnInit {
   editPage: string = '/workers/';
   start: number = 0;
   limit: number = 10;
+  hasWorker: boolean = false;
 
   constructor(
     public requestService: RequestsService,
@@ -58,38 +59,34 @@ export class WorkersListPage implements OnInit {
   }
 
   private async loadWorkers(){
-
     return new Promise(res => {
-
       this.requestService.getRequestById(this.url, 'company', this.id_company).subscribe(dataResponse => {
-
-        for (let worker of dataResponse['result']) {
-          this.listWorkers.push(worker);
+        if(dataResponse['success']) {
+          for (let worker of dataResponse['result']) {
+            this.listWorkers.push(worker);
+          }
+          this.hasWorker = true;
+        } else {
+          this.hasWorker = false;
         }
-
       }, error => {
         this.toolsService.showAlert();
       })
-
     });
-
   }
 
   async activateWorker(id_worker: string,worker_status: string) {
-
     let dataRequest = {
       id_worker: id_worker,
       id_company: this.id_company,
       request_type: 'status',
       worker_status: ''
     }
-
     if(worker_status === 'A'){
       dataRequest.worker_status = 'I';
     } else {
       dataRequest.worker_status = 'A';
     }
-
     this.requestService.postRequest(dataRequest, this.url).subscribe(async dataResponse => {
       if (dataResponse['success']) {
         this.toolsService.showToast(dataResponse['message'],2000,'success');
@@ -99,7 +96,6 @@ export class WorkersListPage implements OnInit {
         this.toolsService.showToast(dataResponse['message'],2000,'warning');
       }
     });
-
 }
 
   public edit(id_worker: string){
@@ -107,12 +103,10 @@ export class WorkersListPage implements OnInit {
   }
 
   public async delete(id_worker: string){
-
     let dataRequest = {
       id_worker: id_worker,
       request_type: 'delete'
     }
-
     const question = await this.alertCtrl.create({
       header: "Atenção!",
       message: "Confirma exclusão do entregador ?",
