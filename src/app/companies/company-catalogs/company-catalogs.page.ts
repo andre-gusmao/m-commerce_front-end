@@ -46,26 +46,21 @@ export class CompanyCatalogsPage implements OnInit {
   }
 
   async registerCompanyCatalogs(){
-
     let dataRequest = {
       id_company: this.id_company,
       catalog_name: this.catalog_name,
       request_type: ''
     }
-
     const fields = [
       { value: this.catalog_name, message: 'Informe o nome do grupo'}
     ]
-
     if (this.toolsService.validField(fields) == false){
       return;
     }
-
     if (this.id_catalog != undefined && this.id_catalog != ""){
       dataRequest['id_catalog'] = this.id_catalog;
       dataRequest['request_type'] = 'update';
     }
-
     this.requestService.postRequest(dataRequest, this.url).subscribe(async dataResponse => {
       if (dataResponse['success']) {
         this.toolsService.showToast(dataResponse['message'],2000,'success');
@@ -74,41 +69,25 @@ export class CompanyCatalogsPage implements OnInit {
         this.toolsService.showToast(dataResponse['message'],2000,'warning');
       }
     });
-  
   }
 
   private loadCompanyCatalogs(id_catalog: string){
-
-    //this.toolsService.showLoading("Buscando grupo ...");
-
     let dataRequest = {
       id_catalog: id_catalog,
     };
-
     this.requestService.getRequestById(this.url, 'id',id_catalog).subscribe(async data => {
-
         if (data['success']) {
-
           this.id_catalog = data['result'][0]['id_catalog'];
           this.id_company = data['result'][0]['id_company'];
           this.catalog_name = data['result'][0]['catalog_name'];
           this.catalog_status = data['result'][0]['catalog_status'];
-
         } else {
-
-          //this.toolsService.hideLoading();
           this.toolsService.showToast(data['message'], 2000, 'success');
-
         }
-
       }, error => {
-        //this.toolsService.hideLoading();
         this.toolsService.showAlert();
       }
-
     );
-
-    //this.toolsService.hideLoading();
   }
 
   private cleanForm() {
