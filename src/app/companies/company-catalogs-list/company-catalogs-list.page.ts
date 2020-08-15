@@ -1,4 +1,4 @@
-import { Component,OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RequestsService } from 'src/app/services/requests/requests.service';
 import { ToolsService } from 'src/app/services/tools/tools.service';
 import { AlertController } from '@ionic/angular';
@@ -20,6 +20,7 @@ export class CompanyCatalogsListPage implements OnInit {
   catalog_status: string = "";
   url: string = 'companies/companycatalogs.php';
   editPage: string = '/company-catalogs/';
+  hasCatalog: boolean = false;
 
   constructor(
     public requestService: RequestsService,
@@ -58,33 +59,32 @@ export class CompanyCatalogsListPage implements OnInit {
   }
 
   private async loadcompanyCatalogsList() {
-
+    this.catalogList = [];
     return new Promise(res => {
-
       this.requestService.getRequestById(this.url, 'company', this.id_company).subscribe(dataResponse => {
-
-        for (let catalog of dataResponse['result']) {
-          this.catalogList.push(catalog);
+        if(dataResponse['success']) {
+          for (let catalog of dataResponse['result']) {
+            this.catalogList.push(catalog);
+          }
+          this.hasCatalog = true;
+        } else {
+          this.hasCatalog = false;
         }
-
       }, error => {
         this.toolsService.showAlert();
       })
-
     });
-}
+  }
 
   public edit(id_catalog: string) {
     this.toolsService.goToPage(this.editPage + id_catalog);
   }
 
   public async delete(id_catalog) {
-
     let dataRequest = {
       id_catalog: id_catalog,
       request_type: 'delete',
     }
-
     const question = await this.alertCtrl.create({
       header: "Atenção!",
       message: "Confirma exclusão do cardápio ?",
@@ -119,27 +119,24 @@ export class CompanyCatalogsListPage implements OnInit {
   }
 
   public activateCatalog(id_catalog): void {
-
     let dataRequest = {
       id_catalog: id_catalog,
       id_company: this.id_company,
       request_type: 'status',
       catalog_status: 'A'
     }
-
     this.requestService.postRequest(dataRequest, this.url).subscribe(async dataResponse => {
       if (dataResponse['success']) {
         this.catalogList = [];
         this.loadcompanyCatalogsList();
-        this.toolsService.showToast(dataResponse['message'],2000,'success');
-      }else{
-        this.toolsService.showToast(dataResponse['message'],2000,'warning');
+        this.toolsService.showToast(dataResponse['message'], 2000, 'success');
+      } else {
+        this.toolsService.showToast(dataResponse['message'], 2000, 'warning');
       }
     });
-
   }
 
-  public itemsCatalog(id_catalog,catalog_name){
+  public itemsCatalog(id_catalog, catalog_name) {
     this.authService.setCatalogName(catalog_name);
     this.toolsService.goToPage("/company-catalogs-items-list/" + id_catalog);
   }

@@ -76,36 +76,21 @@ export class ProductsCategoriesPage implements OnInit {
   }
 
   private loadProductCategory(id_product_category): void {
-
-    //this.toolsService.showLoading("Buscando grupo ...");
-
     let dataRequest = {
       id_product_category: id_product_category,
     };
-
     this.requestService.getRequestById(this.url, 'id',id_product_category).subscribe(async data => {
-
         if (data['success']) {
-
           this.id_product_category = data['result'][0]['id_product_category'];
           this.id_company = data['result'][0]['id_company'];
           this.product_category_name = data['result'][0]['product_category_name'];
-
         } else {
-
-          //this.toolsService.hideLoading();
           this.toolsService.showToast(data['message'], 2000, 'success');
-
         }
-
       }, error => {
-        //this.toolsService.hideLoading();
         this.toolsService.showAlert();
       }
-
     );
-
-    //this.toolsService.hideLoading();
   }
 
   private cleanForm() {

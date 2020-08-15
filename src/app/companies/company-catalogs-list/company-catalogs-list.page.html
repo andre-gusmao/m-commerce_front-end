@@ -1,16 +1,19 @@
 <app-header></app-header>
 <ion-content>
-
   <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
-    <ion-refresher-content pullingIcon="chevron-down-circle-outline" refreshingSpinner="circles" refreshingText="Carregando...">
+    <ion-refresher-content pullingIcon="chevron-down-circle-outline" refreshingSpinner="circles"
+      refreshingText="Carregando...">
     </ion-refresher-content>
   </ion-refresher>
-
   <ion-item>
     <h4>Cardapios</h4>
   </ion-item>
-
-  <ion-list class="ion-no-padding">
+  <div *ngIf="!hasCatalog">
+    <ion-item class="ion-no-padding;">
+      <h5>Você não tem cardápio cadastrado</h5>
+    </ion-item>
+  </div>
+  <ion-list *ngIf="hasCatalog" class="ion-no-padding">
     <ion-item-sliding *ngFor="let catalog of catalogList">
       <ion-item-options side="start">
         <ion-item-option (click)="edit(catalog.id_catalog)">
@@ -20,7 +23,6 @@
           <ion-icon name="list"></ion-icon>
         </ion-item-option>
       </ion-item-options>
-
       <ion-item (click)="itemsCatalog(catalog.id_catalog, catalog.catalog_name)">
         <ion-label>
           <h2 *ngIf="catalog.catalog_status == 'I'">{{catalog.catalog_name}}</h2>
@@ -29,29 +31,25 @@
           <small *ngIf="catalog.catalog_status == 'A'">Ativo</small>
         </ion-label>
       </ion-item>
-
       <ion-item-options side="end">
-        <ion-item-option *ngIf="catalog.catalog_status == 'I'" color="success" (click)="activateCatalog(catalog.id_catalog)">
+        <ion-item-option *ngIf="catalog.catalog_status == 'I'" color="success"
+          (click)="activateCatalog(catalog.id_catalog)">
           <ion-icon name="eye-off"></ion-icon>
         </ion-item-option>
         <ion-item-option color="danger" (click)="delete(catalog.id_catalog)">
           <ion-icon name="trash"></ion-icon>
         </ion-item-option>
       </ion-item-options>
-
     </ion-item-sliding>
   </ion-list>
-
   <ion-infinite-scroll (ionInfinite)="loadData($event)">
     <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Carregando mais dados">
     </ion-infinite-scroll-content>
   </ion-infinite-scroll>
-
   <ion-fab vertical="bottom" horizontal="center" slot="fixed">
     <ion-fab-button size="small" (click)="insert()">
       <ion-icon name="add-circle">
       </ion-icon>
     </ion-fab-button>
   </ion-fab>
-
 </ion-content>
