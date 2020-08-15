@@ -14,7 +14,7 @@ export class CustomersOrdersPage implements OnInit {
   
   orderList: any = [];
   hasOrders: boolean = false;
-  id_customer = this.authService.getProfileID();
+  id_customer: string = "";
   url: string = 'customers/orders.php';
   catalog: string = '/customers-catalogs';
 
@@ -30,6 +30,7 @@ export class CustomersOrdersPage implements OnInit {
   ionViewWillEnter() {
     if (this.authService.getLoginSuccessful()) {
       this.orderList = [];
+      this.id_customer = this.authService.getProfileID();
       this.loadOrders();
     } else {
       this.authService.setLogout();
