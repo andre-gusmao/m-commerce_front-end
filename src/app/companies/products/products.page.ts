@@ -57,7 +57,7 @@ export class ProductsPage implements OnInit {
     }
   }
 
-  private async loadProduct(id_product): void {
+  private async loadProduct(id_product) {
     let dataRequest = {
       id_product: id_product,
     };
