@@ -29,10 +29,10 @@ export class CustomersOrdersPage implements OnInit {
   
   ionViewWillEnter() {
     if (this.authService.getLoginSuccessful()) {
-      this.orderList = [];
       this.id_customer = this.authService.getProfileID();
       this.loadOrders();
     } else {
+      this.clearOrderList();
       this.authService.setLogout();
     }
   }
@@ -53,7 +53,7 @@ export class CustomersOrdersPage implements OnInit {
   }
 
   public async loadOrders() {
-    this.orderList = [];
+    this.clearOrderList();
     return new Promise(res => {
       this.requestService.getRequestById(this.url, 'customer', this.id_customer).subscribe(dataResponse => {
         if(dataResponse['success']) {
@@ -79,6 +79,12 @@ export class CustomersOrdersPage implements OnInit {
     });
     await orderDetails.present();
     orderDetails.onWillDismiss();
+  }
+
+  private clearOrderList(){
+    while(this.orderList.length){
+      this.orderList.pop();
+    }
   }
 
 }
