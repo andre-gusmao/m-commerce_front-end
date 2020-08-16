@@ -91,6 +91,12 @@ export class ShoppingCartService {
     }
   }
 
+  public clearCatalog(){
+    while(this.appCatalog.length){
+      this.appCatalog.pop();
+    }
+  }
+
   public clearOrderItems(){
 
     while(this.orderItems[0].items.length){
