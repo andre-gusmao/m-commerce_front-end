@@ -1,20 +1,16 @@
 <app-header></app-header>
-
 <ion-content>
-
   <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
-    <ion-refresher-content pullingIcon="chevron-down-circle-outline" refreshingSpinner="circles" refreshingText="Carregando...">
+    <ion-refresher-content pullingIcon="chevron-down-circle-outline" refreshingSpinner="circles"
+      refreshingText="Carregando...">
     </ion-refresher-content>
   </ion-refresher>
-
   <ion-item *ngIf="!hasCard">
     <h4>Você ainda não castrou cartão</h4>
   </ion-item>
-
   <ion-item *ngIf="hasCard">
     <h4>Cartões</h4>
   </ion-item>
-
   <ion-list class="ion-no-padding">
     <ion-item-sliding *ngFor="let item of cardList">
       <ion-item-options side="start">
@@ -22,14 +18,12 @@
           <ion-icon name="create"></ion-icon>
         </ion-item-option>
       </ion-item-options>
-
       <ion-item>
         <ion-label>
-            <h2>{{item.credit_card_number}}</h2>
-            <small>{{item.credit_card_printed_name}}</small>
+          <h2>{{item.credit_card_number}}</h2>
+          <small>{{item.credit_card_printed_name}}</small>
         </ion-label>
       </ion-item>
-
       <ion-item-options side="end">
         <ion-item-option color="danger" (click)="delete(item.id_credit_card)">
           <ion-icon name="trash"></ion-icon>
@@ -37,12 +31,10 @@
       </ion-item-options>
     </ion-item-sliding>
   </ion-list>
-
   <ion-fab vertical="bottom" horizontal="center" slot="fixed">
     <ion-fab-button size="small" (click)="insert()">
       <ion-icon name="add-circle">
       </ion-icon>
     </ion-fab-button>
   </ion-fab>
-
 </ion-content>

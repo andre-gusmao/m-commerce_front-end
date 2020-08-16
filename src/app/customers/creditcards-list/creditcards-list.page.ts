@@ -11,7 +11,7 @@ import {RequestsService} from '../../services/requests/requests.service';
 })
 export class CreditcardsListPage implements OnInit {
 
-  cardList: any[];
+  cardList: any = [];
   id_credit_card: string;
   id_customer: string;
   url: string = 'customers/creditcards.php';
@@ -32,10 +32,10 @@ export class CreditcardsListPage implements OnInit {
   ionViewWillEnter() {    
     if (this.authService.getLoginSuccessful()) {
       this.start = 0;
-      this.cardList = [];
       this.id_customer = this.authService.getProfileID();
       this.loadCreditCards();
     } else {
+      this.clearCardList();
       this.authService.setLogout();
     }
   }
@@ -57,40 +57,32 @@ export class CreditcardsListPage implements OnInit {
   }
 
   private loadCreditCards(){
-
+    this.clearCardList();
     return new Promise(res => {
-
       this.requestService.getRequestById(this.url, 'customer', this.id_customer).subscribe(dataResponse => {
-
         if (dataResponse['success']) {
-
           for (let prodCateg of dataResponse['result']) {
             this.cardList.push(prodCateg);
           }
           this.hasCard = true;
-
         } else {
           this.hasCard = false;
         }
-
       }, error => {
         this.toolsService.showAlert();
       })
-
     });
-}
+  }
 
   public edit(id_customer: string): void {
     this.toolsService.goToPage(this.editPage + id_customer);
   }
 
   public async delete(id_credit_card: string){
-
     let dataRequest = {
       id_credit_card: id_credit_card,
       request_type: 'delete'
     }
-
     const question = await this.alertCtrl.create({
       header: "Atenção!",
       message: "Confirma exclusão do cartão ?",
@@ -122,6 +114,12 @@ export class CreditcardsListPage implements OnInit {
 
   public insert(){
     this.toolsService.goToPage(this.editPage);
+  }
+
+  private clearCardList(){
+    while(this.cardList.length){
+      this.cardList.pop();
+    }
   }
 
 }

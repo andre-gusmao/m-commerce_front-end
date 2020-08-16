@@ -52,7 +52,6 @@ export class CreditcardsPage implements OnInit {
   }
 
   async registerCreditCard() {
-
     let dataRequest = {
       id_customer: this.id_customer,
       credit_card_number: this.credit_card_number,
@@ -63,7 +62,6 @@ export class CreditcardsPage implements OnInit {
       credit_card_company: this.credit_card_company,
       request_type: ''
     }
-
     const fields = [
       { value: this.credit_card_number, message: 'Informe um cartão válido', length: 16},
       { value: this.credit_card_printed_name, message: 'Informe o nome'},
@@ -72,16 +70,13 @@ export class CreditcardsPage implements OnInit {
       { value: this.credit_card_security_code, message: 'Informe o CVV', length: 3},
       { value: this.credit_card_company, message: 'Selecione a bandeira do cartão'}
     ]
-
     if (this.toolsService.validField(fields) == false){
       return;
     }
-
     if (this.id_credit_card != undefined && this.id_credit_card != ""){
       dataRequest['id_credit_card'] = this.id_credit_card;
       dataRequest['request_type'] = 'update';
     }
-
     this.requestService.postRequest(dataRequest, this.url).subscribe(async dataResponse => {
       if (dataResponse['success']) {
         this.toolsService.showToast(dataResponse['message'],2000,'success');
@@ -90,17 +85,11 @@ export class CreditcardsPage implements OnInit {
         this.toolsService.showToast(dataResponse['message'],2000,'warning');
       }
     });
-
   }
 
   private loadCreditCard(id_credit_card: string): void {
-
-    //this.toolsService.showLoading("Buscando cartões ...");
-
     this.requestService.getRequestById(this.url, 'id',id_credit_card).subscribe(async data => {
-
         if (data['success']) {
-
           this.id_credit_card = data['result'][0]['id_credit_card'];
           this.id_customer = data['result'][0]['id_customer'];
           this.credit_card_number = data['result'][0]['credit_card_number'];
@@ -109,22 +98,13 @@ export class CreditcardsPage implements OnInit {
           this.credit_card_expiration_year = data['result'][0]['credit_card_expiration_year'];
           this.credit_card_security_code = data['result'][0]['credit_card_security_code'];
           this.credit_card_company = data['result'][0]['credit_card_company'];
-
         } else {
-
-          //this.toolsService.hideLoading();
           this.toolsService.showToast(data['message'], 2000, 'success');
-
         }
-
       }, error => {
-        //this.toolsService.hideLoading();
         this.toolsService.showAlert();
       }
-
     );
-
-    //this.toolsService.hideLoading();
   }
 
   private cleanForm() {
@@ -144,5 +124,4 @@ export class CreditcardsPage implements OnInit {
       this.listYear.push(year+i);
     }
   }
-
 }
