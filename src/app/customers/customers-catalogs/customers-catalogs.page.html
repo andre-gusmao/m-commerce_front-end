@@ -1,14 +1,15 @@
 <app-header></app-header>
-
 <ion-content>
-  <ion-slides pager="false" scrollbar="false">
-
+  <div *ngIf="!hasCatalog">
+    <ion-item class="ion-no-padding;">
+      <h5>Quiosque não possui cardápio cadastro</h5>
+    </ion-item>
+  </div>
+  <ion-slides *ngIf="hasCatalog" pager="false" scrollbar="false">
     <ion-slide *ngFor="let group of ShopCartSrc.appCategory">
       <div style="width: 100%;">
-
         <ion-list>
           <ion-list-header>{{group.name}}</ion-list-header>
-
           <ion-item (click)="showItem(item)" *ngFor="let item of group.items">
             <ion-thumbnail slot="end">
               <img src="../../../assets/aguacoco.jpg">
@@ -19,11 +20,8 @@
               <p>{{item.catalog_item_price | currency:"BRL":"symbol"}}</p>
             </ion-label>
           </ion-item>
-
         </ion-list>
       </div>
-
     </ion-slide>
-
   </ion-slides>
 </ion-content>

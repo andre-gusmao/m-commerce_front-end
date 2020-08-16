@@ -20,8 +20,9 @@ export class CustomersCatalogsPage implements OnInit {
   @Input() customer_note: string;
   @Input() quantity: number = 0;
   @Input() total_price: number = 0;
-
   url: string = 'customers/catalogs.php';
+  hasCatalog: boolean = false;
+  id_company: string = "";
 
   constructor(
     public requestService: RequestsService,
@@ -46,13 +47,13 @@ export class CustomersCatalogsPage implements OnInit {
       this.authService.setLogout();
     } else {
       if(!this.ShopCartSrc.catalogLoaded()){
+        this.id_company = this.authService.getCompanyID();
         this.loadCatalog();
       }
     }
   }
 
   private loadCatalog(){
-    
     if(this.authService.getTableID()){
       if(!this.ShopCartSrc.catalogLoaded()){
         this.loadCustomerCatalog();
@@ -61,30 +62,29 @@ export class CustomersCatalogsPage implements OnInit {
       this.toolsService.showToast("Faça checkin para carregar o cardapio");
       this.toolsService.goToPage('checkins');
     }
-
   }
 
   private async loadCustomerCatalog() {
-
     return new Promise(res => {
-
-      this.requestService.getRequestById(this.url, 'company', this.authService.getCompanyID()).subscribe(dataResponse => {
-
-        for (let product of dataResponse['result']) {
-          this.ShopCartSrc.appCatalog.push(product);
+      this.requestService.getRequestById(this.url, 'company', this.id_company).subscribe(dataResponse => {
+        if (dataResponse['success']) {
+          for (let product of dataResponse['result']) {
+            this.ShopCartSrc.appCatalog.push(product);
+          }
+          this.hasCatalog = true;
+        } else {
+          this.hasCatalog = false;
         }
         this.authService.setCatalogID(dataResponse['result'][0].id_catalog);
         this.loadGroups();
       }, error => {
         this.toolsService.showAlert();
       })
-
     });
 
   }
 
   async showItem(product: any) {
-
     const itemDetail = await this.modalCtrl.create({
       component: ItemDetailsPage,
       componentProps: {
@@ -135,7 +135,6 @@ export class CustomersCatalogsPage implements OnInit {
   }
 
   private loadGroups(): void {
-
     let item = [];
     let filGroup = [];
     let group = [];
@@ -145,7 +144,6 @@ export class CustomersCatalogsPage implements OnInit {
     for(let i = 0; i < this.ShopCartSrc.appCatalog.length; i++){
       name = this.ShopCartSrc.appCatalog[i].product_category_name;
       if(group.indexOf(name) === -1 ){
-
         group.push(name);
         item = [];
         item['name'] = name;
@@ -155,7 +153,6 @@ export class CustomersCatalogsPage implements OnInit {
     }
 
     this.ShopCartSrc.appCategory = filGroup;
-
   }
 
 }
