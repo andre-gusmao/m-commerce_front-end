@@ -5,24 +5,36 @@
       refreshingText="Carregando...">
     </ion-refresher-content>
   </ion-refresher>
-  <div *ngIf="!hasOrders">
-    <ion-item class="ion-no-padding;">
-      <h5>Você ainda não fez pedidos</h5>
-    </ion-item>
-  </div>
-  <div *ngIf="hasOrders">
-    <ion-item class="ion-no-padding;">
-      <h5>Pedidos realizados</h5>
-    </ion-item>
-    <ion-item *ngFor="let order of orderList">
-      <div class="grid" (click)="showOrder(order)">
-        <div class="item item-1">{{order.order_date}}</div>
-        <div class="item item-2">{{order.company_name}}</div>
-        <div class="item item-3">Pedido: {{order.id_order}} Status: {{order.order_status}}</div>
-        <div class="item item-4">{{order.order_total_price | currency:"BRL":"symbol"}}</div>
-      </div>
-    </ion-item>
-  </div>
+    <ion-grid>
+      <ion-row *ngIf="!hasOrders">
+        <ion-col size="12">
+          <h5>Você ainda não fez pedidos</h5>
+        </ion-col>
+      </ion-row>
+      <ion-row *ngIf="hasOrders">
+        <ion-col size="12">
+          <h5>Pedidos Realizados</h5>
+        </ion-col>
+      </ion-row>
+      <ion-row *ngFor="let order of orderList" (click)="showOrder(order)">
+        <ion-col size="2">
+          <div>
+            {{order.order_date}}
+          </div>
+        </ion-col>
+        <ion-col size="6">
+          <div>
+            {{order.company_name}} <br>
+            {{order.id_order}} - {{order.order_status}}
+          </div>
+        </ion-col>
+        <ion-col size="4">
+          <div>
+            {{order.order_total_price | currency:"BRL":"symbol"}}
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   <ion-fab vertical="bottom" horizontal="center" slot="fixed">
     <ion-fab-button size="small" (click)="toolsService.goToPage(catalog)">
       <ion-icon name="book-outline">
