@@ -32,24 +32,18 @@ export class CustomersCatalogsPage implements OnInit {
     public ShopCartSrc: ShoppingCartService
   ) { }
 
-  ngOnInit() {
-    if (this.authService.getLoginSuccessful()) {
-      this.loadCatalog();
-    } else {
-      this.ShopCartSrc.appCategory = [];
-      this.authService.setLogout();
-    }
-  }
+  ngOnInit() {}
 
   ionViewWillEnter() {
-    if (!this.authService.getLoginSuccessful()) {
-      this.ShopCartSrc.appCategory = [];
-      this.authService.setLogout();
-    } else {
+    if (this.authService.getLoginSuccessful()) {
       if(!this.ShopCartSrc.catalogLoaded()){
+        this.ShopCartSrc.clearCatalog();
         this.id_company = this.authService.getCompanyID();
         this.loadCatalog();
       }
+    } else {
+      this.ShopCartSrc.clearCatalog();
+      this.authService.setLogout();
     }
   }
 
@@ -59,6 +53,7 @@ export class CustomersCatalogsPage implements OnInit {
         this.loadCustomerCatalog();
       }
     } else {
+      this.ShopCartSrc.clearCatalog();
       this.toolsService.showToast("Faça checkin para carregar o cardapio");
       this.toolsService.goToPage('checkins');
     }
