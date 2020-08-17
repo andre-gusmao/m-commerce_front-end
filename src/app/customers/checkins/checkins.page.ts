@@ -26,10 +26,12 @@ export class CheckinsPage implements OnInit {
   ngOnInit() {}
 
   ionViewWillEnter() {
-    if (!this.authService.getLoginSuccessful()) {
+    if (this.authService.getLoginSuccessful()) {      
+      this.tableID = this.authService.getTableID();
+    } else {
       this.authService.setLogout();
     }
-    this.tableID = this.authService.getTableID();
+    
   }
 
   scanQRCode() {
@@ -37,9 +39,7 @@ export class CheckinsPage implements OnInit {
   }
 
   async enterQRCode() {
-
     let quiosqueMesa: string;
-
     const msgPrompt = await this.alertCtrl.create({
       header: 'Informe o codigo do QRCode',
       inputs: [{
