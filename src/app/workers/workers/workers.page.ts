@@ -57,8 +57,9 @@ export class WorkersPage implements OnInit {
       worker_name: this.worker_name,
       worker_cell_phone: this.worker_cell_phone,
       worker_status: this.worker_status,
-      worker_email: this.worker_email,
-      worker_password: this.worker_password,
+      profileType: '3',
+      worker_email: btoa(this.worker_email.toLocaleLowerCase()),
+      worker_password: btoa(this.worker_password.toLocaleLowerCase()),
     }
 
     const fields = [
