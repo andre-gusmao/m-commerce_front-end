@@ -35,12 +35,9 @@ export class CustomersCatalogsPage implements OnInit {
   ngOnInit() {}
 
   ionViewWillEnter() {
-    if (this.authService.getLoginSuccessful()) {
-      if(!this.ShopCartSrc.catalogLoaded()){
-        this.ShopCartSrc.clearCatalog();
-        this.id_company = this.authService.getCompanyID();
-        this.loadCatalog();
-      }
+    if ( this.authService.getLoginSuccessful() ) {
+      this.id_company = this.authService.getCompanyID();
+      this.loadCatalog();
     } else {
       this.ShopCartSrc.clearCatalog();
       this.authService.setLogout();
@@ -48,7 +45,7 @@ export class CustomersCatalogsPage implements OnInit {
   }
 
   private loadCatalog(){
-    if(this.authService.getTableID()){
+    if(this.authService.getCheckin()){
       if(!this.ShopCartSrc.catalogLoaded()){
         this.loadCustomerCatalog();
       }
@@ -60,6 +57,7 @@ export class CustomersCatalogsPage implements OnInit {
   }
 
   private async loadCustomerCatalog() {
+    this.ShopCartSrc.clearCatalog();
     return new Promise(res => {
       this.requestService.getRequestById(this.url, 'company', this.id_company).subscribe(dataResponse => {
         if (dataResponse['success']) {
