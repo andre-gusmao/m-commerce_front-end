@@ -45,12 +45,6 @@ export class AuthenticationsService {
     this.ShopCartSrc.items = [];
   }
 
-  loadCatalog(){
-    if(this.tableID != "" && this.companyID != ""){
-      //LoadCatalogu
-    }
-  }
-
   setProfileType(profileType: string) {
     this.profileType = profileType;
 
