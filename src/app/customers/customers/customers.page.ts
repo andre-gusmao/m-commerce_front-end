@@ -116,7 +116,7 @@ export class CustomersPage implements OnInit {
     }
     
     this.requestService.postRequest(dataRequest, 'customers/customers.php').subscribe(async dataResponse => {        
-        if (dataResponse['profileID']) {
+        if (dataResponse['success']) {
           this.profileID = dataResponse['profileID'];
           this.authService.setProfileID(dataResponse['profileID']);
         } 
