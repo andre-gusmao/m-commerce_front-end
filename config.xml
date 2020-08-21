@@ -2,7 +2,7 @@
 <widget id="br.com.kioskwide" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>kioskwide</name>
     <description>Kiosk Wide</description>
-    <author email="contato@kioskwide.com.br" href="http://kioskwide.com.br/">Kiosk Wide</author>
+    <author email="contato@kioskwide.com.br" href="https://kioskwide.com.br/">Kiosk Wide</author>
     <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />

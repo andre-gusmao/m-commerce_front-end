@@ -2,7 +2,7 @@
   "name": "kioskwide",
   "version": "0.0.1",
   "author": "Kiosk Wide",
-  "homepage": "http://kioskwide.com.br/",
+  "homepage": "https://kioskwide.com.br/",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
