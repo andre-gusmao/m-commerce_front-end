@@ -27,6 +27,10 @@ export class CompaniesPage implements OnInit {
   stateList: any = [];
   cityList: any = [];
   dataResponse: any;
+  showPassword: boolean = false;
+  showConfirmPassword: boolean = false;
+  passwordIcon: string = 'eye';
+  confirmPasswordIcon: string = 'eye';
 
   constructor(
     private router: Router,
@@ -50,7 +54,6 @@ export class CompaniesPage implements OnInit {
   }
 
   async registerCompany() {
-
     let dataRequest = {
       email: btoa(this.email.toLocaleLowerCase()),
       password: btoa(this.password.toLocaleLowerCase()),
@@ -106,15 +109,11 @@ export class CompaniesPage implements OnInit {
         this.toolsService.goToPage('/login');
       }
     );
-
   }
 
   private async loadCompanyProfile(profileID: string = "") {
-
     return new Promise(res => {
-
       this.requestService.getRequestById('companies/companies.php', 'id', profileID).subscribe( dataRes => {
-
         if (dataRes['success']) {
           this.email = dataRes['email'];
           this.password = dataRes['password'];
@@ -129,13 +128,10 @@ export class CompaniesPage implements OnInit {
         } else {
           this.toolsService.showToast(dataRes['message']);
         }
-
       }, error => {
         this.toolsService.showAlert();
       })
-
     });
-
   }
 
   private cleanForm(): void {
@@ -152,13 +148,31 @@ export class CompaniesPage implements OnInit {
   }
 
   public loadCities(): void {
-    //this.toolsService.showLoading('Carregando cidades ...');
     this.city = "";
     if (this.state) {
       this.cityList = [];
       this.cityList = this.citiesService.citiesByState(this.state);
     }
-    //this.toolsService.hideLoading();
+  }
+
+  public togglePassword(){
+    this.showPassword = !this.showPassword;
+
+    if(this.showPassword){
+      this.passwordIcon = 'eye-off';
+    } else {
+      this.passwordIcon = 'eye';
+    }
+  }
+
+  public toggleConfirmPassword(){
+    this.showConfirmPassword = !this.showConfirmPassword;
+
+    if(this.showConfirmPassword){
+      this.confirmPasswordIcon = 'eye-off';
+    } else {
+      this.confirmPasswordIcon = 'eye';
+    }
   }
 
 }
