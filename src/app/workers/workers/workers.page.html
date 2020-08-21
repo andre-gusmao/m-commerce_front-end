@@ -37,14 +37,36 @@
 
     <ion-item>
       <ion-label position="floating">Senha</ion-label>
-      <ion-input type="password" maxlength="25" [(ngModel)]="worker_password"></ion-input>
+      <ion-input
+        name="worker_password"
+        [type]="showPassword ? 'text' : 'password'"
+        maxlength="25"
+        [(ngModel)]="worker_password">
+      </ion-input>
+      <ion-icon
+        [name]="(inputPassword == 'password') ? 'eye-off' : 'eye'"
+        slot="end"
+        size="small"
+        (click)="togglePassword()">
+      </ion-icon>
     </ion-item>
 
     <ion-item>
       <ion-label position="floating">Confirme a Senha</ion-label>
-      <ion-input type="password" maxlength="25" [(ngModel)]="worker_confirm_password"></ion-input>
+      <ion-input
+        name="worker_confirm_password"
+        [type]="showPassword ? 'text' : 'password'"
+        maxlength="25"
+        [(ngModel)]="worker_confirm_password">
+      </ion-input>
+      <ion-icon
+        [name]="(inputType == 'password') ? 'eye-off' : 'eye'"
+        slot="end"
+        size="small"
+        (click)="togglePassword()">
+      </ion-icon>
     </ion-item>
-
+  
     <div style="text-align: center;">
       <ion-button size="small" fill="outline" shape="round" type="submit" (click)="registerWorker()">
         <ion-icon name="checkmark-circle"></ion-icon>Confirmar

@@ -22,6 +22,8 @@ export class WorkersPage implements OnInit {
   worker_confirm_password: string = "";
   url: string = 'workers/workers.php';
   listPage: string = 'workers-list';
+  showPassword: boolean = false;
+  passwordIcon: string = 'eye';
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -108,17 +110,11 @@ export class WorkersPage implements OnInit {
   }
 
   private loadWorkers(id_worker: string): void {
-
-    //this.toolsService.showLoading("Buscando entregador ...");
-
     let dataRequest = {
       id_worker: id_worker,
     };
-
     this.requestService.getRequestById(this.url, 'id',id_worker).subscribe(async data => {
-
         if (data['success']) {
-
           this.id_worker = data['result'][0]['id_worker'];
           this.id_company = data['result'][0]['id_company'];
           this.worker_cpf = data['result'][0]['worker_cpf'];
@@ -128,22 +124,14 @@ export class WorkersPage implements OnInit {
           this.worker_status = data['result'][0]['worker_status'];
           this.worker_password = data['result'][0]['worker_password'];
           this.worker_confirm_password = data['result'][0]['worker_password'];
-
         } else {
-
-          //this.toolsService.hideLoading();
           this.toolsService.showToast(data['message'], 2000, 'success');
-
         }
-
       }, error => {
-        //this.toolsService.hideLoading();
         this.toolsService.showAlert();
       }
 
     );
-
-    //this.toolsService.hideLoading();
   
   }
 
@@ -155,5 +143,15 @@ export class WorkersPage implements OnInit {
     this.worker_email = "";
     this.worker_password = "";
   };
+
+  public togglePassword(){
+    this.showPassword = !this.showPassword;
+
+    if(this.showPassword){
+      this.passwordIcon = 'eye-off';
+    } else {
+      this.passwordIcon = 'eye';
+    }
+  }
   
 }
