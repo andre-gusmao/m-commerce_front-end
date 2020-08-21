@@ -44,6 +44,7 @@ export class RequestsService {
       .set('Accept', 'application/json, text/plain, */*')
       .set('Accept-Language', 'pt-BR,pt;q=0.9,en-US;q=0.8,en;q=0.7')
       .set('Content-Type', 'application/json;charset=UTF-8')
+      .set('Cache-Control', 'no-cache')
     return headers;
   }
 
@@ -64,21 +65,21 @@ export class RequestsService {
     let url = environment.endpointURL + endpoint;
     let headers = this.getHeaders();
     data = JSON.stringify(data);
-    return this.http.post<any>(url, data, {headers}).pipe(map(res => res));
+    return this.http.post<any>(url, data, {}).pipe(map(res => res));
   }
 
   getRequest(endpoint: string, paramName: string, paramValue: string): Observable<any>   {
     // let url = environment.endpointURL + endpoint + this.getKWToken();
     let url = environment.endpointURL + endpoint;
     let headers = this.getHeaders();
-    return this.http.get<any>(url, {headers}).pipe(map(res => res));
+    return this.http.get<any>(url, {}).pipe(map(res => res));
   }
 
   getRequestById(endpoint: string, paramName: string, paramValue: string): Observable<any>   {
     // let url = environment.endpointURL + endpoint + this.getKWToken() + '&' + paramName + '=' + paramValue;
     let url = environment.endpointURL + endpoint + '?' + paramName + '=' + paramValue;
     let headers = this.getHeaders();
-    return this.http.get(url, {headers}).pipe(map(res => res));
+    return this.http.get(url, {}).pipe(map(res => res));
   }
 
   putRequest(data: any, endpoint: string): Observable<any> {
@@ -86,14 +87,14 @@ export class RequestsService {
     let url = environment.endpointURL + endpoint;
     let headers = this.getHeaders();
     data = JSON.stringify(data);
-    return this.http.put<any>(url, data, {headers});
+    return this.http.put<any>(url, data, {});
   }
 
   deleteRequest(endpoint: string, paramName: string, paramValue: string) {
     //let url = environment.endpointURL + endpoint + '?' + paramName + '=' + paramValue;
     let url = environment.endpointURL + endpoint + '/' + paramValue;
     let headers = this.getHeaders();
-    return this.http.delete<any>(url, {headers}).pipe(map(res => res));
+    return this.http.delete<any>(url, {}).pipe(map(res => res));
   }
 
 }
