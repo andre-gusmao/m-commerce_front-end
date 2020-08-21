@@ -24,6 +24,8 @@ export class WorkersPage implements OnInit {
   listPage: string = 'workers-list';
   showPassword: boolean = false;
   passwordIcon: string = 'eye';
+  showConfirmPassword: boolean = false;
+  confirmPasswordIcon: string = 'eye';
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -151,6 +153,16 @@ export class WorkersPage implements OnInit {
       this.passwordIcon = 'eye-off';
     } else {
       this.passwordIcon = 'eye';
+    }
+  }
+
+  public toggleConfirmPassword(){
+    this.showConfirmPassword = !this.showConfirmPassword;
+
+    if(this.showConfirmPassword){
+      this.confirmPasswordIcon = 'eye-off';
+    } else {
+      this.confirmPasswordIcon = 'eye';
     }
   }
   

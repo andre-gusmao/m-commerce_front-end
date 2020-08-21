@@ -55,15 +55,15 @@
       <ion-label position="floating">Confirme a Senha</ion-label>
       <ion-input
         name="worker_confirm_password"
-        [type]="showPassword ? 'text' : 'password'"
+        [type]="showConfirmPassword ? 'text' : 'password'"
         maxlength="25"
         [(ngModel)]="worker_confirm_password">
       </ion-input>
       <ion-icon
-        [name]="(inputType == 'password') ? 'eye-off' : 'eye'"
+        [name]="(inputConfirmPassword == 'password') ? 'eye-off' : 'eye'"
         slot="end"
         size="small"
-        (click)="togglePassword()">
+        (click)="toggleConfirmPassword()">
       </ion-icon>
     </ion-item>
   
