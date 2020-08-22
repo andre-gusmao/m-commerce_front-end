@@ -1,37 +1,51 @@
 <app-header></app-header>
 <ion-content>
-
   <div>
-
     <ion-item>
       <h4>Perfil</h4>
     </ion-item>
-
     <ion-item>
       <ion-label position="floating">Nome</ion-label>
       <ion-input type="text" [(ngModel)]="name" required></ion-input>
     </ion-item>
-
     <ion-item>
       <ion-label position="floating">E-mail</ion-label>
       <ion-input type="text" [(ngModel)]="email"></ion-input>
     </ion-item>
-
     <ion-item>
       <ion-label position="floating">Celular</ion-label>
       <ion-input type="text" [(ngModel)]="cellPhone" [brmasker]="{phone: true}"></ion-input>
-    </ion-item>
-
+    </ion-item>        
     <ion-item>
-      <ion-label position="floating">Senha</ion-label>
-      <ion-input type="password" [(ngModel)]="password"></ion-input>
-    </ion-item>
-
+        <ion-label position="floating">Senha</ion-label>
+        <ion-input
+            name="password"
+            [type]="showPassword ? 'text' : 'password'"
+            maxlength="25"
+            [(ngModel)]="password">
+        </ion-input>
+        <ion-icon
+          [name]="(inputPassword == 'password') ? 'eye-off' : 'eye'"
+          slot="end"
+          size="small"
+          (click)="togglePassword()">
+        </ion-icon>
+    </ion-item>    
     <ion-item>
-      <ion-label position="floating">Confirme a Senha</ion-label>
-      <ion-input type="password" [(ngModel)]="confirmPassword"></ion-input>
+        <ion-label position="floating">Confirme a Senha</ion-label>
+        <ion-input
+            name="confirmPassword"
+            [type]="showConfirmPassword ? 'text' : 'password'"
+            maxlength="25"
+            [(ngModel)]="confirmPassword">
+        </ion-input>
+        <ion-icon
+          [name]="(inputConfirmPassword == 'password') ? 'eye-off' : 'eye'"
+          slot="end"
+          size="small"
+          (click)="toggleConfirmPassword()">
+        </ion-icon>
     </ion-item>
-
     <ion-item>
       <ion-label position="floating">UF</ion-label>
       <ion-select [(ngModel)]="state" name="state" interface="alert" placeholder="Selecione o estado"
@@ -40,7 +54,6 @@
         </ion-select-option>
       </ion-select>
     </ion-item>
-
     <ion-item>
       <ion-label position="floating">Cidade</ion-label>
       <ion-select [(ngModel)]="city" name="city" interface="alert" placeholder="Selecione a cidade">
@@ -53,7 +66,5 @@
         <ion-icon name="checkmark-circle"></ion-icon>Confirmar
       </ion-button>
     </div>
-
   </div>
-
 </ion-content>

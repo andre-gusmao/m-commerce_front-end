@@ -22,6 +22,10 @@ export class CustomersPage implements OnInit {
   profileID: string;
   stateList: any = [];
   cityList: any = [];
+  showPassword: boolean = false;
+  showConfirmPassword: boolean = false;
+  passwordIcon: string = 'eye';
+  confirmPasswordIcon: string = 'eye';
 
   constructor(
     private router: Router,
@@ -60,8 +64,8 @@ export class CustomersPage implements OnInit {
         this.name = dataRes['name'];
         this.email = dataRes['email'];
         this.cellPhone = dataRes['cellPhone'];
-        this.password = dataRes['password'];
-        this.confirmPassword = dataRes['password'];
+        this.password = atob(dataRes['password']);
+        this.confirmPassword = atob(dataRes['password']);
         this.state = dataRes['state'];
         this.city = dataRes['city'];
       } else {
@@ -71,7 +75,6 @@ export class CustomersPage implements OnInit {
   }
 
   public registerCustomer(){
-
     let dataRequest = {
       name: this.name,
       email: btoa(this.email.toLocaleLowerCase()),
@@ -82,7 +85,6 @@ export class CustomersPage implements OnInit {
       profileType: '1',
       request_type: '',
     }
-
     const fields = [
       { value: this.name, message: 'Informe o nome' },
       { value: this.email, message: 'Informe o e-mail' },
@@ -92,29 +94,23 @@ export class CustomersPage implements OnInit {
       { value: this.state, message: 'Selecione o estado' },
       { value: this.city, message: 'Selecione a cidade' }
     ]
-
     if (this.toolsService.validField(fields) == false) {
       return;
     }
-
     if (this.toolsService.validateEmail(this.email, true) == false) {
       return;
     }
-
     if (this.toolsService.validatePassword(this.password, true) == false) {
       return;
     }
-
     if (this.password != this.confirmPassword) {
       this.toolsService.showToast('Senha e Confirme a senha devem ser iguais');
       return;
     }
-
     if (this.profileID != undefined && this.profileID != "") {//update
       dataRequest['profileID'] = this.profileID;
       dataRequest['request_type'] = 'update';
-    }
-    
+    }    
     this.requestService.postRequest(dataRequest, 'customers/customers.php').subscribe(async dataResponse => {        
         if (dataResponse['success']) {
           this.profileID = dataResponse['profileID'];
@@ -124,17 +120,34 @@ export class CustomersPage implements OnInit {
         this.toolsService.goToPage('/login');
       }
     );
-
   }
 
   public loadCities(): void {
-    //this.toolsService.showLoading('Carregando cidades ...');
     this.city = "";
     if (this.state) {
       this.cityList = [];
       this.cityList = this.citiesService.citiesByState(this.state);
     }
-    //this.toolsService.hideLoading();
+  }
+
+  public togglePassword(){
+    this.showPassword = !this.showPassword;
+
+    if(this.showPassword){
+      this.passwordIcon = 'eye-off';
+    } else {
+      this.passwordIcon = 'eye';
+    }
+  }
+
+  public toggleConfirmPassword(){
+    this.showConfirmPassword = !this.showConfirmPassword;
+
+    if(this.showConfirmPassword){
+      this.confirmPasswordIcon = 'eye-off';
+    } else {
+      this.confirmPasswordIcon = 'eye';
+    }
   }
 
 }
