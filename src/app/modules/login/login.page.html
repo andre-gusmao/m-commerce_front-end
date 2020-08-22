@@ -10,7 +10,18 @@
         </ion-item>
         <ion-item>
             <ion-label position="floating">Senha</ion-label>
-            <ion-input min="8" type="password" [(ngModel)]="password"></ion-input>
+            <ion-input
+                name="password"
+                [type]="showPassword ? 'text' : 'password'"
+                maxlength="25"
+                [(ngModel)]="password">
+            </ion-input>
+            <ion-icon
+              [name]="(inputPassword == 'password') ? 'eye-off' : 'eye'"
+              slot="end"
+              size="small"
+              (click)="togglePassword()">
+            </ion-icon>
         </ion-item>
         <br>
         <div style="text-align: center;">

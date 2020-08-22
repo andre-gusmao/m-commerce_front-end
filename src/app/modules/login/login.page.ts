@@ -16,6 +16,8 @@ export class LoginPage implements OnInit {
   password: string;
   logado: boolean = false;
   isEmpty: boolean = false;
+  showPassword: boolean = false;
+  passwordIcon: string = 'eye';
 
   constructor(
     public authService: AuthenticationsService,
@@ -92,6 +94,16 @@ export class LoginPage implements OnInit {
 
   recoverPassword() {
     this.toolsService.showToast("Em desenvolvimento");
+  }
+
+  public togglePassword(){
+    this.showPassword = !this.showPassword;
+
+    if(this.showPassword){
+      this.passwordIcon = 'eye-off';
+    } else {
+      this.passwordIcon = 'eye';
+    }
   }
 
 }
