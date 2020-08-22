@@ -48,6 +48,8 @@ export class CustomersCatalogsPage implements OnInit {
     if(this.authService.getCheckin()){
       if(!this.ShopCartSrc.catalogLoaded()){
         this.loadCustomerCatalog();
+      } else {
+        this.hasCatalog = true;
       }
     } else {
       this.ShopCartSrc.clearCatalog();
