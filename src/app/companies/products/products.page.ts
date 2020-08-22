@@ -33,18 +33,10 @@ export class ProductsPage implements OnInit {
     });
   }
 
-  ngOnInit() {
-    if (this.authService.getLoginSuccessful()) {
-      this.id_company = this.authService.getCompanyID();
-      if (this.id_company != undefined && this.id_company != "") {
-        this.loadProductCategory(this.id_company);
-      }
-    }
-  }
+  ngOnInit() {}
 
   ionViewWillEnter() {
     if (this.authService.getLoginSuccessful()) {
-      this.categoryList = [];
       this.id_company = this.authService.getCompanyID();
       this.loadProductCategory(this.id_company);
       if ((this.id_product != undefined) && (this.id_product != "")) {
@@ -117,7 +109,7 @@ export class ProductsPage implements OnInit {
   }
 
   async loadProductCategory(id_company) {
-    this.categoryList = [];
+    this.clearCategoryList();
     return await new Promise(res => {
       this.requestService.getRequestById(this.urlCategory, 'company', this.id_company).subscribe(dataResponse => {
         for (let category of dataResponse['result']) {
@@ -138,5 +130,11 @@ export class ProductsPage implements OnInit {
     this.product_description = "";
     this.id_product_category = "";
   };
+
+  private clearCategoryList(){
+    while(this.categoryList.length){
+      this.categoryList.pop();
+    }
+  }
 
 }
