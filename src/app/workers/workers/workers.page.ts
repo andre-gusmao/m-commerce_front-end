@@ -124,17 +124,15 @@ export class WorkersPage implements OnInit {
           this.worker_cell_phone = data['result'][0]['worker_cell_phone'];
           this.worker_email = data['result'][0]['worker_email'];
           this.worker_status = data['result'][0]['worker_status'];
-          this.worker_password = data['result'][0]['worker_password'];
-          this.worker_confirm_password = data['result'][0]['worker_password'];
+          this.worker_password = atob(data['result'][0]['worker_password']);
+          this.worker_confirm_password = atob(data['result'][0]['worker_password']);
         } else {
           this.toolsService.showToast(data['message'], 2000, 'success');
         }
       }, error => {
         this.toolsService.showAlert();
       }
-
     );
-  
   }
 
   private cleanForm(): void {

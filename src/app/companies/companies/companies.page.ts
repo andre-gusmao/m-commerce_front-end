@@ -116,8 +116,8 @@ export class CompaniesPage implements OnInit {
       this.requestService.getRequestById('companies/companies.php', 'id', profileID).subscribe( dataRes => {
         if (dataRes['success']) {
           this.email = dataRes['email'];
-          this.password = dataRes['password'];
-          this.confirmPassword = dataRes['password'];
+          this.password = atob(dataRes['password']);
+          this.confirmPassword = atob(dataRes['password']);
           this.companyName = dataRes['companyName'];
           this.businessman = dataRes['businessman'];
           this.cellPhone = dataRes['cellPhone'];
