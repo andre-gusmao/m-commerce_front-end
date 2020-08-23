@@ -4,6 +4,7 @@ import { RequestsService } from '../../services/requests/requests.service';
 import { ToolsService } from 'src/app/services/tools/tools.service';
 import { MenuService } from '../../services/menu/menu.service';
 import { AlertController } from '@ionic/angular';
+import { ShoppingBagService } from 'src/app/services/shopping-bag/shopping-bag.service';
 
 @Component({
   selector: 'app-login',
@@ -24,7 +25,8 @@ export class LoginPage implements OnInit {
     public requestService: RequestsService,
     public menuService: MenuService,
     public toolsService: ToolsService,
-    public alertController: AlertController
+    public alertController: AlertController,
+    public bagService: ShoppingBagService
   ) {}
 
   ngOnInit() { }
@@ -93,6 +95,8 @@ export class LoginPage implements OnInit {
   }
 
   recoverPassword() {
+    this.toolsService.showToast("Em desenvolvimento");
+    this.bagService.createOrder("order");
     this.toolsService.showToast("Em desenvolvimento");
   }
 
