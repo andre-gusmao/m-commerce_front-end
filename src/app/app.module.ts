@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { HeaderComponent } from '../app/modules/header/header.component';
+import { NativeStorage } from '@ionic-native/native-storage/ngx'
 
 @NgModule({
   declarations: [
@@ -18,11 +19,12 @@ import { HeaderComponent } from '../app/modules/header/header.component';
     BrowserModule, 
     IonicModule.forRoot(), 
     AppRoutingModule,
-    HttpClientModule    
+    HttpClientModule
   ],
   providers: [
     StatusBar,
     SplashScreen,
+    NativeStorage,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
