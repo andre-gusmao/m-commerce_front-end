@@ -44,7 +44,7 @@
         [(ngModel)]="worker_password">
       </ion-input>
       <ion-icon
-        [name]="(inputPassword == 'password') ? 'eye-off' : 'eye'"
+        [name]="(worker_password == 'password') ? 'eye-off' : 'eye'"
         slot="end"
         size="small"
         (click)="togglePassword()">
@@ -60,7 +60,7 @@
         [(ngModel)]="worker_confirm_password">
       </ion-input>
       <ion-icon
-        [name]="(inputConfirmPassword == 'password') ? 'eye-off' : 'eye'"
+        [name]="(worker_confirm_password == 'password') ? 'eye-off' : 'eye'"
         slot="end"
         size="small"
         (click)="toggleConfirmPassword()">
