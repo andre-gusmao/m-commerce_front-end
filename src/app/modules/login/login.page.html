@@ -35,6 +35,16 @@
                 <ion-icon name="lock-open-outline"></ion-icon>Lembrar senha
             </ion-button>
         </div>
+
+        <div style="text-align: center;">
+            <ion-button size="small" type="submit" fill="outline" shape="round" (click)="insertOrder()">insertOrder</ion-button>
+            <ion-button size="small" type="submit" fill="outline" shape="round" (click)="deleteOrder()">deleteOrder</ion-button>
+            <ion-button size="small" type="submit" fill="outline" shape="round" (click)="getOrder()">getOrder</ion-button>
+            <ion-button size="small" type="submit" fill="outline" shape="round" (click)="insertItem()">insertItem</ion-button>
+            <ion-button size="small" type="submit" fill="outline" shape="round" (click)="deleteItem()">deleteItem</ion-button>
+            <ion-button size="small" type="submit" fill="outline" shape="round" (click)="getItem()">getItem</ion-button>
+            <ion-button size="small" type="submit" fill="outline" shape="round" (click)="clearStorage()">clearStorage</ion-button>
+        </div>
     </div>
     <div *ngIf="authService.getLoginSuccessful()">
         <ion-item>

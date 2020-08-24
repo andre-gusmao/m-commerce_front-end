@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { NativeStorage } from '@ionic-native/native-storage/ngx';
+import { IOrder } from '../../inferfaces/order';
+import { IOrderItem } from '../../inferfaces/orderItem';
 
 @Injectable({
   providedIn: 'root'
@@ -8,71 +10,75 @@ export class ShoppingBagService {
 
   constructor(private nativeStorage: NativeStorage) { }
 
-  public insertOrder(order: string = ""){
-    this.nativeStorage.setItem(order,{
-      id_company: '2',
-      id_customer: '2',
-      order_item_quantity: 3,
-      order_total_price: '150,50',
-      order_status: 'A',
-      order_payment_status: '3',
-      order_payment_method: 'Cartao de Credito',
-      id_payment_method: '2'
-    })
+  public insertOrder(order: IOrder){
+    this.nativeStorage.setItem(
+      order.order_name,{
+        id_company: order.id_company,
+        id_customer: order.id_customer,
+        order_item_quantity: order.order_item_quantity,
+        order_total_price: order.order_total_price,
+        order_status: order.order_status,
+        order_payment_status: order.order_payment_status,
+        order_payment_method: order.order_payment_method,
+        id_payment_method: order.id_payment_method
+      }
+    )
     .then(
-      () => console.log("Pedido inserido"),
-      error => console.warn("Pedido nao foi inserido ", error)
+      () => console.log("Inserted order"),
+      error => console.warn("Order was not entered ", error)
     );
   }
 
-  public deleteOrder(order: string = ""){
-    this.nativeStorage.remove(order)
+  public deleteOrder(order_name: string = ""){
+    this.nativeStorage.remove(order_name)
     .then(
-      () => console.log("Pedido excluido"),
-      error => console.warn("Pedido nao foi excluido ", error)
+      () => console.log("Deleted order"),
+      error => console.warn("Order has not been deleted ", error)
     );
   }
 
-  public getOrder(order: string = ""){
-    this.nativeStorage.getItem(order)
+  public getOrder(order_name: string = ""){
+    this.nativeStorage.getItem(order_name)
       .then( function (order){
         console.info("id_company: ", order.id_company)
       }, function (error) {
-          console.warn("getOrder ", error)
+          console.warn("Order not found ", error)
         }
       );
   }
 
-  public insertItem(item: string = ""){
-    this.nativeStorage.setItem(item,{
-      id_catalog: '1',
-      id_product: '5',
-      item_product_name: 'Produto',
-      item_quantity: '2',
-      item_unit_price: '10,50',
-      item_total_price: '21,00',
-      item_note: 'Observacao'
-    })
+  public insertItem(item: IOrderItem){
+    this.nativeStorage.setItem(
+      item.order_item_name,{
+        id_catalog: item.id_catalog,
+        id_product: item.id_product,
+        item_product_name: item.item_product_name,
+        item_quantity: item.item_quantity,
+        item_unit_price: item.item_unit_price,
+        item_total_price: item.item_total_price,
+        item_note: item.item_note
+      }
+    )
     .then(
-      () => console.log("Item criado"),
-      error => console.warn("Item nao foi criado ", error)
+      () => console.log("Inserted item"),
+      error => console.warn("Item was not entered ", error)
     );
   }
 
-  public deleteItem(item: string = ""){
-    this.nativeStorage.remove(item)
+  public deleteItem(order_item_name: string = ""){
+    this.nativeStorage.remove(order_item_name)
     .then(
-      () => console.log("Item excluido"),
-      error => console.warn("Item nao foi excluido ", error)
+      () => console.log("Deleted item"),
+      error => console.warn("Item has not been deleted ", error)
     );
   }
 
-  public getItem(item: string = ""){
-    this.nativeStorage.getItem(item)
+  public getItem(order_item_name: string = ""){
+    this.nativeStorage.getItem(order_item_name)
       .then( function (item){
         console.info("id_catalog: ", item.id_catalog)
       }, function (error) {
-          console.warn("Item not found", item);
+          console.warn("Item not found", order_item_name);
         }
       );
   }

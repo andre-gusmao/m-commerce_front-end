@@ -5,6 +5,8 @@ import { ToolsService } from 'src/app/services/tools/tools.service';
 import { MenuService } from '../../services/menu/menu.service';
 import { AlertController } from '@ionic/angular';
 import { ShoppingBagService } from 'src/app/services/shopping-bag/shopping-bag.service';
+import { IOrder } from '../../inferfaces/order';
+import { IOrderItem } from '../../inferfaces/orderItem';
 
 @Component({
   selector: 'app-login',
@@ -30,9 +32,7 @@ export class LoginPage implements OnInit {
   ) {}
 
   ngOnInit() { }
-
-  ionViewWillEnter() {}
-
+  1
   async login() {
     let dataRequest = {
       requisicao: 'login',
@@ -96,8 +96,6 @@ export class LoginPage implements OnInit {
 
   recoverPassword() {
     this.toolsService.showToast("Em desenvolvimento");
-    this.bagService.createOrder("order");
-    this.toolsService.showToast("Em desenvolvimento");
   }
 
   public togglePassword(){
@@ -108,6 +106,82 @@ export class LoginPage implements OnInit {
     } else {
       this.passwordIcon = 'eye';
     }
+  }
+
+  getOrderA(){
+    let ord: IOrder = {
+      order_name: "order",
+      id_company: 1,
+      id_customer: 1,
+      order_item_quantity: 0,
+      order_total_price: 0,
+      order_status: 1,
+      order_payment_status: 1,
+      order_payment_method: "Cartao Credito",
+      id_payment_method: 1
+    }
+    return ord;
+  }
+
+  public insertOrder(){
+    let order = this.getOrderA();
+    this.bagService.insertOrder(order);
+  }
+
+  public deleteOrder(){
+    this.bagService.deleteOrder("order");
+  }
+
+  public getOrder(){
+    this.bagService.getOrder("order");
+  }
+
+  getItem1(){
+    let item: IOrderItem = {
+      order_item_name: "item1",
+      id_catalog: 1,
+      id_product: 1,
+      item_product_name: "Produto 1",
+      item_quantity: 2,
+      item_unit_price: 10.25,
+      item_total_price: 20.50,
+      item_note: "Obs1"
+    }
+    return item;
+  }
+
+  getItem2(){
+    let item: IOrderItem = {
+      order_item_name: "item2",
+      id_catalog: 1,
+      id_product: 2,
+      item_product_name: "Produto 2",
+      item_quantity: 2,
+      item_unit_price: 20.30,
+      item_total_price: 40.60,
+      item_note: "Obs2"
+    }
+    return item;
+  }
+
+  public insertItem(){
+    let item1 = this.getItem1();
+    let item2 = this.getItem2();
+    this.bagService.insertItem(item1);
+    this.bagService.insertItem(item2);
+  }
+  
+  public deleteItem(){
+    this.bagService.deleteItem("item1");
+    this.bagService.deleteItem("item2");
+  }
+
+  public getItem(){
+    this.bagService.getItem("item1");
+  }
+
+  public clearStorage(){
+    this.bagService.clearStorage();
   }
 
 }
