@@ -32,7 +32,7 @@ export class LoginPage implements OnInit {
   ) {}
 
   ngOnInit() { }
-  1
+  
   async login() {
     let dataRequest = {
       requisicao: 'login',
@@ -184,4 +184,33 @@ export class LoginPage implements OnInit {
     this.bagService.clearStorage();
   }
 
+  public TrataItems(){
+    let ord = this.getOrderA();
+    let ite = this.getItem1();
+    console.log(ord);
+    console.warn("item1");
+    console.info(ite);
+    ord.order_item_quantity = ord.order_item_quantity + ite.item_quantity;
+    ord.order_total_price = ord.order_total_price + ite.item_total_price;
+    console.log(ord);
+    let ite2 = this.getItem2();
+    console.warn("item2");
+    console.info(ite2);
+    ord.order_item_quantity = ord.order_item_quantity + ite2.item_quantity;
+    ord.order_total_price = ord.order_total_price + ite2.item_total_price;
+    console.log(ord);
+    let ord2 = this.getOrderA();
+    console.warn("ord2");
+    console.log(ord2);
+  }
+
 }
+/*
+  get order
+  test order
+  inserir item 
+  salva order 
+  incrementa qtd e valor
+  deleta order
+  insert order
+*/
