@@ -129,7 +129,11 @@ export class LoginPage implements OnInit {
   }
 
   public deleteOrder(){
-    this.bagService.deleteOrder("order");
+    if (this.bagService.deleteOrder("order")){
+      console.info("excluiu ok ");
+    } else {
+      console.info("nada pra excluir");
+    }
   }
 
   public getOrder(){
@@ -177,7 +181,7 @@ export class LoginPage implements OnInit {
   }
 
   public getItem(){
-    this.bagService.getItem("item1");
+    console.log(this.bagService.getItem("item1"));
   }
 
   public clearStorage(){
@@ -185,23 +189,24 @@ export class LoginPage implements OnInit {
   }
 
   public TrataItems(){
-    let ord = this.getOrderA();
-    let ite = this.getItem1();
-    console.log(ord);
-    console.warn("item1");
-    console.info(ite);
-    ord.order_item_quantity = ord.order_item_quantity + ite.item_quantity;
-    ord.order_total_price = ord.order_total_price + ite.item_total_price;
-    console.log(ord);
-    let ite2 = this.getItem2();
-    console.warn("item2");
-    console.info(ite2);
-    ord.order_item_quantity = ord.order_item_quantity + ite2.item_quantity;
-    ord.order_total_price = ord.order_total_price + ite2.item_total_price;
-    console.log(ord);
-    let ord2 = this.getOrderA();
-    console.warn("ord2");
-    console.log(ord2);
+    //let ord = this.getOrderA();
+    //let ite = this.getItem1();
+    //console.log(ord);
+    //console.warn("item1");
+    //console.info(ite);
+    //ord.order_item_quantity = ord.order_item_quantity + ite.item_quantity;
+    //ord.order_total_price = ord.order_total_price + ite.item_total_price;
+    //console.log(ord);
+    //let ite2 = this.getItem2();
+    //console.warn("item2");
+    //console.info(ite2);
+    //ord.order_item_quantity = ord.order_item_quantity + ite2.item_quantity;
+    //ord.order_total_price = ord.order_total_price + ite2.item_total_price;
+    //console.log(ord);
+    //let ord2 = this.getOrderA();
+    //console.warn("ord2");
+    //console.log(ord2);
+    this.bagService.getItems("item");
   }
 
 }
