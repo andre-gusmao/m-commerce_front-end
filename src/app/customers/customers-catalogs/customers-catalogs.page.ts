@@ -1,3 +1,4 @@
+import { ShoppingBagService } from 'src/app/services/shopping-bag/shopping-bag.service';
 import { Component, OnInit, Input } from '@angular/core';
 import { RequestsService } from 'src/app/services/requests/requests.service';
 import { ToolsService } from 'src/app/services/tools/tools.service';
@@ -5,6 +6,8 @@ import { AuthenticationsService } from 'src/app/services/authentications/authent
 import { ModalController } from '@ionic/angular';
 import { ItemDetailsPage } from '../item-details/item-details.page';
 import { ShoppingCartService } from 'src/app/services/shopping-cart/shopping-cart.service';
+import { IOrderItem } from './../../inferfaces/orderItem';
+import { IOrder } from './../../inferfaces/order';
 
 @Component({
   selector: 'app-customers-catalogs',
@@ -23,13 +26,16 @@ export class CustomersCatalogsPage implements OnInit {
   url: string = 'customers/catalogs.php';
   hasCatalog: boolean = false;
   id_company: string = "";
+  id_customer: string = "";
+  id_catalog: string = "";
 
   constructor(
     public requestService: RequestsService,
     public toolsService: ToolsService,
     public authService: AuthenticationsService,
     public modalCtrl: ModalController,
-    public ShopCartSrc: ShoppingCartService
+    public ShopCartSrc: ShoppingCartService,
+    public ShopBagSrc: ShoppingBagService
   ) { }
 
   ngOnInit() {}
@@ -37,6 +43,7 @@ export class CustomersCatalogsPage implements OnInit {
   ionViewWillEnter() {
     if ( this.authService.getLoginSuccessful() ) {
       this.id_company = this.authService.getCompanyID();
+      this.id_catalog = this.authService.getCatalogID(),
       this.loadCatalog();
     } else {
       this.ShopCartSrc.clearCatalog();
@@ -99,7 +106,7 @@ export class CustomersCatalogsPage implements OnInit {
     this.id_item = data.id_item;
     this.quantity = data.quantity;
     this.customer_note = data.customer_note;
-
+  /*
     let orderItem = {
       //id_order: auto
       id_company: this.authService.getCompanyID(),
@@ -121,11 +128,43 @@ export class CustomersCatalogsPage implements OnInit {
         item_note: data.customer_note
       }
     }
+  */
+    let item: IOrderItem = {
+      order_item_name: this.ShopBagSrc.nextOrderItem(),
+      id_catalog: this.id_catalog,
+      id_product: product.id_product,
+      item_product_name: product.product_name,
+      item_quantity: data.quantity,
+      item_unit_price: product.catalog_item_price,
+      item_total_price: data.total_price,
+      item_note: data.customer_note
+    }
 
     if(data.quantity > 0){
-      this.ShopCartSrc.insertOrder(orderItem);
-      this.toolsService.showToast(orderItem.items.item_product_name + " adicionado ao pedido", 1000, 'Tertiary');
+      if(!this.ShopBagSrc.isStored("order")) {
+        let order: IOrder = {
+          order_name: "order",
+          id_company: this.id_company,
+          id_customer: this.id_customer,
+          order_item_quantity: item.item_quantity,
+          order_total_price: item.item_quantity * item.item_unit_price,
+          order_status: 1,
+          order_payment_status: 1,
+          order_payment_method: "Cartao de Credito",
+          id_payment_method: 1
+        }
+        this.ShopBagSrc.insertOrder(order);
+      } else {
+        this.ShopBagSrc.increaseOrder("order",item.order_item_name);
+      }
+      this.ShopBagSrc.insertItem(item);
+      this.toolsService.showToast(item.item_product_name + " adicionado ao pedido", 1000, 'Tertiary');
     }
+
+    // if(data.quantity > 0){
+    //   this.ShopCartSrc.insertOrder(orderItem);
+    //   this.toolsService.showToast(orderItem.items.item_product_name + " adicionado ao pedido", 1000, 'Tertiary');
+    // }
 
   }
 
