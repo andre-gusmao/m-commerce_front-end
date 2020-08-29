@@ -111,8 +111,8 @@ export class LoginPage implements OnInit {
   getOrderA(){
     let ord: IOrder = {
       order_name: "order",
-      id_company: 1,
-      id_customer: 1,
+      id_company: "1",
+      id_customer: "1",
       order_item_quantity: 0,
       order_total_price: 0,
       order_status: 1,
@@ -143,8 +143,8 @@ export class LoginPage implements OnInit {
   getItem1(){
     let item: IOrderItem = {
       order_item_name: "item1",
-      id_catalog: 1,
-      id_product: 1,
+      id_catalog: "1",
+      id_product: "1",
       item_product_name: "Produto 1",
       item_quantity: 2,
       item_unit_price: 10.25,
@@ -157,8 +157,8 @@ export class LoginPage implements OnInit {
   getItem2(){
     let item: IOrderItem = {
       order_item_name: "item2",
-      id_catalog: 1,
-      id_product: 2,
+      id_catalog: "1",
+      id_product: "2",
       item_product_name: "Produto 2",
       item_quantity: 2,
       item_unit_price: 20.30,
