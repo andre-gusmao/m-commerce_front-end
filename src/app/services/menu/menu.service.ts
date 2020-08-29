@@ -146,6 +146,11 @@ export class MenuService {
       "title": 'Compartilhe',
       "url": '/share',
       "icon": 'share-social-outline'
+    },
+    {
+      "title": 'Sair',
+      "url": '/logout',
+      "icon": 'log-out-outline'
     }
   ];
 
