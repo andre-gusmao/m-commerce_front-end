@@ -235,6 +235,38 @@ export class ShoppingBagService {
     }
   }
 
+  public nextOrderItem(){
+    let item: string = "";
+
+    this.nextItem().then(
+      item => item.toString()
+    ).catch(
+      () => item = "item1"
+    ).finally(
+      () => {
+        if(item.length == 0){
+          item = "item1";
+        }
+      }
+    );
+
+    return item;
+  }
+
+  private async nextItem() {
+    let i: number = 0;
+    let item: string = "";
+    let hasItem: boolean = true;
+
+    while(hasItem){
+      i++;
+      item = "item" + i.toString();
+      hasItem = await this.isStored("item");
+    }
+
+    return item;
+  }
+
   /* storage functions */
   public clearStorage(){
     let result: boolean;
