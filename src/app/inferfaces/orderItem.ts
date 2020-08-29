@@ -1,7 +1,7 @@
 export interface IOrderItem {
     order_item_name?: string;
-    id_catalog?: number;
-    id_product?: number;
+    id_catalog?: string;
+    id_product?: string;
     item_product_name?: string;
     item_quantity?: number;
     item_unit_price?: number;

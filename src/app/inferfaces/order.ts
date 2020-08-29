@@ -1,7 +1,7 @@
 export interface IOrder {
     order_name?: string;
-    id_company?: number;
-    id_customer?: number;
+    id_company?: string;
+    id_customer?: string;
     order_item_quantity?: number;
     order_total_price?: number;
     order_status?: number;
