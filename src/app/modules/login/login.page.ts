@@ -181,7 +181,10 @@ export class LoginPage implements OnInit {
   }
 
   public getItem(){
+    console.log("item1");
     console.log(this.bagService.getItem("item1"));
+    console.log("item2");
+    console.log(this.bagService.getItem("item2"));
   }
 
   public clearStorage(){
@@ -189,25 +192,26 @@ export class LoginPage implements OnInit {
   }
 
   public TrataItems(){
-    //let ord = this.getOrderA();
-    //let ite = this.getItem1();
-    //console.log(ord);
-    //console.warn("item1");
-    //console.info(ite);
-    //ord.order_item_quantity = ord.order_item_quantity + ite.item_quantity;
-    //ord.order_total_price = ord.order_total_price + ite.item_total_price;
-    //console.log(ord);
-    //let ite2 = this.getItem2();
-    //console.warn("item2");
-    //console.info(ite2);
-    //ord.order_item_quantity = ord.order_item_quantity + ite2.item_quantity;
-    //ord.order_total_price = ord.order_total_price + ite2.item_total_price;
-    //console.log(ord);
-    //let ord2 = this.getOrderA();
-    //console.warn("ord2");
-    //console.log(ord2);
-    this.bagService.getItems("item");
+    if(this.bagService.isStored("item1")) {
+      console.info("Item1 encontrado");
+    } else {
+      console.info("Item1 não encontrado");
+    }
   }
+
+  public async insere2(){
+    let item: string = "";
+    let key;
+    for(let i = 1; i <= 3; i++){
+      item = "item" + i.toString();
+      console.log("Item criado " + item);
+      key = await this.bagService.getKey(item);
+      console.log("Key: " + key)
+      console.log("------------------------")
+    }
+  }
+
+  public retorna2(){}
 
 }
 /*

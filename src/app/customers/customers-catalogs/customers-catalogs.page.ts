@@ -129,8 +129,9 @@ export class CustomersCatalogsPage implements OnInit {
       }
     }
   */
+    let itemName = this.ShopBagSrc.nextOrderItem();
     let item: IOrderItem = {
-      order_item_name: this.ShopBagSrc.nextOrderItem(),
+      order_item_name: "itemName",
       id_catalog: this.id_catalog,
       id_product: product.id_product,
       item_product_name: product.product_name,

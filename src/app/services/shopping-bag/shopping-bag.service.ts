@@ -29,7 +29,7 @@ export class ShoppingBagService {
     )
     .then(
       () => { 
-        console.log("Inserted order");
+        console.log("Inserted order", order.order_name);
         result = true;
       },
       error => { 
@@ -60,7 +60,6 @@ export class ShoppingBagService {
     let order: IOrder;
     this.nativeStorage.getItem(order_name)
       .then( function (res){
-        console.info("Order found ", res);
         order = {
             order_name: res.order_name,
             id_company: res.id_company,
@@ -89,7 +88,7 @@ export class ShoppingBagService {
       order_name: order.order_name,
       id_company: order.id_company,
       id_customer: order.id_customer,
-      order_item_quantity: order_item_quantity,
+      order_item_quantity: order.order_item_quantity + item.item_quantity,
       order_total_price: order_total_price,
       order_status: order.order_status,
       order_payment_status: order.order_payment_status,
@@ -126,7 +125,8 @@ export class ShoppingBagService {
   public insertItem(item: IOrderItem){
     let result: boolean;
     this.nativeStorage.setItem(
-      item.order_item_name,{
+      item.order_item_name,
+      {
         order_item_name: item.order_item_name,
         id_catalog: item.id_catalog,
         id_product: item.id_product,
@@ -235,36 +235,50 @@ export class ShoppingBagService {
     }
   }
 
-  public nextOrderItem(){
-    let item: string = "";
-
-    this.nextItem().then(
-      item => item.toString()
-    ).catch(
-      () => item = "item1"
-    ).finally(
-      () => {
-        if(item.length == 0){
-          item = "item1";
-        }
-      }
-    );
-
+  public async nextOrderItem(){
+    const item = await this.nextItem();
     return item;
   }
 
-  private async nextItem() {
+  private async nextItem(){
     let i: number = 0;
     let item: string = "";
     let hasItem: boolean = true;
 
-    while(hasItem){
-      i++;
-      item = "item" + i.toString();
-      hasItem = await this.isStored("item");
-    }
+    const p = new Promise((resolve, reject) => {
+      resolve({
+        while(hasItem){
+          i++;
+          item = "item" + i.toString();
+          hasItem = this.isStored("item");
+        }        
+      });
+      reject({
+        item: "item1"
+      });
+    });
 
-    return item;
+    p.then( item => {
+      console.log("nextItem resolve",item);
+      return item;
+    })
+    .catch( error => {
+      console.log("nextItem catch");
+      return "item1";
+    })
+  }
+
+  public proxItem(){
+    let i: number = 0;
+    let item: string = "";
+    let hasItem: boolean = true;
+    this.nativeStorage.setItem("item1","abacaxi")
+  }
+
+  public async getKey(key: string): Promise<void>{
+    return await this.nativeStorage.getItem(key).then( (key) => {
+      console.log("getKey ", key);
+    } );
   }
 
   /* storage functions */
@@ -284,9 +298,9 @@ export class ShoppingBagService {
     return result;
   }
 
-  public isStored(item: string = ""){
+  public async isStored(item: string = ""){
     let result: boolean = false;
-    this.nativeStorage.getItem(item)
+    await this.nativeStorage.getItem(item)
       .then( function (res){
           result = true;
         }, function (error) {
