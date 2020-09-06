@@ -92,7 +92,8 @@ export class CompaniesPage implements OnInit {
     }
 
     if (this.password != this.confirmPassword) {
-      this.toolsService.showToast('Senha e Confirme a senha devem ser iguais');
+      this.toolsService.showToast('Senha e Confirme a senha devem ser iguais',2000,'warning');
+      return
     }
 
     if (this.profileID != undefined && this.profileID != "") { //update
