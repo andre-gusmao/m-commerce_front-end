@@ -5,6 +5,7 @@ import { ToolsService } from 'src/app/services/tools/tools.service';
 import { AuthenticationsService } from 'src/app/services/authentications/authentications.service';
 import { ModalController } from '@ionic/angular';
 import { ItemDetailsPage } from '../item-details/item-details.page';
+import { ShoppingCartService } from 'src/app/services/shopping-cart/shopping-cart.service';
 import { IOrderItem } from './../../inferfaces/orderItem';
 import { IOrder } from './../../inferfaces/order';
 
@@ -33,6 +34,7 @@ export class CustomersCatalogsPage implements OnInit {
     public toolsService: ToolsService,
     public authService: AuthenticationsService,
     public modalCtrl: ModalController,
+    public ShopCartSrc: ShoppingCartService,
     public ShopBagSrc: ShoppingBagService
   ) { }
 
