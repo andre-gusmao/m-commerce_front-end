@@ -39,7 +39,7 @@ export class ToolsService {
     for (var i in _fields) {
       if (_fields[i].value == undefined || _fields[i].value == "") {
         isEmpty = false;
-        this.showToast(_fields[i].message);
+        this.showToast(_fields[i].message,2000,'warning');
         break;
       }
       if (_fields[i].lenght != undefined && _fields[i].lenght != _fields[i].value.toString().length) {
@@ -105,7 +105,7 @@ export class ToolsService {
       message: _message,
       spinner: 'lines'
     }).then(alert => {
-      alert.present().then(() => {
+        alert.present().then(() => {
         if (!this.loading) {
           alert.dismiss(() => { });
         }
