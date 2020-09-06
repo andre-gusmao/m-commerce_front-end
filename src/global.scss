@@ -25,6 +25,18 @@
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
 
+.odd{
+  color: #3880ff;
+  border: none;
+  padding: 0px;
+}
+
+.even{
+  color: #000000;
+  border: none;
+  padding: 0px;
+}
+
 ion-icon {
   color: #3880ff;
 }
