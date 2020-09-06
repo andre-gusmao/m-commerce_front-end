@@ -5,7 +5,6 @@ import { ToolsService } from 'src/app/services/tools/tools.service';
 import { AuthenticationsService } from 'src/app/services/authentications/authentications.service';
 import { ModalController } from '@ionic/angular';
 import { ItemDetailsPage } from '../item-details/item-details.page';
-import { ShoppingCartService } from 'src/app/services/shopping-cart/shopping-cart.service';
 import { IOrderItem } from './../../inferfaces/orderItem';
 import { IOrder } from './../../inferfaces/order';
 
@@ -34,7 +33,6 @@ export class CustomersCatalogsPage implements OnInit {
     public toolsService: ToolsService,
     public authService: AuthenticationsService,
     public modalCtrl: ModalController,
-    public ShopCartSrc: ShoppingCartService,
     public ShopBagSrc: ShoppingBagService
   ) { }
 
@@ -103,23 +101,16 @@ export class CustomersCatalogsPage implements OnInit {
     await itemDetail.present();
 
     const { data } = await itemDetail.onWillDismiss();
-    this.id_item = data.id_item;
-    this.quantity = data.quantity;
-    this.customer_note = data.customer_note;
-  /*
-    let orderItem = {
-      //id_order: auto
-      id_company: this.authService.getCompanyID(),
-      id_customer: this.authService.getProfileID(),
-      order_total_price: data.total_price,
-      order_status: 1,
-      order_payment_status: 1,
-      order_payment_method: "Cartao de Credito",
-      id_payment_method: 1,
-      items: {
-        //id_order_item: auto,
-        //id_order: auto,
-        id_catalog: this.authService.getCatalogID(),
+
+    if(data){
+
+      this.id_item = data.id_item;
+      this.quantity = data.quantity;
+      this.customer_note = data.customer_note;
+
+      let item: IOrderItem = {
+        order_item_name: (await this.ShopBagSrc.nextOrderItem("item")).toString(),
+        id_catalog: this.id_catalog,
         id_product: product.id_product,
         item_product_name: product.product_name,
         item_quantity: data.quantity,
@@ -127,45 +118,34 @@ export class CustomersCatalogsPage implements OnInit {
         item_total_price: data.total_price,
         item_note: data.customer_note
       }
-    }
-  */
-    let itemName = this.ShopBagSrc.nextOrderItem();
-    let item: IOrderItem = {
-      order_item_name: "itemName",
-      id_catalog: this.id_catalog,
-      id_product: product.id_product,
-      item_product_name: product.product_name,
-      item_quantity: data.quantity,
-      item_unit_price: product.catalog_item_price,
-      item_total_price: data.total_price,
-      item_note: data.customer_note
-    }
 
-    if(data.quantity > 0){
-      if(!this.ShopBagSrc.isStored("order")) {
-        let order: IOrder = {
-          order_name: "order",
-          id_company: this.id_company,
-          id_customer: this.id_customer,
-          order_item_quantity: item.item_quantity,
-          order_total_price: item.item_quantity * item.item_unit_price,
-          order_status: 1,
-          order_payment_status: 1,
-          order_payment_method: "Cartao de Credito",
-          id_payment_method: 1
+      if(data.quantity > 0){
+        let order: IOrder = await this.ShopBagSrc.getOrder("order");
+        console.log("getOrder",order);
+        if(!order) {
+          let order: IOrder = {
+            order_name: "order",
+            id_company: this.id_company,
+            id_customer: this.id_customer,
+            order_item_quantity: item.item_quantity,
+            order_total_price: item.item_quantity * item.item_unit_price,
+            order_status: 1,
+            order_payment_status: 1,
+            order_payment_method: "Cartao de Credito",
+            id_payment_method: 1
+          }
+          this.ShopBagSrc.setOrder(order);
+          console.log("setOrder",order);
+        } else {
+          this.ShopBagSrc.increaseOrder(order,item);
+          console.log("increaseOrder",order);
         }
-        this.ShopBagSrc.insertOrder(order);
-      } else {
-        this.ShopBagSrc.increaseOrder("order",item.order_item_name);
+        this.ShopBagSrc.setOrderItem(item);
+        console.log("increaseItem",item);
+        this.toolsService.showToast(item.item_product_name + " adicionado ao pedido");
       }
-      this.ShopBagSrc.insertItem(item);
-      this.toolsService.showToast(item.item_product_name + " adicionado ao pedido", 1000, 'Tertiary');
-    }
 
-    // if(data.quantity > 0){
-    //   this.ShopCartSrc.insertOrder(orderItem);
-    //   this.toolsService.showToast(orderItem.items.item_product_name + " adicionado ao pedido", 1000, 'Tertiary');
-    // }
+    }
 
   }
 
