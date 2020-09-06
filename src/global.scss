@@ -25,6 +25,10 @@
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
 
+ion-icon {
+  color: #3880ff;
+}
+
 .success {
   --background: rgb(13, 83, 13);
   --color: white;
