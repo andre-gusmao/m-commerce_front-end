@@ -16,7 +16,7 @@
           <h5>Pedidos Realizados</h5>
         </ion-col>
       </ion-row>
-      <ion-row *ngFor="let order of orderList" (click)="showOrder(order)">
+      <ion-row [ngClass]="(i % 2 == 0) ? 'even' : 'odd'" *ngFor="let order of orderList; let i = index;" (click)="showOrder(order)">
         <ion-col size="2">
           <div>
             {{order.order_date}}
@@ -37,8 +37,7 @@
     </ion-grid>
   <ion-fab vertical="bottom" horizontal="center" slot="fixed">
     <ion-fab-button size="small" (click)="toolsService.goToPage(catalog)">
-      <ion-icon name="book-outline">
-      </ion-icon>
+      <ion-icon name="book-outline"></ion-icon>
     </ion-fab-button>
   </ion-fab>
 </ion-content>
