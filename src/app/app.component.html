@@ -7,7 +7,7 @@
     </ion-header>
     <ion-content>
       <ion-menu-toggle auto-hide="true" *ngFor="let menu of menuService.menu">
-        <ion-item detail="true" lines="none" routerLink="{{menu.url}}">
+        <ion-item detail="false" lines="none" routerLink="{{menu.url}}">
           <ion-icon slot="start" name="{{menu.icon}}"></ion-icon>
           <ion-label>{{menu.title}}</ion-label>
         </ion-item>
