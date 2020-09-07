@@ -3,6 +3,7 @@ import { AuthenticationsService } from 'src/app/services/authentications/authent
 import { RequestsService } from 'src/app/services/requests/requests.service';
 import { ModalController } from '@ionic/angular';
 import { ToolsService } from 'src/app/services/tools/tools.service';
+import { CallNumber } from '@ionic-native/call-number/ngx';
 
 @Component({
   selector: 'app-company-order-details',
@@ -28,6 +29,7 @@ export class CompanyOrderDetailsPage implements OnInit {
     public requestService: RequestsService,
     public toolsService: ToolsService,
     public authService: AuthenticationsService,
+    private callNumber: CallNumber,
     public modalCtrl: ModalController) { }
 
   ngOnInit() {
@@ -72,7 +74,9 @@ export class CompanyOrderDetailsPage implements OnInit {
   }
 
   public callCustomer(){
-    window.alert(this.customer_cell_phone);
+    this.callNumber.callNumber(this.customer_cell_phone,true)
+      .then(res => console.log("phone call initiated") )
+      .catch(res => this.toolsService.showToast("Não foi possível realizar a chamada", 2000, "danger"))
   }
 
 }
