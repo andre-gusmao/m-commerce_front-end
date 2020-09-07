@@ -1,6 +1,14 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>{{company_name}}</ion-title>
+      <ion-button fill="outline" size="small">
+        <ion-icon name="grid-outline"></ion-icon>&nbsp;{{id_checkin}}
+      </ion-button>
+      <ion-button fill="outline" size="small" (click)="callCustomer()">
+        <ion-icon name="call-outline"></ion-icon>
+      </ion-button>
+      <ion-button fill="outline" size="small">
+        {{customer_name}}
+      </ion-button>
   </ion-toolbar>
 </ion-header>
 

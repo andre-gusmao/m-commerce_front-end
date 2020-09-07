@@ -43,11 +43,9 @@ export class CompanyOrderDetailsPage implements OnInit {
   }
 
   private async loadOderDetails(){
-
     return new Promise(res => {
-
       this.requestService.getRequestById(this.url, 'order', this.id_order).subscribe(dataResponse => {
-
+        console.log(dataResponse['result']);
         for (let item of dataResponse['result']) {
           this.company_name = item.company_name;
           this.order_date = item.order_date;
@@ -55,24 +53,26 @@ export class CompanyOrderDetailsPage implements OnInit {
           this.order_status = item.order_status;
           this.order_status_text = item.order_status_text;
           this.order_total_price = item.order_total_price;
+          this.id_checkin = item.id_checkin;
+          this.customer_name = item.customer_name;
+          this.customer_cell_phone = item.customer_cell_phone;
           this.itemsList.push(item);
         }
-        
       }, error => {
         this.toolsService.showAlert();
       })
-
     });
-
   }
 
   public updateOrder(status: string = '0'){
-
     this.modalCtrl.dismiss({
       'dismissed': true,
       'newStatus': status
     });
+  }
 
+  public callCustomer(){
+    window.alert(this.customer_cell_phone);
   }
 
 }
