@@ -125,7 +125,6 @@ export class CustomersCatalogsPage implements OnInit {
 
       if(data.quantity > 0){
         let order: IOrder = await this.ShopBagSrc.getOrder("order");
-        console.log("getOrder",order);
         if(!order) {
           let order: IOrder = {
             order_name: "order",
@@ -139,10 +138,8 @@ export class CustomersCatalogsPage implements OnInit {
             id_payment_method: 1
           }
           this.ShopBagSrc.setOrder(order);
-          console.log("setOrder",order);
         } else {
           this.ShopBagSrc.increaseOrder(order,item);
-          console.log("increaseOrder",order);
         }
 
         storageItem = await this.ShopBagSrc.getOrderItem(item.order_item_name);
@@ -151,7 +148,6 @@ export class CustomersCatalogsPage implements OnInit {
         } else {
           this.ShopBagSrc.increaseOrderItem(item);
         }
-        console.log("increaseItem",item);
         this.toolsService.showToast(item.item_product_name + " adicionado ao pedido");
       }
 

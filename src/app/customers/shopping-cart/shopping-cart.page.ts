@@ -95,8 +95,6 @@ export class ShoppingCartPage implements OnInit {
       );
     }
 
-    console.log(dataRequest);
-
     await this.requestService.postRequest(dataRequest, this.url).subscribe(async dataResponse => {
       if (dataResponse[0]['success']) {
         this.ShopBagSrc.clearOrder();
@@ -106,7 +104,8 @@ export class ShoppingCartPage implements OnInit {
         this.toolsService.showToast(dataResponse[0]['message'],2000,'warning');
       }
     }, error => {
-      console.log(error);
+      this.toolsService.showAlert();
+      console.error(error);
     });
 
   }
