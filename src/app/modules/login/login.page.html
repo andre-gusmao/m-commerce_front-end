@@ -36,15 +36,10 @@
             </ion-button>
         </div>
     </div>
-    <!--itens -->
-    
-    <div style="text-align: center;">
-        <ion-button size="small" type="submit" fill="outline" shape="round" (click)="clear()">clear</ion-button>
-    </div>
 
     <div *ngIf="authService.getLoginSuccessful()">
-        <ion-item>
-            <ion-label style="text-align: center;color: green;">VOCE ESTA LOGADO!!!!</ion-label>
+        <ion-item lines="none">
+            <ion-label style="text-align: center;color: #3880ff;">VOCE ESTA LOGADO!!!!</ion-label>
         </ion-item>
     </div>
 </ion-content>

@@ -33,15 +33,16 @@
       <ion-input maxlength="100" type="text" [(ngModel)]="catalog_item_note"></ion-input>
     </ion-item>
 
-    <div style="text-align: center;">
-      <ion-button size="small" fill="outline" shape="round" type="submit" (click)="registerCatalogsItems()">
-        <ion-icon name="checkmark-circle"></ion-icon>Confirmar
-      </ion-button>
-      <ion-button size="small" fill="outline" shape="round" type="submit" (click)="toolsService.goToPage(this.listPage)">
-        <ion-icon name="list"></ion-icon>Listar
-      </ion-button>
-    </div>
-
   </div>
 
 </ion-content>
+<ion-footer>
+  <div style="text-align: center;">
+    <ion-button size="small" fill="outline" shape="round" type="submit" (click)="registerCatalogsItems()">
+      <ion-icon name="checkmark-circle"></ion-icon>Confirmar
+    </ion-button>
+    <ion-button size="small" fill="outline" shape="round" type="submit" (click)="toolsService.goToPage(this.listPage)">
+      <ion-icon name="list"></ion-icon>Listar
+    </ion-button>
+  </div>
+</ion-footer>

@@ -20,21 +20,21 @@
     </ion-row>
   </ion-grid>
 
-  <ion-footer>
-    <ion-toolbar style="text-align: center;">
-      <ion-button *ngIf="order_status == '2'" size="small" fill="outline" shape="round" (click)="updateOrder('3')">
-        <ion-icon name="thumbs-up-outline"></ion-icon>Aceitar
-      </ion-button>
-      <ion-button *ngIf="order_status == '2'" size="small" fill="outline" shape="round" (click)="updateOrder('5')">
-        <ion-icon name="thumbs-down-outline"></ion-icon>Rejeitar
-      </ion-button>
-      <ion-button *ngIf="order_status == '3'" size="small" fill="outline" shape="round" (click)="updateOrder('4')">
-        <ion-icon name="fast-food-outline"></ion-icon>Entregar
-      </ion-button>
-      <ion-button size="small" fill="outline" shape="round" (click)="updateOrder()">
-        <ion-icon name="checkmark-circle-outline"></ion-icon>Fechar
-      </ion-button>
-    </ion-toolbar>
-  </ion-footer>
-
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar style="text-align: center;">
+    <ion-button *ngIf="order_status == '2'" size="small" fill="outline" shape="round" (click)="updateOrder('3')">
+      <ion-icon name="thumbs-up-outline"></ion-icon>Aceitar
+    </ion-button>
+    <ion-button *ngIf="order_status == '2'" size="small" fill="outline" shape="round" (click)="updateOrder('5')">
+      <ion-icon name="thumbs-down-outline"></ion-icon>Rejeitar
+    </ion-button>
+    <ion-button *ngIf="order_status == '3'" size="small" fill="outline" shape="round" (click)="updateOrder('4')">
+      <ion-icon name="fast-food-outline"></ion-icon>Entregar
+    </ion-button>
+    <ion-button size="small" fill="outline" shape="round" (click)="updateOrder()">
+      <ion-icon name="checkmark-circle-outline"></ion-icon>Fechar
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>

@@ -19,6 +19,9 @@ export class CompanyOrderDetailsPage implements OnInit {
   order_status_text: string;
   order_total_price: string;
   itemsList: any = [];
+  id_checkin: string;
+  customer_name: string;
+  customer_cell_phone: string;
   url: string = 'customers/orders.php';
   
   constructor(

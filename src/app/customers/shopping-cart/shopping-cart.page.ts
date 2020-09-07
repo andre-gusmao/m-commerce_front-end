@@ -74,6 +74,7 @@ export class ShoppingCartPage implements OnInit {
     let dataRequest = {
       id_company: this.authService.getCompanyID(),
       id_customer: this.authService.getProfileID(),
+      id_checkin: this.authService.getTableID(),
       order_total_price: order.order_total_price,
       order_status: order.order_status,
       order_payment_status: order.order_payment_status,

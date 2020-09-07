@@ -1,8 +1,6 @@
 <app-header></app-header>
+
 <ion-content>
-
-  <div>
-
     <div style="text-align: center;">
       <h4>Olá! {{authService.getUserName()}}</h4>
     </div>
@@ -18,13 +16,12 @@
         style="background: rgb(163, 196, 235); border: 1px solid black;">
       </ion-textarea>
     </div>
-
-    <div style="text-align: center;">
-      <ion-button size="small" fill="outline" shape="round" type="submit" (click)="registerFeedback()">
-        <ion-icon name="checkmark-circle"></ion-icon>Confirmar
-      </ion-button>
-    </div>
-
-  </div>
-
 </ion-content>
+
+<ion-footer>
+  <div style="text-align: center;">
+    <ion-button size="small" fill="outline" shape="round" type="submit" (click)="registerFeedback()">
+      <ion-icon name="checkmark-circle"></ion-icon>Confirmar
+    </ion-button>
+  </div>
+</ion-footer>

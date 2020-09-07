@@ -4,6 +4,7 @@ import { RequestsService } from 'src/app/services/requests/requests.service';
 import { ModalController } from '@ionic/angular';
 import { ToolsService } from 'src/app/services/tools/tools.service';
 import { CompanyOrderDetailsPage } from '../company-order-details/company-order-details.page';
+import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
 
 @Component({
   selector: 'app-company-orders',
@@ -17,6 +18,7 @@ export class CompanyOrdersPage implements OnInit {
   url: string = 'customers/orders.php';
   newStatus: string = "0";
   hasOrders: boolean = false;
+  interval: any;
 
   constructor(
     public requestService: RequestsService,
@@ -30,14 +32,18 @@ export class CompanyOrdersPage implements OnInit {
   ionViewWillEnter() {
     if (this.authService.getLoginSuccessful()) {
       this.loadOrders();
-      if(this.hasOrders) {
-        console.info("hasOrders");
-      } else {
-        console.warn("hasOrders");
-      }
+      this.interval = setInterval(() => { this.loadOrders(); },5000);
     } else {
       this.authService.setLogout();
     }
+  }
+
+  ionViewDidLeave(){
+    clearInterval(this.interval);
+  }
+
+  autoRefresh(){
+    this.ionViewWillEnter();
   }
 
   doRefresh(event) {
@@ -55,12 +61,9 @@ export class CompanyOrdersPage implements OnInit {
     }, 500);
   }
 
-  public loadOrders() {
-
+  public async loadOrders() {
     this.orderList = [];
-
-    return new Promise(res => {
-
+    return await new Promise(res => {
       this.requestService.getRequestById(this.url, 'company', this.authService.getProfileID()).subscribe(dataResponse => {
         if(dataResponse['success']) {
           for (let order of dataResponse['result']) {
@@ -73,7 +76,6 @@ export class CompanyOrdersPage implements OnInit {
       }, error => {
         this.toolsService.showAlert();
       })
-
     });
   }
 

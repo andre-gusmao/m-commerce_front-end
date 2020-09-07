@@ -5,8 +5,6 @@ import { ToolsService } from 'src/app/services/tools/tools.service';
 import { MenuService } from '../../services/menu/menu.service';
 import { AlertController } from '@ionic/angular';
 import { ShoppingBagService } from 'src/app/services/shopping-bag/shopping-bag.service';
-import { IOrder } from '../../inferfaces/order';
-import { IOrderItem } from '../../inferfaces/orderItem';
 
 @Component({
   selector: 'app-login',
@@ -15,8 +13,8 @@ import { IOrderItem } from '../../inferfaces/orderItem';
 })
 export class LoginPage implements OnInit {
 
-  email: string = "turistas@kw.com";
-  password: string = "turi2020";
+  email: string = "quiosque@kw.com";
+  password: string = "quio2020";
   logado: boolean = false;
   isEmpty: boolean = false;
   showPassword: boolean = false;
@@ -28,7 +26,6 @@ export class LoginPage implements OnInit {
     public menuService: MenuService,
     public toolsService: ToolsService,
     public alertController: AlertController,
-    public bagService: ShoppingBagService
   ) {}
 
   ngOnInit() { }
@@ -71,7 +68,7 @@ export class LoginPage implements OnInit {
           this.toolsService.goToPage('/checkins');
         }
       } else {
-        this.toolsService.showToast(dataResponse['message']);
+        this.toolsService.showToast(dataResponse['message'],2000,"danger");
       }
       this.email = "";
       this.password = "";
@@ -106,10 +103,6 @@ export class LoginPage implements OnInit {
     } else {
       this.passwordIcon = 'eye';
     }
-  }
-
-  public async clear(){
-    this.bagService.clearOrder();
   }
 
 }

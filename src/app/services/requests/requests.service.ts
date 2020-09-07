@@ -68,14 +68,14 @@ export class RequestsService {
     return this.http.post(url, data, {headers: headers}).pipe(map(res => res));
   }
 
-  getRequest(endpoint: string, paramName: string, paramValue: string): Observable<any>   {
+  private getRequest(endpoint: string, paramName: string, paramValue: string): Observable<any>   {
     // let url = environment.endpointURL + endpoint + this.getKWToken();
     let url = environment.endpointURL + endpoint;
     let headers = this.getHeaders();
     return this.http.get<any>(url, {}).pipe(map(res => res));
   }
 
-  getRequestById(endpoint: string, paramName: string, paramValue: string): Observable<any>   {
+  public getRequestById(endpoint: string, paramName: string, paramValue: string): Observable<any>   {
     // let url = environment.endpointURL + endpoint + this.getKWToken() + '&' + paramName + '=' + paramValue;
     let url = environment.endpointURL + endpoint + '?' + paramName + '=' + paramValue;
     let headers = this.getHeaders();
