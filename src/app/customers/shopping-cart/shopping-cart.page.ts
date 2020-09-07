@@ -3,6 +3,9 @@ import { AuthenticationsService } from 'src/app/services/authentications/authent
 import { ToolsService } from 'src/app/services/tools/tools.service';
 import { ShoppingCartService } from 'src/app/services/shopping-cart/shopping-cart.service';
 import { RequestsService } from '../../services/requests/requests.service';
+import { ShoppingBagService } from 'src/app/services/shopping-bag/shopping-bag.service';
+import { IOrderItem } from './../../inferfaces/orderItem';
+import { IOrder } from './../../inferfaces/order';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -21,7 +24,8 @@ export class ShoppingCartPage implements OnInit {
     public toolsService: ToolsService,
     public requestService: RequestsService,
     public ShopCartSrc: ShoppingCartService,
-    public authService: AuthenticationsService
+    public authService: AuthenticationsService,
+    public ShopBagSrc: ShoppingBagService
   ) { }
 
   ngOnInit() {}
@@ -34,61 +38,75 @@ export class ShoppingCartPage implements OnInit {
     }
   }
 
-  private loadOrderItems(){
+  private async loadOrderItems(){
     this.orderItems = [];
-    this.orderItems = this.ShopCartSrc.getOrderItems();
+    this.orderItems = await this.ShopBagSrc.getListOrderItem("item");
     if(this.orderItems.length > 0) {
-      this.totalOrder = this.orderItems[0].order_total_price;
-      this.totalOrder = this.orderItems[0].items.reduce( (sum,item) => {
-        return sum + item[0].item_total_price;
-      }, 0);
+      this.totalOrder = this.orderItems.reduce( (sum,item) => { return sum + item.item_total_price; }, 0);
+    } else {
+      this.totalOrder = 0;
     }
   }
 
-  public upItem(i: number = 0){
-    this.ShopCartSrc.incraseItem(i);
+  public async upItem(order_item_name: string = ""){
+    let order: IOrder = await this.ShopBagSrc.getOrder("order");
+    let orderItem: IOrderItem = await this.ShopBagSrc.getOrderItem(order_item_name);
+    if(orderItem){
+      await this.ShopBagSrc.increaseOrder(order,orderItem);
+      await this.ShopBagSrc.increaseOrderItem(orderItem);
+    }
     this.ionViewWillEnter();
   }
 
-  public downItem(i: number = 0){
-    this.ShopCartSrc.decraseItem(i);
+  public async downItem(order_item_name: string = ""){
+    let order: IOrder = await this.ShopBagSrc.getOrder("order");
+    let orderItem: IOrderItem = await this.ShopBagSrc.getOrderItem(order_item_name);
+    if(orderItem){
+      await this.ShopBagSrc.decreaseOrder(order,orderItem);
+      await this.ShopBagSrc.decreaseOrderItem(orderItem);
+    }
     this.ionViewWillEnter();
   }
 
   public async registerOrder(){
+    let order: IOrder = await this.ShopBagSrc.getOrder("order");
 
     let dataRequest = {
       id_company: this.authService.getCompanyID(),
       id_customer: this.authService.getProfileID(),
-      order_total_price: this.ShopCartSrc.orderItems[0].order_total_price,
-      order_status: this.ShopCartSrc.orderItems[0].order_status,
-      order_payment_status: this.ShopCartSrc.orderItems[0].order_payment_status,
-      order_payment_method: this.ShopCartSrc.orderItems[0].order_payment_method,
+      order_total_price: order.order_total_price,
+      order_status: order.order_status,
+      order_payment_status: order.order_payment_status,
+      order_payment_method: order.order_payment_method,
       items: []
     }
     
-    for(let i = 0; i < this.orderItems[0].items.length; i++){
+    for(let i = 0; i < this.orderItems.length; i++){
       dataRequest.items.push(
         {
           id_catalog: this.authService.getCatalogID(),
-          id_product: this.ShopCartSrc.orderItems[0].items[i][0].id_product,
-          item_product_name: this.ShopCartSrc.orderItems[0].items[i][0].item_product_name,
-          item_quantity: this.ShopCartSrc.orderItems[0].items[i][0].item_quantity,
-          item_unit_price: this.ShopCartSrc.orderItems[0].items[i][0].item_unit_price,
-          item_total_price: this.ShopCartSrc.orderItems[0].items[i][0].item_quantity * this.ShopCartSrc.orderItems[0].items[i][0].item_unit_price,
-          item_note: this.ShopCartSrc.orderItems[0].items[i][0].item_note
+          id_product: this.orderItems[i].id_product,
+          item_product_name: this.orderItems[i].item_product_name,
+          item_quantity: this.orderItems[i].item_quantity,
+          item_unit_price: this.orderItems[i].item_unit_price,
+          item_total_price: this.orderItems[i].item_quantity * this.orderItems[i].item_unit_price,
+          item_note: this.orderItems[i].item_note
         }
       );
     }
-    
-    this.requestService.postRequest(dataRequest, this.url).subscribe(async dataResponse => {
+
+    console.log(dataRequest);
+
+    await this.requestService.postRequest(dataRequest, this.url).subscribe(async dataResponse => {
       if (dataResponse[0]['success']) {
+        this.ShopBagSrc.clearOrder();
         this.toolsService.showToast(dataResponse[0]['message'],2000,'success');
         this.toolsService.goToPage(this.listPage);
-        this.ShopCartSrc.clearOrderItems();
       }else{
         this.toolsService.showToast(dataResponse[0]['message'],2000,'warning');
       }
+    }, error => {
+      console.log(error);
     });
 
   }

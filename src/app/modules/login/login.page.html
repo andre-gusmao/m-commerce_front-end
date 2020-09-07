@@ -36,22 +36,12 @@
             </ion-button>
         </div>
     </div>
+    <!--itens -->
+    
     <div style="text-align: center;">
-        <ion-button size="small" type="submit" fill="outline" shape="round" (click)="insere2()">Insere 2 items</ion-button>
-        <ion-button size="small" type="submit" fill="outline" shape="round" (click)="retorna2()">Retorna 2 items</ion-button>
+        <ion-button size="small" type="submit" fill="outline" shape="round" (click)="clear()">clear</ion-button>
     </div>
-<!--
-    <div style="text-align: center;">
-        <ion-button size="small" type="submit" fill="outline" shape="round" (click)="insertOrder()">insertOrder</ion-button>
-        <ion-button size="small" type="submit" fill="outline" shape="round" (click)="deleteOrder()">deleteOrder</ion-button>
-        <ion-button size="small" type="submit" fill="outline" shape="round" (click)="getOrder()">getOrder</ion-button>
-        <ion-button size="small" type="submit" fill="outline" shape="round" (click)="insertItem()">insertItem</ion-button>
-        <ion-button size="small" type="submit" fill="outline" shape="round" (click)="deleteItem()">deleteItem</ion-button>
-        <ion-button size="small" type="submit" fill="outline" shape="round" (click)="getItem()">getItem</ion-button>
-        <ion-button size="small" type="submit" fill="outline" shape="round" (click)="clearStorage()">clearStorage</ion-button>
-        <ion-button size="small" type="submit" fill="outline" shape="round" (click)="TrataItems()">TrataItems</ion-button>
-    </div>
--->
+
     <div *ngIf="authService.getLoginSuccessful()">
         <ion-item>
             <ion-label style="text-align: center;color: green;">VOCE ESTA LOGADO!!!!</ion-label>

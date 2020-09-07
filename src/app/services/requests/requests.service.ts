@@ -60,12 +60,12 @@ export class RequestsService {
     return headers;
   }
 
-  postRequest(data: any, endpoint: string): Observable<any> {
+  public postRequest(data: any, endpoint: string): Observable<any> {
     //let url = environment.endpointURL + endpoint + this.getKWToken();
     let url = environment.endpointURL + endpoint;
     let headers = this.getHeaders();
     data = JSON.stringify(data);
-    return this.http.post<any>(url, data, {}).pipe(map(res => res));
+    return this.http.post(url, data, {headers: headers}).pipe(map(res => res));
   }
 
   getRequest(endpoint: string, paramName: string, paramValue: string): Observable<any>   {

@@ -12,19 +12,19 @@
   </div>
 
   <div *ngIf="totalOrder != 0" style="text-align: center;">
-    <ion-item>
+    <ion-item detail="false">
       <ion-label style="text-align: center;">Itens no seu pedido</ion-label>
     </ion-item>
   </div>
 
   <!-- SOLUCAO COM ION-GRID -->
   <div *ngIf="totalOrder != 0">
-    <ion-grid *ngFor="let listItems of orderItems[0].items; let i = index;" style="width: 100%;">
-      <ion-row *ngFor="let item of listItems">
+    <ion-grid style="width: 100%;">
+      <ion-row [ngClass]="(i % 2 == 0) ? 'even' : 'odd'" *ngFor="let item of orderItems; let i = index;">
         <ion-col size="3">
-          <ion-icon color="primary" size="smaller" name="remove-outline" (click)="downItem(i)"></ion-icon>
+          <ion-icon color="primary" size="smaller" name="remove-outline" (click)="downItem(item.order_item_name)"></ion-icon>
           <ion-text>&nbsp;{{item.item_quantity}}&nbsp;</ion-text>
-          <ion-icon color="primary" size="smaller" name="add-outline" (click)="upItem(i)"></ion-icon>
+          <ion-icon color="primary" size="smaller" name="add-outline" (click)="upItem(item.order_item_name)"></ion-icon>
         </ion-col>
         <ion-col size="6">
           <ion-text>{{item.item_product_name}}</ion-text>

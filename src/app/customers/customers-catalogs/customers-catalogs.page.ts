@@ -44,6 +44,7 @@ export class CustomersCatalogsPage implements OnInit {
     if ( this.authService.getLoginSuccessful() ) {
       this.id_company = this.authService.getCompanyID();
       this.id_catalog = this.authService.getCatalogID(),
+      this.id_customer = this.authService.getProfileID();
       this.loadCatalog();
     } else {
       this.ShopCartSrc.clearCatalog();
@@ -87,6 +88,7 @@ export class CustomersCatalogsPage implements OnInit {
   }
 
   async showItem(product: any) {
+    let storageItem: IOrderItem;
     const itemDetail = await this.modalCtrl.create({
       component: ItemDetailsPage,
       componentProps: {
@@ -111,7 +113,7 @@ export class CustomersCatalogsPage implements OnInit {
       this.customer_note = data.customer_note;
 
       let item: IOrderItem = {
-        order_item_name: (await this.ShopBagSrc.nextOrderItem("item")).toString(),
+        order_item_name: "item" + product.id_product.toString().trim(),
         id_catalog: this.id_catalog,
         id_product: product.id_product,
         item_product_name: product.product_name,
@@ -142,7 +144,13 @@ export class CustomersCatalogsPage implements OnInit {
           this.ShopBagSrc.increaseOrder(order,item);
           console.log("increaseOrder",order);
         }
-        this.ShopBagSrc.setOrderItem(item);
+
+        storageItem = await this.ShopBagSrc.getOrderItem(item.order_item_name);
+        if(!storageItem) {
+          this.ShopBagSrc.setOrderItem(item);
+        } else {
+          this.ShopBagSrc.increaseOrderItem(item);
+        }
         console.log("increaseItem",item);
         this.toolsService.showToast(item.item_product_name + " adicionado ao pedido");
       }

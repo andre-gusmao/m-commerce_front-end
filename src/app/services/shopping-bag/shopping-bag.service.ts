@@ -19,11 +19,11 @@ export class ShoppingBagService {
     return await this.storage.set(key,value);
   }
 
-  private async remove(key: string){
+  public async remove(key: string){
     return await this.storage.remove(key);
   }
 
-  private async clear(){
+  public async clear(){
     return await this.storage.clear();
   }
 
@@ -147,10 +147,21 @@ export class ShoppingBagService {
 
   public async decreaseOrder(order: IOrder, orderItem: IOrderItem){
     if( (order.order_item_quantity > 0) && (order.order_total_price > 0) ){
-      order.order_item_quantity -= orderItem.item_quantity;
-      order.order_total_price -= orderItem.item_total_price;
+      order.order_item_quantity -= 1;
+      order.order_total_price -= orderItem.item_unit_price;
       await this.delOrder(order.order_name);
-      await this.setOrder(order);
+      if(order.order_item_quantity > 0) {
+        await this.setOrder(order);
+      }
+    }
+  }
+
+  public async clearOrder(){
+    let list = await this.keys();
+    if(list){
+      for(let i = 0; i < list.length; i++){
+        await this.remove(list[i]);
+      }
     }
   }
 
