@@ -159,6 +159,14 @@ const routes: Routes = [
     path: 'payments',
     loadChildren: () => import('./customers/payments/payments.module').then( m => m.PaymentsPageModule)
   },
+  {
+    path: 'workers-orders',
+    loadChildren: () => import('./workers/workers-orders/workers-orders.module').then( m => m.WorkersOrdersPageModule)
+  },
+  {
+    path: 'workers-orders-detail',
+    loadChildren: () => import('./workers/workers-orders-detail/workers-orders-detail.module').then( m => m.WorkersOrdersDetailPageModule)
+  },
 ];
 
 @NgModule({

@@ -143,6 +143,11 @@ export class MenuService {
       "icon": 'person'
     },
     {
+      "title": 'Entregas',
+      "url": '/workers-orders',
+      "icon": 'walk'
+    },
+    {
       "title": 'Compartilhe',
       "url": '/share',
       "icon": 'share-social-outline'

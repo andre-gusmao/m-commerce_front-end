@@ -4,7 +4,6 @@ import { RequestsService } from 'src/app/services/requests/requests.service';
 import { ModalController } from '@ionic/angular';
 import { ToolsService } from 'src/app/services/tools/tools.service';
 import { CompanyOrderDetailsPage } from '../company-order-details/company-order-details.page';
-import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
 
 @Component({
   selector: 'app-company-orders',

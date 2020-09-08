@@ -65,7 +65,7 @@ export class RequestsService {
     let url = environment.endpointURL + endpoint;
     let headers = this.getHeaders();
     data = JSON.stringify(data);
-    return this.http.post(url, data, {headers: headers}).pipe(map(res => res));
+    return this.http.post(url, data, {}).pipe(map(res => res));
   }
 
   private getRequest(endpoint: string, paramName: string, paramValue: string): Observable<any>   {

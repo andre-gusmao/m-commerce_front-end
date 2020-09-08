@@ -64,6 +64,8 @@ export class LoginPage implements OnInit {
         this.toolsService.showToast('Logado com sucesso');
         if (dataResponse['profileType'] == "2") {//companies
           this.toolsService.goToPage('/company-orders');
+        } else if (dataResponse['profileType'] == "3") {//workers
+          this.toolsService.goToPage('/workers-orders');
         } else {//customers
           this.toolsService.goToPage('/checkins');
         }
