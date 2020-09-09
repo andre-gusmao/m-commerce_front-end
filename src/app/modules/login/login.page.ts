@@ -13,8 +13,8 @@ import { ShoppingBagService } from 'src/app/services/shopping-bag/shopping-bag.s
 })
 export class LoginPage implements OnInit {
 
-  email: string = "quiosque@kw.com";
-  password: string = "quio2020";
+  email: string = "";
+  password: string = "";
   logado: boolean = false;
   isEmpty: boolean = false;
   showPassword: boolean = false;
