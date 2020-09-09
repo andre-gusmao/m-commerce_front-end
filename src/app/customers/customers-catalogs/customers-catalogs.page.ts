@@ -1,5 +1,5 @@
 import { ShoppingBagService } from 'src/app/services/shopping-bag/shopping-bag.service';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { RequestsService } from 'src/app/services/requests/requests.service';
 import { ToolsService } from 'src/app/services/tools/tools.service';
 import { AuthenticationsService } from 'src/app/services/authentications/authentications.service';
@@ -8,6 +8,7 @@ import { ItemDetailsPage } from '../item-details/item-details.page';
 import { ShoppingCartService } from 'src/app/services/shopping-cart/shopping-cart.service';
 import { IOrderItem } from './../../inferfaces/orderItem';
 import { IOrder } from './../../inferfaces/order';
+import { IonSlides } from '@ionic/angular'
 
 @Component({
   selector: 'app-customers-catalogs',
@@ -28,6 +29,11 @@ export class CustomersCatalogsPage implements OnInit {
   id_company: string = "";
   id_customer: string = "";
   id_catalog: string = "";
+  totalGroups: number = 0;
+  teste: string = "";
+  @ViewChild(IonSlides) slides : IonSlides;
+  currentIndex: number = 0;
+  groupItems: any = [];
 
   constructor(
     public requestService: RequestsService,
@@ -64,7 +70,7 @@ export class CustomersCatalogsPage implements OnInit {
       this.toolsService.showToast("Faça checkin para carregar o cardapio");
       this.toolsService.goToPage('checkins');
     }
-  }
+  } 
 
   private async loadCustomerCatalog() {
     this.ShopCartSrc.clearCatalog();
@@ -72,7 +78,7 @@ export class CustomersCatalogsPage implements OnInit {
       this.requestService.getRequestById(this.url, 'company', this.id_company).subscribe(dataResponse => {
         if (dataResponse['success']) {
           for (let product of dataResponse['result']) {
-            this.ShopCartSrc.appCatalog.push(product);
+            this.ShopCartSrc.appCatalog.push(product);            
           }
           this.hasCatalog = true;
         } else {
@@ -170,10 +176,40 @@ export class CustomersCatalogsPage implements OnInit {
         item['name'] = name;
         item['items'] = this.ShopCartSrc.appCatalog.filter( (item) => { return item.product_category_name === name; } );
         filGroup.push(item);
+        this.totalGroups++;
       }
     }
 
     this.ShopCartSrc.appCategory = filGroup;
+  }
+
+  public async ionSlideDidChange(){
+    this.currentIndex = await this.slides.getActiveIndex();
+    this.loadGroupItems();
+  }
+
+  public async ionSlidesDidLoad(){
+    this.loadGroupItems();
+  }
+
+  public nextGroup(){
+    this.currentIndex++;
+    this.slides.slideTo(this.currentIndex);
+  }
+
+  public previousGroup(){
+    this.currentIndex--;
+    this.slides.slideTo(this.currentIndex);    
+  }
+
+  public loadGroupItems(){
+    let groupName = this.ShopCartSrc.appCategory[this.currentIndex].name;
+    this.groupItems = [];
+    for (let product of this.ShopCartSrc.appCatalog) {
+      if(product.product_category_name === groupName){
+        this.groupItems.push(product);
+      }
+    }
   }
 
 }

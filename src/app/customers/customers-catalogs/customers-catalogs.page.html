@@ -5,23 +5,37 @@
       <h5>Quiosque não possui cardápio cadastro</h5>
     </ion-item>
   </div>
-  <ion-slides *ngIf="hasCatalog" pager="false" scrollbar="false">
-    <ion-slide *ngFor="let group of ShopCartSrc.appCategory">
+  <ion-slides scrollbar="true" *ngIf="hasCatalog" [options]="slideOpts" pager="false"
+    (ionSlideDidChange)="ionSlideDidChange()" (ionSlidesDidLoad)="ionSlidesDidLoad()">
+    <ion-slide *ngFor="let group of ShopCartSrc.appCategory; let t = index;">
       <div style="width: 100%;">
-        <ion-list>
-          <ion-list-header>{{group.name}}</ion-list-header>
-          <ion-item (click)="showItem(item)" *ngFor="let item of group.items">
-            <ion-thumbnail slot="end">
-              <img src="../../../assets/aguacoco.jpg">
-            </ion-thumbnail>
-            <ion-label>
-              <h3>{{item.product_name}}</h3>
-              <p>{{item.product_description}}</p>
-              <p>{{item.catalog_item_price | currency:"BRL":"symbol"}}</p>
-            </ion-label>
-          </ion-item>
-        </ion-list>
+        <ion-item lines="none" style="text-align: center;">
+          <ion-buttons *ngIf="t > 0" slot="start" (click)="previousGroup()">
+            <ion-icon name="arrow-back-outline" slot="end"></ion-icon>
+          </ion-buttons>
+          <ion-text style="font-weight: bold;">{{group.name}}</ion-text>
+          <ion-buttons *ngIf="(t + 1) < totalGroups" slot="end" (click)="nextGroup()">
+            <ion-icon name="arrow-forward-outline" slot="end"></ion-icon>
+          </ion-buttons>
+        </ion-item>
       </div>
     </ion-slide>
   </ion-slides>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content pullingIcon="chevron-down-circle-outline" refreshingSpinner="circles"
+      refreshingText="Carregando...">
+    </ion-refresher-content>
+  </ion-refresher>
+  <ion-list class="ion-no-padding">
+    <ion-item (click)="showItem(item)" *ngFor="let item of groupItems">
+      <ion-thumbnail slot="end">
+        <img src="../../../assets/aguacoco.jpg">
+      </ion-thumbnail>
+      <ion-label>
+        <h3>{{item.product_name}}</h3>
+        <p>{{item.product_description}}</p>
+        <p>{{item.catalog_item_price | currency:"BRL":"symbol"}}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
 </ion-content>
