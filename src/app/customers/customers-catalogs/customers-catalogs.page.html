@@ -5,7 +5,7 @@
       <h5>Quiosque não possui cardápio cadastro</h5>
     </ion-item>
   </div>
-  <ion-slides scrollbar="true" *ngIf="hasCatalog" [options]="slideOpts" pager="false"
+  <ion-slides scrollbar="true" *ngIf="hasCatalog" pager="false"
     (ionSlideDidChange)="ionSlideDidChange()" (ionSlidesDidLoad)="ionSlidesDidLoad()">
     <ion-slide *ngFor="let group of ShopCartSrc.appCategory; let t = index;">
       <div style="width: 100%;">
@@ -21,11 +21,6 @@
       </div>
     </ion-slide>
   </ion-slides>
-  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
-    <ion-refresher-content pullingIcon="chevron-down-circle-outline" refreshingSpinner="circles"
-      refreshingText="Carregando...">
-    </ion-refresher-content>
-  </ion-refresher>
   <ion-list class="ion-no-padding">
     <ion-item (click)="showItem(item)" *ngFor="let item of groupItems">
       <ion-thumbnail slot="end">
