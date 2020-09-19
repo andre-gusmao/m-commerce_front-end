@@ -142,6 +142,9 @@ export class ToolsService {
         statusText = "Em Produção";
         break;
       case "4":
+        statusText = "Pronto";
+        break;
+      case "4":
         statusText = "Entregue";
         break;
       case "5":

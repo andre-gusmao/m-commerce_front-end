@@ -19,9 +19,9 @@
 
     <ion-row>
       <ion-col size="3">N.&#176;</ion-col>
-      <ion-col size="4">Data</ion-col>
+      <ion-col size="3">Data</ion-col>
       <ion-col size="3">Status</ion-col>
-      <ion-col class="ion-text-end" size="3">Mesa</ion-col>
+      <ion-col size="3">Mesa</ion-col>
     </ion-row>
 
     <ion-row *ngFor="let order of orderList; let i = index;" (click)="actionWithOrder(order.id_order)">
@@ -40,7 +40,7 @@
           {{order.order_status}}
         </ion-text>
       </ion-col>
-      <ion-col class="ion-text-end" size="3">
+      <ion-col size="3">
         <ion-text [ngClass]="(i % 2 == 0) ? 'odd' : 'even'">
           {{order.id_checkin}}
         </ion-text>

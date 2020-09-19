@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="br.com.kioskwide" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>kioskwide</name>
-    <description>Kiosk Wide</description>
+    <name>Kiosk Wide</name>
+    <description>Kiosk Wide e plataforma que te faz economizar enquanto curte a praia. Aproveite e compartilhe com todos!</description>
     <author email="contato@kioskwide.com.br" href="https://kioskwide.com.br/">Kiosk Wide</author>
     <content src="index.html" />
     <access origin="*" />

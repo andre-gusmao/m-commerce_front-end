@@ -53,11 +53,9 @@ export class ShoppingBagService {
     this.storage.set(item.order_item_name,item)
     .then(
       () => { 
-        console.log("Inserted item", item.order_item_name);
         result = true;
       },
       error => {
-        console.warn("Item was not entered ", error);
         result = false;
       }
     );

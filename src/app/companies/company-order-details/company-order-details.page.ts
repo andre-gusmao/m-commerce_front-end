@@ -17,6 +17,7 @@ export class CompanyOrderDetailsPage implements OnInit {
   order_date: string;
   order_time: string;
   order_status: string;
+  order_status_id: string;
   order_status_text: string;
   order_total_price: string;
   itemsList: any = [];
@@ -47,12 +48,12 @@ export class CompanyOrderDetailsPage implements OnInit {
   private async loadOderDetails(){
     return new Promise(res => {
       this.requestService.getRequestById(this.url, 'order', this.id_order).subscribe(dataResponse => {
-        console.log(dataResponse['result']);
         for (let item of dataResponse['result']) {
           this.company_name = item.company_name;
           this.order_date = item.order_date;
           this.order_time = item.order_time;
           this.order_status = item.order_status;
+          this.order_status_id = item.order_status_id;
           this.order_status_text = item.order_status_text;
           this.order_total_price = item.order_total_price;
           this.id_checkin = item.id_checkin;

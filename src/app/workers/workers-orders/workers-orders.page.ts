@@ -66,7 +66,9 @@ export class WorkersOrdersPage implements OnInit {
       this.requestService.getRequestById(this.url, 'company', this.authService.getProfileID()).subscribe(dataResponse => {
         if(dataResponse['success']) {
           for (let order of dataResponse['result']) {
-            this.orderList.push(order);
+            if(order.order_status_id >= '3') {
+              this.orderList.push(order);
+            }
           }
           this.hasOrders = true;
         } else {
