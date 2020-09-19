@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ToastController, LoadingController, AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { Platform } from '@ionic/angular';
 
 @Injectable({
   providedIn: 'root'
@@ -12,11 +13,26 @@ export class ToolsService {
     private loadingCtrl: LoadingController,
     private router: Router,
     public toast: ToastController,
-    public alertCtrl: AlertController
+    public alertCtrl: AlertController,
+    public platform: Platform
   ) { }
 
   goToPage(_page: string){
     this.router.navigate([_page]);
+  }
+
+  public userPlatform(): string{
+    let platformName: string = "";
+    if (this.platform.is("android")) {
+      platformName = "android";
+    } else if (this.platform.is("ios")) {
+      platformName = "ios";
+    } else if (this.platform.is("desktop")) {
+      platformName = "desktop";
+    } else {
+      platformName = "another";
+    }
+    return platformName;
   }
 
   async showToast(_message: string, _duration: number = 2000, _cssClass: string = 'success') {
