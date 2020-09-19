@@ -115,11 +115,9 @@ export class ShoppingBagService {
     this.storage.set(order.order_name,order)
     .then(
       () => { 
-        console.log("Inserted order", order.order_name);
         result = true;
       },
       error => {
-        console.warn("Order was not entered ", error);
         result = false;
       }
     );
