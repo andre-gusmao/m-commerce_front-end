@@ -4,6 +4,7 @@ import { AuthenticationsService } from '../../services/authentications/authentic
 import { ToolsService } from 'src/app/services/tools/tools.service';
 import { RequestsService } from '../../services/requests/requests.service';
 import { CitiesService } from '../../services/cities/cities.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-customers',
@@ -17,11 +18,10 @@ export class CustomersPage implements OnInit {
   cellPhone: string;
   password: string;
   confirmPassword: string;
+  zipCode: string;
   state: string;
   city: string;
   profileID: string;
-  stateList: any = [];
-  cityList: any = [];
   showPassword: boolean = false;
   showConfirmPassword: boolean = false;
   passwordIcon: string = 'eye';
@@ -32,12 +32,11 @@ export class CustomersPage implements OnInit {
     public requestService: RequestsService,
     public toolsService: ToolsService,
     public citiesService: CitiesService,
-    public authService: AuthenticationsService
+    public authService: AuthenticationsService,
+    private http: HttpClient
   ) { }
 
-  ngOnInit() {
-    this.stateList = this.citiesService.getStateList();
-  }
+  ngOnInit() {}
 
   ionViewWillEnter() {
     this.profileID = this.authService.getProfileID();
@@ -54,6 +53,7 @@ export class CustomersPage implements OnInit {
     this.cellPhone = "";
     this.password = "";
     this.confirmPassword = "";
+    this.zipCode = "";
     this.state = "";
     this.city = "";
   }
@@ -66,6 +66,7 @@ export class CustomersPage implements OnInit {
         this.cellPhone = dataRes['cellPhone'];
         this.password = atob(dataRes['password']);
         this.confirmPassword = atob(dataRes['password']);
+        this.zipCode = dataRes['zipCode'];
         this.state = dataRes['state'];
         this.city = dataRes['city'];
       } else {
@@ -80,6 +81,7 @@ export class CustomersPage implements OnInit {
       email: btoa(this.email.toLocaleLowerCase()),
       cellPhone: this.cellPhone,
       password: btoa(this.password.toLocaleLowerCase()),
+      zipCode: this.zipCode,
       state: this.state,
       city: this.city,
       profileType: '1',
@@ -91,9 +93,9 @@ export class CustomersPage implements OnInit {
       { value: this.cellPhone, message: 'Informe o celular' },
       { value: this.password, message: 'Informe a senha' },
       { value: this.confirmPassword, message: 'Informe confirme a senha' },
-      { value: this.state, message: 'Selecione o estado' },
-      { value: this.city, message: 'Selecione a cidade' }
-    ]
+      { value: this.zipCode, message: 'Informe o CEP com 8 dígitos', lenght: 8 }
+    ];
+
     if (this.toolsService.validField(fields) == false) {
       return;
     }
@@ -122,14 +124,6 @@ export class CustomersPage implements OnInit {
     );
   }
 
-  public loadCities(): void {
-    this.city = "";
-    if (this.state) {
-      this.cityList = [];
-      this.cityList = this.citiesService.citiesByState(this.state);
-    }
-  }
-
   public togglePassword(){
     this.showPassword = !this.showPassword;
 
@@ -147,6 +141,24 @@ export class CustomersPage implements OnInit {
       this.confirmPasswordIcon = 'eye-off';
     } else {
       this.confirmPasswordIcon = 'eye';
+    }
+  }
+
+  public getAddress(){
+    let url: string = "https://viacep.com.br/ws/" + this.zipCode + "/json/";
+    if(this.zipCode && this.zipCode.length >= 8) {
+      this.http.get(url).subscribe( (res) => {
+        if(res) {
+          this.city = res['localidade'];
+          this.state = res['uf'];
+        } else {
+          this.toolsService.showToast("CEP nao encontrado",2000,"warning");
+          this.city = "";
+          this.state = "";
+        }
+      });
+    } else {
+      this.toolsService.showToast("Informe CEP válido de 8 dígitos",2000,"warning");
     }
   }
 

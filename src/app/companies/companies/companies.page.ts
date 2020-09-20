@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { AuthenticationsService } from '../../services/authentications/authentications.service';
 import { ToolsService } from 'src/app/services/tools/tools.service';
 import { RequestsService } from '../../services/requests/requests.service';
@@ -174,12 +173,10 @@ export class CompaniesPage implements OnInit {
         if(res) {
           this.city = res['localidade'];
           this.state = res['uf'];
-          this.municipalResgistration = res['ibge']
         } else {
           this.toolsService.showToast("CEP nao encontrado",2000,"warning");
           this.city = "";
           this.state = "";
-          this.municipalResgistration = "";
         }
       });
     } else {

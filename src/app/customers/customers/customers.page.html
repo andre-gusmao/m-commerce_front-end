@@ -47,19 +47,18 @@
         </ion-icon>
     </ion-item>
     <ion-item>
-      <ion-label position="floating">UF</ion-label>
-      <ion-select [(ngModel)]="state" name="state" interface="alert" placeholder="Selecione o estado"
-        (ionChange)="loadCities()">
-        <ion-select-option *ngFor="let state of stateList" [value]="state.abbreviation">{{state.stateName}}
-        </ion-select-option>
-      </ion-select>
+        <ion-label position="floating">CEP</ion-label>
+        <ion-input [(ngModel)]="zipCode" (ionBlur)="getAddress()" maxlength="8" type="numeric"></ion-input>
     </ion-item>
+
     <ion-item>
-      <ion-label position="floating">Cidade</ion-label>
-      <ion-select [(ngModel)]="city" name="city" interface="alert" placeholder="Selecione a cidade">
-        <ion-select-option *ngFor="let city of cityList" [value]="city.ibge">{{city.cityName}}
-        </ion-select-option>
-      </ion-select>
+        <ion-label position="floating">UF</ion-label>
+        <ion-input [(ngModel)]="state" readonly></ion-input>
+    </ion-item>
+
+    <ion-item>
+        <ion-label position="floating">Cidade</ion-label>
+        <ion-input [(ngModel)]="city" readonly></ion-input>
     </ion-item>
   </div>
 </ion-content>
