@@ -1,10 +1,10 @@
-import {  async } from '@angular/core/testing';
-import {  Component, OnInit } from '@angular/core';
-import {  Router } from '@angular/router';
-import {  AuthenticationsService } from '../../services/authentications/authentications.service';
-import {  ToolsService } from 'src/app/services/tools/tools.service';
-import {  RequestsService } from '../../services/requests/requests.service';
-import {  CitiesService } from '../../services/cities/cities.service';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthenticationsService } from '../../services/authentications/authentications.service';
+import { ToolsService } from 'src/app/services/tools/tools.service';
+import { RequestsService } from '../../services/requests/requests.service';
+import { CitiesService } from '../../services/cities/cities.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-companies',
@@ -20,12 +20,11 @@ export class CompaniesPage implements OnInit {
   businessman: string;
   cellPhone: string;
   municipalResgistration: string;
+  zipCode: string;
   state: string;
   city: string;
   notes: string;
   profileID: string;
-  stateList: any = [];
-  cityList: any = [];
   dataResponse: any;
   showPassword: boolean = false;
   showConfirmPassword: boolean = false;
@@ -33,16 +32,14 @@ export class CompaniesPage implements OnInit {
   confirmPasswordIcon: string = 'eye';
 
   constructor(
-    private router: Router,
     public requestService: RequestsService,
     public toolsService: ToolsService,
     public citiesService: CitiesService,
-    public authService: AuthenticationsService
+    public authService: AuthenticationsService,
+    private http: HttpClient
   ) {}
 
-  ngOnInit() {
-    this.stateList = this.citiesService.getStateList();
-  }
+  ngOnInit() {}
 
   ionViewWillEnter() {
     this.profileID = this.authService.getProfileID();
@@ -61,6 +58,7 @@ export class CompaniesPage implements OnInit {
       cellPhone: this.cellPhone,
       businessman: this.businessman,
       municipalResgistration: this.municipalResgistration,
+      zipCode: this.zipCode,
       state: this.state,
       city: this.city,
       notes: this.notes,
@@ -69,14 +67,13 @@ export class CompaniesPage implements OnInit {
     }
 
     const fields = [
-      { value: this.email, message: 'Informe o e-mail'      },
-      { value: this.password, message: 'Informe a senha'      },
-      { value: this.confirmPassword, message: 'Informe confirme a senha'      },
-      { value: this.companyName, message: 'Informe o nome fantasia'      },
-      { value: this.businessman, message: 'Informe  o nome do proprietario'      },
-      { value: this.cellPhone, message: 'Informe o celular'      },
-      { value: this.state, message: 'Selecione o estado'      },
-      { value: this.city, message: 'Selecione a cidade'      }
+      { value: this.email, message: 'Informe o e-mail' },
+      { value: this.password, message: 'Informe a senha' },
+      { value: this.confirmPassword, message: 'Informe confirme a senha' },
+      { value: this.companyName, message: 'Informe o nome fantasia' },
+      { value: this.businessman, message: 'Informe  o nome do proprietario' },
+      { value: this.cellPhone, message: 'Informe o celular' },
+      { value: this.zipCode, message: 'Informe o CEP com 8 dígitos', lenght: 8 }
     ]
 
     if (this.toolsService.validField(fields) == false) {
@@ -96,7 +93,7 @@ export class CompaniesPage implements OnInit {
       return
     }
 
-    if (this.profileID != undefined && this.profileID != "") { //update
+    if (this.profileID != undefined && this.profileID != "") {
       dataRequest['profileID'] = this.profileID;
       dataRequest['request_type'] = 'update';
     }
@@ -123,6 +120,7 @@ export class CompaniesPage implements OnInit {
           this.businessman = dataRes['businessman'];
           this.cellPhone = dataRes['cellPhone'];
           this.municipalResgistration = dataRes['municipalResgistration'];
+          this.zipCode = dataRes['zipCode'];
           this.state = dataRes['state'];
           this.city = dataRes['city'];
           this.notes = dataRes['notes'];
@@ -130,7 +128,7 @@ export class CompaniesPage implements OnInit {
           this.toolsService.showToast(dataRes['message']);
         }
       }, error => {
-        this.toolsService.showAlert();
+        this.toolsService.showToast("Não foi possível carregar os dados. Verifique a conexão", 1000, "danger");
       })
     });
   }
@@ -143,17 +141,10 @@ export class CompaniesPage implements OnInit {
     this.businessman = "";
     this.cellPhone = "";
     this.municipalResgistration = "";
+    this.zipCode = "";
     this.state = "";
     this.city = "";
     this.notes = "";
-  }
-
-  public loadCities(): void {
-    this.city = "";
-    if (this.state) {
-      this.cityList = [];
-      this.cityList = this.citiesService.citiesByState(this.state);
-    }
   }
 
   public togglePassword(){
@@ -173,6 +164,26 @@ export class CompaniesPage implements OnInit {
       this.confirmPasswordIcon = 'eye-off';
     } else {
       this.confirmPasswordIcon = 'eye';
+    }
+  }
+
+  public getAddress(){
+    let url: string = "https://viacep.com.br/ws/" + this.zipCode + "/json/";
+    if(this.zipCode && this.zipCode.length >= 8) {
+      this.http.get(url).subscribe( (res) => {
+        if(res) {
+          this.city = res['localidade'];
+          this.state = res['uf'];
+          this.municipalResgistration = res['ibge']
+        } else {
+          this.toolsService.showToast("CEP nao encontrado",2000,"warning");
+          this.city = "";
+          this.state = "";
+          this.municipalResgistration = "";
+        }
+      });
+    } else {
+      this.toolsService.showToast("Informe CEP válido de 8 dígitos",2000,"warning");
     }
   }
 
