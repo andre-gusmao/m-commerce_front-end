@@ -168,20 +168,25 @@ export class CompaniesPage implements OnInit {
 
   public getAddress(){
     let url: string = "https://viacep.com.br/ws/" + this.zipCode + "/json/";
-    if(this.zipCode && this.zipCode.length >= 8) {
-      this.http.get(url).subscribe( (res) => {
-        if(res) {
-          this.city = res['localidade'];
-          this.state = res['uf'];
-        } else {
-          this.toolsService.showToast("CEP nao encontrado",2000,"warning");
-          this.city = "";
-          this.state = "";
-        }
-      });
-    } else {
-      this.toolsService.showToast("Informe CEP válido de 8 dígitos",2000,"warning");
-    }
+    this.toolsService.showLoading("Carregando UF e Cidade").then( () => {
+      if(this.zipCode && this.zipCode.length >= 8) {
+        this.http.get(url).subscribe( (res) => {
+          if(res) {
+            this.city = res['localidade'];
+            this.state = res['uf'];
+          } else {
+            this.toolsService.showToast("CEP nao encontrado",2000,"warning");
+            this.city = "";
+            this.state = "";
+          }
+        });
+      } else {
+        this.toolsService.showToast("Informe CEP válido de 8 dígitos",2000,"warning");
+      }
+  })
+  .finally(() => {
+    this.toolsService.hideLoading();
+  })
   }
 
 }
