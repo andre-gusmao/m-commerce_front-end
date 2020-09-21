@@ -1,7 +1,6 @@
 import { ToolsService } from './../../services/tools/tools.service';
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationsService } from 'src/app/services/authentications/authentications.service';
-import { ToolsService } from 'src/app/services/tools/tools.service';
 
 @Component({
   selector: 'app-logout',
