@@ -149,7 +149,7 @@ export class CustomersPage implements OnInit {
     this.toolsService.showLoading("Carregando UF e Cidade").then( () => {
       if(this.zipCode && this.zipCode.length >= 8) {
         this.http.get(url).subscribe( (res) => {
-          if(res) {
+          if(res && res['uf']) {
             this.city = res['localidade'];
             this.state = res['uf'];
           } else {
