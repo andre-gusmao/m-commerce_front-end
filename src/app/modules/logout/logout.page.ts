@@ -1,5 +1,7 @@
+import { ToolsService } from './../../services/tools/tools.service';
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationsService } from 'src/app/services/authentications/authentications.service';
+import { ToolsService } from 'src/app/services/tools/tools.service';
 
 @Component({
   selector: 'app-logout',
@@ -9,7 +11,8 @@ import { AuthenticationsService } from 'src/app/services/authentications/authent
 export class LogoutPage implements OnInit {
 
   constructor(
-    public authService: AuthenticationsService
+    public authService: AuthenticationsService,
+    private toolsService: ToolsService
   ) {
     this.authService.setLogout();
   }
@@ -18,6 +21,8 @@ export class LogoutPage implements OnInit {
 
   ionViewWillEnter() {
     this.authService.setLogout();
-    navigator['app'].exitApp();
+    if(this.toolsService.userPlatform() == "android" || this.toolsService.userPlatform() == "ios"){
+      navigator['app'].exitApp();
+    }
   }
 }
