@@ -6,7 +6,7 @@
     </ion-item>
     <ion-item>
       <ion-label position="floating">Numero</ion-label>
-      <ion-input type="number" [(ngModel)]="credit_card_number" value="credit_card_number"></ion-input>
+      <ion-input type="number" [(ngModel)]="credit_card_number" value="credit_card_number" (ionBlur)="getCreditCardLabel()"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label position="floating">Nome</ion-label>
@@ -44,12 +44,14 @@
     <ion-item>
       <ion-label position="floating">Bandeira do Cartao</ion-label>
       <ion-select [(ngModel)]="credit_card_company" name="credit_card_company" interface="alert"
-        placeholder="Selecione a bandeira">
+        placeholder="Selecione a bandeira" disabled>
+        <ion-select-option value="0">Outros</ion-select-option>
         <ion-select-option value="1">Visa</ion-select-option>
         <ion-select-option value="2">Mastercard</ion-select-option>
         <ion-select-option value="3">Amex</ion-select-option>
-        <ion-select-option value="4">ELO</ion-select-option>
-        <ion-select-option value="5">Hiperdcard</ion-select-option>
+        <ion-select-option value="4">Dinners</ion-select-option>
+        <ion-select-option value="5">Discover</ion-select-option>
+        <ion-select-option value="6">JCB</ion-select-option>
       </ion-select>
     </ion-item>
   </div>

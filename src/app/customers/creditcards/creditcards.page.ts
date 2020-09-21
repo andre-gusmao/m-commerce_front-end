@@ -19,6 +19,7 @@ export class CreditcardsPage implements OnInit {
   credit_card_expiration_year: string;
   credit_card_security_code: string;
   credit_card_company: string;
+  credit_card_label: string;
   listYear: any = [];
   url: string = 'customers/creditcards.php';
   listPage: string = 'creditcards-list';
@@ -124,4 +125,42 @@ export class CreditcardsPage implements OnInit {
       this.listYear.push(year+i);
     }
   }
+
+  public getCreditCardLabel(){
+  
+    var regexVisa = /^4[0-9]{12}(?:[0-9]{3})?/;
+    var regexMaster = /^5[1-5][0-9]{14}/;
+    var regexAmex = /^3[47][0-9]{13}/;
+    var regexDiners = /^3(?:0[0-5]|[68][0-9])[0-9]{11}/;
+    var regexDiscover = /^6(?:011|5[0-9]{2})[0-9]{12}/;
+    var regexJCB = /^(?:2131|1800|35\d{3})\d{11}/;
+    var cardNumber = this.credit_card_number;
+
+    this.credit_card_company = '';
+  
+    if(regexVisa.test(cardNumber)){
+     this.credit_card_company = '1';//Visa
+    }
+    if(regexMaster.test(cardNumber)){
+      this.credit_card_company = '2';//Master
+    }
+    if(regexAmex.test(cardNumber)){
+      this.credit_card_company = '3';//Amex
+    }
+    if(regexDiners.test(cardNumber)){
+      this.credit_card_company = '4';//Diners
+    }
+    if(regexDiscover.test(cardNumber)){
+      this.credit_card_company = '5';//Discover
+    }
+    if(regexJCB.test(cardNumber)){
+      this.credit_card_company = '6';//JCB
+    }
+  
+    if(this.credit_card_company === '') {
+      this.credit_card_company = '0';//Outros
+    }
+  
+  }
+
 }
