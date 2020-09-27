@@ -1,9 +1,14 @@
 <app-header></app-header>
 <ion-content>
-  <div *ngIf="!hasCatalog">
-    <ion-item class="ion-no-padding;">
+  <div style="text-align: center; vertical-align: middle" *ngIf="!hasCatalog">
+    <div>
       <h5>Quiosque não possui cardápio cadastro</h5>
-    </ion-item>
+    </div>
+    <div>
+      <ion-button size="default" fill="outline" shape="round" (click)="checkIn()">
+        <ion-icon name="qr-code-outline"></ion-icon>Checkin
+      </ion-button>
+    </div>
   </div>
   <ion-slides scrollbar="true" *ngIf="hasCatalog" pager="false"
     (ionSlideDidChange)="ionSlideDidChange()" (ionSlidesDidLoad)="ionSlidesDidLoad()">

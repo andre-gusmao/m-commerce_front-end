@@ -73,6 +73,7 @@ export class CustomersCatalogsPage implements OnInit {
   } 
 
   private async loadCustomerCatalog() {
+    this.hasCatalog = false;
     this.ShopCartSrc.clearCatalog();
     return new Promise(res => {
       this.requestService.getRequestById(this.url, 'company', this.id_company).subscribe(dataResponse => {
@@ -83,6 +84,7 @@ export class CustomersCatalogsPage implements OnInit {
           this.hasCatalog = true;
         } else {
           this.hasCatalog = false;
+          this.authService.setTableID("");
         }
         this.authService.setCatalogID(dataResponse['result'][0].id_catalog);
         this.loadGroups();
@@ -210,6 +212,10 @@ export class CustomersCatalogsPage implements OnInit {
         this.groupItems.push(product);
       }
     }
+  }
+
+  public checkIn(){
+    this.toolsService.goToPage("checkins")
   }
 
 }
