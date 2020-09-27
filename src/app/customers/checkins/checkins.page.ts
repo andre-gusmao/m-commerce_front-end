@@ -74,6 +74,7 @@ export class CheckinsPage implements OnInit {
 
   public validCatalog(QRCodeText: string): boolean {
     let valid: boolean = true;
+    this.authService.setCompanyID("");
     if (QRCodeText.length > 0) {
       if ((QRCodeText.substr(0, 1).toLocaleUpperCase() != "Q") || (QRCodeText.indexOf('M') == 0) ) {
           valid = false
