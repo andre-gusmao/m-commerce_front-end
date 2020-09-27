@@ -14,6 +14,7 @@ export class CheckinsPage implements OnInit {
 
   QRCodeText: string = "";
   tableID: string = "";
+  id_company: string = "";
 
   constructor(
     public requestService: RequestsService,
@@ -52,9 +53,7 @@ export class CheckinsPage implements OnInit {
           text: 'Cancelar',
           role: 'cancel',
           cssClass: 'secondary',
-          handler: () => {
-            console.log('Confirma Cancelar');
-          }
+          handler: () => {}
         },
         {
           text: 'Ok',
@@ -79,10 +78,11 @@ export class CheckinsPage implements OnInit {
       if ((QRCodeText.substr(0, 1).toLocaleUpperCase() != "Q") || (QRCodeText.indexOf('M') == 0) ) {
           valid = false
         }
-      }
-      else {
+      } else {
         valid = false;
       }
+      this.id_company = QRCodeText.substr(1,QRCodeText.indexOf('M')-1);
+      this.authService.setCompanyID(this.id_company);
       return valid;
   }
 
