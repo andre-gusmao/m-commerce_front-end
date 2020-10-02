@@ -2,5 +2,9 @@
 <network-security-config>
     <domain-config cleartextTrafficPermitted="true">
         <domain includeSubdomains="true">localhost</domain>
+        <domain includeSubdomains="true">http://192.168.0.20</domain>
+        <domain includeSubdomains="true">http://192.168.0.23</domain>
+        <domain includeSubdomains="true">http://kioskwide.com.br</domain>
+        <domain includeSubdomains="true">https://kioskwide.com.br</domain>
     </domain-config>
 </network-security-config>
