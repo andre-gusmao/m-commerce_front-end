@@ -4,7 +4,6 @@ import { RequestsService } from '../../services/requests/requests.service';
 import { ToolsService } from 'src/app/services/tools/tools.service';
 import { MenuService } from '../../services/menu/menu.service';
 import { AlertController } from '@ionic/angular';
-import { ShoppingBagService } from 'src/app/services/shopping-bag/shopping-bag.service';
 
 @Component({
   selector: 'app-login',
@@ -77,7 +76,7 @@ export class LoginPage implements OnInit {
     });
   }
 
-  async registerProfile() {
+  public async registerProfile() {
     const alert = await this.alertController.create({
       header: 'Me conta ...',
       //subHeader: 'Subtitle',
@@ -93,8 +92,29 @@ export class LoginPage implements OnInit {
     await alert.present();
   }
 
-  recoverPassword() {
-    this.toolsService.showToast("Em desenvolvimento");
+  public async recoverPassword() {
+    let dataRequest = {
+      requisicao: 'recover',
+      email: btoa(this.email.toLocaleLowerCase())
+    }
+    if (this.toolsService.validateEmail(this.email, true) == false) {
+      return;
+    }
+    this.requestService.postRequest(dataRequest, 'recover.php').subscribe(
+      async dataResponse => {
+        console.log(dataRequest)
+      if (dataResponse['success']) {
+        this.toolsService.showToast(dataResponse['message']);
+      } else {
+        this.toolsService.showToast(dataResponse['message'],2000,"danger");
+      }
+      this.email = "";
+      this.password = "";
+    }, error => {
+      console.log(error);
+      this.toolsService.showAlert();
+      this.toolsService.showToast("Nao foi possivel realizar a operacao",2000,"danger");
+    });
   }
 
   public togglePassword(){
