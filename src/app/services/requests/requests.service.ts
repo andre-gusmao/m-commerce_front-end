@@ -65,6 +65,7 @@ export class RequestsService {
     let url = environment.endpointURL + endpoint;
     let headers = this.getHeaders();
     data = JSON.stringify(data);
+    console.log("postRequest",headers);
     return this.http.post(url, data, {headers: headers}).pipe(map(res => res));
   }
 
@@ -72,7 +73,22 @@ export class RequestsService {
     // let url = environment.endpointURL + endpoint + this.getKWToken();
     let url = environment.endpointURL + endpoint;
     let headers = this.getHeaders();
+    console.log("getRequest",headers);
     return this.http.get<any>(url, {}).pipe(map(res => res));
+  }
+
+  private getHead(){
+    const authBasic = btoa( environment.userYaPay + ':' + environment.passwordYaPay );
+    const headers = new HttpHeaders()
+    .set('Content-Type', 'application/json')
+    .set('Authorization', 'Basic ' + authBasic)
+    return headers;
+  }
+
+  public getTransaction(): Observable<any>   {
+    let url = environment.endpointYaPay +"/"+ environment.storeCode +"/1";
+    let headers = this.getHead();
+    return this.http.get<any>(url, {headers: headers}).pipe(map(res => res));
   }
 
   public getRequestById(endpoint: string, paramName: string, paramValue: string): Observable<any>   {

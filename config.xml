@@ -103,4 +103,13 @@
     <plugin name="cordova-plugin-splashscreen" spec="5.0.2" />
     <plugin name="cordova-plugin-ionic-webview" spec="^4.0.0" />
     <plugin name="cordova-plugin-ionic-keyboard" spec="^2.0.5" />
+    <allow-navigation href="http://localhost" />
+    <allow-navigation href="http://localhost:8100" />
+    <allow-navigation href="http://192.168.0.20" />
+    <allow-navigation href="http://192.168.0.20/api/" />
+    <allow-navigation href="http://192.168.0.20:8100" />
+    <allow-navigation href="http://kioskwide.com.br" />
+    <allow-navigation href="https://kioskwide.com.br" />
+    <allow-navigation href="http://kioskwide.com.br/api/" />
+    <allow-navigation href="https://kioskwide.com.br/api/" />
 </widget>

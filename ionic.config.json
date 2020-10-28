@@ -3,5 +3,11 @@
   "integrations": {
     "cordova": {}
   },
-  "type": "angular"
+  "type": "angular",
+  "proxies": [
+    {
+      "path": "/login",
+      "proxyUrl": "https://sandbox.gateway.yapay.com.br/checkout/api/v3/transacao"
+    }
+  ]
 }
