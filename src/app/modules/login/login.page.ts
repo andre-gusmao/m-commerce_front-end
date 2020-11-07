@@ -31,20 +31,6 @@ export class LoginPage implements OnInit {
   ) {}
 
   ngOnInit() { }
-
-  public testyapay() {
-    this.yapay.getConsultTransaction("2").subscribe(result => {
-    //this.requestService.getTransaction().subscribe(result => {
-      console.log("YaPay Success");
-      if(result) {
-        console.log(result);
-      }
-    }, error => {
-      console.log("YaPay Error",error);
-    }, () => {
-      console.log("YaPay Finally");
-    });
-  } 
   
   async login() {
     let dataRequest = {
