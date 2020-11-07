@@ -26,6 +26,7 @@ export class CustomersPage implements OnInit {
   showConfirmPassword: boolean = false;
   passwordIcon: string = 'eye';
   confirmPasswordIcon: string = 'eye';
+  customer_cpf: string = "";
 
   constructor(
     private router: Router,
@@ -56,6 +57,7 @@ export class CustomersPage implements OnInit {
     this.zipCode = "";
     this.state = "";
     this.city = "";
+    this.customer_cpf = "";
   }
 
   private loadCustomerProfile(profileID: string = ""): void {
@@ -69,6 +71,7 @@ export class CustomersPage implements OnInit {
         this.zipCode = dataRes['zipCode'];
         this.state = dataRes['state'];
         this.city = dataRes['city'];
+        this.customer_cpf = dataRes['customer_cpf'];
       } else {
         this.toolsService.showToast(dataRes['message']);
       }
@@ -86,6 +89,7 @@ export class CustomersPage implements OnInit {
       city: this.city,
       profileType: '1',
       request_type: '',
+      customer_cpf: this.customer_cpf
     }
     const fields = [
       { value: this.name, message: 'Informe o nome' },
@@ -95,6 +99,10 @@ export class CustomersPage implements OnInit {
       { value: this.confirmPassword, message: 'Informe confirme a senha' },
       { value: this.zipCode, message: 'Informe o CEP com 8 dígitos', lenght: 8 }
     ];
+
+    if(this.toolsService.isValidCPF(this.customer_cpf) == false){
+      return;
+    }
 
     if (this.toolsService.validField(fields) == false) {
       return;
