@@ -12,13 +12,13 @@ import { ToolsService } from 'src/app/services/tools/tools.service';
 export class ShoppingCartCardPage implements OnInit {
   
   @Input() card: ICreditCard;
-  card_number: string;
-  card_expiration_month: string;
-  card_expiration_year: string;
-  card_security_code: string;
-  card_printed_name: string;
-  customer_cpf: string;
-  card_company: string;
+  card_number: string = "6505070014192645";
+  card_expiration_month: string = "10";
+  card_expiration_year: string = "2024";
+  card_security_code: string = "741";
+  card_printed_name: string = "TIMOTEO BEGA";
+  customer_cpf: string = "29742549850";
+  card_company: string = "5";
   listYear: any = [];
 
   constructor(

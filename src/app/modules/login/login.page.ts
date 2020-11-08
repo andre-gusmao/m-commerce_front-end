@@ -73,7 +73,6 @@ export class LoginPage implements OnInit {
       }
       this.email = "";
       this.password = "";
-      console.log(dataResponse);
     });
   }
 
@@ -103,7 +102,6 @@ export class LoginPage implements OnInit {
     }
     this.requestService.postRequest(dataRequest, 'recover.php').subscribe(
       async dataResponse => {
-        console.log(dataRequest)
       if (dataResponse['success']) {
         this.toolsService.showToast(dataResponse['message']);
       } else {
@@ -112,7 +110,6 @@ export class LoginPage implements OnInit {
       this.email = "";
       this.password = "";
     }, error => {
-      console.log(error);
       this.toolsService.showAlert();
       this.toolsService.showToast("Nao foi possivel realizar a operacao",2000,"danger");
     });

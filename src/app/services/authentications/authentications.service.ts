@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { ToolsService } from '../tools/tools.service';
 import { MenuService } from '../menu/menu.service';
 import { ShoppingCartService } from 'src/app/services/shopping-cart/shopping-cart.service'
+import { ShoppingBagService } from 'src/app/services/shopping-bag/shopping-bag.service';
 
 @Injectable({
   providedIn: 'root'
@@ -25,7 +26,8 @@ export class AuthenticationsService {
     private router: Router,
     public menuService: MenuService,
     public toolsService: ToolsService,
-    public ShopCartSrc: ShoppingCartService
+    public ShopCartSrc: ShoppingCartService,
+    public ShopBagSrc: ShoppingBagService
   ) { }
 
   setCheckin(QRCodeText: string): void {
@@ -143,6 +145,7 @@ export class AuthenticationsService {
     this.setTableID("");
     this.setLoginSuccessful(false);
     this.menuService.setMenu('');
+    this.ShopBagSrc.clearOrder();
     this.toolsService.showToast('Logout efetuado');
     this.router.navigate(['/login']);
 

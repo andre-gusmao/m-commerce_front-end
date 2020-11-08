@@ -23,7 +23,7 @@ export class ShoppingCartPage implements OnInit {
   url: string = 'customers/orders.php';
   listPage: string = 'customers-orders';
   hasCreditCard: boolean = false;
-  card_number: string = "2645";
+  card_number: string = "";
 
   constructor(
     public toolsService: ToolsService,
@@ -36,24 +36,13 @@ export class ShoppingCartPage implements OnInit {
 
   ngOnInit() {}
 
-  ionViewWillEnter() {
+  async ionViewWillEnter() {
     if (this.authService.getLoginSuccessful()) {
+      this.creditCardExists();
       this.loadOrderItems();
     } else {
       this.authService.setLogout();
     }
-  }
-
-  public async getCreditCard(){
-    let creditCard: ICreditCard = {
-      card_number: "0000000000000001",
-      card_expiration_month: "12",
-      card_expiration_year: "2030",
-      card_security_code: "123",
-      card_printed_name: "TIMOTE BEGA",
-      customer_cpf: "29742549850"
-    }
-    console.log(this.hasCreditCard);
   }
 
   public async addCreditCard(){
@@ -65,7 +54,6 @@ export class ShoppingCartPage implements OnInit {
     });
 
     await cart_card.present();
-
     const { data } = await cart_card.onWillDismiss();
 
     if(data){
@@ -78,11 +66,19 @@ export class ShoppingCartPage implements OnInit {
         customer_cpf: data.customer_cpf,
       }
       this.ShopBagSrc.setCreditCard(this.credit_card);
-      this.hasCreditCard = await this.ShopBagSrc.hasCreditCard();
-      this.card_number = "Cartão final " + this.credit_card.card_number.substring(12);
-      console.log(this.credit_card);
+      this.creditCardExists();
     } else {
       console.log("Nenhum cartão adicionado")
+    }
+  }
+
+  private async creditCardExists(){
+    this.hasCreditCard = await this.ShopBagSrc.hasCreditCard();
+    if(this.hasCreditCard){
+      this.credit_card = await this.ShopBagSrc.getCreditCard()
+      this.card_number = "Cartão final " + this.credit_card.card_number.substring(12);
+    } else {
+      this.card_number = "";
     }
   }
 
@@ -154,7 +150,6 @@ export class ShoppingCartPage implements OnInit {
       }
     }, error => {
       this.toolsService.showAlert();
-      console.error(error);
     });
 
   }

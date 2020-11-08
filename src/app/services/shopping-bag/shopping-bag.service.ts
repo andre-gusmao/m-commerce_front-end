@@ -157,7 +157,10 @@ export class ShoppingBagService {
     let list = await this.keys();
     if(list){
       for(let i = 0; i < list.length; i++){
-        await this.remove(list[i]);
+        if(list[i]!="creditCard") {
+          await this.remove(list[i]);
+          console.log("clearOrder",list[i]);
+        }
       }
     }
   }
@@ -187,6 +190,22 @@ export class ShoppingBagService {
       }
     );
     return result;    
+  }
+
+  public async getCreditCard(){
+    let creditCard: ICreditCard;
+    let storageCard = await this.storage.get("creditCard");
+    if(storageCard){
+      creditCard = {
+        card_number: storageCard.card_number,
+        card_expiration_month: storageCard.card_expiration_month,
+        card_expiration_year: storageCard.card_expiration_year,
+        card_security_code: storageCard.card_security_code,
+        card_printed_name: storageCard.card_printed_name,
+        customer_cpf: storageCard.customer_cpf
+      }
+    }
+    return creditCard;
   }
 
 }
