@@ -90,11 +90,17 @@
     <ion-item style="text-align: center;">
       <ion-title>{{totalOrder | currency:"BRL":"symbol"}}</ion-title>
     </ion-item>
+    <ion-item *ngIf="hasCreditCard" style="text-align: center;">
+      <ion-text>{{card_number}}</ion-text>
+    </ion-item>
     <ion-button size="small" fill="outline" shape="round" (click)="this.toolsService.goToPage('/customers-catalogs/')">
       <ion-icon name="book-outline"></ion-icon>Cardápio
     </ion-button>
-    <ion-button size="small" fill="outline" shape="round" (click)="registerOrder()">
+    <ion-button *ngIf="hasCreditCard" size="small" fill="outline" shape="round" (click)="registerOrder()">
       <ion-icon name="restaurant-outline"></ion-icon>Fazer Pedido
+    </ion-button>
+    <ion-button size="small" fill="outline" shape="round" (click)="addCreditCard()">
+      <ion-icon name="card-outline"></ion-icon>Adicionar cartão
     </ion-button>
   </div>
 

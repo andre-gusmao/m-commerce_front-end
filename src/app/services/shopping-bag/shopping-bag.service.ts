@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import { IOrder } from '../../inferfaces/order';
 import { IOrderItem } from './../../inferfaces/orderItem';
+import { ICreditCard } from './../../inferfaces/creditCard';
 
 @Injectable({
   providedIn: 'root'
@@ -65,13 +66,13 @@ export class ShoppingBagService {
   public async getOrderItem(itemName: string){
     let orderItem: IOrderItem;
     await this.get(itemName).then((item) => { orderItem = item; });
-    return orderItem
+    return orderItem;
   }
 
   public async getListOrderItem(itemName: string){
     let listOrderItem: Array<IOrderItem> = [];
     await this.forEach(itemName).then((item) => { listOrderItem = item; });
-    return listOrderItem
+    return listOrderItem;
   }
 
   public async delOrderItem(itemName: string){
@@ -127,7 +128,7 @@ export class ShoppingBagService {
   public async getOrder(orderName: string){
     let order: IOrder;
     await this.get(orderName).then((orderResult) => { order = orderResult; });
-    return order
+    return order;
   }
 
   public async delOrder(orderName: string){
@@ -159,6 +160,33 @@ export class ShoppingBagService {
         await this.remove(list[i]);
       }
     }
+  }
+
+  public async hasCreditCard(){
+    let hasCard: boolean = false;
+    let creditCard: ICreditCard;
+    await this.get("creditCard").then((card) => {creditCard = card});
+    if (creditCard){
+      hasCard = true;
+    }
+    return hasCard;
+  }
+
+  public async setCreditCard(creditCard: ICreditCard){
+    let result: boolean;
+
+    this.storage.set("creditCard",creditCard)
+    .then(
+      () => { 
+        result = true;
+        console.log("CreditCard Set OK");
+      },
+      error => {
+        result = false;
+        console.log("CreditCard Set Error");
+      }
+    );
+    return result;    
   }
 
 }

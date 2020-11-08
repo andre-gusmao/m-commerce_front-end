@@ -4,8 +4,6 @@ import { RequestsService } from '../../services/requests/requests.service';
 import { ToolsService } from 'src/app/services/tools/tools.service';
 import { MenuService } from '../../services/menu/menu.service';
 import { AlertController } from '@ionic/angular';
-import { YapayService } from '../../services/yapay/yapay.service'
-import { error } from 'protractor';
 
 @Component({
   selector: 'app-login',
@@ -26,8 +24,7 @@ export class LoginPage implements OnInit {
     public requestService: RequestsService,
     public menuService: MenuService,
     public toolsService: ToolsService,
-    public alertController: AlertController,
-    public yapay: YapayService
+    public alertController: AlertController
   ) {}
 
   ngOnInit() { }

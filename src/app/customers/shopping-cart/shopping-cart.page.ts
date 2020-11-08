@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { AuthenticationsService } from 'src/app/services/authentications/authentications.service';
 import { ToolsService } from 'src/app/services/tools/tools.service';
 import { ShoppingCartService } from 'src/app/services/shopping-cart/shopping-cart.service';
@@ -6,6 +6,9 @@ import { RequestsService } from '../../services/requests/requests.service';
 import { ShoppingBagService } from 'src/app/services/shopping-bag/shopping-bag.service';
 import { IOrderItem } from './../../inferfaces/orderItem';
 import { IOrder } from './../../inferfaces/order';
+import { ICreditCard } from './../../inferfaces/creditCard';
+import { ModalController } from '@ionic/angular';
+import { ShoppingCartCardPage } from '../shopping-cart-card/shopping-cart-card.page'
 
 @Component({
   selector: 'app-shopping-cart',
@@ -14,17 +17,20 @@ import { IOrder } from './../../inferfaces/order';
 })
 export class ShoppingCartPage implements OnInit {
 
+  @Input() credit_card: ICreditCard;
   totalOrder: number = 0;
   orderItems: any = [];
-  teste: string = "";
   url: string = 'customers/orders.php';
   listPage: string = 'customers-orders';
+  hasCreditCard: boolean = false;
+  card_number: string = "2645";
 
   constructor(
     public toolsService: ToolsService,
     public requestService: RequestsService,
     public ShopCartSrc: ShoppingCartService,
     public authService: AuthenticationsService,
+    public modalCtrl: ModalController,
     public ShopBagSrc: ShoppingBagService
   ) { }
 
@@ -35,6 +41,48 @@ export class ShoppingCartPage implements OnInit {
       this.loadOrderItems();
     } else {
       this.authService.setLogout();
+    }
+  }
+
+  public async getCreditCard(){
+    let creditCard: ICreditCard = {
+      card_number: "0000000000000001",
+      card_expiration_month: "12",
+      card_expiration_year: "2030",
+      card_security_code: "123",
+      card_printed_name: "TIMOTE BEGA",
+      customer_cpf: "29742549850"
+    }
+    console.log(this.hasCreditCard);
+  }
+
+  public async addCreditCard(){
+    const cart_card = await this.modalCtrl.create({
+      component: ShoppingCartCardPage,
+      componentProps: {
+        credit_card: this.credit_card
+      }
+    });
+
+    await cart_card.present();
+
+    const { data } = await cart_card.onWillDismiss();
+
+    if(data){
+      this.credit_card = {
+        card_number: data.card_number,
+        card_expiration_month: data.card_expiration_month,
+        card_expiration_year: data.card_expiration_year,
+        card_security_code: data.card_security_code,
+        card_printed_name: data.card_printed_name,
+        customer_cpf: data.customer_cpf,
+      }
+      this.ShopBagSrc.setCreditCard(this.credit_card);
+      this.hasCreditCard = await this.ShopBagSrc.hasCreditCard();
+      this.card_number = "Cartão final " + this.credit_card.card_number.substring(12);
+      console.log(this.credit_card);
+    } else {
+      console.log("Nenhum cartão adicionado")
     }
   }
 
