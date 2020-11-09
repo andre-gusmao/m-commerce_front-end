@@ -159,7 +159,6 @@ export class ShoppingBagService {
       for(let i = 0; i < list.length; i++){
         if(list[i]!="creditCard") {
           await this.remove(list[i]);
-          console.log("clearOrder",list[i]);
         }
       }
     }
@@ -182,11 +181,9 @@ export class ShoppingBagService {
     .then(
       () => { 
         result = true;
-        console.log("CreditCard Set OK");
       },
       error => {
         result = false;
-        console.log("CreditCard Set Error");
       }
     );
     return result;    
@@ -206,6 +203,14 @@ export class ShoppingBagService {
       }
     }
     return creditCard;
+  }
+
+  public moneyFormat(_money: number): string{
+    let money: string;
+    money = _money.toFixed(2).toString();
+    money = money.replace(",","");
+    money = money.replace(".","");
+    return money;
   }
 
 }

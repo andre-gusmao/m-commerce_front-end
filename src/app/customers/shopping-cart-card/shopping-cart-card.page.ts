@@ -12,10 +12,10 @@ import { ToolsService } from 'src/app/services/tools/tools.service';
 export class ShoppingCartCardPage implements OnInit {
   
   @Input() card: ICreditCard;
-  card_number: string = "6505070014192645";
-  card_expiration_month: string = "10";
-  card_expiration_year: string = "2024";
-  card_security_code: string = "741";
+  card_number: string = "0000000000000001";
+  card_expiration_month: string = "12";
+  card_expiration_year: string = "2030";
+  card_security_code: string = "123";
   card_printed_name: string = "TIMOTEO BEGA";
   customer_cpf: string = "29742549850";
   card_company: string = "5";
@@ -40,9 +40,13 @@ export class ShoppingCartCardPage implements OnInit {
   private createListYear(){
     let now = new Date();
     let year = now.getFullYear();
+    let n_year = 0;
+    let s_year = "";
     let i = 0;
-    for(i = 0; i <= 15; i++){
-      this.listYear.push(year+i);
+    for(i = 0; i <= 12; i++){
+      n_year = year+i;
+      s_year = n_year.toString();
+      this.listYear.push(s_year);
     }
   }
 

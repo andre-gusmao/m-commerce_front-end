@@ -60,10 +60,17 @@ export class RequestsService {
     return headers;
   }
 
-  public postRequest(data: any, endpoint: string): Observable<any> {
-    //let url = environment.endpointURL + endpoint + this.getKWToken();
-    let url = environment.endpointURL + endpoint;
+  public postRequest(data: any, endpoint: string, payment: boolean = false): Observable<any> {
+    let url = "";
     let headers = this.getHeaders();
+
+    if(payment === true){
+      url = environment.endpointURL + endpoint;
+    } else {
+      url = environment.endpointURL + endpoint;
+      //url = environment.endpointURL + endpoint + this.getKWToken();
+    }
+
     data = JSON.stringify(data);
     console.log("postRequest",headers);
     return this.http.post(url, data, {headers: headers}).pipe(map(res => res));
