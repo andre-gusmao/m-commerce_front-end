@@ -23,6 +23,7 @@ export class ShoppingCartPage implements OnInit {
   url: string = 'customers/orders.php';
   listPage: string = 'customers-orders';
   hasCreditCard: boolean = false;
+  authorized: boolean = false;
   card_number: string = "";
 
   constructor(
@@ -36,7 +37,7 @@ export class ShoppingCartPage implements OnInit {
 
   ngOnInit() {}
 
-  async ionViewWillEnter() {
+  ionViewWillEnter() {
     if (this.authService.getLoginSuccessful()) {
       this.creditCardExists();
       this.loadOrderItems();
@@ -141,17 +142,61 @@ export class ShoppingCartPage implements OnInit {
     }
 
     await this.requestService.postRequest(dataRequest, this.url).subscribe(async dataResponse => {
-      if (dataResponse[0]['success']) {
-        this.ShopBagSrc.clearOrder();
-        this.toolsService.showToast(dataResponse[0]['message'],2000,'success');
-        this.toolsService.goToPage(this.listPage);
+      if (dataResponse['success']) {
+        this.toolsService.showToast(dataResponse['message'],2000,'success');
+        this.authorizeOrder(this.credit_card,dataResponse).then(() => {
+          if(this.authorized){
+            this.ShopBagSrc.clearOrder();
+          }
+        })
+        //this.toolsService.goToPage(this.listPage);
       }else{
-        this.toolsService.showToast(dataResponse[0]['message'],2000,'warning');
+        this.toolsService.showToast(dataResponse['message'],2000,'warning');
       }
     }, error => {
       this.toolsService.showAlert();
     });
 
+  }
+
+  private async authorizeOrder(creditCard: ICreditCard, order: any){
+    let dataRequest: any;
+    let urlAuthorize: string = "yapay/authorize.php";
+
+    dataRequest = {
+      id_order: order.id_order.toString(),
+      order_total_price: this.ShopBagSrc.moneyFormat( parseFloat(order.order_total_price) ),
+      card_printed_name: creditCard.card_printed_name,
+      card_number: creditCard.card_number,
+      card_security_code: creditCard.card_security_code,
+      card_expiration_month: creditCard.card_expiration_month,
+      card_expiration_year: creditCard.card_expiration_year,
+      cpf: creditCard.customer_cpf,
+      items: []
+    }
+
+    console.log(dataRequest);
+
+    for(let i = 0; i < order.items.length; i++){
+      dataRequest.items.push({
+        item_quantity: order.items[i].item_quantity.toString(),
+        item_unit_price: this.ShopBagSrc.moneyFormat( parseFloat(order.items[i].item_total_price) )
+      });
+    }
+
+    await this.requestService.postRequest(dataRequest, urlAuthorize).subscribe(async dataResponse => {
+      if (dataResponse['success']) {
+        console.log("Authorize Success");
+        this.authorized = true;
+        this.toolsService.showToast(dataResponse['message'],2000,'success');
+      } else {
+        console.log("Authorize Error");
+        this.authorized = false;
+        this.toolsService.showToast(dataResponse['message'],2000,'warning');
+      }
+    }, error => {
+      this.toolsService.showAlert();
+    });
   }
 
 }
