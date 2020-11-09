@@ -90,8 +90,10 @@
     <ion-item style="text-align: center;">
       <ion-title>{{totalOrder | currency:"BRL":"symbol"}}</ion-title>
     </ion-item>
-    <ion-item *ngIf="hasCreditCard" style="text-align: center;">
+    <ion-item *ngIf="hasCreditCard" style="text-align: center; font-size: smaller;">
       <ion-text>{{card_number}}</ion-text>
+      <ion-icon color="primary" size="smaller" name="reload-circle-outline" (click)="changeCreditCard()" slot="end"></ion-icon>
+      <ion-icon color="danger" size="smaller" name="trash-outline" (click)="removeCreditCard()" slot="end"></ion-icon>
     </ion-item>
     <ion-button size="small" fill="outline" shape="round" (click)="this.toolsService.goToPage('/customers-catalogs/')">
       <ion-icon name="book-outline"></ion-icon>Cardápio

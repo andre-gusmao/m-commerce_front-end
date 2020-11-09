@@ -199,4 +199,15 @@ export class ShoppingCartPage implements OnInit {
     }
   }
 
+  private removeCreditCard(){
+    this.ShopBagSrc.remove("creditCard");
+    this.hasCreditCard = false;
+    this.card_number = "";
+  }
+
+  private changeCreditCard(){
+    this.removeCreditCard();
+    this.addCreditCard()
+  }
+
 }
