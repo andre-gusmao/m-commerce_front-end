@@ -143,18 +143,14 @@ export class ShoppingCartPage implements OnInit {
 
     await this.requestService.postRequest(dataRequest, this.url).subscribe(async dataResponse => {
       if (dataResponse['success']) {
-        this.toolsService.showToast(dataResponse['message'],2000,'success');
-        this.authorizeOrder(this.credit_card,dataResponse).then(() => {
-          if(this.authorized){
-            this.ShopBagSrc.clearOrder();
-          }
-        })
-        //this.toolsService.goToPage(this.listPage);
+        this.toolsService.showToast(dataResponse['message'],1000,'success');
+        this.authorizeOrder(this.credit_card,dataResponse);
+        this.toolsService.goToPage(this.listPage);
       }else{
         this.toolsService.showToast(dataResponse['message'],2000,'warning');
       }
     }, error => {
-      this.toolsService.showAlert();
+      this.toolsService.showToast("Não foi possível enviar seu pedido",2000,"danger");
     });
 
   }
@@ -175,8 +171,6 @@ export class ShoppingCartPage implements OnInit {
       items: []
     }
 
-    console.log(dataRequest);
-
     for(let i = 0; i < order.items.length; i++){
       dataRequest.items.push({
         item_quantity: order.items[i].item_quantity.toString(),
@@ -186,17 +180,23 @@ export class ShoppingCartPage implements OnInit {
 
     await this.requestService.postRequest(dataRequest, urlAuthorize).subscribe(async dataResponse => {
       if (dataResponse['success']) {
-        console.log("Authorize Success");
         this.authorized = true;
+        this.clearOrderItems();
+        this.ShopBagSrc.clearOrder();
         this.toolsService.showToast(dataResponse['message'],2000,'success');
       } else {
-        console.log("Authorize Error");
         this.authorized = false;
         this.toolsService.showToast(dataResponse['message'],2000,'warning');
       }
     }, error => {
-      this.toolsService.showAlert();
+      this.toolsService.showToast("Não foi possível autorizar a transação",2000,"danger");
     });
+  }
+
+  private clearOrderItems(){
+    while (this.orderItems.length){
+      this.orderItems.pop();
+    }
   }
 
 }
