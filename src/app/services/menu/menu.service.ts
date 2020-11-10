@@ -51,11 +51,11 @@ export class MenuService {
       "url": '/customers-orders',
       "icon": 'cart-outline'
     },
-    {
-      "title": 'Cartoes',
-      "url": '/creditcards-list',
-      "icon": 'card-outline'
-    },
+    // {
+    //   "title": 'Cartoes',
+    //   "url": '/creditcards-list',
+    //   "icon": 'card-outline'
+    // },
     // {
     //   "title": 'Compartilhe',
     //   "url": '/share',
