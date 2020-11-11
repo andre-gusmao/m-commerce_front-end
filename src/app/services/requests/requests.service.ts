@@ -63,14 +63,11 @@ export class RequestsService {
   public postRequest(data: any, endpoint: string, payment: boolean = false): Observable<any> {
     let url = "";
     let headers = this.getHeaders();
-
     if(payment === true){
       url = environment.endpointURL + endpoint;
     } else {
       url = environment.endpointURL + endpoint;
-      //url = environment.endpointURL + endpoint + this.getKWToken();
     }
-
     data = JSON.stringify(data);
     console.log("postRequest",headers);
     return this.http.post(url, data, {headers: headers}).pipe(map(res => res));
@@ -105,12 +102,11 @@ export class RequestsService {
     return this.http.get(url, {}).pipe(map(res => res));
   }
 
-  putRequest(data: any, endpoint: string): Observable<any> {
-    //let url = environment.endpointURL + endpoint + this.getKWToken();
+  public putRequest(data: any, endpoint: string): Observable<any> {
     let url = environment.endpointURL + endpoint;
     let headers = this.getHeaders();
     data = JSON.stringify(data);
-    return this.http.put<any>(url, data, {});
+    return this.http.put(url, data, {headers: headers}).pipe(map(res => res));
   }
 
   deleteRequest(endpoint: string, paramName: string, paramValue: string) {
