@@ -14,11 +14,13 @@ export class CompanyOrdersPage implements OnInit {
   
   @Input() id_order: string;
   orderList: any = [];
+  orderListBkp: any = [];
   url: string = 'customers/orders.php';
   newStatus: string = "0";
   hasOrders: boolean = false;
   canceled: boolean = false;
   interval: any;
+  searchbar: string = "";
 
   constructor(
     public requestService: RequestsService,
@@ -32,7 +34,7 @@ export class CompanyOrdersPage implements OnInit {
   ionViewWillEnter() {
     if (this.authService.getLoginSuccessful()) {
       this.loadOrders();
-      this.interval = setInterval(() => { this.loadOrders(); },5000);
+      this.interval = setInterval(() => { this.loadOrders(); },60000);
     } else {
       this.authService.setLogout();
     }
@@ -70,6 +72,7 @@ export class CompanyOrdersPage implements OnInit {
             this.orderList.push(order);
           }
           this.hasOrders = true;
+          this.orderListBkp = this.orderList;
         } else {
           this.hasOrders = false;
         }
@@ -77,6 +80,20 @@ export class CompanyOrdersPage implements OnInit {
         this.toolsService.showAlert();
       })
     });
+  }
+
+  public async filterOrder(){
+    this.orderList = this.orderListBkp;
+
+    if(!this.searchbar.trim()){
+      return;
+    }
+
+    this.orderList = this.orderList.filter(currentOrder => {
+      if(this.searchbar.trim()){
+        return (currentOrder.id_order.indexOf(this.searchbar.trim()) > -1 || currentOrder.order_date.indexOf(this.searchbar.trim()) > -1 || currentOrder.order_status.toLowerCase().indexOf(this.searchbar.toLowerCase().trim()) > -1);
+      } 
+    })
   }
 
   public async actionWithOrder(id_order){

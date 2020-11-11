@@ -13,9 +13,14 @@
     </ion-row>
   </ion-grid>
 
-  <ion-grid *ngIf="orderList.length != 0">
+  <ion-grid *ngIf="orderList.length != 0 || searchbar">
     <ion-row style="text-align: center;">
       <ion-col size="12"><b>Painel de Pedidos</b></ion-col>
+    </ion-row>
+    <ion-row style="text-align: center;">
+      <ion-col size="12">
+        <ion-input [(ngModel)]="searchbar" placeholder="Pesquisar pedido" (ionChange)="filterOrder()"></ion-input>
+      </ion-col>
     </ion-row>
 
     <ion-row>
