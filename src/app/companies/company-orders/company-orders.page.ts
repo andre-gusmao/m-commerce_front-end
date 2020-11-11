@@ -17,6 +17,7 @@ export class CompanyOrdersPage implements OnInit {
   url: string = 'customers/orders.php';
   newStatus: string = "0";
   hasOrders: boolean = false;
+  canceled: boolean = false;
   interval: any;
 
   constructor(
@@ -79,7 +80,6 @@ export class CompanyOrdersPage implements OnInit {
   }
 
   public async actionWithOrder(id_order){
-
     let dataRequest = {
       id_order: id_order,
       order_status: "0"
@@ -93,25 +93,44 @@ export class CompanyOrdersPage implements OnInit {
     });
 
     await orderDetails.present();
-
     const { data } = await orderDetails.onWillDismiss();
     this.newStatus = data.newStatus;
 
     if(this.newStatus != '0'){
-
       dataRequest.order_status = this.newStatus;
-
       this.requestService.postRequest(dataRequest, this.url).subscribe(async dataResponse => {
         if (dataResponse['success']) {
           this.toolsService.showToast(dataResponse['message'],2000,'success');
+          if(this.newStatus == '6'){
+            this.cancelOrder(id_order);
+          }
           this.loadOrders();
         }else{
           this.toolsService.showToast(dataResponse['message'],2000,'warning');
         }
       });
+    }
+  }
 
-    } 
-
+  private async cancelOrder(id_order: string){
+    let dataRequest: any;
+    let urlTotalCancel: string = "yapay/totalCancel.php";
+    dataRequest = {
+      id_order: id_order
+    }
+    await this.requestService.putRequest(dataRequest,urlTotalCancel).subscribe(async dataResponse => {
+      if(dataResponse['success']){
+        this.canceled = true;
+        this.toolsService.showToast(dataResponse['message'],2000,'success');
+      } else {
+        this.canceled = false;
+        this.toolsService.showToast(dataResponse['message'],2000,'warning');
+      }
+      console.log("dataResponse",dataResponse);
+    }, error => {
+      console.log("error",error);
+      this.toolsService.showToast("Não foi possível cancelar a transação",2000,"danger");
+    });
   }
 
 }

@@ -174,7 +174,7 @@ export class ShoppingCartPage implements OnInit {
     for(let i = 0; i < order.items.length; i++){
       dataRequest.items.push({
         item_quantity: order.items[i].item_quantity.toString(),
-        item_unit_price: this.ShopBagSrc.moneyFormat( parseFloat(order.items[i].item_total_price) )
+        item_unit_price: this.ShopBagSrc.moneyFormat( parseFloat(order.items[i].item_unit_price ) )
       });
     }
 
