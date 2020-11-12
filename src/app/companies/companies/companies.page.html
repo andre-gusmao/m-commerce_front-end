@@ -6,7 +6,7 @@
         </ion-item>
         <ion-item>
             <ion-label position="floating">E-mail</ion-label>
-            <ion-input type="text" [(ngModel)]="email"></ion-input>
+            <ion-input type="email" [(ngModel)]="email"></ion-input>
         </ion-item>
 
         <ion-item>
@@ -45,8 +45,17 @@
         </ion-item>
 
         <ion-item>
-            <ion-label position="floating">Insc. Municipal</ion-label>
-            <ion-input type="text" [(ngModel)]="municipalResgistration"></ion-input>
+          <ion-label position="floating">Tipo de Documento</ion-label>
+          <ion-select [(ngModel)]="company_document_type" name="company_document_type" interface="alert" placeholder="Tipo de Documento">
+            <ion-select-option value="CNPJ">CNPJ</ion-select-option>
+            <ion-select-option value="CPF">CPF</ion-select-option>
+            <ion-select-option value="INSMUN">Inscrição Municipal</ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-item>
+            <ion-label position="floating">Documento</ion-label>
+            <ion-input type="text" [(ngModel)]="company_document_number"></ion-input>
         </ion-item>
 
         <ion-item>
@@ -65,7 +74,7 @@
         </ion-item>
 
         <ion-item>
-            <ion-label position="floating">Observacao</ion-label>
+            <ion-label position="floating">Observação</ion-label>
             <ion-input type="text" [(ngModel)]="notes"></ion-input>
         </ion-item>
     </div>

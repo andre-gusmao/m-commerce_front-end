@@ -29,6 +29,8 @@ export class CompaniesPage implements OnInit {
   showConfirmPassword: boolean = false;
   passwordIcon: string = 'eye';
   confirmPasswordIcon: string = 'eye';
+  company_document_type: string = "";
+  company_document_number: string = "";
 
   constructor(
     public requestService: RequestsService,
@@ -56,12 +58,13 @@ export class CompaniesPage implements OnInit {
       companyName: this.companyName,
       cellPhone: this.cellPhone,
       businessman: this.businessman,
-      municipalResgistration: this.municipalResgistration,
       zipCode: this.zipCode,
       state: this.state,
       city: this.city,
       notes: this.notes,
       profileType: '2',
+      company_document_type: this.company_document_type,
+      company_document_number: this.company_document_number,
       request_type: '',
     }
 
@@ -72,6 +75,8 @@ export class CompaniesPage implements OnInit {
       { value: this.companyName, message: 'Informe o nome fantasia' },
       { value: this.businessman, message: 'Informe  o nome do proprietario' },
       { value: this.cellPhone, message: 'Informe o celular' },
+      { value: this.company_document_type, message: 'Selecione o tipo de documento' },
+      { value: this.company_document_number, message: 'Informe o documento' },
       { value: this.zipCode, message: 'Informe o CEP com 8 dígitos', lenght: 8 }
     ]
 
@@ -84,6 +89,14 @@ export class CompaniesPage implements OnInit {
     }
 
     if (this.toolsService.validatePassword(this.password, true) == false) {
+      return;
+    }
+
+    if(this.company_document_type == "CPF" && this.toolsService.isValidCPF(this.company_document_number) == false){
+      return;
+    }
+
+    if(this.company_document_type == "CNPJ" && this.toolsService.isValidCNPJ(this.company_document_number) == false){
       return;
     }
 
@@ -118,7 +131,8 @@ export class CompaniesPage implements OnInit {
           this.companyName = dataRes['companyName'];
           this.businessman = dataRes['businessman'];
           this.cellPhone = dataRes['cellPhone'];
-          this.municipalResgistration = dataRes['municipalResgistration'];
+          this.company_document_type = dataRes['company_document_type'];
+          this.company_document_number = dataRes['company_document_number'];
           this.zipCode = dataRes['zipCode'];
           this.state = dataRes['state'];
           this.city = dataRes['city'];
@@ -139,7 +153,8 @@ export class CompaniesPage implements OnInit {
     this.companyName = "";
     this.businessman = "";
     this.cellPhone = "";
-    this.municipalResgistration = "";
+    this.company_document_type = "";
+    this.company_document_number = "";
     this.zipCode = "";
     this.state = "";
     this.city = "";
