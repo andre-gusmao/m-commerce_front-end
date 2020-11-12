@@ -199,13 +199,13 @@ export class ShoppingCartPage implements OnInit {
     }
   }
 
-  private removeCreditCard(){
+  public removeCreditCard(){
     this.ShopBagSrc.remove("creditCard");
     this.hasCreditCard = false;
     this.card_number = "";
   }
 
-  private changeCreditCard(){
+  public changeCreditCard(){
     this.removeCreditCard();
     this.addCreditCard()
   }
