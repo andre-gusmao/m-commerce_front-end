@@ -17,7 +17,7 @@ export class ToolsService {
     public platform: Platform
   ) { }
 
-  goToPage(_page: string){
+  public goToPage(_page: string){
     this.router.navigate([_page]);
   }
 
@@ -48,7 +48,7 @@ export class ToolsService {
 
   }
 
-  validField(_fields) {
+  public validField(_fields) {
 
     let isEmpty = true;
 
@@ -69,7 +69,7 @@ export class ToolsService {
 
   }
 
-  validateEmail(_email: string, _showToast: boolean = false) {
+  public validateEmail(_email: string, _showToast: boolean = false) {
 
     let format = new RegExp("[a-zA-Z0-9\\._-]+@[a-zA-Z0-9]+\\.[a-zA-Z]");
     let invalidChars = ["!", "#", "$", "%", "�", "&", "*", "(", ")", "+", "=", "[", "]", "{", "}", "�", "`", "^", "~", "<", ">", ":", ";", "?", "/", "\\", "|", "\"", "'", "�", "�", "�", "�", "�", "�", "�", "�", "�", "�", "�", "�", "�", "�", "�", "�", "�", "�", "�", "�"];
@@ -97,7 +97,7 @@ export class ToolsService {
 
   }
 
-  validatePassword(_password: string, _showToast: boolean = false) {
+  public validatePassword(_password: string, _showToast: boolean = false) {
 
     let letters = RegExp("[a-zA-Z]");
     let numbers = RegExp("[0-9]");
@@ -225,6 +225,10 @@ export class ToolsService {
     }
 
     return isValid
+  }
+
+  public isValidCNPJ(cnpj){
+    return true;
   }
 
 }
