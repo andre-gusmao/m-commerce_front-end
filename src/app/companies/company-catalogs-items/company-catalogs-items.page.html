@@ -25,7 +25,7 @@
 
     <ion-item>
       <ion-label position="floating">Valor</ion-label>
-      <ion-input type="number" [(ngModel)]="catalog_item_price" maxlength="10"></ion-input>
+      <ion-input type="text" [(ngModel)]="catalog_item_price" maxlength="10" [brmasker]="{money: true, thousand: '.', decimal: 2}"></ion-input>
     </ion-item>
 
     <ion-item>

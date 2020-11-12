@@ -16,7 +16,7 @@ export class CompanyCatalogsItemsPage implements OnInit {
   id_catalog: string;
   id_product: string;
   catalog_item_status: string;
-  catalog_item_price: number = 0;
+  catalog_item_price: number;
   catalog_item_note: string;
   catalog_name: string = "";
   productList: any = [];
@@ -148,6 +148,10 @@ export class CompanyCatalogsItemsPage implements OnInit {
     this.catalog_item_status = "";
     this.catalog_item_price = 0;
     this.catalog_item_note = "";
+  }
+
+  private clearPrice(){
+    
   }
 
 }

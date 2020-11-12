@@ -5,6 +5,7 @@ import { IonicModule } from '@ionic/angular';
 import { CompanyCatalogsItemsPageRoutingModule } from './company-catalogs-items-routing.module';
 import { CompanyCatalogsItemsPage } from './company-catalogs-items.page';
 import { Sharedmodules } from '../../modules/sharedmodules/sharedmodules.component';
+import { BrMaskerModule } from 'br-mask';
 
 @NgModule({
   imports: [
@@ -12,7 +13,8 @@ import { Sharedmodules } from '../../modules/sharedmodules/sharedmodules.compone
     FormsModule,
     IonicModule,
     CompanyCatalogsItemsPageRoutingModule,
-    Sharedmodules
+    Sharedmodules,
+    BrMaskerModule
   ],
   declarations: [CompanyCatalogsItemsPage]
 })
