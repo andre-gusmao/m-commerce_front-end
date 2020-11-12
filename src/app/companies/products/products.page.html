@@ -4,14 +4,6 @@
     <h4>Produtos</h4>
   </ion-item>
   <ion-item>
-    <ion-label position="floating">Nome</ion-label>
-    <ion-input maxlength="50" type="text" [(ngModel)]="product_name"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-label position="floating">Descricao</ion-label>
-    <ion-input maxlength="150" type="text" [(ngModel)]="product_description"></ion-input>
-  </ion-item>
-  <ion-item>
     <ion-label position="floating">Grupo de Produto</ion-label>
     <ion-select [(ngModel)]="id_product_category" name="id_product_category" interface="alert"
       placeholder="Selecione o grupo">
@@ -19,6 +11,14 @@
         {{category.product_category_name}}
       </ion-select-option>
     </ion-select>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">Nome</ion-label>
+    <ion-input maxlength="50" type="text" [(ngModel)]="product_name"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">Descricao</ion-label>
+    <ion-input maxlength="150" type="text" [(ngModel)]="product_description"></ion-input>
   </ion-item>
   <ion-card>
     <ion-card-header>Foto</ion-card-header>
