@@ -64,14 +64,12 @@ export class RequestsService {
     let url = environment.endpointURL + endpoint;
     let headers = this.getHeaders();
     data = JSON.stringify(data);
-    console.log("postRequest",headers);
     return this.http.post(url, data, {headers: headers}).pipe(map(res => res));
   }
 
   private getRequest(endpoint: string, paramName: string, paramValue: string): Observable<any> {
     let url = environment.endpointURL + endpoint;
     let headers = this.getHeaders();
-    console.log("getRequest",headers);
     return this.http.get<any>(url, {}).pipe(map(res => res));
   }
 
