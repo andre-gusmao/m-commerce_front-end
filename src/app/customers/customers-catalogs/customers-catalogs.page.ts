@@ -49,9 +49,9 @@ export class CustomersCatalogsPage implements OnInit {
   ionViewWillEnter() {
     if ( this.authService.getLoginSuccessful() ) {
       this.id_company = this.authService.getCompanyID();
+      this.loadCatalog();
       this.id_catalog = this.authService.getCatalogID(),
       this.id_customer = this.authService.getProfileID();
-      this.loadCatalog();
     } else {
       this.ShopCartSrc.clearCatalog();
       this.authService.setLogout();
