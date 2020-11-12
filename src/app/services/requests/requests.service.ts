@@ -17,7 +17,7 @@ export class RequestsService {
     return new Promise( resolve => setTimeout(resolve, ms) );
   }
 
-  getKWToken(URLToken: boolean = true) {
+  private getKWToken(URLToken: boolean = true) {
     let kw: string = "";
     let now = new Date();
     let year = now.getFullYear().toString();
@@ -35,7 +35,7 @@ export class RequestsService {
     return kw;
   }
 
-  getHeaders() {
+  private getHeaders() {
     const headers = new HttpHeaders()
       .set('Access-Control-Allow-Origin', '*')
       .set('Access-Control-Expose-Headers', 'Content-Length, X-JSON')
@@ -48,7 +48,7 @@ export class RequestsService {
     return headers;
   }
 
-  getHeadersToken() {
+  private getHeadersToken() {
     const headers = new HttpHeaders()
       .set('Access-Control-Allow-Origin', '*')
       .set('Access-Control-Expose-Headers', 'Content-Length, X-JSON')
@@ -61,27 +61,21 @@ export class RequestsService {
   }
 
   public postRequest(data: any, endpoint: string, payment: boolean = false): Observable<any> {
-    let url = "";
+    let url = environment.endpointURL + endpoint;
     let headers = this.getHeaders();
-    if(payment === true){
-      url = environment.endpointURL + endpoint;
-    } else {
-      url = environment.endpointURL + endpoint;
-    }
     data = JSON.stringify(data);
     console.log("postRequest",headers);
     return this.http.post(url, data, {headers: headers}).pipe(map(res => res));
   }
 
-  private getRequest(endpoint: string, paramName: string, paramValue: string): Observable<any>   {
-    // let url = environment.endpointURL + endpoint + this.getKWToken();
+  private getRequest(endpoint: string, paramName: string, paramValue: string): Observable<any> {
     let url = environment.endpointURL + endpoint;
     let headers = this.getHeaders();
     console.log("getRequest",headers);
     return this.http.get<any>(url, {}).pipe(map(res => res));
   }
 
-  private getHead(){
+  private getAuthHeaders(){
     const authBasic = btoa( environment.userYaPay + ':' + environment.passwordYaPay );
     const headers = new HttpHeaders()
     .set('Content-Type', 'application/json')
@@ -91,15 +85,14 @@ export class RequestsService {
 
   public getTransaction(): Observable<any>   {
     let url = environment.endpointYaPay +"/"+ environment.storeCode +"/1";
-    let headers = this.getHead();
+    let headers = this.getAuthHeaders();
     return this.http.get<any>(url, {headers: headers}).pipe(map(res => res));
   }
 
   public getRequestById(endpoint: string, paramName: string, paramValue: string): Observable<any>   {
-    // let url = environment.endpointURL + endpoint + this.getKWToken() + '&' + paramName + '=' + paramValue;
     let url = environment.endpointURL + endpoint + '?' + paramName + '=' + paramValue;
     let headers = this.getHeaders();
-    return this.http.get(url, {}).pipe(map(res => res));
+    return this.http.get(url, {headers: headers}).pipe(map(res => res));
   }
 
   public putRequest(data: any, endpoint: string): Observable<any> {
@@ -109,11 +102,10 @@ export class RequestsService {
     return this.http.put(url, data, {headers: headers}).pipe(map(res => res));
   }
 
-  deleteRequest(endpoint: string, paramName: string, paramValue: string) {
-    //let url = environment.endpointURL + endpoint + '?' + paramName + '=' + paramValue;
+  public deleteRequest(endpoint: string, paramValue: string) {
     let url = environment.endpointURL + endpoint + '/' + paramValue;
     let headers = this.getHeaders();
-    return this.http.delete<any>(url, {}).pipe(map(res => res));
+    return this.http.delete(url, {headers: headers}).pipe(map(res => res));
   }
 
 }
