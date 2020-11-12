@@ -110,17 +110,27 @@ export class CompaniesPage implements OnInit {
       dataRequest['request_type'] = 'update';
     }
 
+    this.toolsService.showLoading();
+
     this.requestService.postRequest(dataRequest, 'companies/companies.php').subscribe(async dataResponse => {
         if (dataResponse['success']) {
           this.profileID = dataResponse['profileID'];
           this.authService.setProfileID(dataResponse['profileID']);
         }
-        this.toolsService.showToast(dataResponse['message']);
+        this.toolsService.hideLoading().finally(() => {
+          this.toolsService.showToast(dataResponse['message']);
+        });
         this.toolsService.goToPage('/login');
+      }, error => {
+        this.toolsService.hideLoading().finally(() => {
+          this.toolsService.showToast("Verifique a conexão e tente novamente",2000,"danger");
+        });
+      }, () => {
+        this.toolsService.hideLoading();
       }
     );
   }
-
+  
   private async loadCompanyProfile(profileID: string = "") {
     return new Promise(res => {
       this.requestService.getRequestById('companies/companies.php', 'id', profileID).subscribe( dataRes => {

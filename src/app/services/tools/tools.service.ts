@@ -131,7 +131,9 @@ export class ToolsService {
 
   async hideLoading() {
     this.loading = false;
-    return await this.loadingCtrl.dismiss().then(() => { });
+    return await this.loadingCtrl.dismiss().then(() => {
+      this.loading = false;
+    });
   }
 
   async showAlert(_header: string = "Atenção", _subHeader: string = "Falha de conexão", _message: string = "Verifique sua conexão com a internet"){

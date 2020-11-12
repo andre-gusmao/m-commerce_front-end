@@ -48,6 +48,7 @@ export class LoginPage implements OnInit {
     if (this.toolsService.validatePassword(this.password, true) == false) {
       return;
     }
+    this.toolsService.showLoading();
     this.requestService.postRequest(dataRequest, 'login.php').subscribe(
       async dataResponse => {
       if (dataResponse['success']) {
@@ -60,7 +61,9 @@ export class LoginPage implements OnInit {
           this.authService.setCompanyID(dataResponse['profileID']);
         }
         this.authService.setLoginSuccessful(true);
-        this.toolsService.showToast('Logado com sucesso');
+        this.toolsService.hideLoading().finally(() => {
+          this.toolsService.showToast('Logado com sucesso');
+        });
         if (dataResponse['profileType'] == "2") {//companies
           this.toolsService.goToPage('/company-orders');
         } else if (dataResponse['profileType'] == "3") {//workers
@@ -69,10 +72,18 @@ export class LoginPage implements OnInit {
           this.toolsService.goToPage('/checkins');
         }
       } else {
-        this.toolsService.showToast(dataResponse['message'],2000,"danger");
+        this.toolsService.hideLoading().finally(() => {
+          this.toolsService.showToast(dataResponse['message'],2000,"danger");
+        });
       }
       this.email = "";
       this.password = "";
+    }, error => {
+      this.toolsService.hideLoading().finally(() => {
+        this.toolsService.showToast("Verifique a conexão e tente novamente",2000,"danger");
+      });
+    }, () => {
+      this.toolsService.hideLoading();
     });
   }
 
