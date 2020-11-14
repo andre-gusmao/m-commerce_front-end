@@ -120,14 +120,30 @@ export class CustomersPage implements OnInit {
     if (this.profileID != undefined && this.profileID != "") {//update
       dataRequest['profileID'] = this.profileID;
       dataRequest['request_type'] = 'update';
-    }    
-    this.requestService.postRequest(dataRequest, 'customers/customers.php').subscribe(async dataResponse => {        
+    }
+
+    this.toolsService.showLoading();
+
+    this.requestService.postRequest(dataRequest, 'customers/customers.php').subscribe(
+      async dataResponse => {        
         if (dataResponse['success']) {
           this.profileID = dataResponse['profileID'];
           this.authService.setProfileID(dataResponse['profileID']);
-        } 
-        this.toolsService.showToast(dataResponse['message']);
-        this.toolsService.goToPage('/login');
+          this.toolsService.hideLoading().finally(() => {
+            this.toolsService.showToast(dataResponse['message']);
+          });
+          this.toolsService.goToPage('/login');
+        }else{
+          this.toolsService.hideLoading().finally(() => {
+            this.toolsService.showToast(dataResponse['message'],2000,"warning");
+          });
+        }
+      }, error => {
+        this.toolsService.hideLoading().finally(() => {
+          this.toolsService.showToast("Não foi possível concluir o cadastro. Verifique sua conexão e tente novamente.",2000,"warning");
+        });
+      }, () => {
+        this.toolsService.hideLoading();
       }
     );
   }
@@ -152,7 +168,31 @@ export class CustomersPage implements OnInit {
     }
   }
 
-  public getAddress(){
+  public async getAddress(){
+    let url: string = "https://viacep.com.br/ws/" + this.zipCode + "/json/";
+    if (!(this.zipCode && this.zipCode.length >= 8)) {
+      this.toolsService.showToast("Informe CEP válido de 8 dígitos",2000,"warning");
+      return;
+    }
+    if(this.zipCode && this.zipCode.length >= 8) {
+      await this.http.get(url).subscribe( (res) => {
+        if(res && res['uf']) {
+          this.state = res['uf'];
+          this.city = res['localidade'];
+        } else {
+          this.toolsService.showToast("CEP nao encontrado",2000,"warning");
+          this.clearAddress();
+        }
+      })
+    };
+  }
+
+  private clearAddress(){
+    this.city = "";
+    this.state = "";
+  }
+
+  public getAddress2(){
     let url: string = "https://viacep.com.br/ws/" + this.zipCode + "/json/";
     this.toolsService.showLoading("Carregando UF e Cidade").then( () => {
       if(this.zipCode && this.zipCode.length >= 8) {
