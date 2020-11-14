@@ -67,10 +67,9 @@ export class RequestsService {
     return this.http.post(url, data, {headers: headers}).pipe(map(res => res));
   }
 
-  private getRequest(endpoint: string, paramName: string, paramValue: string): Observable<any> {
-    let url = environment.endpointURL + endpoint;
-    let headers = this.getHeaders();
-    return this.http.get<any>(url, {}).pipe(map(res => res));
+  public getRequest(endpoint: string): Observable<any> {
+    let url = endpoint;
+    return this.http.get(url).pipe(map(res => res));
   }
 
   private getAuthHeaders(){
