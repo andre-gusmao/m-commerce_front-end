@@ -65,7 +65,7 @@ export class CompaniesPage implements OnInit {
       profileType: '2',
       company_document_type: this.company_document_type,
       company_document_number: this.company_document_number,
-      request_type: '',
+      request_type: ''
     }
 
     const fields = [
@@ -102,7 +102,7 @@ export class CompaniesPage implements OnInit {
 
     if (this.password != this.confirmPassword) {
       this.toolsService.showToast('Senha e Confirme a senha devem ser iguais',2000,'warning');
-      return
+      return;
     }
 
     if (this.profileID != undefined && this.profileID != "") {
@@ -112,18 +112,23 @@ export class CompaniesPage implements OnInit {
 
     this.toolsService.showLoading();
 
-    this.requestService.postRequest(dataRequest, 'companies/companies.php').subscribe(async dataResponse => {
+    this.requestService.postRequest(dataRequest, 'companies/companies.php').subscribe(
+      async dataResponse => {
         if (dataResponse['success']) {
           this.profileID = dataResponse['profileID'];
           this.authService.setProfileID(dataResponse['profileID']);
+          this.toolsService.hideLoading().finally(() => {
+            this.toolsService.showToast(dataResponse['message']);
+          });
+          this.toolsService.goToPage('/login');
+        }else{
+          this.toolsService.hideLoading().finally(() => {
+            this.toolsService.showToast(dataResponse['message'],2000,"warning");
+          });
         }
-        this.toolsService.hideLoading().finally(() => {
-          this.toolsService.showToast(dataResponse['message']);
-        });
-        this.toolsService.goToPage('/login');
       }, error => {
         this.toolsService.hideLoading().finally(() => {
-          this.toolsService.showToast("Verifique a conexão e tente novamente",2000,"danger");
+          this.toolsService.showToast("Não foi possível concluir o cadastro. Verifique sua conexão e tente novamente.",2000,"warning");
         });
       }, () => {
         this.toolsService.hideLoading();
