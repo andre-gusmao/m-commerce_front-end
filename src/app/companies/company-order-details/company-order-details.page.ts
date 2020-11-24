@@ -13,6 +13,9 @@ import { CallNumber } from '@ionic-native/call-number/ngx';
 export class CompanyOrderDetailsPage implements OnInit {
   
   @Input() id_order: string;
+  id_company: string;
+  id_worker: string;
+  listWorkers: any[];
   company_name: string;
   order_date: string;
   order_time: string;
@@ -24,6 +27,7 @@ export class CompanyOrderDetailsPage implements OnInit {
   id_checkin: string;
   customer_name: string;
   customer_cell_phone: string;
+  hasWorker: boolean = false;
   url: string = 'customers/orders.php';
   
   constructor(
@@ -42,6 +46,9 @@ export class CompanyOrderDetailsPage implements OnInit {
   ionViewWillEnter() {
     if (!this.authService.getLoginSuccessful()) {
       this.authService.setLogout();
+    } else {
+      this.id_company = this.authService.getCompanyID();
+      this.loadWorkers();
     }
   }
 
@@ -70,7 +77,8 @@ export class CompanyOrderDetailsPage implements OnInit {
   public updateOrder(status: string = '0'){
     this.modalCtrl.dismiss({
       'dismissed': true,
-      'newStatus': status
+      'newStatus': status,
+      'id_worker': this.id_worker
     });
   }
 
@@ -78,6 +86,25 @@ export class CompanyOrderDetailsPage implements OnInit {
     this.callNumber.callNumber(this.customer_cell_phone,true)
       .then(res => console.log("phone call initiated") )
       .catch(res => this.toolsService.showToast("Não foi possível realizar a chamada", 2000, "danger"))
+  }
+
+  private async loadWorkers(){
+    let urlWoker: string = "workers/workers.php";
+    this.listWorkers = [];
+    return new Promise(res => {
+      this.requestService.getRequestById(urlWoker, 'company',this.id_company).subscribe(dataResponse => {
+        if(dataResponse['success']) {
+          for (let worker of dataResponse['result']) {
+            this.listWorkers.push(worker);
+          }
+          this.hasWorker = true;
+        } else {
+          this.hasWorker = false;
+        }
+      }, error => {
+        console.info("Não foi possivel carregar entregadores para o quiosque ",this.id_company);
+      })
+    });
   }
 
 }

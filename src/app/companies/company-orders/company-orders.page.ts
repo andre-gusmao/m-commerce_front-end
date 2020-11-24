@@ -21,6 +21,8 @@ export class CompanyOrdersPage implements OnInit {
   canceled: boolean = false;
   interval: any;
   searchbar: string = "";
+  id_company: string = "";
+  id_worker: string = "";
 
   constructor(
     public requestService: RequestsService,
@@ -33,6 +35,7 @@ export class CompanyOrdersPage implements OnInit {
 
   ionViewWillEnter() {
     if (this.authService.getLoginSuccessful()) {
+      this.id_company = this.authService.getProfileID();
       this.loadOrders();
       this.interval = setInterval(() => { this.loadOrders(); },60000);
     } else {
@@ -99,6 +102,8 @@ export class CompanyOrdersPage implements OnInit {
   public async actionWithOrder(id_order){
     let dataRequest = {
       id_order: id_order,
+      id_worker: "",
+      id_company: this.id_company,
       order_status: "0"
     }
 
@@ -112,9 +117,11 @@ export class CompanyOrdersPage implements OnInit {
     await orderDetails.present();
     const { data } = await orderDetails.onWillDismiss();
     this.newStatus = data.newStatus;
+    this.id_worker = data.id_worker;
 
     if(this.newStatus != '0'){
       dataRequest.order_status = this.newStatus;
+      dataRequest.id_worker = this.id_worker;
       this.requestService.postRequest(dataRequest, this.url).subscribe(async dataResponse => {
         if (dataResponse['success']) {
           this.toolsService.showToast(dataResponse['message'],2000,'success');
