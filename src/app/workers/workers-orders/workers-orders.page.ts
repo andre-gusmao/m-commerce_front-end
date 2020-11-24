@@ -63,10 +63,10 @@ export class WorkersOrdersPage implements OnInit {
   public async loadOrders() {
     this.orderList = [];
     return await new Promise(res => {
-      this.requestService.getRequestById(this.url, 'company', this.authService.getProfileID()).subscribe(dataResponse => {
+      this.requestService.getRequestById(this.url, 'worker', this.authService.getProfileID()).subscribe(dataResponse => {
         if(dataResponse['success']) {
           for (let order of dataResponse['result']) {
-            if(order.order_status_id >= '3') {
+            if(order.order_status_id >= '4') {
               this.orderList.push(order);
             }
           }
@@ -81,7 +81,6 @@ export class WorkersOrdersPage implements OnInit {
   }
 
   public async actionWithOrder(id_order){
-
     let dataRequest = {
       id_order: id_order,
       order_status: "0"
@@ -95,14 +94,10 @@ export class WorkersOrdersPage implements OnInit {
     });
 
     await orderDetails.present();
-
     const { data } = await orderDetails.onWillDismiss();
     this.newStatus = data.newStatus;
-
     if(this.newStatus != '0'){
-
       dataRequest.order_status = this.newStatus;
-
       this.requestService.postRequest(dataRequest, this.url).subscribe(async dataResponse => {
         if (dataResponse['success']) {
           this.toolsService.showToast(dataResponse['message'],2000,'success');
