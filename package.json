@@ -1,7 +1,7 @@
 {
   "name": "kioskwide",
   "version": "0.0.1",
-  "author": "Kiosk Wide",
+  "author": "KioskWide",
   "homepage": "https://kioskwide.com.br/",
   "scripts": {
     "ng": "ng",
@@ -63,7 +63,7 @@
     "tslint": "~6.1.0",
     "typescript": "~3.8.3"
   },
-  "description": "Kiosk Wide",
+  "description": "KioskWide",
   "cordova": {
     "plugins": {
       "cordova-plugin-whitelist": {},
