@@ -31,7 +31,7 @@ export class WorkersOrdersPage implements OnInit {
   ionViewWillEnter() {
     if (this.authService.getLoginSuccessful()) {
       this.loadOrders();
-      this.interval = setInterval(() => { this.loadOrders(); },5000);
+      this.interval = setInterval(() => { this.loadOrders(); },15000);
     } else {
       this.authService.setLogout();
     }
