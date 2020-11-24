@@ -162,10 +162,10 @@ export class ToolsService {
       case "4":
         statusText = "Pronto";
         break;
-      case "4":
+      case "5":
         statusText = "Entregue";
         break;
-      case "5":
+      case "6":
         statusText = "Cancelado";
         break;
       default:
