@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { AuthenticationsService } from 'src/app/services/authentications/authentications.service';
 import { ToolsService } from 'src/app/services/tools/tools.service';
 import { ShoppingCartService } from 'src/app/services/shopping-cart/shopping-cart.service';
@@ -7,7 +7,7 @@ import { ShoppingBagService } from 'src/app/services/shopping-bag/shopping-bag.s
 import { IOrderItem } from './../../inferfaces/orderItem';
 import { IOrder } from './../../inferfaces/order';
 import { ICreditCard } from './../../inferfaces/creditCard';
-import { ModalController } from '@ionic/angular';
+import { ModalController, AlertController } from '@ionic/angular';
 import { ShoppingCartCardPage } from '../shopping-cart-card/shopping-cart-card.page'
 
 @Component({
@@ -25,6 +25,8 @@ export class ShoppingCartPage implements OnInit {
   hasCreditCard: boolean = false;
   authorized: boolean = false;
   card_number: string = "";
+  customer_cpf: string = "";
+  hasCPF: boolean = false;
 
   constructor(
     public toolsService: ToolsService,
@@ -32,7 +34,8 @@ export class ShoppingCartPage implements OnInit {
     public ShopCartSrc: ShoppingCartService,
     public authService: AuthenticationsService,
     public modalCtrl: ModalController,
-    public ShopBagSrc: ShoppingBagService
+    public ShopBagSrc: ShoppingBagService,
+    public alertCtrl: AlertController
   ) { }
 
   ngOnInit() {}
@@ -124,6 +127,7 @@ export class ShoppingCartPage implements OnInit {
       order_status: order.order_status,
       order_payment_status: order.order_payment_status,
       order_payment_method: order.order_payment_method,
+      customer_cpf: this.customer_cpf,
       items: []
     }
     
@@ -208,6 +212,37 @@ export class ShoppingCartPage implements OnInit {
   public changeCreditCard(){
     this.removeCreditCard();
     this.addCreditCard()
+  }
+
+  public async addCPF(){
+    const alert = await this.alertCtrl.create({
+      header: 'Digite seu CPF',
+      inputs: [{
+        name: 'cpf',
+        type: 'text'
+      }
+      ],
+      buttons: [{
+        text: 'Cancelar',
+        role: 'cancel',
+        handler: () => {}
+      },{
+        text: 'Ok',
+        handler: (alertData) => {
+          if(this.toolsService.isValidCPF(alertData.cpf) == true){
+            this.hasCPF = true;
+            this.customer_cpf = alertData.cpf;
+          }
+        }
+      }]
+    });
+
+    await alert.present();
+  }
+
+  public clearCPF(){
+    this.hasCPF = false;
+    this.customer_cpf = "";
   }
 
 }
