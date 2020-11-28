@@ -14,6 +14,7 @@
   <div *ngIf="totalOrder != 0" style="text-align: center;">
     <ion-item detail="false">
       <ion-label style="text-align: center;">Itens no seu pedido</ion-label>
+      <ion-label *ngIf="hasCPF" style="text-align: center; font: smaller">CPF: {{customer_cpf}}</ion-label>
     </ion-item>
   </div>
 
@@ -103,6 +104,12 @@
     </ion-button>
     <ion-button size="small" fill="outline" shape="round" (click)="addCreditCard()">
       <ion-icon name="card-outline"></ion-icon>Adicionar cartão
+    </ion-button>
+    <ion-button *ngIf="!hasCPF" size="small" fill="outline" shape="round" (click)="addCPF()">
+      <ion-icon name="bookmark-outline"></ion-icon>Informar CPF
+    </ion-button>
+    <ion-button *ngIf="hasCPF" size="small" fill="outline" shape="round" (click)="clearCPF()">
+      <ion-icon name="bookmark-outline"></ion-icon>Limpar CPF
     </ion-button>
   </div>
 
