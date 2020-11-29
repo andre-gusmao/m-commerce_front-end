@@ -30,7 +30,6 @@ export class CustomersCatalogsPage implements OnInit {
   id_customer: string = "";
   id_catalog: string = "";
   totalGroups: number = 0;
-  teste: string = "";
   @ViewChild(IonSlides) slides : IonSlides;
   currentIndex: number = 0;
   groupItems: any = [];

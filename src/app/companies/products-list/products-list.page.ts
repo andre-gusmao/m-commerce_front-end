@@ -12,6 +12,7 @@ import { AuthenticationsService } from 'src/app/services/authentications/authent
 export class ProductsListPage implements OnInit {
 
   productList: any[];
+  productListBkp: any[];
   id_product: string = "";
   id_company: string = "";
   id_product_category: string = "";
@@ -23,7 +24,8 @@ export class ProductsListPage implements OnInit {
   start: number = 0;
   limit: number = 10;
   hasProduct: boolean = false;
-
+  groupList: any = [];
+  group_filter: string = "";
 
   constructor(
     public requestService: RequestsService,
@@ -46,6 +48,7 @@ export class ProductsListPage implements OnInit {
   }
 
   doRefresh(event) {
+    this.group_filter = "";
     setTimeout(() => {
       this.ionViewWillEnter();
       event.target.complete();
@@ -70,7 +73,10 @@ export class ProductsListPage implements OnInit {
             this.productList.push(product);
           }
           this.hasProduct = true;
+          this.productListBkp = this.productList;
+          this.loadGroups();
         } else {
+          this.productListBkp = [];
           this.hasProduct = false;
         }
       }, error => {
@@ -121,6 +127,23 @@ export class ProductsListPage implements OnInit {
 
   public insert(){
     this.toolsService.goToPage(this.editPage);
+  }
+
+  public loadGroups(){
+    let groupName: string = "";
+    for(let i = 0; i < this.productList.length; i++){
+      groupName = this.productList[i].product_category_name;
+      if(this.groupList.indexOf(groupName) === -1){
+        this.groupList.push(groupName);
+      }
+    }
+  }
+
+  public filterGroups(){
+    this.productList = this.productListBkp;
+    this.productList = this.productList.filter(currentProduct => {
+      return (currentProduct.product_category_name.indexOf(this.group_filter) > -1);
+    });
   }
 
 }
