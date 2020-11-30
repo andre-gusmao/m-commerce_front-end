@@ -37,9 +37,14 @@ export class CheckinsPage implements OnInit {
   }
 
   public scanQRCode() {
-    //this.toolsService.showToast("Em desenvolvimento");
     this.barcodeScanner.scan().then(barcodeData => {
       console.log("success",barcodeData);
+      if (this.validCatalog(barcodeData.text) == true) {
+        this.authService.setCheckin(barcodeData.text);
+        this.toolsService.goToPage('/customers-catalogs');
+      } else {
+        this.toolsService.showToast("Código inválido");
+      }
     }).catch(error => {
       console.log("error",error);
     })

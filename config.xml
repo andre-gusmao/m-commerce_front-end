@@ -3,7 +3,7 @@
     <name>KioskWide</name>
     <description>KioskWide e plataforma que te faz economizar enquanto curte a praia. Aproveite e compartilhe com todos!</description>
     <author email="contato@kioskwide.com.br" href="https://kioskwide.com.br/">KioskWide</author>
-    <content src="index.html" />
+    <content original-src="index.html" src="http://192.168.0.16:8100" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
@@ -112,4 +112,5 @@
     <allow-navigation href="https://kioskwide.com.br" />
     <allow-navigation href="http://kioskwide.com.br/api/" />
     <allow-navigation href="https://kioskwide.com.br/api/" />
+    <allow-navigation href="http://192.168.0.16:8100" sessionid="a71a40c4" />
 </widget>
