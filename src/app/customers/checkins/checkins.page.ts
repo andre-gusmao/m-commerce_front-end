@@ -3,7 +3,8 @@ import { AlertController } from '@ionic/angular';
 import { RequestsService } from 'src/app/services/requests/requests.service';
 import { ToolsService } from 'src/app/services/tools/tools.service';
 import { AuthenticationsService } from 'src/app/services/authentications/authentications.service';
-import { ShoppingCartService } from 'src/app/services/shopping-cart/shopping-cart.service'
+import { ShoppingCartService } from 'src/app/services/shopping-cart/shopping-cart.service';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 
 @Component({
   selector: 'app-checkins',
@@ -21,7 +22,8 @@ export class CheckinsPage implements OnInit {
     public toolsService: ToolsService,
     public alertCtrl: AlertController,
     public authService: AuthenticationsService,
-    public ShopCartSrc: ShoppingCartService
+    public ShopCartSrc: ShoppingCartService,
+    private barcodeScanner: BarcodeScanner
   ) {}
 
   ngOnInit() {}
@@ -32,11 +34,15 @@ export class CheckinsPage implements OnInit {
     } else {
       this.authService.setLogout();
     }
-    
   }
 
-  scanQRCode() {
-    this.toolsService.showToast("Em desenvolvimento");
+  public scanQRCode() {
+    //this.toolsService.showToast("Em desenvolvimento");
+    this.barcodeScanner.scan().then(barcodeData => {
+      console.log("success",barcodeData);
+    }).catch(error => {
+      console.log("error",error);
+    })
   }
 
   async enterQRCode() {

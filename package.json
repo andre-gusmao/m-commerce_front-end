@@ -19,6 +19,7 @@
     "@angular/platform-browser": "^9.1.11",
     "@angular/platform-browser-dynamic": "^9.1.11",
     "@angular/router": "^9.1.11",
+    "@ionic-native/barcode-scanner": "^5.30.0",
     "@ionic-native/call-number": "^5.28.0",
     "@ionic-native/core": "^5.26.0",
     "@ionic-native/native-storage": "^5.28.0",
@@ -58,6 +59,7 @@
     "karma-coverage-istanbul-reporter": "~2.1.0",
     "karma-jasmine": "~3.0.1",
     "karma-jasmine-html-reporter": "^1.4.2",
+    "phonegap-plugin-barcodescanner": "^8.1.0",
     "protractor": "^7.0.0",
     "ts-node": "~8.3.0",
     "tslint": "~6.1.0",
@@ -75,7 +77,10 @@
       },
       "cordova-plugin-ionic-keyboard": {},
       "cordova-plugin-nativestorage": {},
-      "mx.ferreyra.callnumber": {}
+      "mx.ferreyra.callnumber": {},
+      "phonegap-plugin-barcodescanner": {
+        "ANDROID_SUPPORT_V4_VERSION": "27.+"
+      }
     },
     "platforms": [
       "android"
