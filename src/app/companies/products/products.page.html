@@ -23,13 +23,17 @@
   <ion-card>
     <ion-card-header>Foto</ion-card-header>
     <ion-card-content>
-      <!-- <img *ngIf="novaFoto == undefined" src="">
-        <img *ngIf="novaFoto != undefined" [src]="novaFoto"> -->
+      <img *ngIf="product_picture == undefined" src="">
+      <img *ngIf="product_picture != undefined" [src]="novaFoto">
+      <input type="file" (change)="onFileChange($event)" />
     </ion-card-content>
   </ion-card>
 </ion-content>
 <ion-footer>
   <div style="text-align: center;">
+    <ion-button size="small" fill="outline" shape="round" (click)="sendPhoto()">
+      <ion-icon name="camera"></ion-icon>sendPhoto
+    </ion-button>
     <ion-button size="small" fill="outline" shape="round" (click)="takePictures()">
       <ion-icon name="camera"></ion-icon>Fotografar
     </ion-button>

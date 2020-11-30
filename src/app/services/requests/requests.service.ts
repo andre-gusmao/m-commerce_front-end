@@ -105,4 +105,24 @@ export class RequestsService {
     return this.http.delete(url, {headers: headers}).pipe(map(res => res));
   }
 
+  public getFileName(id_company: string = "0", key: string = "kw",extension: string = ""){
+    let now = new Date();
+    let fileName: string = "";
+    // 20201130_2359_company_1_product.png
+    fileName = now.getFullYear().toString();
+    fileName += now.getMonth().toString();
+    fileName += now.getDate().toString();
+    fileName += "_";
+    fileName += now.getHours().toString();
+    fileName += now.getMinutes().toString();
+    fileName += "_";
+    fileName += "company";
+    fileName += "_";
+    fileName += id_company;
+    fileName += "_";
+    fileName += key;
+    fileName += extension;
+    return fileName;
+  }
+
 }
