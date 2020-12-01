@@ -151,8 +151,8 @@ export class ProductsPage implements OnInit {
   }
 
   public async sendPhoto(){
-    //let url: string = environment.endpointURL + "companies/uploadphoto.php"
-    let url: string = "http://192.168.0.20/api/companies/photo.php";
+    let url: string = environment.endpointURL + "companies/photo.php"
+    //let url: string = "http://192.168.0.20/api/companies/photo.php";
     let formData = new FormData;
     let fileName: string = this.requestService.getFileName(this.id_company,"product",".png");
     formData.append("request_type","insert");
