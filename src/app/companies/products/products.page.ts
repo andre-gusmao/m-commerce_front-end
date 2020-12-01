@@ -79,7 +79,7 @@ export class ProductsPage implements OnInit {
           this.id_product_category = data['result'][0]['id_product_category'];
           this.product_name = data['result'][0]['product_name'];
           this.product_description = data['result'][0]['product_description'];
-          //this.product_picture = data['result'][0]['product_picture'];
+          this.product_picture = data['result'][0]['product_picture'];
         } else {
           this.toolsService.showToast(data['message'], 2000, 'success');
         }
@@ -135,8 +135,9 @@ export class ProductsPage implements OnInit {
 
   public takePictures() {//this.toolsService.showToast("Em desenvolvimento", 2000, 'warning');
     const options: CameraOptions = {
-      quality: 50,
-      destinationType: this.camera.DestinationType.FILE_URI,
+      quality: 100,
+      //destinationType: this.camera.DestinationType.FILE_URI,
+      destinationType: this.camera.DestinationType.DATA_URL,
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE
     }

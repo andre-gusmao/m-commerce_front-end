@@ -47,7 +47,7 @@ export class MenuService {
       "icon": 'book-outline'
     },
     {
-      "title": 'Pedidos',
+      "title": 'Meus pedidos',
       "url": '/customers-orders',
       "icon": 'cart-outline'
     },
