@@ -60,7 +60,7 @@
 
         <ion-item detail="false" lines="inset">
           <!-- <ion-label position="floating">Tipo de Documento</ion-label> -->
-          <ion-select [(ngModel)]="company_document_type" name="company_document_type" interface="alert" placeholder="Tipo de Documento">
+          <ion-select [(ngModel)]="company_document_type" name="company_document_type" interface="action-sheet" placeholder="Tipo de Documento" cancelText="Cancelar">
             <ion-select-option value="CNPJ">CNPJ</ion-select-option>
             <ion-select-option value="CPF">CPF</ion-select-option>
             <ion-select-option value="INSMUN">Inscrição Municipal</ion-select-option>

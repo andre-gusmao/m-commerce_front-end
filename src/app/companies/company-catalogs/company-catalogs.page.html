@@ -15,12 +15,12 @@
     <ion-item>
       <ion-label position="floating">Status</ion-label>
 
-      <ion-select *ngIf="id_catalog != undefined" [(ngModel)]="catalog_status" disabled="true" name="catalog_status" interface="alert" placeholder="Status do cardapio">
+      <ion-select cancelText="Cancelar" *ngIf="id_catalog != undefined" [(ngModel)]="catalog_status" disabled="true" name="catalog_status" interface="action-sheet" placeholder="Status do cardapio">
         <ion-select-option value="A">Ativo</ion-select-option>
         <ion-select-option value="I">Inativo</ion-select-option>
       </ion-select>
 
-      <ion-select *ngIf="id_catalog == undefined" [(ngModel)]="catalog_status" name="catalog_status" interface="alert" placeholder="Status do cardapio">
+      <ion-select cancelText="Cancelar" *ngIf="id_catalog == undefined" [(ngModel)]="catalog_status" name="catalog_status" interface="action-sheet" placeholder="Status do cardapio">
         <ion-select-option value="A">Ativo</ion-select-option>
         <ion-select-option value="I">Inativo</ion-select-option>
       </ion-select>

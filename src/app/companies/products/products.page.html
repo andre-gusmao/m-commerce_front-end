@@ -5,9 +5,9 @@
   </ion-item>
   <ion-item>
     <ion-label position="floating">Grupo de Produto</ion-label>
-    <ion-select [(ngModel)]="id_product_category" name="id_product_category" interface="alert"
+    <ion-select cancelText="Cancelar" [(ngModel)]="id_product_category" name="id_product_category" interface="action-sheet"
       placeholder="Selecione o grupo">
-      <ion-select-option *ngFor="let category of categoryList" [value]="category.id_product_category">
+      <ion-select-option *ngFor="let category of categoryList" [(value)]="category.id_product_category">
         {{category.product_category_name}}
       </ion-select-option>
     </ion-select>

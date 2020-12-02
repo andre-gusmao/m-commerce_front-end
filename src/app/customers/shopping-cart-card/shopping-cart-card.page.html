@@ -27,7 +27,7 @@
     </ion-item>
     <ion-item>
       <ion-label position="floating">Mes</ion-label>
-      <ion-select [(ngModel)]="card_expiration_month" name="card_expiration_month" interface="action-sheet"
+      <ion-select [(ngModel)]="card_expiration_month" name="card_expiration_month" interface="action-sheet" cancelText="Cancelar"
         placeholder="Selecione o mes">
         <ion-select-option value="01">01 - Janeiro</ion-select-option>
         <ion-select-option value="02">02 - Feveiro</ion-select-option>
@@ -56,7 +56,7 @@
     </ion-item>
     <ion-item>
       <ion-label position="floating">Bandeira do Cartao</ion-label>
-      <ion-select [(ngModel)]="card_company" name="card_company" interface="alert"
+      <ion-select [(ngModel)]="card_company" name="card_company" interface="action-sheet" cancelText="Cancelar"
         placeholder="Selecione a bandeira" disabled>
         <ion-select-option value="0">Outros</ion-select-option>
         <ion-select-option value="1">Visa</ion-select-option>

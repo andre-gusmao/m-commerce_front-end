@@ -32,7 +32,7 @@
 
 <ion-footer>
   <ion-toolbar style="text-align: center;">
-    <ion-select interface="action-sheet" *ngIf="hasWorker && order_status >= '3'" [(ngModel)]="id_worker" name="id_worker" placeholder="Selecione o entregador">
+    <ion-select cancelText="Cancelar" interface="action-sheet" *ngIf="hasWorker && (order_status == '3' || order_status == '4')" [(ngModel)]="id_worker" name="id_worker" placeholder="Selecione o entregador">
       <ion-select-option *ngFor="let worker of listWorkers" [value]="worker.id_worker">{{worker.worker_name}}</ion-select-option>
     </ion-select>
     <ion-button *ngIf="order_status == '2'" size="small" fill="outline" shape="round" (click)="updateOrder('3')">
@@ -41,7 +41,7 @@
     <ion-button *ngIf="order_status == '3'" size="small" fill="outline" shape="round" (click)="updateOrder('4')">
       <ion-icon name="checkmark-done-outline"></ion-icon>Pronto
     </ion-button>
-    <ion-button *ngIf="order_status >= '3'" size="small" fill="outline" shape="round" (click)="updateOrder('5')">
+    <ion-button *ngIf="order_status == '4'" size="small" fill="outline" shape="round" (click)="updateOrder('5')">
       <ion-icon name="fast-food-outline"></ion-icon>Entregar
     </ion-button>
     <ion-button size="small" fill="outline" shape="round" (click)="updateOrder()">
