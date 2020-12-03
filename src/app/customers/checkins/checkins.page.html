@@ -15,8 +15,8 @@
       </ion-button>
     </div>
   </div>
-  <div style="text-align: center;" *ngIf="authService.getCheckin()">
-    <ion-title>Você está na <br> mesa {{tableID}}</ion-title>
+  <div style="text-align: top;" *ngIf="authService.getCheckin()">
+    <ion-title>{{userName}} <br/><br/> você está na <br/><br/> mesa {{tableID}} <br/><br/> do {{companyName}}</ion-title>
   </div>
 </ion-content>
 <div style="text-align: center;" *ngIf="authService.getCheckin()">
