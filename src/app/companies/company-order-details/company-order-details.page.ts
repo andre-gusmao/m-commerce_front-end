@@ -4,6 +4,7 @@ import { RequestsService } from 'src/app/services/requests/requests.service';
 import { ModalController } from '@ionic/angular';
 import { ToolsService } from 'src/app/services/tools/tools.service';
 import { CallNumber } from '@ionic-native/call-number/ngx';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-company-order-details',
@@ -89,10 +90,10 @@ export class CompanyOrderDetailsPage implements OnInit {
   }
 
   private async loadWorkers(){
-    let urlWoker: string = "workers/workers.php";
+    let urlWoker: string = environment.endpointURL + "workers/workers.php?company=" + this.id_company + "&status=A";
     this.listWorkers = [];
     return new Promise(res => {
-      this.requestService.getRequestById(urlWoker, 'company',this.id_company).subscribe(dataResponse => {
+      this.requestService.getRequest(urlWoker).subscribe(dataResponse => {
         if(dataResponse['success']) {
           for (let worker of dataResponse['result']) {
             this.listWorkers.push(worker);
