@@ -5,8 +5,8 @@
         <domain includeSubdomains="true">http://localhost:8100/</domain>
         <domain includeSubdomains="true">http://192.168.0.20/</domain>
         <domain includeSubdomains="true">http://192.168.0.20:8100/</domain>
-        <domain includeSubdomains="true">http://kioskwide.com.br/</domain>
-        <domain includeSubdomains="true">https://kioskwide.com.br/</domain>
+        <domain includeSubdomains="true">http://app.kioskwide.com.br/api/</domain>
+        <domain includeSubdomains="true">https://app.kioskwide.com.br/api/</domain>
         <domain includeSubdomains="true">http://gateway.yapay.com.br/</domain>
         <domain includeSubdomains="true">http://sandbox.gateway.yapay.com.br/</domain>
         <domain includeSubdomains="true">https://gateway.yapay.com.br/</domain>
