@@ -37,8 +37,15 @@
     </div>
 
     <div *ngIf="authService.getLoginSuccessful()">
-        <ion-item lines="none">
-            <ion-label style="text-align: center;color: #3880ff;">VOCE ESTA LOGADO!!!!</ion-label>
-        </ion-item>
+        <div style="text-align: center;">
+            <ion-text style="text-align: center;color: #3880ff;">{{companyName}}</ion-text>
+            <br/><br/>
+            <ion-text style="text-align: center;color: #000;">Bem vindo {{userName}}</ion-text>
+        </div>
+        <ion-fab vertical="bottom" horizontal="center" slot="fixed">
+          <ion-fab-button size="small" (click)="toolsService.goToPage(catalog)">
+            <ion-icon name="book-outline"></ion-icon>
+          </ion-fab-button>
+        </ion-fab>
     </div>
 </ion-content>
