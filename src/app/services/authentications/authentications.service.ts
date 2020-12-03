@@ -14,6 +14,7 @@ export class AuthenticationsService {
   userLogin: string = "";
   userName: string = "";
   companyID: string = "";
+  companyName: string = "";
   catalogID: string = "";
   profileID: string = "";
   tableID: string = "";
@@ -73,6 +74,10 @@ export class AuthenticationsService {
     this.companyID = companyID;
   }
 
+  setCompanyName(companyName) {
+    this.companyName = companyName;
+  }
+
   setCatalogID(catalogID) {
     this.catalogID = catalogID;
   }
@@ -111,6 +116,10 @@ export class AuthenticationsService {
 
   getCompanyID() {
     return this.companyID;
+  }
+
+  getCompanyName() {
+    return this.companyName;
   }
 
   getCatalogID() {
