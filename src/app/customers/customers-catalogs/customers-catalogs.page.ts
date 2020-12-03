@@ -74,6 +74,7 @@ export class CustomersCatalogsPage implements OnInit {
   private async loadCustomerCatalog() {
     this.hasCatalog = false;
     this.ShopCartSrc.clearCatalog();
+    this.toolsService.showLoading("Carregando cardápio");
     return new Promise(res => {
       this.requestService.getRequestById(this.url, 'company', this.id_company).subscribe(dataResponse => {
         if (dataResponse['success']) {
@@ -89,6 +90,8 @@ export class CustomersCatalogsPage implements OnInit {
         this.loadGroups();
       }, error => {
         this.toolsService.showAlert();
+      }, () => {
+        this.toolsService.hideLoading();
       })
     });
 
