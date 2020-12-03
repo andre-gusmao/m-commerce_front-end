@@ -12,8 +12,8 @@ import { AlertController } from '@ionic/angular';
 })
 export class LoginPage implements OnInit {
 
-  email: string = "quiosque@kw.com";
-  password: string = "quio2020";
+  email: string = "";
+  password: string = "";
   logado: boolean = false;
   isEmpty: boolean = false;
   showPassword: boolean = false;
@@ -81,6 +81,7 @@ export class LoginPage implements OnInit {
     }, error => {
       this.toolsService.hideLoading().finally(() => {
         this.toolsService.showToast("Verifique a conexão e tente novamente",2000,"danger");
+        this.toolsService.showToast(error.message);
       });
     }, () => {
       this.toolsService.hideLoading();

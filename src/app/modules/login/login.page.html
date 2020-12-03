@@ -1,14 +1,12 @@
 <app-header></app-header>
 <ion-content>
     <div *ngIf="!authService.getLoginSuccessful()">
-        <ion-item>
+        <div class="title">
             <h4>Login</h4>
-        </ion-item>
-        <ion-item>
+        </div>
+        <div>
             <ion-label position="floating">E-mail</ion-label>
             <ion-input type="text" [(ngModel)]="email"></ion-input>
-        </ion-item>
-        <ion-item>
             <ion-label position="floating">Senha</ion-label>
             <ion-input
                 name="password"
@@ -16,23 +14,24 @@
                 maxlength="25"
                 [(ngModel)]="password">
             </ion-input>
-            <ion-icon
-              [name]="(password == 'password') ? 'eye-off' : 'eye'"
-              slot="end"
-              size="small"
-              (click)="togglePassword()">
-            </ion-icon>
-        </ion-item>
-        <br>
-        <div style="text-align: center;">
-            <ion-button size="small" type="submit" fill="outline" shape="round" (click)="login()">
+            <ion-button size="small" fill="clear" expand="full" (click)="togglePassword()">
+                <ion-icon
+                [name]="(password == 'password') ? 'eye-off' : 'eye'"
+                slot="start"
+                size="small">
+                </ion-icon>Mostrar senha
+            </ion-button>
+            <br/>
+            <ion-button expand="full" type="submit" fill="outline" shape="round" (click)="login()">
                 <ion-icon name="log-in-outline"></ion-icon>Entrar
             </ion-button>
-            <ion-button size="small" type="submit" fill="outline" shape="round" (click)="registerProfile()">
-                <ion-icon name="add-outline"></ion-icon>Cadastrar
+            <br/><br/>
+            <ion-button expand="full" type="submit" fill="clear" (click)="recoverPassword()">
+                Esqueceu a senha? Clique aqui
             </ion-button>
-            <ion-button size="small" type="submit" fill="outline" shape="round" (click)="recoverPassword()">
-                <ion-icon name="lock-open-outline"></ion-icon>Lembrar senha
+            <br/><br/>
+            <ion-button expand="full" type="submit" fill="clear" (click)="registerProfile()">
+                Novo por aqui? Cadastre-se
             </ion-button>
         </div>
     </div>
