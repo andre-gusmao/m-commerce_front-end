@@ -23,6 +23,7 @@ export class CompanyOrdersPage implements OnInit {
   searchbar: string = "";
   id_company: string = "";
   id_worker: string = "";
+  statusFilter: Array<string> = ["2","3","4"];
 
   constructor(
     public requestService: RequestsService,
@@ -76,6 +77,7 @@ export class CompanyOrdersPage implements OnInit {
           }
           this.hasOrders = true;
           this.orderListBkp = this.orderList;
+          this.filterByStatus();
         } else {
           this.hasOrders = false;
         }
@@ -96,6 +98,14 @@ export class CompanyOrdersPage implements OnInit {
       if(this.searchbar.trim()){
         return (currentOrder.id_order.indexOf(this.searchbar.trim()) > -1 || currentOrder.order_date.indexOf(this.searchbar.trim()) > -1 || currentOrder.order_status.toLowerCase().indexOf(this.searchbar.toLowerCase().trim()) > -1);
       } 
+    })
+  }
+
+  private filterByStatus(){
+    this.orderList = this.orderListBkp;
+
+    this.orderList = this.orderList.filter(currentOrder => {
+      return this.statusFilter.indexOf(currentOrder.order_status_id) > -1;
     })
   }
 
@@ -155,6 +165,10 @@ export class CompanyOrdersPage implements OnInit {
       console.log("error",error);
       this.toolsService.showToast("Não foi possível cancelar a transação",2000,"danger");
     });
+  }
+
+  public refreshStatusFilter(){
+    this.filterByStatus();
   }
 
 }
