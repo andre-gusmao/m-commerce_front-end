@@ -132,17 +132,23 @@ export class ProductsPage implements OnInit {
       })
     });
   }
-
-  public takePictures() {//this.toolsService.showToast("Em desenvolvimento", 2000, 'warning');
+  public takePictures() {
+    let resized_picture;
     const options: CameraOptions = {
       quality: 100,
-      //destinationType: this.camera.DestinationType.FILE_URI,
       destinationType: this.camera.DestinationType.DATA_URL,
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE
     }
     this.camera.getPicture(options).then((imageData) => {
       this.product_picture = 'data:image/jpeg;base64,' + imageData;
+
+      this.compressImage(this.product_picture)
+        .then(compressed => {
+          resized_picture = compressed;
+        })
+      this.product_picture = resized_picture;
+
       console.info("getPicture ok");
     }, (error) => {
      this.toolsService.showToast("Não foi possível capturar a foto",1000,"warning");
@@ -150,9 +156,49 @@ export class ProductsPage implements OnInit {
     });
   }
 
+  /*
+    CM: L x A = 15,87 x 10,58
+    PX: L x A = 600 x 400
+    Resolução Máxima 100 DPI
+  */
+  public compressImage(source, newWidth: number = 600, newHeigth: number = 400){
+    return new Promise((resolve, reject) => {
+      const img = new Image();
+      img.src = source;
+      img.onload = () => {
+        const elem = document.createElement('canvas');
+        elem.width = newWidth;
+        elem.height = newHeigth;
+        const ctx = elem.getContext('2d');
+        ctx.drawImage(img,0,0,newWidth,newHeigth);
+        const data = ctx.canvas.toDataURL();
+        resolve(data);
+      }
+      img.onerror = error => reject(error);
+    })
+  }
+
+  public comprimir(){
+    let resized_picture;
+    const options: CameraOptions = {
+      quality: 100,
+      destinationType: this.camera.DestinationType.DATA_URL,
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE
+    }
+    this.compressImage(this.product_picture)
+      .then(compressed => {
+        resized_picture = compressed;
+        console.log("sucsess compressImage");
+      })
+      .catch( error => {
+        console.log(error);
+      })
+    this.product_picture = resized_picture;
+  }
+
   public async sendPhoto(){
     let url: string = environment.endpointURL + "companies/photo.php"
-    //let url: string = "http://192.168.0.20/api/companies/photo.php";
     let formData = new FormData;
     let fileName: string = this.requestService.getFileName(this.id_company,"product",".png");
     formData.append("request_type","insert");
