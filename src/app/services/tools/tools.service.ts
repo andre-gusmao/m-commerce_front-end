@@ -120,7 +120,8 @@ export class ToolsService {
     return await this.loadingCtrl.create({
       message: _message,
       spinner: 'lines'
-    }).then(alert => {
+    })
+    .then(alert => {
         alert.present().then(() => {
         if (!this.loading) {
           alert.dismiss(() => { });
@@ -167,6 +168,9 @@ export class ToolsService {
         break;
       case "6":
         statusText = "Cancelado";
+        break;
+      case "7":
+        statusText = "Pagto. Recusado";
         break;
       default:
         statusText = "Indefinido";
@@ -231,6 +235,12 @@ export class ToolsService {
 
   public isValidCNPJ(cnpj){
     return true;
+  }
+
+  public numericOnly(event): boolean {
+    let pattern = /^([0-9])$/;
+    let result = pattern.test(event.key);
+    return result;
   }
 
 }
