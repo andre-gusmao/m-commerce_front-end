@@ -37,7 +37,7 @@ export class LoginPage implements OnInit {
     this.userName = this.authService.getUserName();
   }
   
-  async login() {
+  public async login() {
     let dataRequest = {
       requisicao: 'login',
       email: btoa(this.email.toLocaleLowerCase()),

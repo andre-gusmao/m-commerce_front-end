@@ -19,7 +19,7 @@
     </ion-item>
     <ion-item>
       <ion-label position="floating">Numero</ion-label>
-      <ion-input type="number" [(ngModel)]="card_number" value="card_number" (ionBlur)="getCreditCardLabel()"></ion-input>
+      <ion-input type="text" [(ngModel)]="card_number" value="card_number" (ionBlur)="getCreditCardLabel()" (keypress)="toolsService.numericOnly($event)"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label position="floating">Nome</ion-label>
