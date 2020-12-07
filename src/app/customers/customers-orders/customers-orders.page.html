@@ -5,36 +5,37 @@
       refreshingText="Carregando...">
     </ion-refresher-content>
   </ion-refresher>
-    <ion-grid>
-      <ion-row *ngIf="!hasOrders">
-        <ion-col size="12">
-          <h5>Você ainda não fez pedidos</h5>
-        </ion-col>
-      </ion-row>
-      <ion-row *ngIf="hasOrders">
-        <ion-col size="12">
-          <h5>Pedidos Realizados</h5>
-        </ion-col>
-      </ion-row>
-      <ion-row [ngClass]="(i % 2 == 0) ? 'even' : 'odd'" *ngFor="let order of orderList; let i = index;" (click)="showOrder(order)">
-        <ion-col size="2">
-          <div>
-            {{order.order_date}}
-          </div>
-        </ion-col>
-        <ion-col size="6">
-          <div>
-            {{order.company_name}} <br>
-            {{order.id_order}} - {{order.order_status}}
-          </div>
-        </ion-col>
-        <ion-col size="4">
-          <div>
-            {{order.order_total_price | currency:"BRL":"symbol"}}
-          </div>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
+  <ion-grid>
+    <ion-row *ngIf="!hasOrders">
+      <ion-col size="12">
+        <h5>Você ainda não fez pedidos</h5>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="hasOrders">
+      <ion-col size="12">
+        <h5>Pedidos Realizados</h5>
+      </ion-col>
+    </ion-row>
+    <ion-row [ngClass]="(i % 2 == 0) ? 'even' : 'odd'" *ngFor="let order of orderList; let i = index;"
+      (click)="showOrder(order)">
+      <ion-col size="2">
+        <div>
+          {{order.order_date}}
+        </div>
+      </ion-col>
+      <ion-col size="6">
+        <div>
+          {{order.company_name}} <br>
+          {{order.id_order}} - {{order.order_status}}
+        </div>
+      </ion-col>
+      <ion-col size="4">
+        <div>
+          {{order.order_total_price | currency:"BRL":"symbol"}}
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
   <ion-fab vertical="bottom" horizontal="center" slot="fixed">
     <ion-fab-button size="small" (click)="toolsService.goToPage(catalog)">
       <ion-icon name="book-outline"></ion-icon>

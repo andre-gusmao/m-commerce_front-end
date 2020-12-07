@@ -70,11 +70,12 @@ export class CustomersOrdersPage implements OnInit {
     });
   }
 
-  async showOrder(order: any){
+  public async showOrder(order: any){
     const orderDetails = await this.modalCtrl.create({
       component: CustomersOrdersDetailPage,
       componentProps: {
-        id_order: order.id_order
+        id_order: order.id_order,
+        order_status: order.order_status
       }
     });
     await orderDetails.present();
