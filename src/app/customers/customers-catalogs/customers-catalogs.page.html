@@ -10,8 +10,8 @@
       </ion-button>
     </div>
   </div>
-  <ion-slides scrollbar="true" *ngIf="hasCatalog" pager="true"
-    (ionSlideDidChange)="ionSlideDidChange()" (ionSlidesDidLoad)="ionSlidesDidLoad()">
+  <ion-slides scrollbar="true" *ngIf="hasCatalog" pager="true" (ionSlideDidChange)="ionSlideDidChange()"
+    (ionSlidesDidLoad)="ionSlidesDidLoad()">
     <ion-slide *ngFor="let group of ShopCartSrc.appCategory; let t = index;">
       <div style="width: 100%;">
         <ion-item lines="none" style="text-align: center;">

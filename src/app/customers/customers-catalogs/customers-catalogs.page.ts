@@ -97,7 +97,7 @@ export class CustomersCatalogsPage implements OnInit {
 
   }
 
-  async showItem(product: any) {
+  public async showItem(product: any) {
     let storageItem: IOrderItem;
     const itemDetail = await this.modalCtrl.create({
       component: ItemDetailsPage,
@@ -113,15 +113,12 @@ export class CustomersCatalogsPage implements OnInit {
     });
 
     await itemDetail.present();
-
     const { data } = await itemDetail.onWillDismiss();
 
     if(data){
-
       this.id_item = data.id_item;
       this.quantity = data.quantity;
       this.customer_note = data.customer_note;
-
       let item: IOrderItem = {
         order_item_name: "item" + product.id_product.toString().trim(),
         id_catalog: this.id_catalog,
@@ -183,7 +180,6 @@ export class CustomersCatalogsPage implements OnInit {
         this.totalGroups++;
       }
     }
-
     this.ShopCartSrc.appCategory = filGroup;
   }
 
