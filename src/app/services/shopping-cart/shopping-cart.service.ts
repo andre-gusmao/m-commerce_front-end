@@ -98,12 +98,10 @@ export class ShoppingCartService {
   }
 
   public clearOrderItems(){
-
     while(this.orderItems[0].items.length){
       this.orderItems[0].items.pop();
     }
     this.orderItems.pop();
-
   }
 
   /* company functions */

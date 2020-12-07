@@ -118,7 +118,6 @@ export class ShoppingCartPage implements OnInit {
 
   public async registerOrder(){
     let order: IOrder = await this.ShopBagSrc.getOrder("order");
-
     let dataRequest = {
       id_company: this.authService.getCompanyID(),
       id_customer: this.authService.getProfileID(),
@@ -145,18 +144,23 @@ export class ShoppingCartPage implements OnInit {
       );
     }
 
-    await this.requestService.postRequest(dataRequest, this.url).subscribe(async dataResponse => {
+    this.toolsService.showLoading("Registrando pedido");
+
+    await this.requestService.postRequest(dataRequest, this.url).subscribe( async dataResponse => {
       if (dataResponse['success']) {
-        this.toolsService.showToast(dataResponse['message'],1000,'success');
-        this.authorizeOrder(this.credit_card,dataResponse);
-        this.toolsService.goToPage(this.listPage);
+        await this.toolsService.showToast(dataResponse['message'],1000,'success');
+        await this.toolsService.hideLoading();
+        await this.authorizeOrder(this.credit_card,dataResponse);
       }else{
-        this.toolsService.showToast(dataResponse['message'],2000,'warning');
+        await this.toolsService.showToast(dataResponse['message'],2000,'warning');
+        await this.unauthorizedOrder(dataResponse['id_order']);
       }
     }, error => {
-      this.toolsService.showToast("Não foi possível enviar seu pedido",2000,"danger");
+      this.toolsService.hideLoading().finally(() => {
+        this.toolsService.showToast("Não foi possível enviar seu pedido",2000,"danger");
+      });
     });
-
+    this.toolsService.goToPage("customers-orders");
   }
 
   private async authorizeOrder(creditCard: ICreditCard, order: any){
@@ -182,18 +186,39 @@ export class ShoppingCartPage implements OnInit {
       });
     }
 
+    this.toolsService.showLoading("Efetuando pagamento");
+
     await this.requestService.postRequest(dataRequest, urlAuthorize).subscribe(async dataResponse => {
       if (dataResponse['success']) {
         this.authorized = true;
         this.clearOrderItems();
         this.ShopBagSrc.clearOrder();
-        this.toolsService.showToast(dataResponse['message'],2000,'success');
+        await this.toolsService.hideLoading();
+        await this.toolsService.showToast(dataResponse['message'],2000,'success');
       } else {
         this.authorized = false;
         this.toolsService.showToast(dataResponse['message'],2000,'warning');
+        await this.toolsService.hideLoading();
+        await this.unauthorizedOrder(order.id_order);
       }
     }, error => {
-      this.toolsService.showToast("Não foi possível autorizar a transação",2000,"danger");
+      this.toolsService.hideLoading().finally(() => {
+        this.toolsService.showToast("Não foi possível autorizar a transação",2000,"danger");
+      })
+    });
+  }
+
+  private async unauthorizedOrder(id_order: string = "0"){
+    let dataRequest = {
+      id_order: id_order,
+      order_status: "7"
+    }
+    await this.requestService.postRequest(dataRequest, this.url).subscribe(async dataResponse => {
+      if (dataResponse['success']) {
+        console.info("unauthorizedOrder true");
+      }else{
+        console.info("unauthorizedOrder false");
+      }
     });
   }
 

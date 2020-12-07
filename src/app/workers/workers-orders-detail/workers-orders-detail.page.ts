@@ -39,11 +39,11 @@ export class WorkersOrdersDetailPage implements OnInit {
     if (!this.authService.getLoginSuccessful()) {
       this.authService.setLogout();
     } else {
-      this.loadOderDetails();
+      this.loadOrderDetails();
     }
   }
 
-  private async loadOderDetails(){
+  private async loadOrderDetails(){
     return new Promise(res => {
       this.requestService.getRequestById(this.url, 'order', this.id_order).subscribe(dataResponse => {
         for (let item of dataResponse['result']) {
