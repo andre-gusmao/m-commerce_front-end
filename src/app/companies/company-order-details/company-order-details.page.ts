@@ -40,7 +40,7 @@ export class CompanyOrderDetailsPage implements OnInit {
 
   ngOnInit() {
     if(this.id_order != ""){
-      this.loadOderDetails();
+      this.loadOrderDetails();
     }
   }
 
@@ -53,7 +53,7 @@ export class CompanyOrderDetailsPage implements OnInit {
     }
   }
 
-  private async loadOderDetails(){
+  private async loadOrderDetails(){
     return new Promise(res => {
       this.requestService.getRequestById(this.url, 'order', this.id_order).subscribe(dataResponse => {
         for (let item of dataResponse['result']) {
