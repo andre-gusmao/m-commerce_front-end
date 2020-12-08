@@ -49,7 +49,7 @@
     <ion-button *ngIf="hasCreditCard" size="small" fill="outline" shape="round" (click)="registerOrder()">
       <ion-icon name="restaurant-outline"></ion-icon>Pagar
     </ion-button>
-    <ion-button size="small" fill="outline" shape="round" (click)="addCreditCard()">
+    <ion-button *ngIf="!hasCreditCard" size="small" fill="outline" shape="round" (click)="addCreditCard()">
       <ion-icon name="card-outline"></ion-icon>Adicionar cartão
     </ion-button>
     <ion-button *ngIf="!hasCPF" size="small" fill="outline" shape="round" (click)="addCPF()">
