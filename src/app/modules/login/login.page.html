@@ -2,50 +2,44 @@
 <ion-content>
     <div *ngIf="!authService.getLoginSuccessful()">
         <div class="title">
-            <h4>Login</h4>
+            <h4>Acessar</h4>
         </div>
         <div>
             <ion-label position="floating">E-mail</ion-label>
             <ion-input type="text" [(ngModel)]="email"></ion-input>
             <ion-label position="floating">Senha</ion-label>
-            <ion-input
-                name="password"
-                [type]="showPassword ? 'text' : 'password'"
-                maxlength="25"
+            <ion-input name="password" [type]="showPassword ? 'text' : 'password'" maxlength="25"
                 [(ngModel)]="password">
             </ion-input>
             <ion-button size="small" fill="clear" expand="full" (click)="togglePassword()">
-                <ion-icon
-                [name]="(password == 'password') ? 'eye-off' : 'eye'"
-                slot="start"
-                size="small">
+                <ion-icon [name]="(password == 'password') ? 'eye-off' : 'eye'" slot="start" size="small">
                 </ion-icon>Mostrar senha
             </ion-button>
-            <br/>
+            <br />
             <ion-button expand="full" type="submit" fill="outline" shape="round" (click)="login()">
                 <ion-icon name="log-in-outline"></ion-icon>Entrar
             </ion-button>
-            <br/><br/>
+            <br /><br />
             <ion-button expand="full" type="submit" fill="clear" (click)="recoverPassword()">
                 Esqueceu a senha? Clique aqui
             </ion-button>
-            <br/><br/>
+            <br /><br />
             <ion-button expand="full" type="submit" fill="clear" (click)="registerProfile()">
                 Novo por aqui? Cadastre-se
             </ion-button>
         </div>
     </div>
-
     <div *ngIf="authService.getLoginSuccessful()">
-        <div style="text-align: center;">
-            <ion-text style="text-align: center;color: #3880ff;">{{companyName}}</ion-text>
-            <br/><br/>
-            <ion-text style="text-align: center;color: #000;">Bem vindo {{userName}}</ion-text>
+        <div class="title">
+            <br /><br />
+            <ion-text class="company">{{companyName}}</ion-text>
+            <br /><br />
+            <ion-text class="customer">Bem vindo {{userName}}</ion-text>
         </div>
         <ion-fab vertical="bottom" horizontal="center" slot="fixed">
-          <ion-fab-button size="small" (click)="toolsService.goToPage(catalog)">
-            <ion-icon name="book-outline"></ion-icon>
-          </ion-fab-button>
+            <ion-fab-button size="small" (click)="toolsService.goToPage(catalog)">
+                <ion-icon name="book-outline"></ion-icon>
+            </ion-fab-button>
         </ion-fab>
     </div>
 </ion-content>

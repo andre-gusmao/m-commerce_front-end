@@ -12,8 +12,8 @@ import { AlertController } from '@ionic/angular';
 })
 export class LoginPage implements OnInit {
 
-  email: string = "turista@kw.com";
-  password: string = "turi2020";
+  email: string = "";
+  password: string = "";
   companyName: string = "";
   userName: string = "";
   logado: boolean = false;
@@ -137,7 +137,7 @@ export class LoginPage implements OnInit {
 
   public togglePassword(){
     this.showPassword = !this.showPassword;
-
+console.log("togglePassword")
     if(this.showPassword){
       this.passwordIcon = 'eye-off';
     } else {
