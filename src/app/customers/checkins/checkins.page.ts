@@ -122,6 +122,7 @@ export class CheckinsPage implements OnInit {
   }
 
   public checkOut() {
+      this.authService.setCompanyName("");
       this.authService.setCheckOut();
   }
 
