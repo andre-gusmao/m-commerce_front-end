@@ -22,7 +22,6 @@
         <ion-input [(ngModel)]="searchbar" placeholder="Pesquisar pedido" (ionChange)="filterOrder()"></ion-input>
       </ion-col>
       <ion-col size="3">
-        Status
         <ion-select multiple [(ngModel)]="statusFilter" name="statusFilter" cancelText="Cancelar" (ionChange)="refreshStatusFilter()">
           <ion-select-option value="2">Pago</ion-select-option>
           <ion-select-option value="3">Em produção</ion-select-option>
