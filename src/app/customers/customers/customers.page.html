@@ -1,26 +1,26 @@
 <app-header></app-header>
 <ion-content>
   <div>
-    <ion-item>
-      <h4>Perfil</h4>
-    </ion-item>
-    <ion-item>
+    <div class="title">
+      <h4><ion-icon name="person-outline"></ion-icon>Informações cadastrais</h4>
+    </div>
+    <ion-item lines="none">
       <!-- <ion-label position="floating">CPF</ion-label> -->
       <ion-input type="text" maxlength="11" [(ngModel)]="customer_cpf" placeholder="CPF"></ion-input>
     </ion-item>
-    <ion-item>
+    <ion-item lines="none">
       <!-- <ion-label position="floating">Nome</ion-label> -->
       <ion-input type="text" [(ngModel)]="name" required placeholder="Nome"></ion-input>
     </ion-item>
-    <ion-item>
+    <ion-item lines="none">
       <!-- <ion-label position="floating">E-mail</ion-label> -->
       <ion-input type="text" [(ngModel)]="email" placeholder="E-mail"></ion-input>
     </ion-item>
-    <ion-item>
+    <ion-item lines="none">
       <!-- <ion-label position="floating">Celular</ion-label> -->
       <ion-input type="text" [(ngModel)]="cellPhone" [brmasker]="{phone: true}" placeholder="Celular"></ion-input>
     </ion-item>        
-    <ion-item>
+    <ion-item lines="none">
         <!-- <ion-label position="floating">Senha</ion-label> -->
         <ion-input
             name="password"
@@ -36,7 +36,7 @@
           (click)="togglePassword()">
         </ion-icon>
     </ion-item>    
-    <ion-item>
+    <ion-item lines="none">
         <!-- <ion-label position="floating">Confirme a Senha</ion-label> -->
         <ion-input
             name="confirmPassword"
@@ -54,17 +54,17 @@
           placeholder="">
         </ion-icon>
     </ion-item>
-    <ion-item>
+    <ion-item lines="none">
         <!-- <ion-label position="floating">CEP</ion-label> -->
         <ion-input [(ngModel)]="zipCode" (ionBlur)="getAddress()" maxlength="8" type="numeric" placeholder="CEP"></ion-input>
     </ion-item>
 
-    <ion-item>
+    <ion-item lines="none">
         <!-- <ion-label position="floating">UF</ion-label> -->
         <ion-input [(ngModel)]="state" readonly placeholder="UF"></ion-input>
     </ion-item>
 
-    <ion-item>
+    <ion-item lines="none">
         <!-- <ion-label position="floating">Cidade</ion-label> -->
         <ion-input [(ngModel)]="city" readonly placeholder="Cidade"></ion-input>
     </ion-item>
