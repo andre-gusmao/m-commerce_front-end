@@ -9,9 +9,8 @@
     <ion-item lines="none">
       <ion-title>Produtos cadastrados</ion-title>
     </ion-item>
-    <ion-item *ngIf="hasProduct" lines="none">
-      <ion-label>Filtre por grupo</ion-label>
-      <ion-select 
+    <ion-item *ngIf="hasProduct" lines="none" style="align-self: center;">
+      <ion-select placeholder="Filtro por grupo"
         [(ngModel)]="group_filter"
         name="group_filter"
         interface="action-sheet"
