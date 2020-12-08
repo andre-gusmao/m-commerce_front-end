@@ -1,6 +1,6 @@
 <app-header></app-header>
-
-<ion-content>
+<ion-content fullscreen="true">
+  <app-svg></app-svg>
     <div style="text-align: center;">
       <h4>Olá! {{authService.getUserName()}}</h4>
     </div>
@@ -17,7 +17,6 @@
       </ion-textarea>
     </div>
 </ion-content>
-
 <ion-footer>
   <div style="text-align: center;">
     <ion-button size="small" fill="outline" shape="round" type="submit" (click)="registerFeedback()">

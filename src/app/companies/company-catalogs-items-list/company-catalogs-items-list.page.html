@@ -1,5 +1,6 @@
 <app-header></app-header>
-<ion-content>
+<ion-content fullscreen="true">
+  <app-svg></app-svg>
     <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
         <ion-refresher-content pullingIcon="chevron-down-circle-outline" refreshingSpinner="circles"
             refreshingText="Carregando...">

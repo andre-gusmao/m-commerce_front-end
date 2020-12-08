@@ -4,16 +4,19 @@ import { IonicModule } from '@ionic/angular';
 import { RouterModule } from '@angular/router';
 import { HeaderComponent } from '../header/header.component';
 import { MenuComponent } from '../../services/menu/menu.component';
+import { SvgComponent } from '../svg/svg.component';
 
 @NgModule({
 
   declarations: [
     HeaderComponent,
+    SvgComponent,
     MenuComponent
   ],
 
   exports: [
     HeaderComponent,
+    SvgComponent,
     MenuComponent
   ],
 
