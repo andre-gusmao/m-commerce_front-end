@@ -135,9 +135,13 @@ export class ProductsPage implements OnInit {
   public takePictures() {
     let resized_picture;
     const options: CameraOptions = {
-      quality: 100,
+      quality: 50,
       destinationType: this.camera.DestinationType.DATA_URL,
+      allowEdit: true,
       encodingType: this.camera.EncodingType.JPEG,
+      targetWidth: 400,
+      targetHeight: 400,
+      correctOrientation: true,
       mediaType: this.camera.MediaType.PICTURE
     }
     this.camera.getPicture(options).then((imageData) => {
