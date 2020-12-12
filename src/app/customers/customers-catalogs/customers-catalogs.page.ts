@@ -104,6 +104,7 @@ export class CustomersCatalogsPage implements OnInit {
       componentProps: {
         id_item: product.id_catalog_item,
         product_name: product.product_name,
+        product_picture: product.product_picture,
         item_price: product.catalog_item_price,
         catalog_note: product.product_description,
         customer_note: "",
