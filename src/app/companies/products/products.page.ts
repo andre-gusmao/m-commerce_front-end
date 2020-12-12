@@ -20,7 +20,7 @@ export class ProductsPage implements OnInit {
   categoryList: any = [];
   product_name: string = "";
   product_description: string = "";
-  product_picture: string = "";
+  product_picture;
   url: string = 'companies/products.php';
   urlCategory: string = 'companies/productscategories.php'
   listPage: string = 'products-list';
@@ -63,7 +63,7 @@ export class ProductsPage implements OnInit {
 
   public onFileChange(fileChangeEvent){
     console.log("before onFileChange");
-    this.file = fileChangeEvent.target.files[0];
+    this.product_picture = 'data:image/jpeg;base64,' + fileChangeEvent.target.files[0];
     console.log("after onFileChange");
   }
 
@@ -146,13 +146,6 @@ export class ProductsPage implements OnInit {
     }
     this.camera.getPicture(options).then((imageData) => {
       this.product_picture = 'data:image/jpeg;base64,' + imageData;
-
-      this.compressImage(this.product_picture)
-        .then(compressed => {
-          resized_picture = compressed;
-        })
-      this.product_picture = resized_picture;
-
       console.info("getPicture ok");
     }, (error) => {
      this.toolsService.showToast("Não foi possível capturar a foto",1000,"warning");
@@ -201,6 +194,22 @@ export class ProductsPage implements OnInit {
     this.product_picture = resized_picture;
   }
 
+  public savendPhoto(){
+    let fileName: string = this.requestService.getFileName(this.id_company,"product",".png");
+    let url: string = environment.endpointURL + "companies/photo.php";
+    let dataReq = {
+      request_type: "insert",
+      id_company: this.id_company,
+      file_name: fileName,
+      photo: this.product_picture
+    }
+    this.http.post(url,dataReq).subscribe((response) => {
+      console.info(response);
+    }, error => (
+      console.log(error)
+    ))
+  }
+
   public async sendPhoto(){
     let url: string = environment.endpointURL + "companies/photo.php"
     let formData = new FormData;
@@ -208,7 +217,7 @@ export class ProductsPage implements OnInit {
     formData.append("request_type","insert");
     formData.append("id_company",this.id_company);
     formData.append("file_name",fileName);
-    formData.append("photo",this.file, fileName)
+    formData.append("photo",this.product_picture, fileName)
     this.http.post(url,formData).subscribe((response) => {
       console.log(response);
     })

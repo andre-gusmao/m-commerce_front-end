@@ -24,9 +24,9 @@
   <ion-card>
     <ion-card-header>Foto</ion-card-header>
     <ion-card-content>
-      <!-- <img *ngIf="product_picture == undefined" src=""> -->
-      <img [(src)]="product_picture">
-      <input type="file" (change)="onFileChange($event)" />
+      <img [(src)]="product_picture" *ngIf="product_picture != undefined">
+      <img src="../../../../assets/aguacoco.jpg" *ngIf="product_picture == undefined">
+      <!--  <input type="file" (change)="onFileChange($event)" /> -->
     </ion-card-content>
   </ion-card>
 </ion-content>
