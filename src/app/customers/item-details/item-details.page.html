@@ -8,66 +8,65 @@
     <ion-title>{{product_name}}</ion-title>
   </ion-toolbar>
 </ion-header>
-<ion-content fullscreen="true">
+
+<ion-content fullscreen="true" class="ion-padding">
   <app-svg></app-svg>
-  <ion-card>
-    <img src="../../../assets/aguacoco.jpg">
-    <ion-card-subtitle>{{item_price | currency:"BRL":"symbol"}}</ion-card-subtitle>
-    <ion-card-content>{{catalog_note}}</ion-card-content>
-
-    <ion-item>
-      <ion-label position="floating">Observação</ion-label>
-      <ion-input type="text" [(ngModel)]="customer_note"></ion-input>
-    </ion-item>
-
-    <!-- <ion-item>
-      <ion-buttons>
+  <ion-grid style="width: 100%; table-layout: auto;text-align: center;">
+    <ion-row size="12">
+      <ion-col>
+        <img src="../../../assets/aguacoco.jpg" *ngIf="product_picture == ''">
+        <img [src]="product_picture" *ngIf="product_picture != undefined">
+      </ion-col>
+    </ion-row>
+    <ion-row size="12">
+      <ion-col>
+        {{catalog_note}}
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12">
+        {{item_price | currency:"BRL":"symbol"}}
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>&nbsp;</ion-col>
+    </ion-row>
+    <ion-row style="text-align: start;">
+      <ion-col size="12">
+        <ion-label>Observação</ion-label>
+        <ion-input maxlength="100" type="text" [(ngModel)]="customer_note"></ion-input>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-justify-content-center price">
+      <ion-col size="2"></ion-col>
+      <ion-col size="3">
         <ion-button size="small" fill="outline" shape="round" (click)="decraseItem()">
-          <ion-icon name="remove-outline"></ion-icon>
+          <ion-icon color="primary" size="smaller" name="remove-outline"></ion-icon>
         </ion-button>
-        <ion-label> {{quantity}} </ion-label>
+      </ion-col>
+      <ion-col size="2">
+        <ion-button size="small" fill="clear" style="color: black;">
+          {{quantity}}
+        </ion-button>
+      </ion-col>
+      <ion-col size="3">
         <ion-button size="small" fill="outline" shape="round" (click)="incraseItem()">
-          <ion-icon name="add-outline"></ion-icon>
+          <ion-icon color="primary" size="smaller" name="add-outline"></ion-icon>
         </ion-button>
-        <ion-label>{{total_price | currency:"BRL":"symbol"}}</ion-label>
-        <ion-button size="small" fill="outline" shape="round" (click)="registerItem()">
-          <ion-icon name="checkmark-circle"></ion-icon>Confirmar
-        </ion-button>
-      </ion-buttons>
-    </ion-item> -->
-
-    <ion-grid style="width: 100%; table-layout: auto;text-align: center;">
-      <ion-row>
-        <ion-col size="12">
-          <ion-text style="color: black; font-size: larger;">{{total_price | currency:"BRL":"symbol"}}</ion-text>
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col size="1"></ion-col>
-        <ion-col size="3">
-          <ion-button size="small" fill="outline" shape="round" (click)="decraseItem()">
-            <ion-icon color="primary" size="smaller" name="remove-outline"></ion-icon>
-          </ion-button>
-        </ion-col>
-        <ion-col size="3">
-          <ion-text style="color: black; font-size: larger;" color="black"> {{quantity}} </ion-text>
-        </ion-col>
-        <ion-col size="4">
-          <ion-button size="small" fill="outline" shape="round" (click)="incraseItem()">
-            <ion-icon color="primary" size="smaller" name="add-outline"></ion-icon>
-          </ion-button>
-        </ion-col>
-        <ion-col size="1"></ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col size="12">
-          <ion-button size="small" fill="outline" shape="round" (click)="registerItem()">
-            <ion-icon name="checkmark-circle"></ion-icon>Confirmar
-          </ion-button>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-
-  </ion-card>
-
+      </ion-col>
+      <ion-col size="2"></ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
+
+<ion-footer class="opaque">
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12">
+        <ion-button expand="block" fill="outline" shape="round" (click)="registerItem()">
+          <ion-icon name="checkmark-circle"></ion-icon>Adicionar &nbsp; {{total_price | currency:"BRL":"symbol"}}
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-footer>

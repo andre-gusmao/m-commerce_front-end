@@ -11,6 +11,7 @@ export class ItemDetailsPage implements OnInit {
 
   @Input() id_item: string;
   @Input() product_name: string;
+  @Input() product_picture;
   @Input() item_price: number;
   @Input() catalog_note: string;
   @Input() customer_note: string;
