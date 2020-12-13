@@ -30,7 +30,6 @@
     "@ionic/storage": "^2.3.0",
     "br-mask": "0.0.9",
     "call-number": "^1.0.1",
-    "cordova-android": "8.1.0",
     "cordova-plugin-nativestorage": "^2.3.2",
     "rxjs": "~6.5.1",
     "tslib": "^1.13.0",
@@ -47,6 +46,8 @@
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "^12.12.47",
     "codelyzer": "^5.1.2",
+    "cordova-android": "^9.0.0",
+    "cordova-android-support-gradle-release": "^3.0.1",
     "cordova-plugin-camera": "^4.1.0",
     "cordova-plugin-device": "^2.0.3",
     "cordova-plugin-ionic-keyboard": "^2.2.0",
@@ -75,16 +76,19 @@
       "cordova-plugin-device": {},
       "cordova-plugin-splashscreen": {},
       "cordova-plugin-ionic-webview": {
-        "ANDROID_SUPPORT_ANNOTATIONS_VERSION": "27.+"
+        "ANDROID_SUPPORT_ANNOTATIONS_VERSION": "22.+"
       },
       "cordova-plugin-ionic-keyboard": {},
       "cordova-plugin-nativestorage": {},
       "mx.ferreyra.callnumber": {},
       "phonegap-plugin-barcodescanner": {
-        "ANDROID_SUPPORT_V4_VERSION": "27.+"
+        "ANDROID_SUPPORT_V4_VERSION": "22.+"
       },
       "cordova-plugin-camera": {
-        "ANDROID_SUPPORT_V4_VERSION": "27.+"
+        "ANDROID_SUPPORT_V4_VERSION": "22.+"
+      },
+      "cordova-android-support-gradle-release": {
+        "ANDROID_SUPPORT_VERSION": "27.+"
       }
     },
     "platforms": [
