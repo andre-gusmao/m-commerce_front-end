@@ -73,6 +73,7 @@
 
 ion-item {
   border: 0px !important;
+  background: transparent !important;
   --padding-bottom: 0px;
   --padding-top: 0px;
   --padding-start: 5px;
@@ -84,4 +85,12 @@ ion-select {
   background: #FFF !important;
   border-radius: 20px;
   margin-bottom: 20px;
+}
+
+ion-footer {
+  background: #EDF2F5 !important;
+}
+
+div {
+  padding: 2px;
 }
