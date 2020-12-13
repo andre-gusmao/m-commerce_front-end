@@ -28,9 +28,12 @@
     </ion-slide>
   </ion-slides>
   <ion-list class="ion-no-padding">
-    <ion-item (click)="showItem(item)" *ngFor="let item of groupItems">
+    <ion-item (click)="showItem(item)" *ngFor="let item of groupItems;">
       <ion-thumbnail slot="end">
-        <img src="../../../assets/aguacoco.jpg">
+        <img
+          cache="true" 
+          [src]="item.product_picture"
+          onerror="this.onerror=null;this.src='../../../assets/aguacoco.jpg'">
       </ion-thumbnail>
       <ion-label>
         <h3>{{item.product_name}}</h3>
