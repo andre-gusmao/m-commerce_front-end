@@ -3,77 +3,87 @@
   <app-svg></app-svg>
   <div>
     <div class="title">
-      <h4><ion-icon name="person-outline"></ion-icon>Informações cadastrais</h4>
+      <h4>
+        <ion-icon name="person-outline"></ion-icon>Informações cadastrais
+      </h4>
     </div>
-    <ion-item lines="none">
-      <!-- <ion-label position="floating">CPF</ion-label> -->
-      <ion-input type="text" maxlength="11" [(ngModel)]="customer_cpf" placeholder="CPF"></ion-input>
-    </ion-item>
-    <ion-item lines="none">
-      <!-- <ion-label position="floating">Nome</ion-label> -->
-      <ion-input type="text" [(ngModel)]="name" required placeholder="Nome"></ion-input>
-    </ion-item>
-    <ion-item lines="none">
-      <!-- <ion-label position="floating">E-mail</ion-label> -->
-      <ion-input type="text" [(ngModel)]="email" placeholder="E-mail"></ion-input>
-    </ion-item>
-    <ion-item lines="none">
-      <!-- <ion-label position="floating">Celular</ion-label> -->
-      <ion-input type="text" [(ngModel)]="cellPhone" [brmasker]="{phone: true}" placeholder="Celular"></ion-input>
-    </ion-item>        
-    <ion-item lines="none">
-        <!-- <ion-label position="floating">Senha</ion-label> -->
-        <ion-input
-            name="password"
-            [type]="showPassword ? 'text' : 'password'"
-            maxlength="25"
-            [(ngModel)]="password"
-            placeholder="Senha">
-        </ion-input>
-        <ion-icon
-          [name]="(password == 'password') ? 'eye-off' : 'eye'"
-          slot="end"
-          size="small"
-          (click)="togglePassword()">
-        </ion-icon>
-    </ion-item>    
-    <ion-item lines="none">
-        <!-- <ion-label position="floating">Confirme a Senha</ion-label> -->
-        <ion-input
-            name="confirmPassword"
-            [type]="showConfirmPassword ? 'text' : 'password'"
-            maxlength="25"
-            [(ngModel)]="confirmPassword"
-            placeholder=""
-            placeholder="Confirme a senha">
-        </ion-input>
-        <ion-icon
-          [name]="(confirmPassword == 'password') ? 'eye-off' : 'eye'"
-          slot="end"
-          size="small"
-          (click)="toggleConfirmPassword()"
-          placeholder="">
-        </ion-icon>
-    </ion-item>
-    <ion-item lines="none">
-        <!-- <ion-label position="floating">CEP</ion-label> -->
-        <ion-input [(ngModel)]="zipCode" (ionBlur)="getAddress()" maxlength="8" type="numeric" placeholder="CEP"></ion-input>
-    </ion-item>
-
-    <ion-item lines="none">
-        <!-- <ion-label position="floating">UF</ion-label> -->
-        <ion-input [(ngModel)]="state" readonly placeholder="UF"></ion-input>
-    </ion-item>
-
-    <ion-item lines="none">
-        <!-- <ion-label position="floating">Cidade</ion-label> -->
-        <ion-input [(ngModel)]="city" readonly placeholder="Cidade"></ion-input>
-    </ion-item>
+    <div>
+      <ion-label>CPF</ion-label>
+      <ion-input type="text" maxlength="11" [(ngModel)]="customer_cpf"></ion-input>
+    </div>
+    <div>
+      <ion-label>Nome</ion-label>
+      <ion-input type="text" [(ngModel)]="name" required></ion-input>
+    </div>
+    <div>
+      <ion-label>E-mail</ion-label>
+      <ion-input type="text" [(ngModel)]="email"></ion-input>
+    </div>
+    <div>
+      <ion-label>Celular</ion-label>
+      <ion-input type="text" [(ngModel)]="cellPhone" [brmasker]="{phone: true}"></ion-input>
+    </div>
+    <div>
+      <ion-label>Senha</ion-label>
+      <ion-input 
+        name="password"
+        [type]="showPassword ? 'text' : 'password'"
+        maxlength="25"
+        [(ngModel)]="password">
+        <ion-buttons
+          style="position: absolute; right: 3px;"
+          slot="end">
+          <ion-button
+            fill="clear"
+            size="small"
+            (click)="togglePassword()">
+            <ion-icon
+              [name]="(password == 'password') ? 'eye-off' : 'eye'"
+              slot="icon-only">
+            </ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-input>
+    </div>
+    <div>
+      <ion-label>Confirme a Senha</ion-label>
+      <ion-input 
+        name="confirmPassword"
+        [type]="showConfirmPassword ? 'text' : 'password'"
+        maxlength="25"
+        [(ngModel)]="confirmPassword">
+        <ion-buttons
+          style="position: absolute; right: 3px;"
+          slot="end">
+          <ion-button
+            fill="clear"
+            size="small"
+            (click)="toggleConfirmPassword()">
+            <ion-icon
+              [name]="(password == 'password') ? 'eye-off' : 'eye'"
+              slot="icon-only">
+            </ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-input>
+    </div>
+    <div>
+      <ion-label>CEP</ion-label>
+      <ion-input [(ngModel)]="zipCode" (ionBlur)="getAddress()" maxlength="8" type="numeric"></ion-input>
+    </div>
+    <div>
+      <ion-label>UF</ion-label>
+      <ion-input [(ngModel)]="state" readonly></ion-input>
+    </div>
+    <div>
+      <ion-label>Cidade</ion-label>
+      <ion-input [(ngModel)]="city" readonly></ion-input>
+    </div>
   </div>
 </ion-content>
 <ion-footer>
   <div style="text-align: center;">
-    <ion-button size="small" fill="outline" shape="round" type="submit" (click)="registerCustomer()" placeholder="">
+    <ion-button size="small" fill="outline" shape="round" type="submit" (click)="registerCustomer()">
       <ion-icon name="checkmark-circle"></ion-icon>Confirmar
     </ion-button>
   </div>
