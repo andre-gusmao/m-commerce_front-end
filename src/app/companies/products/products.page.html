@@ -1,5 +1,5 @@
 <app-header></app-header>
-<ion-content fullscreen="true" style="color: black;">
+<ion-content fullscreen="true">
   <app-svg></app-svg>
   <ion-grid>
     <ion-row>
@@ -12,8 +12,8 @@
     </ion-row>
     <ion-row>
       <ion-col size="12">
-        <ion-select cancelText="Cancelar" [(ngModel)]="id_product_category" name="id_product_category" interface="action-sheet"
-          placeholder="Selecione o grupo">
+        <ion-select cancelText="Cancelar" [(ngModel)]="id_product_category" name="id_product_category"
+          interface="action-sheet" placeholder="Selecione o grupo">
           <ion-select-option *ngFor="let category of categoryList" [(value)]="category.id_product_category">
             {{category.product_category_name}}
           </ion-select-option>
@@ -43,51 +43,14 @@
           <ion-card-content>
             <img [(src)]="product_picture" *ngIf="product_picture != undefined">
             <img src="../../../../assets/aguacoco.jpg" *ngIf="product_picture == undefined">
-
           </ion-card-content>
         </ion-card>
       </ion-col>
     </ion-row>
   </ion-grid>
-<!--
-  <ion-item>
-    <h4>Produtos</h4>
-  </ion-item>
-  <ion-item>
-    <ion-label position="stacked">Grupo de Produto</ion-label>
-    <ion-select cancelText="Cancelar" [(ngModel)]="id_product_category" name="id_product_category" interface="action-sheet"
-      placeholder="Selecione o grupo">
-      <ion-select-option *ngFor="let category of categoryList" [(value)]="category.id_product_category">
-        {{category.product_category_name}}
-      </ion-select-option>
-    </ion-select>
-  </ion-item>
-  <ion-item>
-    <ion-label position="stacked">Nome</ion-label>
-    <ion-input maxlength="50" type="text" [(ngModel)]="product_name"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-label position="stacked">Descricao</ion-label>
-    <ion-input maxlength="150" type="text" [(ngModel)]="product_description"></ion-input>
-  </ion-item>
-  <ion-card>
-    <ion-card-header>Foto</ion-card-header>
-    <ion-card-content>
-      <img [(src)]="product_picture" *ngIf="product_picture != undefined">
-      <img src="../../../../assets/aguacoco.jpg" *ngIf="product_picture == undefined">
-      <input type="file" (change)="onFileChange($event)" />
-    </ion-card-content>
-  </ion-card>
--->
 </ion-content>
 <ion-footer>
   <div style="text-align: center;">
-    <!-- <ion-button size="small" fill="outline" shape="round" (click)="comprimir()">
-      <ion-icon name="camera"></ion-icon>comprimir
-    </ion-button>
-    <ion-button size="small" fill="outline" shape="round" (click)="sendPhoto()">
-      <ion-icon name="camera"></ion-icon>sendPhoto
-    </ion-button> -->
     <ion-button *ngIf="isMobileDevice" size="small" fill="outline" shape="round" (click)="takePictures()">
       <ion-icon name="camera"></ion-icon>Tirar Foto
     </ion-button>
