@@ -91,6 +91,11 @@ ion-footer {
   background: #EDF2F5 !important;
 }
 
+ion-list {
+  --ion-item-background: transparent !important;
+  --ion-background-color: transparent !important;
+}
+
 div {
   padding: 2px;
 }
