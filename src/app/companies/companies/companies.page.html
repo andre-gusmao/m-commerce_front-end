@@ -51,12 +51,15 @@
             cancelText="Cancelar">
             <ion-select-option value="CNPJ">CNPJ</ion-select-option>
             <ion-select-option value="CPF">CPF</ion-select-option>
-            <ion-select-option value="INSMUN">Inscrição Municipal</ion-select-option>
         </ion-select>
     </div>
     <div>
         <ion-label>Documento</ion-label>
         <ion-input type="text" [(ngModel)]="company_document_number"></ion-input>
+    </div>
+    <div>
+        <ion-label>Inscrição municipal</ion-label>
+        <ion-input type="text" [(ngModel)]="company_municipal_registry"></ion-input>
     </div>
     <div>
         <ion-label>CEP</ion-label>

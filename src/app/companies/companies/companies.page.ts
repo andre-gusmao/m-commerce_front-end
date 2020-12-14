@@ -31,6 +31,7 @@ export class CompaniesPage implements OnInit {
   confirmPasswordIcon: string = 'eye';
   company_document_type: string = "";
   company_document_number: string = "";
+  company_municipal_registry: string = "";
 
   constructor(
     public requestService: RequestsService,
@@ -65,6 +66,7 @@ export class CompaniesPage implements OnInit {
       profileType: '2',
       company_document_type: this.company_document_type,
       company_document_number: this.company_document_number,
+      company_municipal_registry: this.company_municipal_registry,
       request_type: ''
     }
 
@@ -148,6 +150,7 @@ export class CompaniesPage implements OnInit {
           this.cellPhone = dataRes['cellPhone'];
           this.company_document_type = dataRes['company_document_type'];
           this.company_document_number = dataRes['company_document_number'];
+          this.company_municipal_registry = dataRes['company_municipal_registry'];
           this.zipCode = dataRes['zipCode'];
           this.state = dataRes['state'];
           this.city = dataRes['city'];
@@ -170,6 +173,7 @@ export class CompaniesPage implements OnInit {
     this.cellPhone = "";
     this.company_document_type = "";
     this.company_document_number = "";
+    this.company_municipal_registry = "";
     this.zipCode = "";
     this.state = "";
     this.city = "";
