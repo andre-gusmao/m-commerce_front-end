@@ -10,10 +10,8 @@
     </ion-button>
   </div>
   <div *ngIf="totalOrder != 0" style="text-align: center;">
-    <ion-item detail="false">
-      <ion-label style="text-align: center;">Itens no seu pedido</ion-label>
+      <ion-label style="text-align: center;"><h2>Itens no seu pedido</h2></ion-label>
       <ion-label *ngIf="hasCPF" style="text-align: center; font: smaller">CPF: {{customer_cpf}}</ion-label>
-    </ion-item>
   </div>
 
   <div *ngIf="totalOrder != 0">
@@ -33,7 +31,9 @@
       </ion-row>
     </ion-grid>
   </div>
-  
+
+</ion-content>
+<ion-footer>
   <div style="text-align: center;" *ngIf="totalOrder != 0">
     <ion-item style="text-align: center;">
       <ion-title>{{totalOrder | currency:"BRL":"symbol"}}</ion-title>
@@ -47,17 +47,16 @@
       <ion-icon name="book-outline"></ion-icon>Cardápio
     </ion-button>
     <ion-button *ngIf="hasCreditCard" size="small" fill="outline" shape="round" (click)="registerOrder()">
-      <ion-icon name="restaurant-outline"></ion-icon>Pagar
+      <ion-icon name="logo-usd"></ion-icon>Pagar
     </ion-button>
     <ion-button *ngIf="!hasCreditCard" size="small" fill="outline" shape="round" (click)="addCreditCard()">
       <ion-icon name="card-outline"></ion-icon>Adicionar cartão
     </ion-button>
     <ion-button *ngIf="!hasCPF" size="small" fill="outline" shape="round" (click)="addCPF()">
-      <ion-icon name="bookmark-outline"></ion-icon>Informar CPF
+      <ion-icon name="add-outline"></ion-icon>CPF
     </ion-button>
     <ion-button *ngIf="hasCPF" size="small" fill="outline" shape="round" (click)="clearCPF()">
-      <ion-icon name="bookmark-outline"></ion-icon>Limpar CPF
+      <ion-icon name="remove-outline"></ion-icon>CPF
     </ion-button>
-  </div>
-
-</ion-content>
+  </div>  
+</ion-footer>
