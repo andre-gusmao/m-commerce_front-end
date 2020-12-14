@@ -27,19 +27,23 @@
       </div>
     </ion-slide>
   </ion-slides>
-  <ion-list class="ion-no-padding">
-    <ion-item (click)="showItem(item)" *ngFor="let item of groupItems;">
-      <ion-thumbnail slot="end">
-        <img
-          cache="true" 
-          [src]="item.product_picture"
+  <ion-grid (click)="showItem(item)" *ngFor="let item of groupItems;" class="transparent" class="catalogItem">
+    <ion-row class="ion-align-items-start">
+      <ion-col size="10">
+        <ion-row>
+          <ion-col>
+            <ion-label>
+              <h4>{{item.product_name}}</h4>
+              <p>{{item.product_description}}</p>
+              <p>{{item.catalog_item_price | currency:"BRL":"symbol"}}</p>
+            </ion-label>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+      <ion-col size="2">
+        <img cache="true" [src]="item.product_picture"
           onerror="this.onerror=null;this.src='../../../assets/aguacoco.jpg'">
-      </ion-thumbnail>
-      <ion-label>
-        <h3>{{item.product_name}}</h3>
-        <p>{{item.product_description}}</p>
-        <p>{{item.catalog_item_price | currency:"BRL":"symbol"}}</p>
-      </ion-label>
-    </ion-item>
-  </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
