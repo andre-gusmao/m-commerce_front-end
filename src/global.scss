@@ -71,6 +71,10 @@
   --color: black;
 }
 
+ion-icon {
+  color: var(--ion-color-primary, #3880ff);
+}
+
 ion-item {
   border: 0px !important;
   background: transparent !important;

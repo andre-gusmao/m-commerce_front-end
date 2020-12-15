@@ -1,88 +1,88 @@
 <app-header></app-header>
 <ion-content fullscreen="true">
-    <app-svg></app-svg>
-    <div class="title">
-        <h4>
-            <ion-icon name="business-outline"></ion-icon>Informações cadastrais
-        </h4>
-    </div>
-    <div>
-        <ion-label>E-mail</ion-label>
-        <ion-input type="email" [(ngModel)]="email"></ion-input>
-    </div>
-    <div>
-        <ion-label>Senha</ion-label>
-        <ion-input name="password" [type]="showPassword ? 'text' : 'password'" maxlength="25" [(ngModel)]="password">
-            <ion-buttons style="position: absolute; right: 3px;" slot="end">
-                <ion-button fill="clear" size="small" (click)="togglePassword()">
-                    <ion-icon [name]="(password == 'password') ? 'eye-off' : 'eye'" slot="icon-only">
-                    </ion-icon>
-                </ion-button>
-            </ion-buttons>
-        </ion-input>
-    </div>
-    <div>
-        <ion-label>Confirme a Senha</ion-label>
-        <ion-input name="confirmPassword" [type]="showConfirmPassword ? 'text' : 'password'" maxlength="25"
-            [(ngModel)]="confirmPassword">
-            <ion-buttons style="position: absolute; right: 3px;" slot="end">
-                <ion-button fill="clear" size="small" (click)="toggleConfirmPassword()">
-                    <ion-icon [name]="(password == 'password') ? 'eye-off' : 'eye'" slot="icon-only">
-                    </ion-icon>
-                </ion-button>
-            </ion-buttons>
-        </ion-input>
-    </div>
-    <div>
-        <ion-label>Nome Fantasia</ion-label>
-        <ion-input type="text" [(ngModel)]="companyName"></ion-input>
-    </div>
-    <div>
-        <ion-label>Nome Proprietario</ion-label>
-        <ion-input type="text" [(ngModel)]="businessman"></ion-input>
-    </div>
-    <div>
-        <ion-label>Celular</ion-label>
-        <ion-input type="text" [(ngModel)]="cellPhone" [brmasker]="{phone: true}"></ion-input>
-    </div>
-    <div>
-        <ion-label>Tipo de Documento</ion-label>
-        <ion-select [(ngModel)]="company_document_type" name="company_document_type" interface="action-sheet"
-            cancelText="Cancelar">
-            <ion-select-option value="CNPJ">CNPJ</ion-select-option>
-            <ion-select-option value="CPF">CPF</ion-select-option>
-        </ion-select>
-    </div>
-    <div>
-        <ion-label>Documento</ion-label>
-        <ion-input type="text" [(ngModel)]="company_document_number"></ion-input>
-    </div>
-    <div>
-        <ion-label>Inscrição municipal</ion-label>
-        <ion-input type="text" [(ngModel)]="company_municipal_registry"></ion-input>
-    </div>
-    <div>
-        <ion-label>CEP</ion-label>
-        <ion-input [(ngModel)]="zipCode" (ionBlur)="getAddress()" maxlength="8" type="numeric">
-        </ion-input>
-    </div>
-    <div>
-        <ion-label>UF</ion-label>
-        <ion-input [(ngModel)]="state" readonly></ion-input>
-    </div>
-    <div>
-        <ion-label>Cidade</ion-label>
-        <ion-input [(ngModel)]="city" readonly></ion-input>
-    </div>
-    <div>
-        <ion-label>Observação</ion-label>
-        <ion-input type="text" [(ngModel)]="notes"></ion-input>
-    </div>
+  <app-svg></app-svg>
+  <div class="title">
+    <h4>
+      <ion-icon name="business-outline"></ion-icon>Informações cadastrais
+    </h4>
+  </div>
+  <div>
+    <ion-label>E-mail</ion-label>
+    <ion-input type="email" [(ngModel)]="email"></ion-input>
+  </div>
+  <div>
+    <ion-label>Senha</ion-label>
+    <ion-input name="password" [type]="showPassword ? 'text' : 'password'" maxlength="25" [(ngModel)]="password">
+      <ion-buttons style="position: absolute; right: 3px;" slot="end">
+        <ion-button fill="clear" size="small" (click)="togglePassword()">
+          <ion-icon [name]="(password == 'password') ? 'eye-off' : 'eye'" slot="icon-only">
+          </ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-input>
+  </div>
+  <div>
+    <ion-label>Confirme a Senha</ion-label>
+    <ion-input name="confirmPassword" [type]="showConfirmPassword ? 'text' : 'password'" maxlength="25"
+      [(ngModel)]="confirmPassword">
+      <ion-buttons style="position: absolute; right: 3px;" slot="end">
+        <ion-button fill="clear" size="small" (click)="toggleConfirmPassword()">
+          <ion-icon [name]="(password == 'password') ? 'eye-off' : 'eye'" slot="icon-only">
+          </ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-input>
+  </div>
+  <div>
+    <ion-label>Nome Fantasia</ion-label>
+    <ion-input type="text" [(ngModel)]="companyName"></ion-input>
+  </div>
+  <div>
+    <ion-label>Nome Proprietario</ion-label>
+    <ion-input type="text" [(ngModel)]="businessman"></ion-input>
+  </div>
+  <div>
+    <ion-label>Celular</ion-label>
+    <ion-input type="text" [(ngModel)]="cellPhone" [brmasker]="{phone: true}"></ion-input>
+  </div>
+  <div>
+    <ion-label>Tipo de Documento</ion-label>
+    <ion-select [(ngModel)]="company_document_type" name="company_document_type" interface="action-sheet"
+      cancelText="Cancelar">
+      <ion-select-option value="CNPJ">CNPJ</ion-select-option>
+      <ion-select-option value="CPF">CPF</ion-select-option>
+    </ion-select>
+  </div>
+  <div>
+    <ion-label>Documento</ion-label>
+    <ion-input type="text" [(ngModel)]="company_document_number"></ion-input>
+  </div>
+  <div>
+    <ion-label>Inscrição municipal</ion-label>
+    <ion-input type="text" [(ngModel)]="company_municipal_registry"></ion-input>
+  </div>
+  <div>
+    <ion-label>CEP</ion-label>
+    <ion-input [(ngModel)]="zipCode" (ionBlur)="getAddress()" maxlength="8" type="numeric">
+    </ion-input>
+  </div>
+  <div>
+    <ion-label>UF</ion-label>
+    <ion-input [(ngModel)]="state" readonly></ion-input>
+  </div>
+  <div>
+    <ion-label>Cidade</ion-label>
+    <ion-input [(ngModel)]="city" readonly></ion-input>
+  </div>
+  <div>
+    <ion-label>Observação</ion-label>
+    <ion-input type="text" [(ngModel)]="notes"></ion-input>
+  </div>
 </ion-content>
 <ion-footer>
-    <div style="text-align: center;">
-        <ion-button size="small" fill="outline" shape="round" (click)="registerCompany()">
-            <ion-icon name="checkmark-circle"></ion-icon>Confirmar
-        </ion-button>
-    </div>
+  <div style="text-align: center;">
+    <ion-button fill="outline" shape="round" (click)="registerCompany()">
+      <ion-icon name="checkmark-circle"></ion-icon>Confirmar
+    </ion-button>
+  </div>
 </ion-footer>
