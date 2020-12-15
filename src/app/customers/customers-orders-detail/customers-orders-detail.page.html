@@ -5,7 +5,6 @@
 </ion-header>
 <ion-content fullscreen="true">
   <app-svg></app-svg>
-
   <ion-grid>
     <ion-row>
       <ion-col size="12"><b>Pedido&nbsp;{{id_order}} &nbsp;-&nbsp; {{order_status}} &nbsp;-&nbsp; {{order_date}}</b></ion-col>
@@ -23,7 +22,6 @@
       <ion-icon color="danger" size="smaller" name="trash-outline" (click)="removeCreditCard()" slot="end"></ion-icon>
     </ion-item>
   </ion-grid>
-
   <ion-footer>
     <ion-toolbar style="text-align: center;">
       <ion-button *ngIf="hasCreditCard && (order_status_id == '7' || order_status_id == '1')" size="small" fill="outline" shape="round" (click)="payOrder()">
@@ -34,5 +32,4 @@
       </ion-button>
     </ion-toolbar>
   </ion-footer>
-
 </ion-content>

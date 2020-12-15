@@ -10,15 +10,17 @@
     </ion-button>
   </div>
   <div *ngIf="totalOrder != 0" style="text-align: center;">
-      <ion-label style="text-align: center;"><h2>Itens no seu pedido</h2></ion-label>
-      <ion-label *ngIf="hasCPF" style="text-align: center; font: smaller">CPF: {{customer_cpf}}</ion-label>
+    <ion-label style="text-align: center;">
+      <h2>Itens no seu pedido</h2>
+    </ion-label>
+    <ion-label *ngIf="hasCPF" style="text-align: center; font: smaller">CPF: {{customer_cpf}}</ion-label>
   </div>
-
   <div *ngIf="totalOrder != 0">
     <ion-grid style="width: 100%;">
       <ion-row [ngClass]="(i % 2 == 0) ? 'even' : 'odd'" *ngFor="let item of orderItems; let i = index;">
         <ion-col size="3">
-          <ion-icon color="primary" size="smaller" name="remove-outline" (click)="downItem(item.order_item_name)"></ion-icon>
+          <ion-icon color="primary" size="smaller" name="remove-outline" (click)="downItem(item.order_item_name)">
+          </ion-icon>
           <ion-text>&nbsp;{{item.item_quantity}}&nbsp;</ion-text>
           <ion-icon color="primary" size="smaller" name="add-outline" (click)="upItem(item.order_item_name)"></ion-icon>
         </ion-col>
@@ -31,7 +33,6 @@
       </ion-row>
     </ion-grid>
   </div>
-
 </ion-content>
 <ion-footer>
   <div style="text-align: center;" *ngIf="totalOrder != 0">
@@ -40,7 +41,8 @@
     </ion-item>
     <ion-item *ngIf="hasCreditCard" style="text-align: center; font-size: smaller;">
       <ion-text>{{card_number}}</ion-text>
-      <ion-icon color="primary" size="smaller" name="reload-circle-outline" (click)="changeCreditCard()" slot="end"></ion-icon>
+      <ion-icon color="primary" size="smaller" name="reload-circle-outline" (click)="changeCreditCard()" slot="end">
+      </ion-icon>
       <ion-icon color="danger" size="smaller" name="trash-outline" (click)="removeCreditCard()" slot="end"></ion-icon>
     </ion-item>
     <ion-button size="small" fill="outline" shape="round" (click)="this.toolsService.goToPage('/customers-catalogs/')">
@@ -58,5 +60,5 @@
     <ion-button *ngIf="hasCPF" size="small" fill="outline" shape="round" (click)="clearCPF()">
       <ion-icon name="remove-outline"></ion-icon>CPF
     </ion-button>
-  </div>  
+  </div>
 </ion-footer>

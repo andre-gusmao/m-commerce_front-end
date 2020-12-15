@@ -42,7 +42,7 @@ export class MenuService {
       "icon": 'qr-code-outline'
     },
     {
-      "title": 'Cardapio',
+      "title": 'Cardápio',
       "url": '/customers-catalogs',
       "icon": 'book-outline'
     },
@@ -110,7 +110,7 @@ export class MenuService {
       "icon": 'gift-outline'
     },
     {
-      "title": 'Cardapio',
+      "title": 'Cardápios',
       "url": '/company-catalogs-list',
       "icon": 'book-outline'
     },

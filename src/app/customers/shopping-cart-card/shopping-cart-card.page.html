@@ -11,24 +11,22 @@
 <ion-content fullscreen="true">
   <app-svg></app-svg>
   <div>
-    <!-- <ion-item>
-      <h4>Cartão de Crédito</h4>
-    </ion-item> -->
     <ion-item>
       <p>Para segurança seus dados não serão gravados online, permanecendo no seu dispositivo apenas.</p>
     </ion-item>
     <ion-item>
-      <ion-label position="floating">Numero</ion-label>
-      <ion-input type="text" [(ngModel)]="card_number" value="card_number" (ionBlur)="getCreditCardLabel()" (keypress)="toolsService.numericOnly($event)"></ion-input>
+      <ion-label>Numero</ion-label>
+      <ion-input type="text" [(ngModel)]="card_number" value="card_number" (ionBlur)="getCreditCardLabel()"
+        (keypress)="toolsService.numericOnly($event)"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label position="floating">Nome</ion-label>
+      <ion-label>Nome</ion-label>
       <ion-input type="text" [(ngModel)]="card_printed_name"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label position="floating">Mes</ion-label>
-      <ion-select [(ngModel)]="card_expiration_month" name="card_expiration_month" interface="action-sheet" cancelText="Cancelar"
-        placeholder="Selecione o mes">
+      <ion-label>Mes</ion-label>
+      <ion-select [(ngModel)]="card_expiration_month" name="card_expiration_month" interface="action-sheet"
+        cancelText="Cancelar" placeholder="Selecione o mes">
         <ion-select-option value="01">01 - Janeiro</ion-select-option>
         <ion-select-option value="02">02 - Feveiro</ion-select-option>
         <ion-select-option value="03">03 - Marco</ion-select-option>
@@ -44,18 +42,18 @@
       </ion-select>
     </ion-item>
     <ion-item>
-      <ion-label position="floating">Ano</ion-label>
+      <ion-label>Ano</ion-label>
       <ion-select [(ngModel)]="card_expiration_year" name="card_expiration_year" interface="action-sheet"
         placeholder="Selecione o ano">
         <ion-select-option *ngFor="let year of listYear" [value]="year">{{year}}</ion-select-option>
       </ion-select>
     </ion-item>
     <ion-item>
-      <ion-label position="floating">CVV</ion-label>
+      <ion-label>CVV</ion-label>
       <ion-input type="text" [(ngModel)]="card_security_code" maxlength="3"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label position="floating">Bandeira do Cartao</ion-label>
+      <ion-label>Bandeira do Cartao</ion-label>
       <ion-select [(ngModel)]="card_company" name="card_company" interface="action-sheet" cancelText="Cancelar"
         placeholder="Selecione a bandeira" disabled>
         <ion-select-option value="0">Outros</ion-select-option>
@@ -68,11 +66,10 @@
       </ion-select>
     </ion-item>
     <ion-item>
-      <ion-label position="floating">CPF</ion-label>
+      <ion-label>CPF</ion-label>
       <ion-input type="text" maxlength="11" [(ngModel)]="customer_cpf"></ion-input>
     </ion-item>
   </div>
-
 </ion-content>
 <ion-footer>
   <div style="text-align: center;">
