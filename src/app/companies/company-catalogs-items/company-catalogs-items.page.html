@@ -2,31 +2,31 @@
 <ion-content fullscreen="true">
   <app-svg></app-svg>
   <div>
-    <ion-item>
-      <h4>{{catalog_name}}</h4>
-    </ion-item>
-    <ion-item>
-      <ion-label position="floating">Produto</ion-label>
-      <ion-select [(ngModel)]="id_product" name="id_product" interface="action-sheet" placeholder="Selecione o produto" cancelText="Cancelar">
-        <ion-select-option *ngFor="let product of productList" value="product.id_product">{{product.product_name}}
-        </ion-select-option>
-      </ion-select>
-    </ion-item>
-    <ion-item>
-      <ion-label position="floating">Status</ion-label>
-      <ion-select [(ngModel)]="catalog_item_status" name="catalog_item_status" value="A" interface="action-sheet" placeholder="Status do item" cancelText="Cancelar">
-        <ion-select-option value="A">Ativo</ion-select-option>
-        <ion-select-option value="I">Inativo</ion-select-option>
-      </ion-select>
-    </ion-item>
-    <ion-item>
-      <ion-label position="floating">Valor</ion-label>
-      <ion-input type="text" [(ngModel)]="catalog_item_price" maxlength="10" [brmasker]="{money: true, thousand: '.', decimal: 2}"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label position="floating">Observacao</ion-label>
-      <ion-input maxlength="100" type="text" [(ngModel)]="catalog_item_note"></ion-input>
-    </ion-item>
+    <h4>{{catalog_name}}</h4>
+  </div>
+  <div>
+    <ion-label>Produto</ion-label>
+    <ion-select [(ngModel)]="id_product" name="id_product" interface="action-sheet" cancelText="Cancelar">
+      <ion-select-option *ngFor="let product of productList" value="product.id_product">{{product.product_name}}
+      </ion-select-option>
+    </ion-select>
+  </div>
+  <div>
+    <ion-label>Status</ion-label>
+    <ion-select [(ngModel)]="catalog_item_status" name="catalog_item_status" value="A" interface="action-sheet"
+      cancelText="Cancelar">
+      <ion-select-option value="A">Ativo</ion-select-option>
+      <ion-select-option value="I">Inativo</ion-select-option>
+    </ion-select>
+  </div>
+  <div>
+    <ion-label>Valor</ion-label>
+    <ion-input type="text" [(ngModel)]="catalog_item_price" maxlength="10"
+      [brmasker]="{money: true, thousand: '.', decimal: 2}"></ion-input>
+  </div>
+  <div>
+    <ion-label>Observacao</ion-label>
+    <ion-input maxlength="100" type="text" [(ngModel)]="catalog_item_note"></ion-input>
   </div>
 </ion-content>
 <ion-footer>
