@@ -27,6 +27,7 @@ export class ShoppingCartPage implements OnInit {
   card_number: string = "";
   customer_cpf: string = "";
   hasCPF: boolean = false;
+  catalog: string = '/customers-catalogs';
 
   constructor(
     public toolsService: ToolsService,

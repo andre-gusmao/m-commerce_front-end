@@ -33,32 +33,40 @@
       </ion-row>
     </ion-grid>
   </div>
+  <ion-fab *ngIf="!hasCPF" vertical="center" horizontal="start" slot="fixed">
+    <ion-fab-button size="small" (click)="addCPF()">
+      <ion-icon name="add-outline"></ion-icon>CPF
+    </ion-fab-button>
+  </ion-fab>
+  <ion-fab *ngIf="hasCPF" vertical="center" horizontal="start" slot="fixed">
+    <ion-fab-button size="small" (click)="clearCPF()">
+      <ion-icon name="remove-outline"></ion-icon>CPF
+    </ion-fab-button>
+  </ion-fab>
+  <ion-fab vertical="center" horizontal="end" slot="fixed">
+    <ion-fab-button size="small" (click)="toolsService.goToPage(catalog)">
+      <ion-icon name="book-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>
 <ion-footer>
   <div style="text-align: center;" *ngIf="totalOrder != 0">
-    <ion-item style="text-align: center;">
+    <!-- <ion-item style="text-align: center;">
       <ion-title>{{totalOrder | currency:"BRL":"symbol"}}</ion-title>
-    </ion-item>
+    </ion-item> -->
     <ion-item *ngIf="hasCreditCard" style="text-align: center; font-size: smaller;">
       <ion-text>{{card_number}}</ion-text>
-      <ion-icon color="primary" size="smaller" name="reload-circle-outline" (click)="changeCreditCard()" slot="end">
+      <ion-icon color="primary" size="small" name="reload-circle-outline" (click)="changeCreditCard()" slot="end">
       </ion-icon>
-      <ion-icon color="danger" size="smaller" name="trash-outline" (click)="removeCreditCard()" slot="end"></ion-icon>
+      <ion-icon color="danger" size="small" name="trash-outline" (click)="removeCreditCard()" slot="end"></ion-icon>
     </ion-item>
-    <ion-button size="small" fill="outline" shape="round" (click)="this.toolsService.goToPage('/customers-catalogs/')">
-      <ion-icon name="book-outline"></ion-icon>Cardápio
+  </div>
+  <div>
+    <ion-button strong="true" expand="block" *ngIf="hasCreditCard" fill="outline" shape="round" (click)="registerOrder()">
+      Pagar &nbsp; {{totalOrder | currency:"BRL":"symbol"}}
     </ion-button>
-    <ion-button *ngIf="hasCreditCard" size="small" fill="outline" shape="round" (click)="registerOrder()">
-      <ion-icon name="logo-usd"></ion-icon>Pagar
-    </ion-button>
-    <ion-button *ngIf="!hasCreditCard" size="small" fill="outline" shape="round" (click)="addCreditCard()">
+    <ion-button expand="block" strong="true" *ngIf="!hasCreditCard" fill="outline" shape="round" (click)="addCreditCard()">
       <ion-icon name="card-outline"></ion-icon>Adicionar cartão
-    </ion-button>
-    <ion-button *ngIf="!hasCPF" size="small" fill="outline" shape="round" (click)="addCPF()">
-      <ion-icon name="add-outline"></ion-icon>CPF
-    </ion-button>
-    <ion-button *ngIf="hasCPF" size="small" fill="outline" shape="round" (click)="clearCPF()">
-      <ion-icon name="remove-outline"></ion-icon>CPF
     </ion-button>
   </div>
 </ion-footer>
