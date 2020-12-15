@@ -142,7 +142,7 @@ export class AuthenticationsService {
     return this.catalogName;
   }
 
-  async setLogout() {
+  async setLogout(showMessage: boolean = false) {
 
     this.setCheckOut();
     this.setProfileType("");
@@ -155,7 +155,9 @@ export class AuthenticationsService {
     this.setLoginSuccessful(false);
     this.menuService.setMenu('');
     this.ShopBagSrc.clearOrder();
-    this.toolsService.showToast('Logout efetuado');
+    if(showMessage){
+      this.toolsService.showToast('Logout efetuado');
+    }
     this.router.navigate(['/login']);
 
   }
