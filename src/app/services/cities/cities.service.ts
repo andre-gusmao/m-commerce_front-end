@@ -5,7 +5,10 @@ import { Injectable } from '@angular/core';
 })
 export class CitiesService {
 
-  stateList = [
+stateList = [];
+
+/*
+stateList = [
     {
       abbreviation: 'AC',
       stateName: 'Acre'
@@ -114,8 +117,10 @@ export class CitiesService {
       abbreviation: 'TO',
       stateName: 'Tocantins'
     }
-  ]
-
+]
+*/
+citiesList = []
+/*
   citiesList = [
     {
       abbreviation: 'AC',
@@ -311,7 +316,7 @@ export class CitiesService {
         },
         {
           ibge: '2702355',
-          cityName: 'Crai­bas'
+          cityName: 'Craiï¿½bas'
         },
         {
           ibge: '2702405',
@@ -363,7 +368,7 @@ export class CitiesService {
         },
         {
           ibge: '2703502',
-          cityName: 'Jacui­pe'
+          cityName: 'Jacuiï¿½pe'
         },
         {
           ibge: '2703601',
@@ -559,7 +564,7 @@ export class CitiesService {
         },
         {
           ibge: '2708105',
-          cityName: 'Santana do Mundaiº'
+          cityName: 'Santana do Mundaiï¿½'
         },
         {
           ibge: '2708204',
@@ -575,7 +580,7 @@ export class CitiesService {
         },
         {
           ibge: '2708501',
-          cityName: 'Sao Lui­s do Quitunde'
+          cityName: 'Sao Luiï¿½s do Quitunde'
         },
         {
           ibge: '2708600',
@@ -644,7 +649,7 @@ export class CitiesService {
         },
         {
           ibge: '1300144',
-          cityName: 'Apui­'
+          cityName: 'Apuiï¿½'
         },
         {
           ibge: '1300201',
@@ -760,7 +765,7 @@ export class CitiesService {
         },
         {
           ibge: '1302306',
-          cityName: 'Jutai­'
+          cityName: 'Jutaiï¿½'
         },
         {
           ibge: '1302405',
@@ -925,7 +930,7 @@ export class CitiesService {
         },
         {
           ibge: '1600550',
-          cityName: 'Pracuiºba'
+          cityName: 'Pracuiï¿½ba'
         },
         {
           ibge: '1600600',
@@ -950,7 +955,7 @@ export class CitiesService {
       cities: [
         {
           ibge: '2900108',
-          cityName: 'Abai­ra'
+          cityName: 'Abaiï¿½ra'
         },
         {
           ibge: '2900207',
@@ -1002,7 +1007,7 @@ export class CitiesService {
         },
         {
           ibge: '2901304',
-          cityName: 'Andarai­'
+          cityName: 'Andaraiï¿½'
         },
         {
           ibge: '2901353',
@@ -1058,7 +1063,7 @@ export class CitiesService {
         },
         {
           ibge: '2902302',
-          cityName: 'Aratui­pe'
+          cityName: 'Aratuiï¿½pe'
         },
         {
           ibge: '2902401',
@@ -1074,7 +1079,7 @@ export class CitiesService {
         },
         {
           ibge: '2902658',
-          cityName: 'Banzaiª'
+          cityName: 'Banzaiï¿½'
         },
         {
           ibge: '2902708',
@@ -1158,7 +1163,7 @@ export class CitiesService {
         },
         {
           ibge: '2904308',
-          cityName: 'Brejiµes'
+          cityName: 'Brejiï¿½es'
         },
         {
           ibge: '2904407',
@@ -1166,7 +1171,7 @@ export class CitiesService {
         },
         {
           ibge: '2904506',
-          cityName: 'Brotas de Macaiºbas'
+          cityName: 'Brotas de Macaiï¿½bas'
         },
         {
           ibge: '2904605',
@@ -1286,7 +1291,7 @@ export class CitiesService {
         },
         {
           ibge: '2906899',
-          cityName: 'Carai­bas'
+          cityName: 'Caraiï¿½bas'
         },
         {
           ibge: '2906907',
@@ -1330,7 +1335,7 @@ export class CitiesService {
         },
         {
           ibge: '2907806',
-          cityName: 'Ci­cero Dantas'
+          cityName: 'Ciï¿½cero Dantas'
         },
         {
           ibge: '2907905',
@@ -1358,7 +1363,7 @@ export class CitiesService {
         },
         {
           ibge: '2908507',
-          cityName: 'Conceicao do Jacui­pe'
+          cityName: 'Conceicao do Jacuiï¿½pe'
         },
         {
           ibge: '2908606',
@@ -1366,7 +1371,7 @@ export class CitiesService {
         },
         {
           ibge: '2908705',
-          cityName: 'Condeiºba'
+          cityName: 'Condeiï¿½ba'
         },
         {
           ibge: '2908804',
@@ -1426,7 +1431,7 @@ export class CitiesService {
         },
         {
           ibge: '2910107',
-          cityName: 'Dom Basi­lio'
+          cityName: 'Dom Basiï¿½lio'
         },
         {
           ibge: '2910206',
@@ -1434,7 +1439,7 @@ export class CitiesService {
         },
         {
           ibge: '2910305',
-          cityName: 'Eli­sio Medrado'
+          cityName: 'Eliï¿½sio Medrado'
         },
         {
           ibge: '2910404',
@@ -1446,7 +1451,7 @@ export class CitiesService {
         },
         {
           ibge: '2900504',
-          cityName: 'i‰rico Cardoso'
+          cityName: 'iï¿½rico Cardoso'
         },
         {
           ibge: '2910602',
@@ -1534,11 +1539,11 @@ export class CitiesService {
         },
         {
           ibge: '2912004',
-          cityName: 'Ibiassuciª'
+          cityName: 'Ibiassuciï¿½'
         },
         {
           ibge: '2912103',
-          cityName: 'Ibicarai­'
+          cityName: 'Ibicaraiï¿½'
         },
         {
           ibge: '2912202',
@@ -1546,7 +1551,7 @@ export class CitiesService {
         },
         {
           ibge: '2912301',
-          cityName: 'Ibicui­'
+          cityName: 'Ibicuiï¿½'
         },
         {
           ibge: '2912400',
@@ -1594,11 +1599,11 @@ export class CitiesService {
         },
         {
           ibge: '2913457',
-          cityName: 'Igrapiiºna'
+          cityName: 'Igrapiiï¿½na'
         },
         {
           ibge: '2913507',
-          cityName: 'Iguai­'
+          cityName: 'Iguaiï¿½'
         },
         {
           ibge: '2913606',
@@ -1614,7 +1619,7 @@ export class CitiesService {
         },
         {
           ibge: '2913903',
-          cityName: 'Ipiaiº'
+          cityName: 'Ipiaiï¿½'
         },
         {
           ibge: '2914000',
@@ -1642,7 +1647,7 @@ export class CitiesService {
         },
         {
           ibge: '2914604',
-          cityName: 'Ireciª'
+          cityName: 'Ireciï¿½'
         },
         {
           ibge: '2914653',
@@ -1686,7 +1691,7 @@ export class CitiesService {
         },
         {
           ibge: '2915502',
-          cityName: 'Itajui­pe'
+          cityName: 'Itajuiï¿½pe'
         },
         {
           ibge: '2915601',
@@ -1750,7 +1755,7 @@ export class CitiesService {
         },
         {
           ibge: '2917003',
-          cityName: 'Itiiºba'
+          cityName: 'Itiiï¿½ba'
         },
         {
           ibge: '2917102',
@@ -1766,7 +1771,7 @@ export class CitiesService {
         },
         {
           ibge: '2917334',
-          cityName: 'Iuiiº'
+          cityName: 'Iuiiï¿½'
         },
         {
           ibge: '2917359',
@@ -1794,7 +1799,7 @@ export class CitiesService {
         },
         {
           ibge: '2917904',
-          cityName: 'Jandai­ra'
+          cityName: 'Jandaiï¿½ra'
         },
         {
           ibge: '2918001',
@@ -1810,7 +1815,7 @@ export class CitiesService {
         },
         {
           ibge: '2918308',
-          cityName: 'Jitaiºna'
+          cityName: 'Jitaiï¿½na'
         },
         {
           ibge: '2918357',
@@ -1878,7 +1883,7 @@ export class CitiesService {
         },
         {
           ibge: '2919405',
-          cityName: 'Lici­nio de Almeida'
+          cityName: 'Liciï¿½nio de Almeida'
         },
         {
           ibge: '2919504',
@@ -1886,7 +1891,7 @@ export class CitiesService {
         },
         {
           ibge: '2919553',
-          cityName: 'Lui­s Eduardo Magalhaes'
+          cityName: 'Luiï¿½s Eduardo Magalhaes'
         },
         {
           ibge: '2919603',
@@ -1898,7 +1903,7 @@ export class CitiesService {
         },
         {
           ibge: '2919801',
-          cityName: 'Macaiºbas'
+          cityName: 'Macaiï¿½bas'
         },
         {
           ibge: '2919900',
@@ -1946,11 +1951,11 @@ export class CitiesService {
         },
         {
           ibge: '2920700',
-          cityName: 'Maraiº'
+          cityName: 'Maraiï¿½'
         },
         {
           ibge: '2920809',
-          cityName: 'Marcioni­lio Souza'
+          cityName: 'Marcioniï¿½lio Souza'
         },
         {
           ibge: '2920908',
@@ -2002,7 +2007,7 @@ export class CitiesService {
         },
         {
           ibge: '2921906',
-          cityName: 'Mucugiª'
+          cityName: 'Mucugiï¿½'
         },
         {
           ibge: '2922003',
@@ -2030,7 +2035,7 @@ export class CitiesService {
         },
         {
           ibge: '2922409',
-          cityName: 'Mutui­pe'
+          cityName: 'Mutuiï¿½pe'
         },
         {
           ibge: '2922508',
@@ -2146,7 +2151,7 @@ export class CitiesService {
         },
         {
           ibge: '2924504',
-          cityName: 'Pindai­'
+          cityName: 'Pindaiï¿½'
         },
         {
           ibge: '2924603',
@@ -2158,7 +2163,7 @@ export class CitiesService {
         },
         {
           ibge: '2924678',
-          cityName: 'Pirai­ do Norte'
+          cityName: 'Piraiï¿½ do Norte'
         },
         {
           ibge: '2924702',
@@ -2178,7 +2183,7 @@ export class CitiesService {
         },
         {
           ibge: '2925105',
-          cityName: 'Pociµes'
+          cityName: 'Pociï¿½es'
         },
         {
           ibge: '2925204',
@@ -2242,7 +2247,7 @@ export class CitiesService {
         },
         {
           ibge: '2926301',
-          cityName: 'Riachao do Jacui­pe'
+          cityName: 'Riachao do Jacuiï¿½pe'
         },
         {
           ibge: '2926400',
@@ -2298,7 +2303,7 @@ export class CitiesService {
         },
         {
           ibge: '2927606',
-          cityName: 'Santa Bri­gida'
+          cityName: 'Santa Briï¿½gida'
         },
         {
           ibge: '2927705',
@@ -2310,7 +2315,7 @@ export class CitiesService {
         },
         {
           ibge: '2927903',
-          cityName: 'Santa Iniªs'
+          cityName: 'Santa Iniï¿½s'
         },
         {
           ibge: '2928059',
@@ -2350,7 +2355,7 @@ export class CitiesService {
         },
         {
           ibge: '2928802',
-          cityName: 'Santo Estiªvao'
+          cityName: 'Santo Estiï¿½vao'
         },
         {
           ibge: '2928901',
@@ -2390,7 +2395,7 @@ export class CitiesService {
         },
         {
           ibge: '2929370',
-          cityName: 'Sao Jose do Jacui­pe'
+          cityName: 'Sao Jose do Jacuiï¿½pe'
         },
         {
           ibge: '2929404',
@@ -2414,7 +2419,7 @@ export class CitiesService {
         },
         {
           ibge: '2929800',
-          cityName: 'Saiºde'
+          cityName: 'Saiï¿½de'
         },
         {
           ibge: '2929909',
@@ -2454,15 +2459,15 @@ export class CitiesService {
         },
         {
           ibge: '2930709',
-          cityName: 'Simiµes Filho'
+          cityName: 'Simiï¿½es Filho'
         },
         {
           ibge: '2930758',
-          cityName: 'Si­tio do Mato'
+          cityName: 'Siï¿½tio do Mato'
         },
         {
           ibge: '2930766',
-          cityName: 'Si­tio do Quinto'
+          cityName: 'Siï¿½tio do Quinto'
         },
         {
           ibge: '2930774',
@@ -2530,7 +2535,7 @@ export class CitiesService {
         },
         {
           ibge: '2932101',
-          cityName: 'Ubai­ra'
+          cityName: 'Ubaiï¿½ra'
         },
         {
           ibge: '2932200',
@@ -2542,7 +2547,7 @@ export class CitiesService {
         },
         {
           ibge: '2932408',
-          cityName: 'Uibai­'
+          cityName: 'Uibaiï¿½'
         },
         {
           ibge: '2932457',
@@ -2631,7 +2636,7 @@ export class CitiesService {
         },
         {
           ibge: '2300200',
-          cityName: 'Acaraiº'
+          cityName: 'Acaraiï¿½'
         },
         {
           ibge: '2300309',
@@ -2727,7 +2732,7 @@ export class CitiesService {
         },
         {
           ibge: '2301851',
-          cityName: 'Banabuiiº'
+          cityName: 'Banabuiiï¿½'
         },
         {
           ibge: '2301901',
@@ -2827,7 +2832,7 @@ export class CitiesService {
         },
         {
           ibge: '2303303',
-          cityName: 'Cariiºs'
+          cityName: 'Cariiï¿½s'
         },
         {
           ibge: '2801504',
@@ -2875,11 +2880,11 @@ export class CitiesService {
         },
         {
           ibge: '2304004',
-          cityName: 'Coreaiº'
+          cityName: 'Coreaiï¿½'
         },
         {
           ibge: '2304103',
-          cityName: 'Crateiºs'
+          cityName: 'Crateiï¿½s'
         },
         {
           ibge: '2304202',
@@ -2911,7 +2916,7 @@ export class CitiesService {
         },
         {
           ibge: '2304277',
-          cityName: 'Ereriª'
+          cityName: 'Ereriï¿½'
         },
         {
           ibge: '2802106',
@@ -2979,11 +2984,11 @@ export class CitiesService {
         },
         {
           ibge: '2304905',
-          cityName: 'Groai­ras'
+          cityName: 'Groaiï¿½ras'
         },
         {
           ibge: '2304954',
-          cityName: 'Guaiiºba'
+          cityName: 'Guaiiï¿½ba'
         },
         {
           ibge: '2305001',
@@ -3015,7 +3020,7 @@ export class CitiesService {
         },
         {
           ibge: '2305357',
-          cityName: 'Icapui­'
+          cityName: 'Icapuiï¿½'
         },
         {
           ibge: '2305407',
@@ -3031,7 +3036,7 @@ export class CitiesService {
         },
         {
           ibge: '2305605',
-          cityName: 'Independiªncia'
+          cityName: 'Independiï¿½ncia'
         },
         {
           ibge: '2802809',
@@ -3091,7 +3096,7 @@ export class CitiesService {
         },
         {
           ibge: '2306504',
-          cityName: 'Itapiiºna'
+          cityName: 'Itapiiï¿½na'
         },
         {
           ibge: '2803203',
@@ -3183,7 +3188,7 @@ export class CitiesService {
         },
         {
           ibge: '2307650',
-          cityName: 'Maracanaiº'
+          cityName: 'Maracanaiï¿½'
         },
         {
           ibge: '2307700',
@@ -3203,7 +3208,7 @@ export class CitiesService {
         },
         {
           ibge: '2308005',
-          cityName: 'Massapiª'
+          cityName: 'Massapiï¿½'
         },
         {
           ibge: '2308104',
@@ -3223,7 +3228,7 @@ export class CitiesService {
         },
         {
           ibge: '2308377',
-          cityName: 'Mirai­ma'
+          cityName: 'Miraiï¿½ma'
         },
         {
           ibge: '2308401',
@@ -3251,7 +3256,7 @@ export class CitiesService {
         },
         {
           ibge: '2308807',
-          cityName: 'Moraiºjo'
+          cityName: 'Moraiï¿½jo'
         },
         {
           ibge: '2308906',
@@ -3507,7 +3512,7 @@ export class CitiesService {
         },
         {
           ibge: '2312007',
-          cityName: 'Santana do Acaraiº'
+          cityName: 'Santana do Acaraiï¿½'
         },
         {
           ibge: '2312106',
@@ -3547,7 +3552,7 @@ export class CitiesService {
         },
         {
           ibge: '2312601',
-          cityName: 'Sao Lui­s do Curu'
+          cityName: 'Sao Luiï¿½s do Curu'
         },
         {
           ibge: '2807006',
@@ -3631,7 +3636,7 @@ export class CitiesService {
         },
         {
           ibge: '2807600',
-          cityName: 'Umbaiºba'
+          cityName: 'Umbaiï¿½ba'
         },
         {
           ibge: '2313757',
@@ -3664,7 +3669,7 @@ export class CitiesService {
       cities: [
         {
           ibge: '5300108',
-          cityName: 'Brasi­lia'
+          cityName: 'Brasiï¿½lia'
         }
       ]
     },
@@ -3781,7 +3786,7 @@ export class CitiesService {
         },
         {
           ibge: '3202306',
-          cityName: 'Guacui­'
+          cityName: 'Guacuiï¿½'
         },
         {
           ibge: '3202405',
@@ -3821,7 +3826,7 @@ export class CitiesService {
         },
         {
           ibge: '3203007',
-          cityName: 'Iiºna'
+          cityName: 'Iiï¿½na'
         },
         {
           ibge: '3203056',
@@ -3849,7 +3854,7 @@ export class CitiesService {
         },
         {
           ibge: '3203320',
-          cityName: 'Maratai­zes'
+          cityName: 'Marataiï¿½zes'
         },
         {
           ibge: '3203346',
@@ -3897,7 +3902,7 @@ export class CitiesService {
         },
         {
           ibge: '3204203',
-          cityName: 'Piiºma'
+          cityName: 'Piiï¿½ma'
         },
         {
           ibge: '3204252',
@@ -3998,7 +4003,7 @@ export class CitiesService {
         },
         {
           ibge: '5200134',
-          cityName: 'Acreiºna'
+          cityName: 'Acreiï¿½na'
         },
         {
           ibge: '5200159',
@@ -4030,7 +4035,7 @@ export class CitiesService {
         },
         {
           ibge: '5200605',
-          cityName: 'Alto Parai­so de Goias'
+          cityName: 'Alto Paraiï¿½so de Goias'
         },
         {
           ibge: '5200803',
@@ -4226,7 +4231,7 @@ export class CitiesService {
         },
         {
           ibge: '5205208',
-          cityName: 'Caturai­'
+          cityName: 'Caturaiï¿½'
         },
         {
           ibge: '5205307',
@@ -4266,7 +4271,7 @@ export class CitiesService {
         },
         {
           ibge: '5205901',
-          cityName: 'Corumbai­ba'
+          cityName: 'Corumbaiï¿½ba'
         },
         {
           ibge: '5206206',
@@ -4282,7 +4287,7 @@ export class CitiesService {
         },
         {
           ibge: '5206503',
-          cityName: 'Cromi­nia'
+          cityName: 'Cromiï¿½nia'
         },
         {
           ibge: '5206602',
@@ -4390,7 +4395,7 @@ export class CitiesService {
         },
         {
           ibge: '5209291',
-          cityName: 'Guarai­ta'
+          cityName: 'Guaraiï¿½ta'
         },
         {
           ibge: '5209408',
@@ -4402,7 +4407,7 @@ export class CitiesService {
         },
         {
           ibge: '5209606',
-          cityName: 'Heitorai­'
+          cityName: 'Heitoraiï¿½'
         },
         {
           ibge: '5209705',
@@ -4446,7 +4451,7 @@ export class CitiesService {
         },
         {
           ibge: '5210406',
-          cityName: 'Itaberai­'
+          cityName: 'Itaberaiï¿½'
         },
         {
           ibge: '5210562',
@@ -4498,7 +4503,7 @@ export class CitiesService {
         },
         {
           ibge: '5211909',
-          cityName: 'Jatai­'
+          cityName: 'Jataiï¿½'
         },
         {
           ibge: '5212006',
@@ -4506,7 +4511,7 @@ export class CitiesService {
         },
         {
           ibge: '5212055',
-          cityName: 'Jesiºpolis'
+          cityName: 'Jesiï¿½polis'
         },
         {
           ibge: '5212105',
@@ -4522,7 +4527,7 @@ export class CitiesService {
         },
         {
           ibge: '5212303',
-          cityName: 'Leopoldo de Bulhiµes'
+          cityName: 'Leopoldo de Bulhiï¿½es'
         },
         {
           ibge: '5212501',
@@ -4534,7 +4539,7 @@ export class CitiesService {
         },
         {
           ibge: '5212709',
-          cityName: 'Mambai­'
+          cityName: 'Mambaiï¿½'
         },
         {
           ibge: '5212808',
@@ -4702,7 +4707,7 @@ export class CitiesService {
         },
         {
           ibge: '5216403',
-          cityName: 'Paraiºna'
+          cityName: 'Paraiï¿½na'
         },
         {
           ibge: '5216452',
@@ -4854,11 +4859,11 @@ export class CitiesService {
         },
         {
           ibge: '5220058',
-          cityName: 'Sao Joao da Paraiºna'
+          cityName: 'Sao Joao da Paraiï¿½na'
         },
         {
           ibge: '5220108',
-          cityName: 'Sao Lui­s de Montes Belos'
+          cityName: 'Sao Luiï¿½s de Montes Belos'
         },
         {
           ibge: '5220157',
@@ -4874,7 +4879,7 @@ export class CitiesService {
         },
         {
           ibge: '5220280',
-          cityName: 'Sao Patri­cio'
+          cityName: 'Sao Patriï¿½cio'
         },
         {
           ibge: '5220405',
@@ -4898,7 +4903,7 @@ export class CitiesService {
         },
         {
           ibge: '5220702',
-          cityName: 'Si­tio d\'Abadia'
+          cityName: 'Siï¿½tio d\'Abadia'
         },
         {
           ibge: '5221007',
@@ -4914,7 +4919,7 @@ export class CitiesService {
         },
         {
           ibge: '5221304',
-          cityName: 'Triªs Ranchos'
+          cityName: 'Triï¿½s Ranchos'
         },
         {
           ibge: '5221403',
@@ -4946,11 +4951,11 @@ export class CitiesService {
         },
         {
           ibge: '5221809',
-          cityName: 'Urutai­'
+          cityName: 'Urutaiï¿½'
         },
         {
           ibge: '5221858',
-          cityName: 'Valparai­so de Goias'
+          cityName: 'Valparaiï¿½so de Goias'
         },
         {
           ibge: '5221908',
@@ -4970,7 +4975,7 @@ export class CitiesService {
         },
         {
           ibge: '5222302',
-          cityName: 'Vila Propi­cio'
+          cityName: 'Vila Propiï¿½cio'
         }
       ]
     },
@@ -5011,7 +5016,7 @@ export class CitiesService {
         },
         {
           ibge: '2100501',
-          cityName: 'Alto Parnai­ba'
+          cityName: 'Alto Parnaiï¿½ba'
         },
         {
           ibge: '2100550',
@@ -5075,7 +5080,7 @@ export class CitiesService {
         },
         {
           ibge: '2101509',
-          cityName: 'Barao de Grajaiº'
+          cityName: 'Barao de Grajaiï¿½'
         },
         {
           ibge: '2101608',
@@ -5291,7 +5296,7 @@ export class CitiesService {
         },
         {
           ibge: '2104602',
-          cityName: 'Governador Eugiªnio Barros'
+          cityName: 'Governador Eugiï¿½nio Barros'
         },
         {
           ibge: '2104628',
@@ -5311,7 +5316,7 @@ export class CitiesService {
         },
         {
           ibge: '2104800',
-          cityName: 'Grajaiº'
+          cityName: 'Grajaiï¿½'
         },
         {
           ibge: '2104909',
@@ -5339,7 +5344,7 @@ export class CitiesService {
         },
         {
           ibge: '2105351',
-          cityName: 'Itaipava do Grajaiº'
+          cityName: 'Itaipava do Grajaiï¿½'
         },
         {
           ibge: '2105401',
@@ -5407,7 +5412,7 @@ export class CitiesService {
         },
         {
           ibge: '2106201',
-          cityName: 'Lui­s Domingues'
+          cityName: 'Luiï¿½s Domingues'
         },
         {
           ibge: '2106300',
@@ -5435,11 +5440,11 @@ export class CitiesService {
         },
         {
           ibge: '2106607',
-          cityName: 'Matiµes'
+          cityName: 'Matiï¿½es'
         },
         {
           ibge: '2106631',
-          cityName: 'Matiµes do Norte'
+          cityName: 'Matiï¿½es do Norte'
         },
         {
           ibge: '2106672',
@@ -5615,7 +5620,7 @@ export class CitiesService {
         },
         {
           ibge: '2109700',
-          cityName: 'Sambai­ba'
+          cityName: 'Sambaiï¿½ba'
         },
         {
           ibge: '2109759',
@@ -5627,7 +5632,7 @@ export class CitiesService {
         },
         {
           ibge: '2109908',
-          cityName: 'Santa Iniªs'
+          cityName: 'Santa Iniï¿½s'
         },
         {
           ibge: '2110005',
@@ -5695,11 +5700,11 @@ export class CitiesService {
         },
         {
           ibge: '2111029',
-          cityName: 'Sao Joao do Cariº'
+          cityName: 'Sao Joao do Cariï¿½'
         },
         {
           ibge: '2111052',
-          cityName: 'Sao Joao do Parai­so'
+          cityName: 'Sao Joao do Paraiï¿½so'
         },
         {
           ibge: '2111078',
@@ -5715,15 +5720,15 @@ export class CitiesService {
         },
         {
           ibge: '2111250',
-          cityName: 'Sao Jose dos Basi­lios'
+          cityName: 'Sao Jose dos Basiï¿½lios'
         },
         {
           ibge: '2111300',
-          cityName: 'Sao Lui­s'
+          cityName: 'Sao Luiï¿½s'
         },
         {
           ibge: '2111409',
-          cityName: 'Sao Lui­s Gonzaga do Maranhao'
+          cityName: 'Sao Luiï¿½s Gonzaga do Maranhao'
         },
         {
           ibge: '2111508',
@@ -5771,7 +5776,7 @@ export class CitiesService {
         },
         {
           ibge: '2111805',
-          cityName: 'Si­tio Novo'
+          cityName: 'Siï¿½tio Novo'
         },
         {
           ibge: '2111904',
@@ -5831,7 +5836,7 @@ export class CitiesService {
         },
         {
           ibge: '2112852',
-          cityName: 'Vila Nova dos Marti­rios'
+          cityName: 'Vila Nova dos Martiï¿½rios'
         },
         {
           ibge: '2112902',
@@ -5908,7 +5913,7 @@ export class CitiesService {
         },
         {
           ibge: '3101508',
-          cityName: 'Alem Parai­ba'
+          cityName: 'Alem Paraiï¿½ba'
         },
         {
           ibge: '3101607',
@@ -5988,7 +5993,7 @@ export class CitiesService {
         },
         {
           ibge: '3103207',
-          cityName: 'Aracai­'
+          cityName: 'Aracaiï¿½'
         },
         {
           ibge: '3103306',
@@ -5996,7 +6001,7 @@ export class CitiesService {
         },
         {
           ibge: '3103405',
-          cityName: 'Aracuai­'
+          cityName: 'Aracuaiï¿½'
         },
         {
           ibge: '3103504',
@@ -6020,7 +6025,7 @@ export class CitiesService {
         },
         {
           ibge: '3103900',
-          cityName: 'Araiºjos'
+          cityName: 'Araiï¿½jos'
         },
         {
           ibge: '3104007',
@@ -6072,7 +6077,7 @@ export class CitiesService {
         },
         {
           ibge: '3105103',
-          cityName: 'Bambui­'
+          cityName: 'Bambuiï¿½'
         },
         {
           ibge: '3105202',
@@ -6160,7 +6165,7 @@ export class CitiesService {
         },
         {
           ibge: '3107307',
-          cityName: 'Bocaiiºva'
+          cityName: 'Bocaiiï¿½va'
         },
         {
           ibge: '3107406',
@@ -6224,11 +6229,11 @@ export class CitiesService {
         },
         {
           ibge: '3108602',
-          cityName: 'Brasi­lia de Minas'
+          cityName: 'Brasiï¿½lia de Minas'
         },
         {
           ibge: '3108800',
-          cityName: 'Braiºnas'
+          cityName: 'Braiï¿½nas'
         },
         {
           ibge: '3108909',
@@ -6276,7 +6281,7 @@ export class CitiesService {
         },
         {
           ibge: '3102704',
-          cityName: 'Cachoeira de Pajeiº'
+          cityName: 'Cachoeira de Pajeiï¿½'
         },
         {
           ibge: '3109808',
@@ -6312,7 +6317,7 @@ export class CitiesService {
         },
         {
           ibge: '3110608',
-          cityName: 'Cambui­'
+          cityName: 'Cambuiï¿½'
         },
         {
           ibge: '3110707',
@@ -6420,15 +6425,15 @@ export class CitiesService {
         },
         {
           ibge: '3113008',
-          cityName: 'Carai­'
+          cityName: 'Caraiï¿½'
         },
         {
           ibge: '3113107',
-          cityName: 'Caranai­ba'
+          cityName: 'Caranaiï¿½ba'
         },
         {
           ibge: '3113206',
-          cityName: 'Carandai­'
+          cityName: 'Carandaiï¿½'
         },
         {
           ibge: '3113305',
@@ -6472,7 +6477,7 @@ export class CitiesService {
         },
         {
           ibge: '3114303',
-          cityName: 'Carmo do Paranai­ba'
+          cityName: 'Carmo do Paranaiï¿½ba'
         },
         {
           ibge: '3114402',
@@ -6560,7 +6565,7 @@ export class CitiesService {
         },
         {
           ibge: '3116159',
-          cityName: 'Chapada Gaiºcha'
+          cityName: 'Chapada Gaiï¿½cha'
         },
         {
           ibge: '3116209',
@@ -6576,7 +6581,7 @@ export class CitiesService {
         },
         {
           ibge: '3116506',
-          cityName: 'Claro dos Pociµes'
+          cityName: 'Claro dos Pociï¿½es'
         },
         {
           ibge: '3116605',
@@ -6768,7 +6773,7 @@ export class CitiesService {
         },
         {
           ibge: '3120805',
-          cityName: 'Cruzi­lia'
+          cityName: 'Cruziï¿½lia'
         },
         {
           ibge: '3120839',
@@ -6820,7 +6825,7 @@ export class CitiesService {
         },
         {
           ibge: '3121803',
-          cityName: 'Dioni­sio'
+          cityName: 'Dioniï¿½sio'
         },
         {
           ibge: '3121902',
@@ -6944,7 +6949,7 @@ export class CitiesService {
         },
         {
           ibge: '3124401',
-          cityName: 'Espi­rito Santo do Dourado'
+          cityName: 'Espiï¿½rito Santo do Dourado'
         },
         {
           ibge: '3124500',
@@ -6984,7 +6989,7 @@ export class CitiesService {
         },
         {
           ibge: '3125408',
-          cityName: 'Feli­cio dos Santos'
+          cityName: 'Feliï¿½cio dos Santos'
         },
         {
           ibge: '3125606',
@@ -7048,7 +7053,7 @@ export class CitiesService {
         },
         {
           ibge: '3126901',
-          cityName: 'Frei Inociªncio'
+          cityName: 'Frei Inociï¿½ncio'
         },
         {
           ibge: '3126950',
@@ -7188,7 +7193,7 @@ export class CitiesService {
         },
         {
           ibge: '3129608',
-          cityName: 'Ibiai­'
+          cityName: 'Ibiaiï¿½'
         },
         {
           ibge: '3129657',
@@ -7204,7 +7209,7 @@ export class CitiesService {
         },
         {
           ibge: '3129905',
-          cityName: 'Ibitiiºra de Minas'
+          cityName: 'Ibitiiï¿½ra de Minas'
         },
         {
           ibge: '3130002',
@@ -7212,7 +7217,7 @@ export class CitiesService {
         },
         {
           ibge: '3130051',
-          cityName: 'Icarai­ de Minas'
+          cityName: 'Icaraiï¿½ de Minas'
         },
         {
           ibge: '3130101',
@@ -7232,7 +7237,7 @@ export class CitiesService {
         },
         {
           ibge: '3130507',
-          cityName: 'Ilici­nea'
+          cityName: 'Iliciï¿½nea'
         },
         {
           ibge: '3130556',
@@ -7252,7 +7257,7 @@ export class CitiesService {
         },
         {
           ibge: '3130804',
-          cityName: 'Ingai­'
+          cityName: 'Ingaiï¿½'
         },
         {
           ibge: '3130903',
@@ -7260,7 +7265,7 @@ export class CitiesService {
         },
         {
           ibge: '3131000',
-          cityName: 'Inhaiºma'
+          cityName: 'Inhaiï¿½ma'
         },
         {
           ibge: '3131109',
@@ -7284,11 +7289,11 @@ export class CitiesService {
         },
         {
           ibge: '3131505',
-          cityName: 'Ipuiiºna'
+          cityName: 'Ipuiiï¿½na'
         },
         {
           ibge: '3131604',
-          cityName: 'Irai­ de Minas'
+          cityName: 'Iraiï¿½ de Minas'
         },
         {
           ibge: '3131703',
@@ -7376,11 +7381,11 @@ export class CitiesService {
         },
         {
           ibge: '3133758',
-          cityName: 'Itaiº de Minas'
+          cityName: 'Itaiï¿½ de Minas'
         },
         {
           ibge: '3133808',
-          cityName: 'Itaiºna'
+          cityName: 'Itaiï¿½na'
         },
         {
           ibge: '3133907',
@@ -7420,7 +7425,7 @@ export class CitiesService {
         },
         {
           ibge: '3134806',
-          cityName: 'Jacui­'
+          cityName: 'Jacuiï¿½'
         },
         {
           ibge: '3134905',
@@ -7432,7 +7437,7 @@ export class CitiesService {
         },
         {
           ibge: '3135050',
-          cityName: 'Jai­ba'
+          cityName: 'Jaiï¿½ba'
         },
         {
           ibge: '3135076',
@@ -7440,7 +7445,7 @@ export class CitiesService {
         },
         {
           ibge: '3135100',
-          cityName: 'Janaiºba'
+          cityName: 'Janaiï¿½ba'
         },
         {
           ibge: '3135209',
@@ -7448,7 +7453,7 @@ export class CitiesService {
         },
         {
           ibge: '3135308',
-          cityName: 'Japarai­ba'
+          cityName: 'Japaraiï¿½ba'
         },
         {
           ibge: '3135357',
@@ -7468,7 +7473,7 @@ export class CitiesService {
         },
         {
           ibge: '3135605',
-          cityName: 'Jequitai­'
+          cityName: 'Jequitaiï¿½'
         },
         {
           ibge: '3135704',
@@ -7484,7 +7489,7 @@ export class CitiesService {
         },
         {
           ibge: '3136009',
-          cityName: 'Joai­ma'
+          cityName: 'Joaiï¿½ma'
         },
         {
           ibge: '3136108',
@@ -7500,7 +7505,7 @@ export class CitiesService {
         },
         {
           ibge: '3136405',
-          cityName: 'Joaquim Feli­cio'
+          cityName: 'Joaquim Feliï¿½cio'
         },
         {
           ibge: '3136504',
@@ -7536,7 +7541,7 @@ export class CitiesService {
         },
         {
           ibge: '3136959',
-          cityName: 'Juveni­lia'
+          cityName: 'Juveniï¿½lia'
         },
         {
           ibge: '3137007',
@@ -7772,7 +7777,7 @@ export class CitiesService {
         },
         {
           ibge: '3141603',
-          cityName: 'Merciªs'
+          cityName: 'Merciï¿½s'
         },
         {
           ibge: '3141702',
@@ -7796,7 +7801,7 @@ export class CitiesService {
         },
         {
           ibge: '3142205',
-          cityName: 'Mirai­'
+          cityName: 'Miraiï¿½'
         },
         {
           ibge: '3142254',
@@ -7976,7 +7981,7 @@ export class CitiesService {
         },
         {
           ibge: '3145505',
-          cityName: 'Oli­mpio Noronha'
+          cityName: 'Oliï¿½mpio Noronha'
         },
         {
           ibge: '3145604',
@@ -8020,7 +8025,7 @@ export class CitiesService {
         },
         {
           ibge: '3146305',
-          cityName: 'Padre Parai­so'
+          cityName: 'Padre Paraiï¿½so'
         },
         {
           ibge: '3146552',
@@ -8100,11 +8105,11 @@ export class CitiesService {
         },
         {
           ibge: '3148103',
-          cityName: 'Patroci­nio'
+          cityName: 'Patrociï¿½nio'
         },
         {
           ibge: '3148202',
-          cityName: 'Patroci­nio do Muriae'
+          cityName: 'Patrociï¿½nio do Muriae'
         },
         {
           ibge: '3148301',
@@ -8180,7 +8185,7 @@ export class CitiesService {
         },
         {
           ibge: '3149903',
-          cityName: 'Perdiµes'
+          cityName: 'Perdiï¿½es'
         },
         {
           ibge: '3149952',
@@ -8252,7 +8257,7 @@ export class CitiesService {
         },
         {
           ibge: '3151305',
-          cityName: 'Piraiºba'
+          cityName: 'Piraiï¿½ba'
         },
         {
           ibge: '3151404',
@@ -8432,7 +8437,7 @@ export class CitiesService {
         },
         {
           ibge: '3155504',
-          cityName: 'Rio Paranai­ba'
+          cityName: 'Rio Paranaiï¿½ba'
         },
         {
           ibge: '3155603',
@@ -8516,7 +8521,7 @@ export class CitiesService {
         },
         {
           ibge: '3157302',
-          cityName: 'Santa Barbara do Tugiºrio'
+          cityName: 'Santa Barbara do Tugiï¿½rio'
         },
         {
           ibge: '3157336',
@@ -8532,7 +8537,7 @@ export class CitiesService {
         },
         {
           ibge: '3157500',
-          cityName: 'Santa Efigiªnia de Minas'
+          cityName: 'Santa Efigiï¿½nia de Minas'
         },
         {
           ibge: '3157609',
@@ -8564,7 +8569,7 @@ export class CitiesService {
         },
         {
           ibge: '3158201',
-          cityName: 'Santa Maria do Suacui­'
+          cityName: 'Santa Maria do Suacuiï¿½'
         },
         {
           ibge: '3159209',
@@ -8588,7 +8593,7 @@ export class CitiesService {
         },
         {
           ibge: '3159605',
-          cityName: 'Santa Rita do Sapucai­'
+          cityName: 'Santa Rita do Sapucaiï¿½'
         },
         {
           ibge: '3159704',
@@ -8628,7 +8633,7 @@ export class CitiesService {
         },
         {
           ibge: '3158953',
-          cityName: 'Santana do Parai­so'
+          cityName: 'Santana do Paraiï¿½so'
         },
         {
           ibge: '3159001',
@@ -8684,7 +8689,7 @@ export class CitiesService {
         },
         {
           ibge: '3160900',
-          cityName: 'Sao Bras do Suacui­'
+          cityName: 'Sao Bras do Suacuiï¿½'
         },
         {
           ibge: '3160959',
@@ -8744,7 +8749,7 @@ export class CitiesService {
         },
         {
           ibge: '3162005',
-          cityName: 'Sao Goncalo do Sapucai­'
+          cityName: 'Sao Goncalo do Sapucaiï¿½'
         },
         {
           ibge: '3162104',
@@ -8768,7 +8773,7 @@ export class CitiesService {
         },
         {
           ibge: '3162450',
-          cityName: 'Sao Joao das Missiµes'
+          cityName: 'Sao Joao das Missiï¿½es'
         },
         {
           ibge: '3162500',
@@ -8788,11 +8793,11 @@ export class CitiesService {
         },
         {
           ibge: '3162658',
-          cityName: 'Sao Joao do Pacui­'
+          cityName: 'Sao Joao do Pacuiï¿½'
         },
         {
           ibge: '3162708',
-          cityName: 'Sao Joao do Parai­so'
+          cityName: 'Sao Joao do Paraiï¿½so'
         },
         {
           ibge: '3162807',
@@ -8856,7 +8861,7 @@ export class CitiesService {
         },
         {
           ibge: '3164100',
-          cityName: 'Sao Pedro do Suacui­'
+          cityName: 'Sao Pedro do Suacuiï¿½'
         },
         {
           ibge: '3164001',
@@ -8892,7 +8897,7 @@ export class CitiesService {
         },
         {
           ibge: '3164704',
-          cityName: 'Sao Sebastiao do Parai­so'
+          cityName: 'Sao Sebastiao do Paraiï¿½so'
         },
         {
           ibge: '3164803',
@@ -8920,7 +8925,7 @@ export class CitiesService {
         },
         {
           ibge: '3165404',
-          cityName: 'Sapucai­-Mirim'
+          cityName: 'Sapucaiï¿½-Mirim'
         },
         {
           ibge: '3165503',
@@ -9056,7 +9061,7 @@ export class CitiesService {
         },
         {
           ibge: '3168200',
-          cityName: 'Tapirai­'
+          cityName: 'Tapiraiï¿½'
         },
         {
           ibge: '3168309',
@@ -9104,15 +9109,15 @@ export class CitiesService {
         },
         {
           ibge: '3169307',
-          cityName: 'Triªs Coraciµes'
+          cityName: 'Triï¿½s Coraciï¿½es'
         },
         {
           ibge: '3169356',
-          cityName: 'Triªs Marias'
+          cityName: 'Triï¿½s Marias'
         },
         {
           ibge: '3169406',
-          cityName: 'Triªs Pontas'
+          cityName: 'Triï¿½s Pontas'
         },
         {
           ibge: '3169505',
@@ -9136,7 +9141,7 @@ export class CitiesService {
         },
         {
           ibge: '3170008',
-          cityName: 'Ubai­'
+          cityName: 'Ubaiï¿½'
         },
         {
           ibge: '3170057',
@@ -9156,7 +9161,7 @@ export class CitiesService {
         },
         {
           ibge: '3170404',
-          cityName: 'Unai­'
+          cityName: 'Unaiï¿½'
         },
         {
           ibge: '3170438',
@@ -9216,7 +9221,7 @@ export class CitiesService {
         },
         {
           ibge: '3171105',
-          cityName: 'Veri­ssimo'
+          cityName: 'Veriï¿½ssimo'
         },
         {
           ibge: '3171154',
@@ -9240,7 +9245,7 @@ export class CitiesService {
         },
         {
           ibge: '3171709',
-          cityName: 'Virgi­nia'
+          cityName: 'Virgiï¿½nia'
         },
         {
           ibge: '3171808',
@@ -9421,7 +9426,7 @@ export class CitiesService {
         },
         {
           ibge: '5004403',
-          cityName: 'Inociªncia'
+          cityName: 'Inociï¿½ncia'
         },
         {
           ibge: '5004502',
@@ -9429,7 +9434,7 @@ export class CitiesService {
         },
         {
           ibge: '5004601',
-          cityName: 'Itaquirai­'
+          cityName: 'Itaquiraiï¿½'
         },
         {
           ibge: '5004700',
@@ -9449,7 +9454,7 @@ export class CitiesService {
         },
         {
           ibge: '5005103',
-          cityName: 'Jatei­'
+          cityName: 'Jateiï¿½'
         },
         {
           ibge: '5005152',
@@ -9477,7 +9482,7 @@ export class CitiesService {
         },
         {
           ibge: '5005707',
-          cityName: 'Navirai­'
+          cityName: 'Naviraiï¿½'
         },
         {
           ibge: '5005806',
@@ -9497,11 +9502,11 @@ export class CitiesService {
         },
         {
           ibge: '5006275',
-          cityName: 'Parai­so das Aguas'
+          cityName: 'Paraiï¿½so das Aguas'
         },
         {
           ibge: '5006309',
-          cityName: 'Paranai­ba'
+          cityName: 'Paranaiï¿½ba'
         },
         {
           ibge: '5006358',
@@ -9549,7 +9554,7 @@ export class CitiesService {
         },
         {
           ibge: '5007802',
-          cityName: 'Selvi­ria'
+          cityName: 'Selviï¿½ria'
         },
         {
           ibge: '5007703',
@@ -9577,7 +9582,7 @@ export class CitiesService {
         },
         {
           ibge: '5008305',
-          cityName: 'Triªs Lagoas'
+          cityName: 'Triï¿½s Lagoas'
         },
         {
           ibge: '5008404',
@@ -9682,7 +9687,7 @@ export class CitiesService {
         },
         {
           ibge: '5102686',
-          cityName: 'Campos de Jiºlio'
+          cityName: 'Campos de Jiï¿½lio'
         },
         {
           ibge: '5102694',
@@ -9714,7 +9719,7 @@ export class CitiesService {
         },
         {
           ibge: '5103205',
-          cityName: 'Coli­der'
+          cityName: 'Coliï¿½der'
         },
         {
           ibge: '5103254',
@@ -9766,7 +9771,7 @@ export class CitiesService {
         },
         {
           ibge: '5103858',
-          cityName: 'Gaiºcha do Norte'
+          cityName: 'Gaiï¿½cha do Norte'
         },
         {
           ibge: '5103908',
@@ -9786,7 +9791,7 @@ export class CitiesService {
         },
         {
           ibge: '5104500',
-          cityName: 'Indiavai­'
+          cityName: 'Indiavaiï¿½'
         },
         {
           ibge: '5104526',
@@ -9798,7 +9803,7 @@ export class CitiesService {
         },
         {
           ibge: '5104559',
-          cityName: 'Itaiºba'
+          cityName: 'Itaiï¿½ba'
         },
         {
           ibge: '5104609',
@@ -9822,7 +9827,7 @@ export class CitiesService {
         },
         {
           ibge: '5105150',
-          cityName: 'Jui­na'
+          cityName: 'Juiï¿½na'
         },
         {
           ibge: '5105176',
@@ -9910,7 +9915,7 @@ export class CitiesService {
         },
         {
           ibge: '5106232',
-          cityName: 'Nova Oli­mpia'
+          cityName: 'Nova Oliï¿½mpia'
         },
         {
           ibge: '5106190',
@@ -9942,7 +9947,7 @@ export class CitiesService {
         },
         {
           ibge: '5106299',
-          cityName: 'Paranai­ta'
+          cityName: 'Paranaiï¿½ta'
         },
         {
           ibge: '5106307',
@@ -9982,7 +9987,7 @@ export class CitiesService {
         },
         {
           ibge: '5106802',
-          cityName: 'Porto dos Gaiºchos'
+          cityName: 'Porto dos Gaiï¿½chos'
         },
         {
           ibge: '5106828',
@@ -10002,7 +10007,7 @@ export class CitiesService {
         },
         {
           ibge: '5107065',
-          cityName: 'Queriªncia'
+          cityName: 'Queriï¿½ncia'
         },
         {
           ibge: '5107156',
@@ -10146,7 +10151,7 @@ export class CitiesService {
         },
         {
           ibge: '5105507',
-          cityName: 'Vila Bela da Santi­ssima Trindade'
+          cityName: 'Vila Bela da Santiï¿½ssima Trindade'
         },
         {
           ibge: '5108600',
@@ -10203,7 +10208,7 @@ export class CitiesService {
         },
         {
           ibge: '1500909',
-          cityName: 'Augusto Corriªa'
+          cityName: 'Augusto Corriï¿½a'
         },
         {
           ibge: '1500958',
@@ -10451,7 +10456,7 @@ export class CitiesService {
         },
         {
           ibge: '1504752',
-          cityName: 'Mojui­ dos Campos'
+          cityName: 'Mojuiï¿½ dos Campos'
         },
         {
           ibge: '1504802',
@@ -10483,7 +10488,7 @@ export class CitiesService {
         },
         {
           ibge: '1505106',
-          cityName: 'i“bidos'
+          cityName: 'iï¿½bidos'
         },
         {
           ibge: '1505205',
@@ -10671,7 +10676,7 @@ export class CitiesService {
         },
         {
           ibge: '1507805',
-          cityName: 'Senador Jose Porfi­rio'
+          cityName: 'Senador Jose Porfiï¿½rio'
         },
         {
           ibge: '1507904',
@@ -10707,7 +10712,7 @@ export class CitiesService {
         },
         {
           ibge: '1508100',
-          cityName: 'Tucurui­'
+          cityName: 'Tucuruiï¿½'
         },
         {
           ibge: '1508126',
@@ -10764,7 +10769,7 @@ export class CitiesService {
         },
         {
           ibge: '2500577',
-          cityName: 'Algodao de Jandai­ra'
+          cityName: 'Algodao de Jandaiï¿½ra'
         },
         {
           ibge: '2500601',
@@ -10796,7 +10801,7 @@ export class CitiesService {
         },
         {
           ibge: '2501153',
-          cityName: 'Areia de Baraiºnas'
+          cityName: 'Areia de Baraiï¿½nas'
         },
         {
           ibge: '2501203',
@@ -10812,7 +10817,7 @@ export class CitiesService {
         },
         {
           ibge: '2501401',
-          cityName: 'Bai­a da Traicao'
+          cityName: 'Baiï¿½a da Traicao'
         },
         {
           ibge: '2501500',
@@ -10820,7 +10825,7 @@ export class CitiesService {
         },
         {
           ibge: '2501534',
-          cityName: 'Baraiºna'
+          cityName: 'Baraiï¿½na'
         },
         {
           ibge: '2501609',
@@ -10932,7 +10937,7 @@ export class CitiesService {
         },
         {
           ibge: '2503902',
-          cityName: 'Camalaiº'
+          cityName: 'Camalaiï¿½'
         },
         {
           ibge: '2504009',
@@ -10944,7 +10949,7 @@ export class CitiesService {
         },
         {
           ibge: '2504074',
-          cityName: 'Caraiºbas'
+          cityName: 'Caraiï¿½bas'
         },
         {
           ibge: '2504108',
@@ -10992,7 +10997,7 @@ export class CitiesService {
         },
         {
           ibge: '2504900',
-          cityName: 'Cruz do Espi­rito Santo'
+          cityName: 'Cruz do Espiï¿½rito Santo'
         },
         {
           ibge: '2505006',
@@ -11032,7 +11037,7 @@ export class CitiesService {
         },
         {
           ibge: '2505709',
-          cityName: 'Dona Iniªs'
+          cityName: 'Dona Iniï¿½s'
         },
         {
           ibge: '2505808',
@@ -11104,7 +11109,7 @@ export class CitiesService {
         },
         {
           ibge: '2507309',
-          cityName: 'Jacaraiº'
+          cityName: 'Jacaraiï¿½'
         },
         {
           ibge: '2507408',
@@ -11180,7 +11185,7 @@ export class CitiesService {
         },
         {
           ibge: '2509008',
-          cityName: 'Manai­ra'
+          cityName: 'Manaiï¿½ra'
         },
         {
           ibge: '2509057',
@@ -11304,7 +11309,7 @@ export class CitiesService {
         },
         {
           ibge: '2511400',
-          cityName: 'Picui­'
+          cityName: 'Picuiï¿½'
         },
         {
           ibge: '2511509',
@@ -11312,11 +11317,11 @@ export class CitiesService {
         },
         {
           ibge: '2511608',
-          cityName: 'Piliµes'
+          cityName: 'Piliï¿½es'
         },
         {
           ibge: '2511707',
-          cityName: 'Piliµezinhos'
+          cityName: 'Piliï¿½ezinhos'
         },
         {
           ibge: '2511806',
@@ -11364,7 +11369,7 @@ export class CitiesService {
         },
         {
           ibge: '2512705',
-          cityName: 'Remi­gio'
+          cityName: 'Remiï¿½gio'
         },
         {
           ibge: '2512747',
@@ -11400,7 +11405,7 @@ export class CitiesService {
         },
         {
           ibge: '2513158',
-          cityName: 'Santa Ceci­lia'
+          cityName: 'Santa Ceciï¿½lia'
         },
         {
           ibge: '2513208',
@@ -11412,7 +11417,7 @@ export class CitiesService {
         },
         {
           ibge: '2513356',
-          cityName: 'Santa Iniªs'
+          cityName: 'Santa Iniï¿½s'
         },
         {
           ibge: '2513406',
@@ -11572,7 +11577,7 @@ export class CitiesService {
         },
         {
           ibge: '2516151',
-          cityName: 'Sossiªgo'
+          cityName: 'Sossiï¿½go'
         },
         {
           ibge: '2516201',
@@ -11608,7 +11613,7 @@ export class CitiesService {
         },
         {
           ibge: '2516904',
-          cityName: 'Uiraiºna'
+          cityName: 'Uiraiï¿½na'
         },
         {
           ibge: '2517001',
@@ -11628,7 +11633,7 @@ export class CitiesService {
         },
         {
           ibge: '2517407',
-          cityName: 'Zabeliª'
+          cityName: 'Zabeliï¿½'
         }
       ]
     },
@@ -11753,7 +11758,7 @@ export class CitiesService {
         },
         {
           ibge: '2602803',
-          cityName: 'Bui­que'
+          cityName: 'Buiï¿½que'
         },
         {
           ibge: '2602902',
@@ -11801,7 +11806,7 @@ export class CitiesService {
         },
         {
           ibge: '2603900',
-          cityName: 'Carnai­ba'
+          cityName: 'Carnaiï¿½ba'
         },
         {
           ibge: '2603926',
@@ -11845,7 +11850,7 @@ export class CitiesService {
         },
         {
           ibge: '2604809',
-          cityName: 'Cortiªs'
+          cityName: 'Cortiï¿½s'
         },
         {
           ibge: '2604908',
@@ -11965,7 +11970,7 @@ export class CitiesService {
         },
         {
           ibge: '2607505',
-          cityName: 'Itai­ba'
+          cityName: 'Itaiï¿½ba'
         },
         {
           ibge: '2607653',
@@ -11993,7 +11998,7 @@ export class CitiesService {
         },
         {
           ibge: '2608008',
-          cityName: 'Jataiºba'
+          cityName: 'Jataiï¿½ba'
         },
         {
           ibge: '2608057',
@@ -12321,7 +12326,7 @@ export class CitiesService {
         },
         {
           ibge: '2615300',
-          cityName: 'Timbaiºba'
+          cityName: 'Timbaiï¿½ba'
         },
         {
           ibge: '2615409',
@@ -12365,7 +12370,7 @@ export class CitiesService {
         },
         {
           ibge: '2616308',
-          cityName: 'Viciªncia'
+          cityName: 'Viciï¿½ncia'
         },
         {
           ibge: '2616407',
@@ -12394,11 +12399,11 @@ export class CitiesService {
         },
         {
           ibge: '2200251',
-          cityName: 'Alagoinha do Piaui­'
+          cityName: 'Alagoinha do Piauiï¿½'
         },
         {
           ibge: '2200277',
-          cityName: 'Alegrete do Piaui­'
+          cityName: 'Alegrete do Piauiï¿½'
         },
         {
           ibge: '2200301',
@@ -12418,11 +12423,11 @@ export class CitiesService {
         },
         {
           ibge: '2200608',
-          cityName: 'Angical do Piaui­'
+          cityName: 'Angical do Piauiï¿½'
         },
         {
           ibge: '2200707',
-          cityName: 'Ani­sio de Abreu'
+          cityName: 'Aniï¿½sio de Abreu'
         },
         {
           ibge: '2200806',
@@ -12442,7 +12447,7 @@ export class CitiesService {
         },
         {
           ibge: '2201051',
-          cityName: 'Assuncao do Piaui­'
+          cityName: 'Assuncao do Piauiï¿½'
         },
         {
           ibge: '2201101',
@@ -12462,7 +12467,7 @@ export class CitiesService {
         },
         {
           ibge: '2201309',
-          cityName: 'Barreiras do Piaui­'
+          cityName: 'Barreiras do Piauiï¿½'
         },
         {
           ibge: '2201408',
@@ -12474,11 +12479,11 @@ export class CitiesService {
         },
         {
           ibge: '2201556',
-          cityName: 'Bela Vista do Piaui­'
+          cityName: 'Bela Vista do Piauiï¿½'
         },
         {
           ibge: '2201572',
-          cityName: 'Belem do Piaui­'
+          cityName: 'Belem do Piauiï¿½'
         },
         {
           ibge: '2201606',
@@ -12486,11 +12491,11 @@ export class CitiesService {
         },
         {
           ibge: '2201705',
-          cityName: 'Bertoli­nia'
+          cityName: 'Bertoliï¿½nia'
         },
         {
           ibge: '2201739',
-          cityName: 'Betania do Piaui­'
+          cityName: 'Betania do Piauiï¿½'
         },
         {
           ibge: '2201770',
@@ -12506,15 +12511,15 @@ export class CitiesService {
         },
         {
           ibge: '2201919',
-          cityName: 'Bom Princi­pio do Piaui­'
+          cityName: 'Bom Princiï¿½pio do Piauiï¿½'
         },
         {
           ibge: '2201929',
-          cityName: 'Bonfim do Piaui­'
+          cityName: 'Bonfim do Piauiï¿½'
         },
         {
           ibge: '2201945',
-          cityName: 'Boqueirao do Piaui­'
+          cityName: 'Boqueirao do Piauiï¿½'
         },
         {
           ibge: '2201960',
@@ -12522,7 +12527,7 @@ export class CitiesService {
         },
         {
           ibge: '2201988',
-          cityName: 'Brejo do Piaui­'
+          cityName: 'Brejo do Piauiï¿½'
         },
         {
           ibge: '2202000',
@@ -12534,11 +12539,11 @@ export class CitiesService {
         },
         {
           ibge: '2202059',
-          cityName: 'Cabeceiras do Piaui­'
+          cityName: 'Cabeceiras do Piauiï¿½'
         },
         {
           ibge: '2202075',
-          cityName: 'Cajazeiras do Piaui­'
+          cityName: 'Cajazeiras do Piauiï¿½'
         },
         {
           ibge: '2202083',
@@ -12546,11 +12551,11 @@ export class CitiesService {
         },
         {
           ibge: '2202091',
-          cityName: 'Caldeirao Grande do Piaui­'
+          cityName: 'Caldeirao Grande do Piauiï¿½'
         },
         {
           ibge: '2202109',
-          cityName: 'Campinas do Piaui­'
+          cityName: 'Campinas do Piauiï¿½'
         },
         {
           ibge: '2202117',
@@ -12558,11 +12563,11 @@ export class CitiesService {
         },
         {
           ibge: '2202133',
-          cityName: 'Campo Grande do Piaui­'
+          cityName: 'Campo Grande do Piauiï¿½'
         },
         {
           ibge: '2202174',
-          cityName: 'Campo Largo do Piaui­'
+          cityName: 'Campo Largo do Piauiï¿½'
         },
         {
           ibge: '2202208',
@@ -12590,15 +12595,15 @@ export class CitiesService {
         },
         {
           ibge: '2202539',
-          cityName: 'Caraiºbas do Piaui­'
+          cityName: 'Caraiï¿½bas do Piauiï¿½'
         },
         {
           ibge: '2202554',
-          cityName: 'Caridade do Piaui­'
+          cityName: 'Caridade do Piauiï¿½'
         },
         {
           ibge: '2202604',
-          cityName: 'Castelo do Piaui­'
+          cityName: 'Castelo do Piauiï¿½'
         },
         {
           ibge: '2202653',
@@ -12626,7 +12631,7 @@ export class CitiesService {
         },
         {
           ibge: '2202778',
-          cityName: 'Colonia do Piaui­'
+          cityName: 'Colonia do Piauiï¿½'
         },
         {
           ibge: '2202802',
@@ -12642,7 +12647,7 @@ export class CitiesService {
         },
         {
           ibge: '2203008',
-          cityName: 'Cristalandia do Piaui­'
+          cityName: 'Cristalandia do Piauiï¿½'
         },
         {
           ibge: '2203107',
@@ -12658,7 +12663,7 @@ export class CitiesService {
         },
         {
           ibge: '2203271',
-          cityName: 'Curral Novo do Piaui­'
+          cityName: 'Curral Novo do Piauiï¿½'
         },
         {
           ibge: '2203255',
@@ -12678,7 +12683,7 @@ export class CitiesService {
         },
         {
           ibge: '2203453',
-          cityName: 'Dom Inociªncio'
+          cityName: 'Dom Inociï¿½ncio'
         },
         {
           ibge: '2203420',
@@ -12698,15 +12703,15 @@ export class CitiesService {
         },
         {
           ibge: '2203750',
-          cityName: 'Fartura do Piaui­'
+          cityName: 'Fartura do Piauiï¿½'
         },
         {
           ibge: '2203800',
-          cityName: 'Flores do Piaui­'
+          cityName: 'Flores do Piauiï¿½'
         },
         {
           ibge: '2203859',
-          cityName: 'Floresta do Piaui­'
+          cityName: 'Floresta do Piauiï¿½'
         },
         {
           ibge: '2203909',
@@ -12762,11 +12767,11 @@ export class CitiesService {
         },
         {
           ibge: '2204808',
-          cityName: 'Ipiranga do Piaui­'
+          cityName: 'Ipiranga do Piauiï¿½'
         },
         {
           ibge: '2204907',
-          cityName: 'Isai­as Coelho'
+          cityName: 'Isaiï¿½as Coelho'
         },
         {
           ibge: '2205003',
@@ -12778,7 +12783,7 @@ export class CitiesService {
         },
         {
           ibge: '2205151',
-          cityName: 'Jacobina do Piaui­'
+          cityName: 'Jacobina do Piauiï¿½'
         },
         {
           ibge: '2205201',
@@ -12790,7 +12795,7 @@ export class CitiesService {
         },
         {
           ibge: '2205276',
-          cityName: 'Jatoba do Piaui­'
+          cityName: 'Jatoba do Piauiï¿½'
         },
         {
           ibge: '2205300',
@@ -12814,11 +12819,11 @@ export class CitiesService {
         },
         {
           ibge: '2205516',
-          cityName: 'Juazeiro do Piaui­'
+          cityName: 'Juazeiro do Piauiï¿½'
         },
         {
           ibge: '2205524',
-          cityName: 'Jiºlio Borges'
+          cityName: 'Jiï¿½lio Borges'
         },
         {
           ibge: '2205532',
@@ -12834,19 +12839,19 @@ export class CitiesService {
         },
         {
           ibge: '2205565',
-          cityName: 'Lagoa do Barro do Piaui­'
+          cityName: 'Lagoa do Barro do Piauiï¿½'
         },
         {
           ibge: '2205581',
-          cityName: 'Lagoa do Piaui­'
+          cityName: 'Lagoa do Piauiï¿½'
         },
         {
           ibge: '2205599',
-          cityName: 'Lagoa do Si­tio'
+          cityName: 'Lagoa do Siï¿½tio'
         },
         {
           ibge: '2205540',
-          cityName: 'Lagoinha do Piaui­'
+          cityName: 'Lagoinha do Piauiï¿½'
         },
         {
           ibge: '2205607',
@@ -12854,7 +12859,7 @@ export class CitiesService {
         },
         {
           ibge: '2205706',
-          cityName: 'Lui­s Correia'
+          cityName: 'Luiï¿½s Correia'
         },
         {
           ibge: '2205805',
@@ -12866,7 +12871,7 @@ export class CitiesService {
         },
         {
           ibge: '2205904',
-          cityName: 'Manoel Emi­dio'
+          cityName: 'Manoel Emiï¿½dio'
         },
         {
           ibge: '2205953',
@@ -12878,11 +12883,11 @@ export class CitiesService {
         },
         {
           ibge: '2206050',
-          cityName: 'Massapiª do Piaui­'
+          cityName: 'Massapiï¿½ do Piauiï¿½'
         },
         {
           ibge: '2206100',
-          cityName: 'Matias Oli­mpio'
+          cityName: 'Matias Oliï¿½mpio'
         },
         {
           ibge: '2206209',
@@ -12906,7 +12911,7 @@ export class CitiesService {
         },
         {
           ibge: '2206605',
-          cityName: 'Monte Alegre do Piaui­'
+          cityName: 'Monte Alegre do Piauiï¿½'
         },
         {
           ibge: '2206654',
@@ -12914,7 +12919,7 @@ export class CitiesService {
         },
         {
           ibge: '2206670',
-          cityName: 'Morro do Chapeu do Piaui­'
+          cityName: 'Morro do Chapeu do Piauiï¿½'
         },
         {
           ibge: '2206696',
@@ -12922,7 +12927,7 @@ export class CitiesService {
         },
         {
           ibge: '2206704',
-          cityName: 'Nazare do Piaui­'
+          cityName: 'Nazare do Piauiï¿½'
         },
         {
           ibge: '2206720',
@@ -12942,7 +12947,7 @@ export class CitiesService {
         },
         {
           ibge: '2206902',
-          cityName: 'Novo Oriente do Piaui­'
+          cityName: 'Novo Oriente do Piauiï¿½'
         },
         {
           ibge: '2206951',
@@ -12954,7 +12959,7 @@ export class CitiesService {
         },
         {
           ibge: '2207108',
-          cityName: 'Olho D\'Agua do Piaui­'
+          cityName: 'Olho D\'Agua do Piauiï¿½'
         },
         {
           ibge: '2207207',
@@ -12966,11 +12971,11 @@ export class CitiesService {
         },
         {
           ibge: '2207355',
-          cityName: 'Pajeiº do Piaui­'
+          cityName: 'Pajeiï¿½ do Piauiï¿½'
         },
         {
           ibge: '2207405',
-          cityName: 'Palmeira do Piaui­'
+          cityName: 'Palmeira do Piauiï¿½'
         },
         {
           ibge: '2207504',
@@ -12986,19 +12991,19 @@ export class CitiesService {
         },
         {
           ibge: '2207702',
-          cityName: 'Parnai­ba'
+          cityName: 'Parnaiï¿½ba'
         },
         {
           ibge: '2207751',
-          cityName: 'Passagem Franca do Piaui­'
+          cityName: 'Passagem Franca do Piauiï¿½'
         },
         {
           ibge: '2207777',
-          cityName: 'Patos do Piaui­'
+          cityName: 'Patos do Piauiï¿½'
         },
         {
           ibge: '2207793',
-          cityName: 'Pau D\'Arco do Piaui­'
+          cityName: 'Pau D\'Arco do Piauiï¿½'
         },
         {
           ibge: '2207801',
@@ -13042,11 +13047,11 @@ export class CitiesService {
         },
         {
           ibge: '2208551',
-          cityName: 'Porto Alegre do Piaui­'
+          cityName: 'Porto Alegre do Piauiï¿½'
         },
         {
           ibge: '2208601',
-          cityName: 'Prata do Piaui­'
+          cityName: 'Prata do Piauiï¿½'
         },
         {
           ibge: '2208650',
@@ -13066,7 +13071,7 @@ export class CitiesService {
         },
         {
           ibge: '2208874',
-          cityName: 'Ribeira do Piaui­'
+          cityName: 'Ribeira do Piauiï¿½'
         },
         {
           ibge: '2208908',
@@ -13074,11 +13079,11 @@ export class CitiesService {
         },
         {
           ibge: '2209005',
-          cityName: 'Rio Grande do Piaui­'
+          cityName: 'Rio Grande do Piauiï¿½'
         },
         {
           ibge: '2209104',
-          cityName: 'Santa Cruz do Piaui­'
+          cityName: 'Santa Cruz do Piauiï¿½'
         },
         {
           ibge: '2209153',
@@ -13094,11 +13099,11 @@ export class CitiesService {
         },
         {
           ibge: '2209377',
-          cityName: 'Santa Rosa do Piaui­'
+          cityName: 'Santa Rosa do Piauiï¿½'
         },
         {
           ibge: '2209351',
-          cityName: 'Santana do Piaui­'
+          cityName: 'Santana do Piauiï¿½'
         },
         {
           ibge: '2209401',
@@ -13110,23 +13115,23 @@ export class CitiesService {
         },
         {
           ibge: '2209500',
-          cityName: 'Santo Inacio do Piaui­'
+          cityName: 'Santo Inacio do Piauiï¿½'
         },
         {
           ibge: '2209559',
-          cityName: 'Sao Braz do Piaui­'
+          cityName: 'Sao Braz do Piauiï¿½'
         },
         {
           ibge: '2209609',
-          cityName: 'Sao Felix do Piaui­'
+          cityName: 'Sao Felix do Piauiï¿½'
         },
         {
           ibge: '2209658',
-          cityName: 'Sao Francisco de Assis do Piaui­'
+          cityName: 'Sao Francisco de Assis do Piauiï¿½'
         },
         {
           ibge: '2209708',
-          cityName: 'Sao Francisco do Piaui­'
+          cityName: 'Sao Francisco do Piauiï¿½'
         },
         {
           ibge: '2209757',
@@ -13134,7 +13139,7 @@ export class CitiesService {
         },
         {
           ibge: '2209807',
-          cityName: 'Sao Goncalo do Piaui­'
+          cityName: 'Sao Goncalo do Piauiï¿½'
         },
         {
           ibge: '2209856',
@@ -13158,7 +13163,7 @@ export class CitiesService {
         },
         {
           ibge: '2210003',
-          cityName: 'Sao Joao do Piaui­'
+          cityName: 'Sao Joao do Piauiï¿½'
         },
         {
           ibge: '2210052',
@@ -13170,7 +13175,7 @@ export class CitiesService {
         },
         {
           ibge: '2210201',
-          cityName: 'Sao Jose do Piaui­'
+          cityName: 'Sao Jose do Piauiï¿½'
         },
         {
           ibge: '2210300',
@@ -13178,11 +13183,11 @@ export class CitiesService {
         },
         {
           ibge: '2210359',
-          cityName: 'Sao Lourenco do Piaui­'
+          cityName: 'Sao Lourenco do Piauiï¿½'
         },
         {
           ibge: '2210375',
-          cityName: 'Sao Luis do Piaui­'
+          cityName: 'Sao Luis do Piauiï¿½'
         },
         {
           ibge: '2210383',
@@ -13198,7 +13203,7 @@ export class CitiesService {
         },
         {
           ibge: '2210508',
-          cityName: 'Sao Pedro do Piaui­'
+          cityName: 'Sao Pedro do Piauiï¿½'
         },
         {
           ibge: '2210607',
@@ -13218,15 +13223,15 @@ export class CitiesService {
         },
         {
           ibge: '2210706',
-          cityName: 'Simiµes'
+          cityName: 'Simiï¿½es'
         },
         {
           ibge: '2210805',
-          cityName: 'Simpli­cio Mendes'
+          cityName: 'Simpliï¿½cio Mendes'
         },
         {
           ibge: '2210904',
-          cityName: 'Socorro do Piaui­'
+          cityName: 'Socorro do Piauiï¿½'
         },
         {
           ibge: '2210938',
@@ -13234,11 +13239,11 @@ export class CitiesService {
         },
         {
           ibge: '2210953',
-          cityName: 'Tamboril do Piaui­'
+          cityName: 'Tamboril do Piauiï¿½'
         },
         {
           ibge: '2210979',
-          cityName: 'Tanque do Piaui­'
+          cityName: 'Tanque do Piauiï¿½'
         },
         {
           ibge: '2211001',
@@ -13250,11 +13255,11 @@ export class CitiesService {
         },
         {
           ibge: '2211209',
-          cityName: 'Urucui­'
+          cityName: 'Urucuiï¿½'
         },
         {
           ibge: '2211308',
-          cityName: 'Valenca do Piaui­'
+          cityName: 'Valenca do Piauiï¿½'
         },
         {
           ibge: '2211357',
@@ -13270,7 +13275,7 @@ export class CitiesService {
         },
         {
           ibge: '2211605',
-          cityName: 'Vila Nova do Piaui­'
+          cityName: 'Vila Nova do Piauiï¿½'
         },
         {
           ibge: '2211704',
@@ -13303,7 +13308,7 @@ export class CitiesService {
         },
         {
           ibge: '4128625',
-          cityName: 'Alto Parai­so'
+          cityName: 'Alto Paraiï¿½so'
         },
         {
           ibge: '4100608',
@@ -13339,7 +13344,7 @@ export class CitiesService {
         },
         {
           ibge: '4101150',
-          cityName: 'i‚ngulo'
+          cityName: 'iï¿½ngulo'
         },
         {
           ibge: '4101200',
@@ -13375,11 +13380,11 @@ export class CitiesService {
         },
         {
           ibge: '4101853',
-          cityName: 'Ariranha do Ivai­'
+          cityName: 'Ariranha do Ivaiï¿½'
         },
         {
           ibge: '4101903',
-          cityName: 'Assai­'
+          cityName: 'Assaiï¿½'
         },
         {
           ibge: '4102000',
@@ -13419,7 +13424,7 @@ export class CitiesService {
         },
         {
           ibge: '4102802',
-          cityName: 'Bela Vista do Parai­so'
+          cityName: 'Bela Vista do Paraiï¿½so'
         },
         {
           ibge: '4102901',
@@ -13443,7 +13448,7 @@ export class CitiesService {
         },
         {
           ibge: '4103107',
-          cityName: 'Bocaiiºva do Sul'
+          cityName: 'Bocaiiï¿½va do Sul'
         },
         {
           ibge: '4103156',
@@ -13551,7 +13556,7 @@ export class CitiesService {
         },
         {
           ibge: '4104659',
-          cityName: 'Carambei­'
+          cityName: 'Carambeiï¿½'
         },
         {
           ibge: '4104709',
@@ -13591,7 +13596,7 @@ export class CitiesService {
         },
         {
           ibge: '4105607',
-          cityName: 'Cidade Gaiºcha'
+          cityName: 'Cidade Gaiï¿½cha'
         },
         {
           ibge: '4105706',
@@ -13635,7 +13640,7 @@ export class CitiesService {
         },
         {
           ibge: '4106555',
-          cityName: 'Corumbatai­ do Sul'
+          cityName: 'Corumbataiï¿½ do Sul'
         },
         {
           ibge: '4106803',
@@ -13663,7 +13668,7 @@ export class CitiesService {
         },
         {
           ibge: '4107009',
-          cityName: 'Curiiºva'
+          cityName: 'Curiiï¿½va'
         },
         {
           ibge: '4107157',
@@ -13727,7 +13732,7 @@ export class CitiesService {
         },
         {
           ibge: '4107702',
-          cityName: 'Fiªnix'
+          cityName: 'Fiï¿½nix'
         },
         {
           ibge: '4107736',
@@ -13743,7 +13748,7 @@ export class CitiesService {
         },
         {
           ibge: '4107801',
-          cityName: 'Florai­'
+          cityName: 'Floraiï¿½'
         },
         {
           ibge: '4107900',
@@ -13787,7 +13792,7 @@ export class CitiesService {
         },
         {
           ibge: '4108601',
-          cityName: 'Goioeriª'
+          cityName: 'Goioeriï¿½'
         },
         {
           ibge: '4108650',
@@ -13799,7 +13804,7 @@ export class CitiesService {
         },
         {
           ibge: '4108809',
-          cityName: 'Guai­ra'
+          cityName: 'Guaiï¿½ra'
         },
         {
           ibge: '4108908',
@@ -13855,7 +13860,7 @@ export class CitiesService {
         },
         {
           ibge: '4109906',
-          cityName: 'Icarai­ma'
+          cityName: 'Icaraiï¿½ma'
         },
         {
           ibge: '4110003',
@@ -13867,7 +13872,7 @@ export class CitiesService {
         },
         {
           ibge: '4110078',
-          cityName: 'Imbaiº'
+          cityName: 'Imbaiï¿½'
         },
         {
           ibge: '4110102',
@@ -13931,11 +13936,11 @@ export class CitiesService {
         },
         {
           ibge: '4111308',
-          cityName: 'Itaiºna do Sul'
+          cityName: 'Itaiï¿½na do Sul'
         },
         {
           ibge: '4111407',
-          cityName: 'Ivai­'
+          cityName: 'Ivaiï¿½'
         },
         {
           ibge: '4111506',
@@ -13963,7 +13968,7 @@ export class CitiesService {
         },
         {
           ibge: '4112009',
-          cityName: 'Jaguariai­va'
+          cityName: 'Jaguariaiï¿½va'
         },
         {
           ibge: '4112108',
@@ -13995,7 +14000,7 @@ export class CitiesService {
         },
         {
           ibge: '4112751',
-          cityName: 'Jesui­tas'
+          cityName: 'Jesuiï¿½tas'
         },
         {
           ibge: '4112801',
@@ -14003,7 +14008,7 @@ export class CitiesService {
         },
         {
           ibge: '4112900',
-          cityName: 'Jundiai­ do Sul'
+          cityName: 'Jundiaiï¿½ do Sul'
         },
         {
           ibge: '4112959',
@@ -14071,7 +14076,7 @@ export class CitiesService {
         },
         {
           ibge: '4114005',
-          cityName: 'Mamboriª'
+          cityName: 'Mamboriï¿½'
         },
         {
           ibge: '4114104',
@@ -14199,7 +14204,7 @@ export class CitiesService {
         },
         {
           ibge: '4116505',
-          cityName: 'Nova Alianca do Ivai­'
+          cityName: 'Nova Alianca do Ivaiï¿½'
         },
         {
           ibge: '4116604',
@@ -14235,7 +14240,7 @@ export class CitiesService {
         },
         {
           ibge: '4117206',
-          cityName: 'Nova Oli­mpia'
+          cityName: 'Nova Oliï¿½mpia'
         },
         {
           ibge: '4117255',
@@ -14291,7 +14296,7 @@ export class CitiesService {
         },
         {
           ibge: '4118006',
-          cityName: 'Parai­so do Norte'
+          cityName: 'Paraiï¿½so do Norte'
         },
         {
           ibge: '4118105',
@@ -14307,7 +14312,7 @@ export class CitiesService {
         },
         {
           ibge: '4118402',
-          cityName: 'Paranavai­'
+          cityName: 'Paranavaiï¿½'
         },
         {
           ibge: '4118451',
@@ -14343,7 +14348,7 @@ export class CitiesService {
         },
         {
           ibge: '4119103',
-          cityName: 'Piiªn'
+          cityName: 'Piiï¿½n'
         },
         {
           ibge: '4119152',
@@ -14363,7 +14368,7 @@ export class CitiesService {
         },
         {
           ibge: '4119400',
-          cityName: 'Pirai­ do Sul'
+          cityName: 'Piraiï¿½ do Sul'
         },
         {
           ibge: '4119509',
@@ -14455,7 +14460,7 @@ export class CitiesService {
         },
         {
           ibge: '4121000',
-          cityName: 'Queriªncia do Norte'
+          cityName: 'Queriï¿½ncia do Norte'
         },
         {
           ibge: '4121109',
@@ -14519,7 +14524,7 @@ export class CitiesService {
         },
         {
           ibge: '4122172',
-          cityName: 'Rio Branco do Ivai­'
+          cityName: 'Rio Branco do Ivaiï¿½'
         },
         {
           ibge: '4122206',
@@ -14543,7 +14548,7 @@ export class CitiesService {
         },
         {
           ibge: '4122651',
-          cityName: 'Rosario do Ivai­'
+          cityName: 'Rosario do Ivaiï¿½'
         },
         {
           ibge: '4122701',
@@ -14567,7 +14572,7 @@ export class CitiesService {
         },
         {
           ibge: '4123204',
-          cityName: 'Santa Ceci­lia do Pavao'
+          cityName: 'Santa Ceciï¿½lia do Pavao'
         },
         {
           ibge: '4123303',
@@ -14583,11 +14588,11 @@ export class CitiesService {
         },
         {
           ibge: '4123600',
-          cityName: 'Santa Iniªs'
+          cityName: 'Santa Iniï¿½s'
         },
         {
           ibge: '4123709',
-          cityName: 'Santa Isabel do Ivai­'
+          cityName: 'Santa Isabel do Ivaiï¿½'
         },
         {
           ibge: '4123808',
@@ -14595,7 +14600,7 @@ export class CitiesService {
         },
         {
           ibge: '4123824',
-          cityName: 'Santa Liºcia'
+          cityName: 'Santa Liï¿½cia'
         },
         {
           ibge: '4123857',
@@ -14631,7 +14636,7 @@ export class CitiesService {
         },
         {
           ibge: '4124301',
-          cityName: 'Santo Antonio do Parai­so'
+          cityName: 'Santo Antonio do Paraiï¿½so'
         },
         {
           ibge: '4124400',
@@ -14643,7 +14648,7 @@ export class CitiesService {
         },
         {
           ibge: '4124608',
-          cityName: 'Sao Carlos do Ivai­'
+          cityName: 'Sao Carlos do Ivaiï¿½'
         },
         {
           ibge: '4124707',
@@ -14659,7 +14664,7 @@ export class CitiesService {
         },
         {
           ibge: '4125001',
-          cityName: 'Sao Joao do Ivai­'
+          cityName: 'Sao Joao do Ivaiï¿½'
         },
         {
           ibge: '4125100',
@@ -14671,11 +14676,11 @@ export class CitiesService {
         },
         {
           ibge: '4125308',
-          cityName: 'Sao Jorge do Ivai­'
+          cityName: 'Sao Jorge do Ivaiï¿½'
         },
         {
           ibge: '4125357',
-          cityName: 'Sao Jorge do Patroci­nio'
+          cityName: 'Sao Jorge do Patrociï¿½nio'
         },
         {
           ibge: '4125407',
@@ -14707,7 +14712,7 @@ export class CitiesService {
         },
         {
           ibge: '4125803',
-          cityName: 'Sao Pedro do Ivai­'
+          cityName: 'Sao Pedro do Ivaiï¿½'
         },
         {
           ibge: '4125902',
@@ -14779,7 +14784,7 @@ export class CitiesService {
         },
         {
           ibge: '4127106',
-          cityName: 'Teliªmaco Borba'
+          cityName: 'Teliï¿½maco Borba'
         },
         {
           ibge: '4127205',
@@ -14811,7 +14816,7 @@ export class CitiesService {
         },
         {
           ibge: '4127858',
-          cityName: 'Triªs Barras do Parana'
+          cityName: 'Triï¿½s Barras do Parana'
         },
         {
           ibge: '4127882',
@@ -14847,7 +14852,7 @@ export class CitiesService {
         },
         {
           ibge: '4128401',
-          cityName: 'Urai­'
+          cityName: 'Uraiï¿½'
         },
         {
           ibge: '4128534',
@@ -14859,7 +14864,7 @@ export class CitiesService {
         },
         {
           ibge: '4128609',
-          cityName: 'Veriª'
+          cityName: 'Veriï¿½'
         },
         {
           ibge: '4128658',
@@ -14875,7 +14880,7 @@ export class CitiesService {
         },
         {
           ibge: '4128807',
-          cityName: 'Xambriª'
+          cityName: 'Xambriï¿½'
         }
       ]
     },
@@ -14900,7 +14905,7 @@ export class CitiesService {
         },
         {
           ibge: '3300233',
-          cityName: 'Armacao dos Biºzios'
+          cityName: 'Armacao dos Biï¿½zios'
         },
         {
           ibge: '3300258',
@@ -14908,7 +14913,7 @@ export class CitiesService {
         },
         {
           ibge: '3300308',
-          cityName: 'Barra do Pirai­'
+          cityName: 'Barra do Piraiï¿½'
         },
         {
           ibge: '3300407',
@@ -14996,11 +15001,11 @@ export class CitiesService {
         },
         {
           ibge: '3301900',
-          cityName: 'Itaborai­'
+          cityName: 'Itaboraiï¿½'
         },
         {
           ibge: '3302007',
-          cityName: 'Itaguai­'
+          cityName: 'Itaguaiï¿½'
         },
         {
           ibge: '3302056',
@@ -15088,7 +15093,7 @@ export class CitiesService {
         },
         {
           ibge: '3303708',
-          cityName: 'Parai­ba do Sul'
+          cityName: 'Paraiï¿½ba do Sul'
         },
         {
           ibge: '3303807',
@@ -15108,11 +15113,11 @@ export class CitiesService {
         },
         {
           ibge: '3304003',
-          cityName: 'Pirai­'
+          cityName: 'Piraiï¿½'
         },
         {
           ibge: '3304102',
-          cityName: 'Porciiºncula'
+          cityName: 'Porciiï¿½ncula'
         },
         {
           ibge: '3304110',
@@ -15232,7 +15237,7 @@ export class CitiesService {
         },
         {
           ibge: '3306008',
-          cityName: 'Triªs Rios'
+          cityName: 'Triï¿½s Rios'
         },
         {
           ibge: '3306107',
@@ -15301,7 +15306,7 @@ export class CitiesService {
         },
         {
           ibge: '2401206',
-          cityName: 'Ariªs'
+          cityName: 'Ariï¿½s'
         },
         {
           ibge: '2401305',
@@ -15309,11 +15314,11 @@ export class CitiesService {
         },
         {
           ibge: '2401404',
-          cityName: 'Bai­a Formosa'
+          cityName: 'Baiï¿½a Formosa'
         },
         {
           ibge: '2401453',
-          cityName: 'Baraiºna'
+          cityName: 'Baraiï¿½na'
         },
         {
           ibge: '2401503',
@@ -15357,11 +15362,11 @@ export class CitiesService {
         },
         {
           ibge: '2402303',
-          cityName: 'Caraiºbas'
+          cityName: 'Caraiï¿½bas'
         },
         {
           ibge: '2402402',
-          cityName: 'Carnaiºba dos Dantas'
+          cityName: 'Carnaiï¿½ba dos Dantas'
         },
         {
           ibge: '2402501',
@@ -15405,7 +15410,7 @@ export class CitiesService {
         },
         {
           ibge: '2403509',
-          cityName: 'Espi­rito Santo'
+          cityName: 'Espiï¿½rito Santo'
         },
         {
           ibge: '2403608',
@@ -15469,7 +15474,7 @@ export class CitiesService {
         },
         {
           ibge: '2404903',
-          cityName: 'Itaiº'
+          cityName: 'Itaiï¿½'
         },
         {
           ibge: '2405009',
@@ -15477,15 +15482,15 @@ export class CitiesService {
         },
         {
           ibge: '2405108',
-          cityName: 'Jandai­ra'
+          cityName: 'Jandaiï¿½ra'
         },
         {
           ibge: '2405207',
-          cityName: 'Jandui­s'
+          cityName: 'Janduiï¿½s'
         },
         {
           ibge: '2405306',
-          cityName: 'Januario Cicco (Boa Saiºde)'
+          cityName: 'Januario Cicco (Boa Saiï¿½de)'
         },
         {
           ibge: '2405405',
@@ -15557,11 +15562,11 @@ export class CitiesService {
         },
         {
           ibge: '2407005',
-          cityName: 'Lui­s Gomes'
+          cityName: 'Luiï¿½s Gomes'
         },
         {
           ibge: '2407104',
-          cityName: 'Macai­ba'
+          cityName: 'Macaiï¿½ba'
         },
         {
           ibge: '2407203',
@@ -15609,7 +15614,7 @@ export class CitiesService {
         },
         {
           ibge: '2408201',
-          cityName: 'Ni­sia Floresta'
+          cityName: 'Niï¿½sia Floresta'
         },
         {
           ibge: '2408300',
@@ -15629,7 +15634,7 @@ export class CitiesService {
         },
         {
           ibge: '2408706',
-          cityName: 'Paraiº'
+          cityName: 'Paraiï¿½'
         },
         {
           ibge: '2408805',
@@ -15677,11 +15682,11 @@ export class CitiesService {
         },
         {
           ibge: '2409902',
-          cityName: 'Pendiªncias'
+          cityName: 'Pendiï¿½ncias'
         },
         {
           ibge: '2410009',
-          cityName: 'Piliµes'
+          cityName: 'Piliï¿½es'
         },
         {
           ibge: '2410108',
@@ -15757,7 +15762,7 @@ export class CitiesService {
         },
         {
           ibge: '2411700',
-          cityName: 'Sao Bento do Trairi­'
+          cityName: 'Sao Bento do Trairiï¿½'
         },
         {
           ibge: '2411809',
@@ -15853,7 +15858,7 @@ export class CitiesService {
         },
         {
           ibge: '2413706',
-          cityName: 'Si­tio Novo'
+          cityName: 'Siï¿½tio Novo'
         },
         {
           ibge: '2413805',
@@ -15885,7 +15890,7 @@ export class CitiesService {
         },
         {
           ibge: '2414308',
-          cityName: 'Timbaiºba dos Batistas'
+          cityName: 'Timbaiï¿½ba dos Batistas'
         },
         {
           ibge: '2414407',
@@ -15938,7 +15943,7 @@ export class CitiesService {
         },
         {
           ibge: '1100403',
-          cityName: 'Alto Parai­so'
+          cityName: 'Alto Paraiï¿½so'
         },
         {
           ibge: '1100346',
@@ -16130,7 +16135,7 @@ export class CitiesService {
         },
         {
           ibge: '1101807',
-          cityName: 'Vale do Parai­so'
+          cityName: 'Vale do Paraiï¿½so'
         },
         {
           ibge: '1100304',
@@ -16163,7 +16168,7 @@ export class CitiesService {
         },
         {
           ibge: '1400209',
-          cityName: 'Caracarai­'
+          cityName: 'Caracaraiï¿½'
         },
         {
           ibge: '1400233',
@@ -16175,7 +16180,7 @@ export class CitiesService {
         },
         {
           ibge: '1400308',
-          cityName: 'Mucajai­'
+          cityName: 'Mucajaiï¿½'
         },
         {
           ibge: '1400407',
@@ -16348,7 +16353,7 @@ export class CitiesService {
         },
         {
           ibge: '4301875',
-          cityName: 'Barra do Quarai­'
+          cityName: 'Barra do Quaraiï¿½'
         },
         {
           ibge: '4301909',
@@ -16380,7 +16385,7 @@ export class CitiesService {
         },
         {
           ibge: '4302154',
-          cityName: 'Boa Vista das Missiµes'
+          cityName: 'Boa Vista das Missiï¿½es'
         },
         {
           ibge: '4302204',
@@ -16404,7 +16409,7 @@ export class CitiesService {
         },
         {
           ibge: '4302352',
-          cityName: 'Bom Princi­pio'
+          cityName: 'Bom Princiï¿½pio'
         },
         {
           ibge: '4302378',
@@ -16484,7 +16489,7 @@ export class CitiesService {
         },
         {
           ibge: '4303707',
-          cityName: 'Campina das Missiµes'
+          cityName: 'Campina das Missiï¿½es'
         },
         {
           ibge: '4303806',
@@ -16584,7 +16589,7 @@ export class CitiesService {
         },
         {
           ibge: '4305009',
-          cityName: 'Catui­pe'
+          cityName: 'Catuiï¿½pe'
         },
         {
           ibge: '4305108',
@@ -16632,7 +16637,7 @@ export class CitiesService {
         },
         {
           ibge: '4305439',
-          cityName: 'Chui­'
+          cityName: 'Chuiï¿½'
         },
         {
           ibge: '4305447',
@@ -16644,7 +16649,7 @@ export class CitiesService {
         },
         {
           ibge: '4305504',
-          cityName: 'Ciri­aco'
+          cityName: 'Ciriï¿½aco'
         },
         {
           ibge: '4305587',
@@ -16736,7 +16741,7 @@ export class CitiesService {
         },
         {
           ibge: '4306429',
-          cityName: 'Dois Irmaos das Missiµes'
+          cityName: 'Dois Irmaos das Missiï¿½es'
         },
         {
           ibge: '4306452',
@@ -16760,7 +16765,7 @@ export class CitiesService {
         },
         {
           ibge: '4306734',
-          cityName: 'Doutor Mauri­cio Cardoso'
+          cityName: 'Doutor Mauriï¿½cio Cardoso'
         },
         {
           ibge: '4306759',
@@ -16788,7 +16793,7 @@ export class CitiesService {
         },
         {
           ibge: '4306932',
-          cityName: 'Entre-Ijui­s'
+          cityName: 'Entre-Ijuiï¿½s'
         },
         {
           ibge: '4306973',
@@ -16844,7 +16849,7 @@ export class CitiesService {
         },
         {
           ibge: '4307831',
-          cityName: 'Eugiªnio de Castro'
+          cityName: 'Eugiï¿½nio de Castro'
         },
         {
           ibge: '4307864',
@@ -16920,7 +16925,7 @@ export class CitiesService {
         },
         {
           ibge: '4308904',
-          cityName: 'Getiºlio Vargas'
+          cityName: 'Getiï¿½lio Vargas'
         },
         {
           ibge: '4309001',
@@ -16944,7 +16949,7 @@ export class CitiesService {
         },
         {
           ibge: '4309209',
-          cityName: 'Gravatai­'
+          cityName: 'Gravataiï¿½'
         },
         {
           ibge: '4309258',
@@ -16952,7 +16957,7 @@ export class CitiesService {
         },
         {
           ibge: '4309308',
-          cityName: 'Guai­ba'
+          cityName: 'Guaiï¿½ba'
         },
         {
           ibge: '4309407',
@@ -16960,7 +16965,7 @@ export class CitiesService {
         },
         {
           ibge: '4309506',
-          cityName: 'Guarani das Missiµes'
+          cityName: 'Guarani das Missiï¿½es'
         },
         {
           ibge: '4309555',
@@ -17012,7 +17017,7 @@ export class CitiesService {
         },
         {
           ibge: '4310207',
-          cityName: 'Ijui­'
+          cityName: 'Ijuiï¿½'
         },
         {
           ibge: '4310306',
@@ -17028,7 +17033,7 @@ export class CitiesService {
         },
         {
           ibge: '4310405',
-          cityName: 'Independiªncia'
+          cityName: 'Independiï¿½ncia'
         },
         {
           ibge: '4310413',
@@ -17036,7 +17041,7 @@ export class CitiesService {
         },
         {
           ibge: '4310439',
-          cityName: 'Ipiª'
+          cityName: 'Ipiï¿½'
         },
         {
           ibge: '4310462',
@@ -17044,7 +17049,7 @@ export class CitiesService {
         },
         {
           ibge: '4310504',
-          cityName: 'Irai­'
+          cityName: 'Iraiï¿½'
         },
         {
           ibge: '4310538',
@@ -17112,7 +17117,7 @@ export class CitiesService {
         },
         {
           ibge: '4311205',
-          cityName: 'Jiºlio de Castilhos'
+          cityName: 'Jiï¿½lio de Castilhos'
         },
         {
           ibge: '4311239',
@@ -17120,7 +17125,7 @@ export class CitiesService {
         },
         {
           ibge: '4311270',
-          cityName: 'Lagoa dos Triªs Cantos'
+          cityName: 'Lagoa dos Triï¿½s Cantos'
         },
         {
           ibge: '4311304',
@@ -17224,7 +17229,7 @@ export class CitiesService {
         },
         {
           ibge: '4312302',
-          cityName: 'Miraguai­'
+          cityName: 'Miraguaiï¿½'
         },
         {
           ibge: '4312351',
@@ -17268,7 +17273,7 @@ export class CitiesService {
         },
         {
           ibge: '4312617',
-          cityName: 'Muitos Capiµes'
+          cityName: 'Muitos Capiï¿½es'
         },
         {
           ibge: '4312625',
@@ -17384,7 +17389,7 @@ export class CitiesService {
         },
         {
           ibge: '4313706',
-          cityName: 'Palmeira das Missiµes'
+          cityName: 'Palmeira das Missiï¿½es'
         },
         {
           ibge: '4313805',
@@ -17400,11 +17405,11 @@ export class CitiesService {
         },
         {
           ibge: '4314001',
-          cityName: 'Parai­'
+          cityName: 'Paraiï¿½'
         },
         {
           ibge: '4314027',
-          cityName: 'Parai­so do Sul'
+          cityName: 'Paraiï¿½so do Sul'
         },
         {
           ibge: '4314035',
@@ -17548,7 +17553,7 @@ export class CitiesService {
         },
         {
           ibge: '4315305',
-          cityName: 'Quarai­'
+          cityName: 'Quaraiï¿½'
         },
         {
           ibge: '4315313',
@@ -17572,7 +17577,7 @@ export class CitiesService {
         },
         {
           ibge: '4315503',
-          cityName: 'Restinga Siªca'
+          cityName: 'Restinga Siï¿½ca'
         },
         {
           ibge: '4315552',
@@ -17624,7 +17629,7 @@ export class CitiesService {
         },
         {
           ibge: '4316428',
-          cityName: 'Sagrada Fami­lia'
+          cityName: 'Sagrada Famiï¿½lia'
         },
         {
           ibge: '4316436',
@@ -17632,11 +17637,11 @@ export class CitiesService {
         },
         {
           ibge: '4316451',
-          cityName: 'Salto do Jacui­'
+          cityName: 'Salto do Jacuiï¿½'
         },
         {
           ibge: '4316477',
-          cityName: 'Salvador das Missiµes'
+          cityName: 'Salvador das Missiï¿½es'
         },
         {
           ibge: '4316501',
@@ -17656,7 +17661,7 @@ export class CitiesService {
         },
         {
           ibge: '4316733',
-          cityName: 'Santa Ceci­lia do Sul'
+          cityName: 'Santa Ceciï¿½lia do Sul'
         },
         {
           ibge: '4316758',
@@ -17700,7 +17705,7 @@ export class CitiesService {
         },
         {
           ibge: '4317509',
-          cityName: 'Santo i‚ngelo'
+          cityName: 'Santo iï¿½ngelo'
         },
         {
           ibge: '4317608',
@@ -17708,7 +17713,7 @@ export class CitiesService {
         },
         {
           ibge: '4317707',
-          cityName: 'Santo Antonio das Missiµes'
+          cityName: 'Santo Antonio das Missiï¿½es'
         },
         {
           ibge: '4317558',
@@ -17760,7 +17765,7 @@ export class CitiesService {
         },
         {
           ibge: '4318432',
-          cityName: 'Sao Joao do Poliªsine'
+          cityName: 'Sao Joao do Poliï¿½sine'
         },
         {
           ibge: '4318440',
@@ -17768,7 +17773,7 @@ export class CitiesService {
         },
         {
           ibge: '4318457',
-          cityName: 'Sao Jose das Missiµes'
+          cityName: 'Sao Jose das Missiï¿½es'
         },
         {
           ibge: '4318465',
@@ -17776,7 +17781,7 @@ export class CitiesService {
         },
         {
           ibge: '4318481',
-          cityName: 'Sao Jose do Hortiªncio'
+          cityName: 'Sao Jose do Hortiï¿½ncio'
         },
         {
           ibge: '4318499',
@@ -17824,7 +17829,7 @@ export class CitiesService {
         },
         {
           ibge: '4319158',
-          cityName: 'Sao Miguel das Missiµes'
+          cityName: 'Sao Miguel das Missiï¿½es'
         },
         {
           ibge: '4319208',
@@ -17832,7 +17837,7 @@ export class CitiesService {
         },
         {
           ibge: '4319307',
-          cityName: 'Sao Paulo das Missiµes'
+          cityName: 'Sao Paulo das Missiï¿½es'
         },
         {
           ibge: '4319356',
@@ -17840,7 +17845,7 @@ export class CitiesService {
         },
         {
           ibge: '4319364',
-          cityName: 'Sao Pedro das Missiµes'
+          cityName: 'Sao Pedro das Missiï¿½es'
         },
         {
           ibge: '4319372',
@@ -17852,7 +17857,7 @@ export class CitiesService {
         },
         {
           ibge: '4319505',
-          cityName: 'Sao Sebastiao do Cai­'
+          cityName: 'Sao Sebastiao do Caiï¿½'
         },
         {
           ibge: '4319604',
@@ -17916,7 +17921,7 @@ export class CitiesService {
         },
         {
           ibge: '4320404',
-          cityName: 'Serafina Corriªa'
+          cityName: 'Serafina Corriï¿½a'
         },
         {
           ibge: '4320453',
@@ -17956,7 +17961,7 @@ export class CitiesService {
         },
         {
           ibge: '4320859',
-          cityName: 'Tabai­'
+          cityName: 'Tabaiï¿½'
         },
         {
           ibge: '4320909',
@@ -18016,7 +18021,7 @@ export class CitiesService {
         },
         {
           ibge: '4321600',
-          cityName: 'Tramandai­'
+          cityName: 'Tramandaiï¿½'
         },
         {
           ibge: '4321626',
@@ -18024,31 +18029,31 @@ export class CitiesService {
         },
         {
           ibge: '4321634',
-          cityName: 'Triªs Arroios'
+          cityName: 'Triï¿½s Arroios'
         },
         {
           ibge: '4321667',
-          cityName: 'Triªs Cachoeiras'
+          cityName: 'Triï¿½s Cachoeiras'
         },
         {
           ibge: '4321709',
-          cityName: 'Triªs Coroas'
+          cityName: 'Triï¿½s Coroas'
         },
         {
           ibge: '4321808',
-          cityName: 'Triªs de Maio'
+          cityName: 'Triï¿½s de Maio'
         },
         {
           ibge: '4321832',
-          cityName: 'Triªs Forquilhas'
+          cityName: 'Triï¿½s Forquilhas'
         },
         {
           ibge: '4321857',
-          cityName: 'Triªs Palmeiras'
+          cityName: 'Triï¿½s Palmeiras'
         },
         {
           ibge: '4321907',
-          cityName: 'Triªs Passos'
+          cityName: 'Triï¿½s Passos'
         },
         {
           ibge: '4321956',
@@ -18136,7 +18141,7 @@ export class CitiesService {
         },
         {
           ibge: '4322855',
-          cityName: 'Vespasiano Corriªa'
+          cityName: 'Vespasiano Corriï¿½a'
         },
         {
           ibge: '4322905',
@@ -18180,11 +18185,11 @@ export class CitiesService {
         },
         {
           ibge: '4323705',
-          cityName: 'Vista Gaiºcha'
+          cityName: 'Vista Gaiï¿½cha'
         },
         {
           ibge: '4323754',
-          cityName: 'Vitoria das Missiµes'
+          cityName: 'Vitoria das Missiï¿½es'
         },
         {
           ibge: '4323770',
@@ -18261,7 +18266,7 @@ export class CitiesService {
         },
         {
           ibge: '4201257',
-          cityName: 'Apiiºna'
+          cityName: 'Apiiï¿½na'
         },
         {
           ibge: '4201273',
@@ -18309,7 +18314,7 @@ export class CitiesService {
         },
         {
           ibge: '4202008',
-          cityName: 'Balneario Camboriiº'
+          cityName: 'Balneario Camboriiï¿½'
         },
         {
           ibge: '4202073',
@@ -18413,7 +18418,7 @@ export class CitiesService {
         },
         {
           ibge: '4203204',
-          cityName: 'Camboriiº'
+          cityName: 'Camboriiï¿½'
         },
         {
           ibge: '4203303',
@@ -18425,7 +18430,7 @@ export class CitiesService {
         },
         {
           ibge: '4203501',
-          cityName: 'Campo Eriª'
+          cityName: 'Campo Eriï¿½'
         },
         {
           ibge: '4203600',
@@ -18505,7 +18510,7 @@ export class CitiesService {
         },
         {
           ibge: '4204608',
-          cityName: 'Criciiºma'
+          cityName: 'Criciiï¿½ma'
         },
         {
           ibge: '4204707',
@@ -18513,7 +18518,7 @@ export class CitiesService {
         },
         {
           ibge: '4204756',
-          cityName: 'Cunhatai­'
+          cityName: 'Cunhataiï¿½'
         },
         {
           ibge: '4204806',
@@ -18525,7 +18530,7 @@ export class CitiesService {
         },
         {
           ibge: '4205001',
-          cityName: 'Dioni­sio Cerqueira'
+          cityName: 'Dioniï¿½sio Cerqueira'
         },
         {
           ibge: '4205100',
@@ -18621,7 +18626,7 @@ export class CitiesService {
         },
         {
           ibge: '4206652',
-          cityName: 'Guatambiº'
+          cityName: 'Guatambiï¿½'
         },
         {
           ibge: '4206702',
@@ -18649,7 +18654,7 @@ export class CitiesService {
         },
         {
           ibge: '4207205',
-          cityName: 'Imarui­'
+          cityName: 'Imaruiï¿½'
         },
         {
           ibge: '4207304',
@@ -18665,7 +18670,7 @@ export class CitiesService {
         },
         {
           ibge: '4207577',
-          cityName: 'Iomeriª'
+          cityName: 'Iomeriï¿½'
         },
         {
           ibge: '4207601',
@@ -18709,7 +18714,7 @@ export class CitiesService {
         },
         {
           ibge: '4208203',
-          cityName: 'Itajai­'
+          cityName: 'Itajaiï¿½'
         },
         {
           ibge: '4208302',
@@ -18861,7 +18866,7 @@ export class CitiesService {
         },
         {
           ibge: '4211009',
-          cityName: 'Mondai­'
+          cityName: 'Mondaiï¿½'
         },
         {
           ibge: '4211058',
@@ -18909,7 +18914,7 @@ export class CitiesService {
         },
         {
           ibge: '4211751',
-          cityName: 'Otaci­lio Costa'
+          cityName: 'Otaciï¿½lio Costa'
         },
         {
           ibge: '4211801',
@@ -18949,7 +18954,7 @@ export class CitiesService {
         },
         {
           ibge: '4212239',
-          cityName: 'Parai­so'
+          cityName: 'Paraiï¿½so'
         },
         {
           ibge: '4212254',
@@ -19037,7 +19042,7 @@ export class CitiesService {
         },
         {
           ibge: '4214003',
-          cityName: 'Presidente Getiºlio'
+          cityName: 'Presidente Getiï¿½lio'
         },
         {
           ibge: '4214102',
@@ -19117,7 +19122,7 @@ export class CitiesService {
         },
         {
           ibge: '4215505',
-          cityName: 'Santa Ceci­lia'
+          cityName: 'Santa Ceciï¿½lia'
         },
         {
           ibge: '4215554',
@@ -19181,7 +19186,7 @@ export class CitiesService {
         },
         {
           ibge: '4216354',
-          cityName: 'Sao Joao do Itaperiiº'
+          cityName: 'Sao Joao do Itaperiiï¿½'
         },
         {
           ibge: '4216255',
@@ -19289,7 +19294,7 @@ export class CitiesService {
         },
         {
           ibge: '4218301',
-          cityName: 'Triªs Barras'
+          cityName: 'Triï¿½s Barras'
         },
         {
           ibge: '4218350',
@@ -19301,7 +19306,7 @@ export class CitiesService {
         },
         {
           ibge: '4218509',
-          cityName: 'Treze Ti­lias'
+          cityName: 'Treze Tiï¿½lias'
         },
         {
           ibge: '4218608',
@@ -19365,7 +19370,7 @@ export class CitiesService {
         },
         {
           ibge: '4219507',
-          cityName: 'Xanxeriª'
+          cityName: 'Xanxeriï¿½'
         },
         {
           ibge: '4219606',
@@ -19394,7 +19399,7 @@ export class CitiesService {
         },
         {
           ibge: '3500303',
-          cityName: 'Aguai­'
+          cityName: 'Aguaiï¿½'
         },
         {
           ibge: '3500402',
@@ -19438,7 +19443,7 @@ export class CitiesService {
         },
         {
           ibge: '3501152',
-          cityName: 'Alumi­nio'
+          cityName: 'Alumiï¿½nio'
         },
         {
           ibge: '3501202',
@@ -19502,7 +19507,7 @@ export class CitiesService {
         },
         {
           ibge: '3502705',
-          cityName: 'Apiai­'
+          cityName: 'Apiaiï¿½'
         },
         {
           ibge: '3502754',
@@ -19526,7 +19531,7 @@ export class CitiesService {
         },
         {
           ibge: '3503158',
-          cityName: 'Arapei­'
+          cityName: 'Arapeiï¿½'
         },
         {
           ibge: '3503208',
@@ -19582,7 +19587,7 @@ export class CitiesService {
         },
         {
           ibge: '3504305',
-          cityName: 'Avai­'
+          cityName: 'Avaiï¿½'
         },
         {
           ibge: '3504404',
@@ -19702,7 +19707,7 @@ export class CitiesService {
         },
         {
           ibge: '3507100',
-          cityName: 'Bom Jesus dos Perdiµes'
+          cityName: 'Bom Jesus dos Perdiï¿½es'
         },
         {
           ibge: '3507159',
@@ -19734,7 +19739,7 @@ export class CitiesService {
         },
         {
           ibge: '3507704',
-          cityName: 'Braiºna'
+          cityName: 'Braiï¿½na'
         },
         {
           ibge: '3507753',
@@ -19766,7 +19771,7 @@ export class CitiesService {
         },
         {
           ibge: '3508405',
-          cityName: 'Cabreiºva'
+          cityName: 'Cabreiï¿½va'
         },
         {
           ibge: '3508504',
@@ -19870,7 +19875,7 @@ export class CitiesService {
         },
         {
           ibge: '3510609',
-          cityName: 'Carapicui­ba'
+          cityName: 'Carapicuiï¿½ba'
         },
         {
           ibge: '3510708',
@@ -19954,7 +19959,7 @@ export class CitiesService {
         },
         {
           ibge: '3512704',
-          cityName: 'Corumbatai­'
+          cityName: 'Corumbataiï¿½'
         },
         {
           ibge: '3512803',
@@ -20054,7 +20059,7 @@ export class CitiesService {
         },
         {
           ibge: '3514957',
-          cityName: 'Embaiºba'
+          cityName: 'Embaiï¿½ba'
         },
         {
           ibge: '3515004',
@@ -20074,11 +20079,11 @@ export class CitiesService {
         },
         {
           ibge: '3515186',
-          cityName: 'Espi­rito Santo do Pinhal'
+          cityName: 'Espiï¿½rito Santo do Pinhal'
         },
         {
           ibge: '3515194',
-          cityName: 'Espi­rito Santo do Turvo'
+          cityName: 'Espiï¿½rito Santo do Turvo'
         },
         {
           ibge: '3557303',
@@ -20130,7 +20135,7 @@ export class CitiesService {
         },
         {
           ibge: '3516101',
-          cityName: 'Flori­nia'
+          cityName: 'Floriï¿½nia'
         },
         {
           ibge: '3516200',
@@ -20182,11 +20187,11 @@ export class CitiesService {
         },
         {
           ibge: '3517307',
-          cityName: 'Guaimbiª'
+          cityName: 'Guaimbiï¿½'
         },
         {
           ibge: '3517406',
-          cityName: 'Guai­ra'
+          cityName: 'Guaiï¿½ra'
         },
         {
           ibge: '3517505',
@@ -20202,7 +20207,7 @@ export class CitiesService {
         },
         {
           ibge: '3517802',
-          cityName: 'Guaracai­'
+          cityName: 'Guaracaiï¿½'
         },
         {
           ibge: '3517901',
@@ -20230,7 +20235,7 @@ export class CitiesService {
         },
         {
           ibge: '3518503',
-          cityName: 'Guarei­'
+          cityName: 'Guareiï¿½'
         },
         {
           ibge: '3518602',
@@ -20294,7 +20299,7 @@ export class CitiesService {
         },
         {
           ibge: '3519709',
-          cityName: 'Ibiiºna'
+          cityName: 'Ibiiï¿½na'
         },
         {
           ibge: '3519808',
@@ -20302,11 +20307,11 @@ export class CitiesService {
         },
         {
           ibge: '3519907',
-          cityName: 'Iepiª'
+          cityName: 'Iepiï¿½'
         },
         {
           ibge: '3520004',
-          cityName: 'Igaracu do Tietiª'
+          cityName: 'Igaracu do Tietiï¿½'
         },
         {
           ibge: '3520103',
@@ -20346,7 +20351,7 @@ export class CitiesService {
         },
         {
           ibge: '3520806',
-          cityName: 'Iniºbia Paulista'
+          cityName: 'Iniï¿½bia Paulista'
         },
         {
           ibge: '3520905',
@@ -20358,7 +20363,7 @@ export class CitiesService {
         },
         {
           ibge: '3521101',
-          cityName: 'Ipeiºna'
+          cityName: 'Ipeiï¿½na'
         },
         {
           ibge: '3521150',
@@ -20390,7 +20395,7 @@ export class CitiesService {
         },
         {
           ibge: '3521804',
-          cityName: 'Itai­'
+          cityName: 'Itaiï¿½'
         },
         {
           ibge: '3521903',
@@ -20442,7 +20447,7 @@ export class CitiesService {
         },
         {
           ibge: '3522901',
-          cityName: 'Itapui­'
+          cityName: 'Itapuiï¿½'
         },
         {
           ibge: '3523008',
@@ -20502,7 +20507,7 @@ export class CitiesService {
         },
         {
           ibge: '3524402',
-          cityName: 'Jacarei­'
+          cityName: 'Jacareiï¿½'
         },
         {
           ibge: '3524501',
@@ -20514,7 +20519,7 @@ export class CitiesService {
         },
         {
           ibge: '3524709',
-          cityName: 'Jaguariiºna'
+          cityName: 'Jaguariiï¿½na'
         },
         {
           ibge: '3524808',
@@ -20538,7 +20543,7 @@ export class CitiesService {
         },
         {
           ibge: '3525300',
-          cityName: 'Jaiº'
+          cityName: 'Jaiï¿½'
         },
         {
           ibge: '3525409',
@@ -20558,7 +20563,7 @@ export class CitiesService {
         },
         {
           ibge: '3525805',
-          cityName: 'Jiºlio Mesquita'
+          cityName: 'Jiï¿½lio Mesquita'
         },
         {
           ibge: '3525854',
@@ -20566,7 +20571,7 @@ export class CitiesService {
         },
         {
           ibge: '3525904',
-          cityName: 'Jundiai­'
+          cityName: 'Jundiaiï¿½'
         },
         {
           ibge: '3526001',
@@ -20590,7 +20595,7 @@ export class CitiesService {
         },
         {
           ibge: '3526506',
-          cityName: 'Lavi­nia'
+          cityName: 'Laviï¿½nia'
         },
         {
           ibge: '3526605',
@@ -20638,7 +20643,7 @@ export class CitiesService {
         },
         {
           ibge: '3527603',
-          cityName: 'Lui­s Antonio'
+          cityName: 'Luiï¿½s Antonio'
         },
         {
           ibge: '3527702',
@@ -20686,7 +20691,7 @@ export class CitiesService {
         },
         {
           ibge: '3528809',
-          cityName: 'Maracai­'
+          cityName: 'Maracaiï¿½'
         },
         {
           ibge: '3528858',
@@ -20698,7 +20703,7 @@ export class CitiesService {
         },
         {
           ibge: '3529005',
-          cityName: 'Mari­lia'
+          cityName: 'Mariï¿½lia'
         },
         {
           ibge: '3529104',
@@ -20734,7 +20739,7 @@ export class CitiesService {
         },
         {
           ibge: '3529807',
-          cityName: 'Mineiros do Tietiª'
+          cityName: 'Mineiros do Tietiï¿½'
         },
         {
           ibge: '3530003',
@@ -20782,7 +20787,7 @@ export class CitiesService {
         },
         {
           ibge: '3531001',
-          cityName: 'Monciµes'
+          cityName: 'Monciï¿½es'
         },
         {
           ibge: '3531100',
@@ -20798,7 +20803,7 @@ export class CitiesService {
         },
         {
           ibge: '3531407',
-          cityName: 'Monte Aprazi­vel'
+          cityName: 'Monte Apraziï¿½vel'
         },
         {
           ibge: '3531506',
@@ -20890,7 +20895,7 @@ export class CitiesService {
         },
         {
           ibge: '3533205',
-          cityName: 'Nova Independiªncia'
+          cityName: 'Nova Independiï¿½ncia'
         },
         {
           ibge: '3533304',
@@ -20918,11 +20923,11 @@ export class CitiesService {
         },
         {
           ibge: '3533809',
-          cityName: 'i“leo'
+          cityName: 'iï¿½leo'
         },
         {
           ibge: '3533908',
-          cityName: 'Oli­mpia'
+          cityName: 'Oliï¿½mpia'
         },
         {
           ibge: '3534005',
@@ -20934,7 +20939,7 @@ export class CitiesService {
         },
         {
           ibge: '3534203',
-          cityName: 'Orindiiºva'
+          cityName: 'Orindiiï¿½va'
         },
         {
           ibge: '3534302',
@@ -20998,7 +21003,7 @@ export class CitiesService {
         },
         {
           ibge: '3535705',
-          cityName: 'Parai­so'
+          cityName: 'Paraiï¿½so'
         },
         {
           ibge: '3535804',
@@ -21026,7 +21031,7 @@ export class CitiesService {
         },
         {
           ibge: '3536307',
-          cityName: 'Patroci­nio Paulista'
+          cityName: 'Patrociï¿½nio Paulista'
         },
         {
           ibge: '3536406',
@@ -21034,7 +21039,7 @@ export class CitiesService {
         },
         {
           ibge: '3536505',
-          cityName: 'Pauli­nia'
+          cityName: 'Pauliï¿½nia'
         },
         {
           ibge: '3536570',
@@ -21086,7 +21091,7 @@ export class CitiesService {
         },
         {
           ibge: '3537602',
-          cityName: 'Perui­be'
+          cityName: 'Peruiï¿½be'
         },
         {
           ibge: '3537701',
@@ -21134,7 +21139,7 @@ export class CitiesService {
         },
         {
           ibge: '3538907',
-          cityName: 'Pirajui­'
+          cityName: 'Pirajuiï¿½'
         },
         {
           ibge: '3539004',
@@ -21182,7 +21187,7 @@ export class CitiesService {
         },
         {
           ibge: '3540101',
-          cityName: 'Pongai­'
+          cityName: 'Pongaiï¿½'
         },
         {
           ibge: '3540200',
@@ -21490,7 +21495,7 @@ export class CitiesService {
         },
         {
           ibge: '3546900',
-          cityName: 'Santa Liºcia'
+          cityName: 'Santa Liï¿½cia'
         },
         {
           ibge: '3547007',
@@ -21522,7 +21527,7 @@ export class CitiesService {
         },
         {
           ibge: '3547304',
-          cityName: 'Santana de Parnai­ba'
+          cityName: 'Santana de Parnaiï¿½ba'
         },
         {
           ibge: '3547700',
@@ -21558,7 +21563,7 @@ export class CitiesService {
         },
         {
           ibge: '3548401',
-          cityName: 'Santopolis do Aguapei­'
+          cityName: 'Santopolis do Aguapeiï¿½'
         },
         {
           ibge: '3548500',
@@ -21566,7 +21571,7 @@ export class CitiesService {
         },
         {
           ibge: '3548609',
-          cityName: 'Sao Bento do Sapucai­'
+          cityName: 'Sao Bento do Sapucaiï¿½'
         },
         {
           ibge: '3548708',
@@ -21674,7 +21679,7 @@ export class CitiesService {
         },
         {
           ibge: '3551108',
-          cityName: 'Sarapui­'
+          cityName: 'Sarapuiï¿½'
         },
         {
           ibge: '3551207',
@@ -21706,7 +21711,7 @@ export class CitiesService {
         },
         {
           ibge: '3551900',
-          cityName: 'Severi­nia'
+          cityName: 'Severiï¿½nia'
         },
         {
           ibge: '3552007',
@@ -21754,7 +21759,7 @@ export class CitiesService {
         },
         {
           ibge: '3553005',
-          cityName: 'Taguai­'
+          cityName: 'Taguaiï¿½'
         },
         {
           ibge: '3553104',
@@ -21762,11 +21767,11 @@ export class CitiesService {
         },
         {
           ibge: '3553203',
-          cityName: 'Taiiºva'
+          cityName: 'Taiiï¿½va'
         },
         {
           ibge: '3553302',
-          cityName: 'Tambaiº'
+          cityName: 'Tambaiï¿½'
         },
         {
           ibge: '3553401',
@@ -21774,7 +21779,7 @@ export class CitiesService {
         },
         {
           ibge: '3553500',
-          cityName: 'Tapirai­'
+          cityName: 'Tapiraiï¿½'
         },
         {
           ibge: '3553609',
@@ -21794,7 +21799,7 @@ export class CitiesService {
         },
         {
           ibge: '3553856',
-          cityName: 'Taquarivai­'
+          cityName: 'Taquarivaiï¿½'
         },
         {
           ibge: '3553906',
@@ -21806,7 +21811,7 @@ export class CitiesService {
         },
         {
           ibge: '3554003',
-          cityName: 'Tatui­'
+          cityName: 'Tatuiï¿½'
         },
         {
           ibge: '3554102',
@@ -21826,7 +21831,7 @@ export class CitiesService {
         },
         {
           ibge: '3554508',
-          cityName: 'Tietiª'
+          cityName: 'Tietiï¿½'
         },
         {
           ibge: '3554607',
@@ -21850,7 +21855,7 @@ export class CitiesService {
         },
         {
           ibge: '3554904',
-          cityName: 'Triªs Fronteiras'
+          cityName: 'Triï¿½s Fronteiras'
         },
         {
           ibge: '3554953',
@@ -21866,7 +21871,7 @@ export class CitiesService {
         },
         {
           ibge: '3555208',
-          cityName: 'Turiiºba'
+          cityName: 'Turiiï¿½ba'
         },
         {
           ibge: '3555307',
@@ -21902,7 +21907,7 @@ export class CitiesService {
         },
         {
           ibge: '3556008',
-          cityName: 'Urupiªs'
+          cityName: 'Urupiï¿½s'
         },
         {
           ibge: '3556107',
@@ -21914,7 +21919,7 @@ export class CitiesService {
         },
         {
           ibge: '3556305',
-          cityName: 'Valparai­so'
+          cityName: 'Valparaiï¿½so'
         },
         {
           ibge: '3556354',
@@ -22015,7 +22020,7 @@ export class CitiesService {
         },
         {
           ibge: '1702109',
-          cityName: 'Araguai­na'
+          cityName: 'Araguaiï¿½na'
         },
         {
           ibge: '1702158',
@@ -22199,7 +22204,7 @@ export class CitiesService {
         },
         {
           ibge: '1709302',
-          cityName: 'Guarai­'
+          cityName: 'Guaraiï¿½'
         },
         {
           ibge: '1709500',
@@ -22227,7 +22232,7 @@ export class CitiesService {
         },
         {
           ibge: '1711506',
-          cityName: 'Jaiº do Tocantins'
+          cityName: 'Jaiï¿½ do Tocantins'
         },
         {
           ibge: '1711803',
@@ -22339,7 +22344,7 @@ export class CitiesService {
         },
         {
           ibge: '1716109',
-          cityName: 'Parai­so do Tocantins'
+          cityName: 'Paraiï¿½so do Tocantins'
         },
         {
           ibge: '1716208',
@@ -22367,7 +22372,7 @@ export class CitiesService {
         },
         {
           ibge: '1717206',
-          cityName: 'Piraquiª'
+          cityName: 'Piraquiï¿½'
         },
         {
           ibge: '1717503',
@@ -22483,7 +22488,7 @@ export class CitiesService {
         },
         {
           ibge: '1720804',
-          cityName: 'Si­tio Novo do Tocantins'
+          cityName: 'Siï¿½tio Novo do Tocantins'
         },
         {
           ibge: '1720853',
@@ -22503,7 +22508,7 @@ export class CitiesService {
         },
         {
           ibge: '1721109',
-          cityName: 'Tocanti­nia'
+          cityName: 'Tocantiï¿½nia'
         },
         {
           ibge: '1721208',
@@ -22527,8 +22532,8 @@ export class CitiesService {
         }
       ]
     }
-  ];
-
+];
+*/
   getStateList(){
     return this.stateList;
   }
