@@ -6,28 +6,17 @@
       refreshingText="Carregando...">
     </ion-refresher-content>
   </ion-refresher>
-  <ion-grid>
-    <ion-row *ngIf="!hasProduct">
-      <ion-col size="12">
-        <h5>Nenhum produto cadastrado</h5>
-      </ion-col>
-    </ion-row>
-    <ion-row *ngIf="hasProduct">
-      <ion-col size="12">
-        <h5>Produtos cadastrados</h5>
-      </ion-col>
-    </ion-row>
-    <ion-row *ngIf="hasProduct">
-      <ion-col size="12">
-        <ion-select placeholder="Filtro por grupo" [(ngModel)]="group_filter" name="group_filter"
-          interface="action-sheet" cancelText="Cancelar" (ionChange)="filterGroups()" okText="Ok">
-          <ion-select-option *ngFor="let group of groupList" [value]="group">{{group}}
-          </ion-select-option>
-        </ion-select>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
-  <ion-list *ngIf="hasProduct" class="ion-no-padding">
+  <div *ngIf="!hasProduct">
+    <h4>Nenhum produto cadastrado</h4>
+  </div>
+  <div *ngIf="hasProduct">
+    <h4>Produtos</h4>
+    <ion-select placeholder="Filtro por grupo" [(ngModel)]="group_filter" name="group_filter" interface="action-sheet"
+      cancelText="Cancelar" (ionChange)="filterGroups()" okText="Ok">
+      <ion-select-option *ngFor="let group of groupList" [value]="group">{{group}}</ion-select-option>
+    </ion-select>
+  </div>
+  <ion-list *ngIf="hasProduct">
     <ion-item-sliding *ngFor="let product of productList">
       <ion-item-options side="start">
         <ion-item-option (click)="edit(product.id_product)">

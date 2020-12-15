@@ -66,6 +66,7 @@ export class ProductsListPage implements OnInit {
 
   private async loadProducts(){
     this.productList = [];
+    this.toolsService.showLoading("Carregando produtos");
     return new Promise(res => {
       this.requestService.getRequestById(this.url, 'company', this.id_company).subscribe(dataResponse => {
         if(dataResponse['success']) {
@@ -74,13 +75,17 @@ export class ProductsListPage implements OnInit {
           }
           this.hasProduct = true;
           this.productListBkp = this.productList;
-          this.loadGroups();
+          //this.loadGroups();
         } else {
           this.productListBkp = [];
           this.hasProduct = false;
         }
       }, error => {
-        this.toolsService.showAlert();
+        this.toolsService.hideLoading().finally(() => {
+          this.toolsService.showAlert();
+        })
+      }, () => {
+        this.toolsService.hideLoading();
       })
     });
   }

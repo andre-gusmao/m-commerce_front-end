@@ -58,6 +58,7 @@ export class ProductsCategoriesListPage implements OnInit {
   }
 
   private async loadProductsCategories() {
+    this.toolsService.showLoading("Carregando grupos");
     return new Promise(res => {
       this.requestService.getRequestById(this.url, 'company', this.id_company).subscribe(dataResponse => {
         if(dataResponse['success']) {
@@ -69,7 +70,11 @@ export class ProductsCategoriesListPage implements OnInit {
           this.hashCategory = false;
         }
       }, error => {
-        this.toolsService.showAlert();
+        this.toolsService.hideLoading().finally(() => {
+          this.toolsService.showAlert();
+        });
+      }, () => {
+        this.toolsService.hideLoading();
       })
     });
   }
