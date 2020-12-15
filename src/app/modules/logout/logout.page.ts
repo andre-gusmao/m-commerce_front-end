@@ -19,7 +19,7 @@ export class LogoutPage implements OnInit {
   ngOnInit() {}
 
   ionViewWillEnter() {
-    this.authService.setLogout();
+    this.authService.setLogout(true);
     if(this.toolsService.userPlatform() == "android" || this.toolsService.userPlatform() == "ios"){
       navigator['app'].exitApp();
     }
