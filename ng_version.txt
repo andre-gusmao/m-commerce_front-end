@@ -1,0 +1,35 @@
+C:\dev\m-commerce_front-end>ng version
+
+     _                      _                 ____ _     ___
+    / \   _ __   __ _ _   _| | __ _ _ __     / ___| |   |_ _|
+   / △ \ | '_ \ / _` | | | | |/ _` | '__|   | |   | |    | |
+  / ___ \| | | | (_| | |_| | | (_| | |      | |___| |___ | |
+ /_/   \_\_| |_|\__, |\__,_|_|\__,_|_|       \____|_____|___|
+                |___/
+
+
+Angular CLI: 9.1.8
+Node: 12.18.0
+OS: win32 x64
+
+Angular: 9.1.11
+... common, compiler, compiler-cli, core, forms
+... language-service, platform-browser, platform-browser-dynamic
+... router
+Ivy Workspace: Yes
+
+Package                           Version
+-----------------------------------------------------------
+@angular-devkit/architect         0.901.8
+@angular-devkit/build-angular     0.901.8
+@angular-devkit/build-optimizer   0.901.8
+@angular-devkit/build-webpack     0.901.8
+@angular-devkit/core              9.1.5
+@angular-devkit/schematics        9.1.5
+@angular/cli                      9.1.8
+@ngtools/webpack                  9.1.8
+@schematics/angular               9.1.5
+@schematics/update                0.901.8
+rxjs                              6.5.5
+typescript                        3.8.3
+webpack                           4.42.0
