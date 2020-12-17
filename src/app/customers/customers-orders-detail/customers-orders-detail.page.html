@@ -7,29 +7,32 @@
   <app-svg></app-svg>
   <ion-grid>
     <ion-row>
-      <ion-col size="12"><b>Pedido&nbsp;{{id_order}} &nbsp;-&nbsp; {{order_status}} &nbsp;-&nbsp; {{order_date}}</b></ion-col>
+      <ion-col size="12"><b>#{{id_order}}&nbsp;-&nbsp;{{order_status}}&nbsp;-&nbsp;{{order_date}}</b>
+      </ion-col>
     </ion-row>
-    <ion-row *ngFor="let item of itemsList">
+    <ion-row *ngFor="let item of itemsList; let i = index;" [ngClass]="(i % 2 == 0) ? 'even' : 'odd'">
       <ion-col size="6">{{item.item_quantity}}x&nbsp;-&nbsp;{{item.item_product_name}}</ion-col>
       <ion-col size="6" class="ion-text-end">{{item.item_total_price | currency:"BRL":"symbol"}}</ion-col>
     </ion-row>
-    <ion-row >
+    <ion-row>
       <ion-col class="ion-text-end"><b>Total&nbsp;{{order_total_price | currency:"BRL":"symbol"}}</b></ion-col>
     </ion-row>
-    <ion-item style="text-align: center; font-size: smaller;" *ngIf="order_status_id == '7' || order_status_id == '1'">
-      {{card_number}}
-      <ion-icon color="primary" size="smaller" name="reload-circle-outline" (click)="changeCreditCard()" slot="end"></ion-icon>
-      <ion-icon color="danger" size="smaller" name="trash-outline" (click)="removeCreditCard()" slot="end"></ion-icon>
-    </ion-item>
   </ion-grid>
-  <ion-footer>
-    <ion-toolbar style="text-align: center;">
-      <ion-button *ngIf="hasCreditCard && (order_status_id == '7' || order_status_id == '1')" size="small" fill="outline" shape="round" (click)="payOrder()">
-        <ion-icon name="restaurant-outline"></ion-icon>Pagar
-      </ion-button>
-      <ion-button size="small" fill="outline" shape="round" (click)="closeOrderDetails()">
-        <ion-icon name="checkmark-circle-outline"></ion-icon>Fechar
-      </ion-button>
-    </ion-toolbar>
-  </ion-footer>
 </ion-content>
+<ion-footer>
+  <ion-item style="text-align: center; font-size: smaller;" *ngIf="order_status_id == '7' || order_status_id == '1'">
+    {{card_number}}
+    <ion-icon color="primary" size="smaller" name="reload-circle-outline" (click)="changeCreditCard()" slot="end">
+    </ion-icon>
+    <ion-icon color="danger" size="smaller" name="trash-outline" (click)="removeCreditCard()" slot="end"></ion-icon>
+  </ion-item>
+  <ion-toolbar style="text-align: center;">
+    <ion-button *ngIf="hasCreditCard && (order_status_id == '7' || order_status_id == '1')" fill="outline" shape="round"
+      (click)="payOrder()">
+      <ion-icon name="logo-usd"></ion-icon>Pagar
+    </ion-button>
+    <ion-button fill="outline" shape="round" (click)="closeOrderDetails()">
+      <ion-icon name="checkmark-circle-outline"></ion-icon>Fechar
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>

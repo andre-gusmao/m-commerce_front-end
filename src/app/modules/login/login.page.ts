@@ -12,8 +12,8 @@ import { AlertController } from '@ionic/angular';
 })
 export class LoginPage implements OnInit {
 
-  email: string = "";
-  password: string = "";
+  email: string = "turista@kw.com";
+  password: string = "turi2020";
   companyName: string = "";
   userName: string = "";
   logado: boolean = false;
@@ -99,7 +99,6 @@ export class LoginPage implements OnInit {
   public async registerProfile() {
     const alert = await this.alertController.create({
       header: 'Me conta ...',
-      //subHeader: 'Subtitle',
       message: 'Com qual perfil deseja se cadastrar ?',
       buttons: [{
         text: 'Quiosque',
@@ -137,7 +136,6 @@ export class LoginPage implements OnInit {
 
   public togglePassword(){
     this.showPassword = !this.showPassword;
-console.log("togglePassword")
     if(this.showPassword){
       this.passwordIcon = 'eye-off';
     } else {
