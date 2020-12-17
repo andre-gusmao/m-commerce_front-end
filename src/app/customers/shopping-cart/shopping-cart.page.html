@@ -35,17 +35,17 @@
   </div>
   <ion-fab *ngIf="!hasCPF" vertical="center" horizontal="start" slot="fixed">
     <ion-fab-button size="small" (click)="addCPF()">
-      <ion-icon name="add-outline"></ion-icon>CPF
+      <ion-icon color="white" name="add-outline"></ion-icon>CPF
     </ion-fab-button>
   </ion-fab>
   <ion-fab *ngIf="hasCPF" vertical="center" horizontal="start" slot="fixed">
     <ion-fab-button size="small" (click)="clearCPF()">
-      <ion-icon name="remove-outline"></ion-icon>CPF
+      <ion-icon color="white" name="remove-outline"></ion-icon>CPF
     </ion-fab-button>
   </ion-fab>
   <ion-fab vertical="center" horizontal="end" slot="fixed">
     <ion-fab-button size="small" (click)="toolsService.goToPage(catalog)">
-      <ion-icon name="book-outline"></ion-icon>
+      <ion-icon color="white" name="book-outline"></ion-icon>
     </ion-fab-button>
   </ion-fab>
 </ion-content>
