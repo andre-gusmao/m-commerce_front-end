@@ -1,5 +1,6 @@
 <ion-header>
   <ion-toolbar>
+    <div class="top-circle"></div>
     <ion-buttons slot="start">
       <ion-button (click)="closeCartCard()">
         <ion-icon name="arrow-back-outline"></ion-icon>Voltar
@@ -11,69 +12,76 @@
 <ion-content fullscreen="true">
   <app-svg></app-svg>
   <div>
-    <ion-item>
-      <p>Para segurança seus dados não serão gravados online, permanecendo no seu dispositivo apenas.</p>
-    </ion-item>
-    <ion-item>
-      <ion-label>Numero</ion-label>
-      <ion-input type="text" [(ngModel)]="card_number" value="card_number" (ionBlur)="getCreditCardLabel()"
-        (keypress)="toolsService.numericOnly($event)"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label>Nome</ion-label>
-      <ion-input type="text" [(ngModel)]="card_printed_name"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label>Mes</ion-label>
-      <ion-select [(ngModel)]="card_expiration_month" name="card_expiration_month" interface="action-sheet"
-        cancelText="Cancelar" placeholder="Selecione o mes">
-        <ion-select-option value="01">01 - Janeiro</ion-select-option>
-        <ion-select-option value="02">02 - Feveiro</ion-select-option>
-        <ion-select-option value="03">03 - Marco</ion-select-option>
-        <ion-select-option value="04">04 - Abril</ion-select-option>
-        <ion-select-option value="05">05 - Maio</ion-select-option>
-        <ion-select-option value="06">06 - Junho</ion-select-option>
-        <ion-select-option value="07">07 - Julho</ion-select-option>
-        <ion-select-option value="08">08 - Agosto</ion-select-option>
-        <ion-select-option value="09">09 - Setembro</ion-select-option>
-        <ion-select-option value="10">10 - Outubro</ion-select-option>
-        <ion-select-option value="11">11 - Novembro</ion-select-option>
-        <ion-select-option value="12">12 - Dezembro</ion-select-option>
-      </ion-select>
-    </ion-item>
-    <ion-item>
-      <ion-label>Ano</ion-label>
-      <ion-select [(ngModel)]="card_expiration_year" name="card_expiration_year" interface="action-sheet"
-        placeholder="Selecione o ano">
-        <ion-select-option *ngFor="let year of listYear" [value]="year">{{year}}</ion-select-option>
-      </ion-select>
-    </ion-item>
-    <ion-item>
-      <ion-label>CVV</ion-label>
-      <ion-input type="text" [(ngModel)]="card_security_code" maxlength="3"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label>Bandeira do Cartao</ion-label>
-      <ion-select [(ngModel)]="card_company" name="card_company" interface="action-sheet" cancelText="Cancelar"
-        placeholder="Selecione a bandeira" disabled>
-        <ion-select-option value="0">Outros</ion-select-option>
-        <ion-select-option value="1">Visa</ion-select-option>
-        <ion-select-option value="2">Mastercard</ion-select-option>
-        <ion-select-option value="3">Amex</ion-select-option>
-        <ion-select-option value="4">Dinners</ion-select-option>
-        <ion-select-option value="5">Discover</ion-select-option>
-        <ion-select-option value="6">JCB</ion-select-option>
-      </ion-select>
-    </ion-item>
-    <ion-item>
-      <ion-label>CPF</ion-label>
-      <ion-input type="text" maxlength="11" [(ngModel)]="customer_cpf"></ion-input>
-    </ion-item>
+    <p>Para segurança seus dados não serão gravados online, permanecendo no seu dispositivo apenas.</p>
   </div>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="8">
+        <ion-label>Número do cartão</ion-label>
+        <ion-input type="text" [(ngModel)]="card_number" value="card_number" (ionBlur)="getCreditCardLabel()" (keypress)="toolsService.numericOnly($event)"></ion-input>
+      </ion-col>
+      <ion-col size="4">
+        <ion-label>&nbsp;</ion-label>
+        <ion-select [(ngModel)]="card_company" name="card_company" interface="action-sheet" cancelText="Cancelar"
+          placeholder="Selecione a bandeira" disabled>
+          <ion-select-option value="0">Outros</ion-select-option>
+          <ion-select-option value="1">Visa</ion-select-option>
+          <ion-select-option value="2">Mastercard</ion-select-option>
+          <ion-select-option value="3">Amex</ion-select-option>
+          <ion-select-option value="4">Dinners</ion-select-option>
+          <ion-select-option value="5">Discover</ion-select-option>
+          <ion-select-option value="6">JCB</ion-select-option>
+        </ion-select>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12">
+        <ion-label>Nome igual no cartão</ion-label>
+        <ion-input type="text" [(ngModel)]="card_printed_name"></ion-input>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="5">
+        <ion-label>Mês</ion-label>
+        <ion-select [(ngModel)]="card_expiration_month" name="card_expiration_month" interface="action-sheet"
+          cancelText="Cancelar" placeholder="Selecione o mes">
+          <ion-select-option value="01">01 - Janeiro</ion-select-option>
+          <ion-select-option value="02">02 - Feveiro</ion-select-option>
+          <ion-select-option value="03">03 - Marco</ion-select-option>
+          <ion-select-option value="04">04 - Abril</ion-select-option>
+          <ion-select-option value="05">05 - Maio</ion-select-option>
+          <ion-select-option value="06">06 - Junho</ion-select-option>
+          <ion-select-option value="07">07 - Julho</ion-select-option>
+          <ion-select-option value="08">08 - Agosto</ion-select-option>
+          <ion-select-option value="09">09 - Setembro</ion-select-option>
+          <ion-select-option value="10">10 - Outubro</ion-select-option>
+          <ion-select-option value="11">11 - Novembro</ion-select-option>
+          <ion-select-option value="12">12 - Dezembro</ion-select-option>
+        </ion-select>
+      </ion-col>
+      <ion-col size="5">
+        <ion-label>Ano</ion-label>
+        <ion-select [(ngModel)]="card_expiration_year" name="card_expiration_year" interface="action-sheet"
+          placeholder="Selecione o ano">
+          <ion-select-option *ngFor="let year of listYear" [value]="year">{{year}}</ion-select-option>
+        </ion-select>
+      </ion-col>
+      <ion-col size="2">
+        <ion-label>CVV</ion-label>
+        <ion-input type="text" [(ngModel)]="card_security_code" maxlength="3" (keypress)="toolsService.numericOnly($event)"></ion-input>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12">
+        <ion-label>CPF/CNPJ</ion-label>
+        <ion-input type="text" maxlength="11" [(ngModel)]="customer_cpf" (keypress)="toolsService.numericOnly($event)"></ion-input>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
 <ion-footer>
   <div style="text-align: center;">
-    <ion-button size="small" fill="outline" shape="round" type="submit" (click)="registerCreditCard()">
+    <ion-button fill="outline" shape="round" type="submit" (click)="registerCreditCard()">
       <ion-icon name="checkmark-circle"></ion-icon>Confirmar
     </ion-button>
   </div>
