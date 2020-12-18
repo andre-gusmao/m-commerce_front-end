@@ -76,9 +76,6 @@ export class ProductsPage implements OnInit {
         if (data['success']) {
           this.id_product = data['result'][0]['id_product'];
           this.id_company = data['result'][0]['id_company'];
-          this.toolsService.hideLoading().finally(() => {
-            this.loadProductCategory(this.id_company);
-          })
           this.id_product_category = data['result'][0]['id_product_category'];
           this.product_name = data['result'][0]['product_name'];
           this.product_description = data['result'][0]['product_description'];
@@ -90,6 +87,8 @@ export class ProductsPage implements OnInit {
         this.toolsService.hideLoading().finally(() => {
           this.toolsService.showAlert();
         })
+      }, () => {
+        this.toolsService.hideLoading();
       }
     );
   }
@@ -127,18 +126,18 @@ export class ProductsPage implements OnInit {
 
   private async loadProductCategory(id_company) {
     this.clearCategoryList();
-    this.toolsService.showLoading("Carregando grupos");
+    //this.toolsService.showLoading("Carregando grupos");
     return await new Promise(res => {
       this.requestService.getRequestById(this.urlCategory, 'company', this.id_company).subscribe(dataResponse => {
         for (let category of dataResponse['result']) {
           this.categoryList.push(category);
         }
       }, error => {
-        this.toolsService.hideLoading().finally(() => {
+        //this.toolsService.hideLoading().finally(() => {
           this.toolsService.showAlert();
-        })
+        //})
       }, () => {
-        this.toolsService.hideLoading();
+        //this.toolsService.hideLoading();
       })
     });
   }
