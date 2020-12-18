@@ -169,6 +169,7 @@ export class CustomersCatalogsPage implements OnInit {
     let group = [];
     let name = ""
     this.ShopCartSrc.appCategory = [];
+    this.totalGroups = 0;
 
     for(let i = 0; i < this.ShopCartSrc.appCatalog.length; i++){
       name = this.ShopCartSrc.appCatalog[i].product_category_name;
