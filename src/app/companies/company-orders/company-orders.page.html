@@ -16,12 +16,12 @@
       <ion-col size="12"><b>Painel de Pedidos</b></ion-col>
     </ion-row>
     <ion-row style="text-align: center;">
-      <ion-col size="9">
+      <ion-col size="8">
         <ion-input [(ngModel)]="searchbar" placeholder="Pesquisar pedido" (ionChange)="filterOrder()"></ion-input>
       </ion-col>
-      <ion-col size="3">
+      <ion-col size="4">
         <ion-select multiple [(ngModel)]="statusFilter" name="statusFilter" cancelText="Cancelar"
-          (ionChange)="refreshStatusFilter()">
+          (ionChange)="refreshStatusFilter()" [selectOptions]="selectOptions">
           <ion-select-option value="2">Pago</ion-select-option>
           <ion-select-option value="3">Em produção</ion-select-option>
           <ion-select-option value="4">Pronto</ion-select-option>
@@ -31,14 +31,13 @@
       </ion-col>
     </ion-row>
     <ion-row>
-      <ion-col size="2">N.&#176;</ion-col>
+      <ion-col size="3">N.&#176;</ion-col>
       <ion-col size="2">Data</ion-col>
-      <ion-col size="3">Status</ion-col>
+      <ion-col size="4">Status</ion-col>
       <ion-col class="ion-text-end" size="3">Valor</ion-col>
-      <ion-col size="2">&nbsp;</ion-col>
     </ion-row>
     <ion-row *ngFor="let order of orderList; let i = index;" (click)="actionWithOrder(order.id_order)">
-      <ion-col size="2">
+      <ion-col size="3">
         <ion-text [ngClass]="(i % 2 == 0) ? 'odd' : 'even'">
           {{order.id_order}}
         </ion-text>
@@ -48,7 +47,7 @@
           {{order.order_date}}
         </ion-text>
       </ion-col>
-      <ion-col size="3">
+      <ion-col size="4">
         <ion-text [ngClass]="(i % 2 == 0) ? 'odd' : 'even'">
           {{order.order_status}}
         </ion-text>
@@ -56,11 +55,6 @@
       <ion-col class="ion-text-end" size="3">
         <ion-text [ngClass]="(i % 2 == 0) ? 'odd' : 'even'">
           {{order.order_total_price}}
-        </ion-text>
-      </ion-col>
-      <ion-col class="ion-text-end" size="2">
-        <ion-text [ngClass]="(i % 2 == 0) ? 'odd' : 'even'">
-          <ion-icon name="options-outline"></ion-icon>
         </ion-text>
       </ion-col>
     </ion-row>

@@ -24,25 +24,20 @@
     <ion-card-content>
       <img [(src)]="product_picture" *ngIf="product_picture != ''">
       <img src="../../../../assets/aguacoco.jpg" *ngIf="product_picture == ''">
+      <ion-item lines="none">
+        <ion-icon slot="start" size="large" name="camera-outline" (click)="takePictures()"></ion-icon>
+        <ion-icon slot="end" size="large" name="image-outline" (click)="selectPicture()"></ion-icon>
+      </ion-item>
     </ion-card-content>
   </ion-card>
 </ion-content>
 <ion-footer>
   <div style="text-align: center;">
-    <ion-button *ngIf="isMobileDevice" size="small" fill="outline" shape="round" (click)="takePictures()">
-      <ion-icon name="camera"></ion-icon>Tirar Foto
-    </ion-button>
-    <ion-button *ngIf="!isMobileDevice" disabled size="small" fill="outline" shape="round" (click)="takePictures()">
-      <ion-icon name="camera"></ion-icon>Selecionar Foto
-    </ion-button>
-    <ion-button size="small" fill="outline" shape="round" (click)="registerProduct()">
+    <ion-button fill="outline" shape="round" (click)="registerProduct()">
       <ion-icon name="checkmark-circle"></ion-icon>Confirmar
     </ion-button>
-    <ion-button size="small" fill="outline" shape="round" (click)="toolsService.goToPage(this.listPage)">
+    <ion-button fill="outline" shape="round" (click)="toolsService.goToPage(this.listPage)">
       <ion-icon name="list"></ion-icon>Listar
     </ion-button>
   </div>
 </ion-footer>
-<!--
-  <input type="file" (change)="onFileChange($event)" />
--->

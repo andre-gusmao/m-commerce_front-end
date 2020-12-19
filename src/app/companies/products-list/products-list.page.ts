@@ -25,7 +25,7 @@ export class ProductsListPage implements OnInit {
   limit: number = 10;
   hasProduct: boolean = false;
   groupList: any = [];
-  group_filter: string = "";
+  groupFilter: string = "";
 
   constructor(
     public requestService: RequestsService,
@@ -48,7 +48,7 @@ export class ProductsListPage implements OnInit {
   }
 
   doRefresh(event) {
-    this.group_filter = "";
+    this.groupFilter = "";
     setTimeout(() => {
       this.ionViewWillEnter();
       event.target.complete();
@@ -75,7 +75,7 @@ export class ProductsListPage implements OnInit {
           }
           this.hasProduct = true;
           this.productListBkp = this.productList;
-          //this.loadGroups();
+          this.loadGroups();
         } else {
           this.productListBkp = [];
           this.hasProduct = false;
@@ -147,7 +147,7 @@ export class ProductsListPage implements OnInit {
   public filterGroups(){
     this.productList = this.productListBkp;
     this.productList = this.productList.filter(currentProduct => {
-      return (currentProduct.product_category_name.indexOf(this.group_filter) > -1);
+      return (currentProduct.product_category_name.indexOf(this.groupFilter) > -1);
     });
   }
 

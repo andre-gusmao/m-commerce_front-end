@@ -31,7 +31,12 @@
       <br /><br />
       <ion-text class="customer">Bem vindo {{userName}}</ion-text>
     </div>
-    <ion-fab vertical="bottom" horizontal="center" slot="fixed">
+    <ion-fab *ngIf="profileType == '2'" vertical="center" horizontal="center" slot="fixed">
+      <ion-fab-button size="small" (click)="toolsService.goToPage(ordersPage)">
+        <ion-icon color="white" name="cart-outline"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+    <ion-fab *ngIf="profileType == '1'" vertical="center" horizontal="center" slot="fixed">
       <ion-fab-button size="small" (click)="toolsService.goToPage(catalog)">
         <ion-icon color="white" name="book-outline"></ion-icon>
       </ion-fab-button>

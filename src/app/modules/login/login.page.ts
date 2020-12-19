@@ -12,15 +12,17 @@ import { AlertController } from '@ionic/angular';
 })
 export class LoginPage implements OnInit {
 
-  email: string = "turista@kw.com";
-  password: string = "turi2020";
+  email: string = "quiosque@kw.com";
+  password: string = "quio2020";
   companyName: string = "";
   userName: string = "";
   logado: boolean = false;
   isEmpty: boolean = false;
   showPassword: boolean = false;
   passwordIcon: string = 'eye';
-  catalog: string = "/customers-catalogs"
+  catalog: string = "/customers-catalogs";
+  ordersPage: string = "/company-orders";
+  profileType: string = "";
 
   constructor(
     public authService: AuthenticationsService,
@@ -35,6 +37,7 @@ export class LoginPage implements OnInit {
   ionViewWillEnter() {
     this.companyName = this.authService.getCompanyName();
     this.userName = this.authService.getUserName();
+    this.profileType = this.authService.getProfileType();
   }
   
   public async login() {
@@ -60,6 +63,7 @@ export class LoginPage implements OnInit {
     this.requestService.postRequest(dataRequest, 'login.php').subscribe(
       async dataResponse => {
       if (dataResponse['success']) {
+        this.profileType = dataResponse['profileType'];
         this.authService.setProfileType(dataResponse['profileType']);
         this.authService.setUserLogin(dataResponse['userLogin']);
         this.authService.setUserName(dataResponse['userName']);

@@ -163,6 +163,10 @@ export class ProductsPage implements OnInit {
     });
   }
 
+  public selectPicture(){
+    this.toolsService.showToast("Em desenvolvimento",1000,"warning");
+  }
+
   /*
     CM: L x A = 15,87 x 10,58
     PX: L x A = 600 x 400

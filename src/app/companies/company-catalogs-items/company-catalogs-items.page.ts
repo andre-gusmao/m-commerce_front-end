@@ -56,56 +56,38 @@ export class CompanyCatalogsItemsPage implements OnInit {
   }
 
   private async loadCatalogItem(){
-
     if(this.id_catalog_item != undefined && this.id_catalog_item != ""){
-
-      return new Promise(res => {
-
+      return await new Promise(res => {
         this.requestService.getRequestById(this.url, 'id', this.id_catalog_item).subscribe(async data => {
-
           this.id_company = data['result'][0]['id_company'];
           this.id_catalog = data['result'][0]['id_catalog'];
           this.id_product = data['result'][0]['id_product'];
           this.catalog_item_status = data['result'][0]['catalog_item_status'];
           this.catalog_item_price = data['result'][0]['catalog_item_price'];
           this.catalog_item_note = data['result'][0]['catalog_item_note'];
-
         }, error => {
           this.toolsService.showAlert();
         })
-
       });
-
     }
-
   }
 
   private async loadProducts(){
-
     this.productList = [];
-
     if (this.id_company != undefined && this.id_company != "") {
-
-      return new Promise(res => {
-
+      return await new Promise(res => {
         this.requestService.getRequestById(this.urlProduct, 'company', this.id_company).subscribe(dataResponse => {
-
           for (let product of dataResponse['result']) {
             this.productList.push(product);
           }
-
         }, error => {
           this.toolsService.showAlert();
         })
-
       });
-
     }
-
   }
 
   async registerCatalogsItems(){
-
     let dataRequest = {
       id_company: this.id_company,
       id_catalog: this.id_catalog,
@@ -115,22 +97,18 @@ export class CompanyCatalogsItemsPage implements OnInit {
       catalog_item_note: this.catalog_item_note,
       request_type: '',
     }
-
     if(this.id_catalog_item != undefined && this.id_catalog_item != ""){
       dataRequest['id_catalog_item'] = this.id_catalog_item;
       dataRequest['request_type'] = 'update';
     }
-
     const fields = [
       { value: this.id_product, message: 'Selecione um produto'},
       { value: this.catalog_item_status, message: 'Selecione um status'},
       { value: this.catalog_item_price, message: 'Informe um valor'},
     ]
-
     if (this.toolsService.validField(fields) == false){
       return;
     }
-
     this.requestService.postRequest(dataRequest, this.url).subscribe(async dataResponse => {
       if (dataResponse['success']) {
         this.toolsService.showToast(dataResponse['message'],2000,'success');
@@ -140,7 +118,6 @@ export class CompanyCatalogsItemsPage implements OnInit {
         this.toolsService.showToast(dataResponse['message'],2000,'warning');
       }
     });
-  
   }
 
   private cleanForm(): void {
@@ -150,8 +127,6 @@ export class CompanyCatalogsItemsPage implements OnInit {
     this.catalog_item_note = "";
   }
 
-  private clearPrice(){
-    
-  }
+  private clearPrice(){}
 
 }
