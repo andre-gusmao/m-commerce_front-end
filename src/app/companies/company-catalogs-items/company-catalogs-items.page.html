@@ -7,7 +7,7 @@
   <div>
     <ion-label>Produto</ion-label>
     <ion-select [(ngModel)]="id_product" name="id_product" interface="action-sheet" cancelText="Cancelar">
-      <ion-select-option *ngFor="let product of productList" value="product.id_product">{{product.product_name}}
+      <ion-select-option *ngFor="let product of productList" [value]="product.id_product">{{product.product_name}}
       </ion-select-option>
     </ion-select>
   </div>
