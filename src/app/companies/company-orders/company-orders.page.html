@@ -21,7 +21,7 @@
       </ion-col>
       <ion-col size="4">
         <ion-select multiple [(ngModel)]="statusFilter" name="statusFilter" cancelText="Cancelar"
-          (ionChange)="refreshStatusFilter()" [selectOptions]="selectOptions">
+          (ionChange)="refreshStatusFilter()">
           <ion-select-option value="2">Pago</ion-select-option>
           <ion-select-option value="3">Em produção</ion-select-option>
           <ion-select-option value="4">Pronto</ion-select-option>

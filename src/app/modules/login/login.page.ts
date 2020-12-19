@@ -12,8 +12,8 @@ import { AlertController } from '@ionic/angular';
 })
 export class LoginPage implements OnInit {
 
-  email: string = "quiosque@kw.com";
-  password: string = "quio2020";
+  email: string = "";
+  password: string = "";
   companyName: string = "";
   userName: string = "";
   logado: boolean = false;

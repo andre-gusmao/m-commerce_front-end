@@ -24,7 +24,6 @@ export class CompanyOrdersPage implements OnInit {
   id_company: string = "";
   id_worker: string = "";
   statusFilter: Array<string> = ["2","3","4"];
-  selectOptions = { title: "Status"};
 
   constructor(
     public requestService: RequestsService,
