@@ -54,6 +54,7 @@ export class CompanyOrderDetailsPage implements OnInit {
   }
 
   private async loadOrderDetails(){
+    this.toolsService.showLoading();
     return new Promise(res => {
       this.requestService.getRequestById(this.url, 'order', this.id_order).subscribe(dataResponse => {
         for (let item of dataResponse['result']) {
@@ -69,8 +70,11 @@ export class CompanyOrderDetailsPage implements OnInit {
           this.customer_cell_phone = item.customer_cell_phone;
           this.itemsList.push(item);
         }
+        this.toolsService.hideLoading();
       }, error => {
-        this.toolsService.showAlert();
+        this.toolsService.hideLoading().finally(() => {
+          this.toolsService.showAlert();
+        })
       })
     });
   }

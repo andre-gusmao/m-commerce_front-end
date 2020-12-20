@@ -67,6 +67,7 @@ export class CompanyCatalogsItemsListPage implements OnInit {
 
   private async loadListCatalogItems(){
     this.listCatalogItems = [];
+    this.toolsService.showLoading("Carregando items")
     return new Promise(res => {
       this.requestService.getRequestById(this.url, 'catalog', this.id_catalog).subscribe(dataResponse => {
         if(dataResponse['success']) {
@@ -77,8 +78,11 @@ export class CompanyCatalogsItemsListPage implements OnInit {
         } else {
           this.hasItem = false;
         }
+        this.toolsService.hideLoading();
       }, error => {
-        this.toolsService.showAlert();
+        this.toolsService.hideLoading().finally(() => {
+          this.toolsService.showAlert();
+        });
       })
     });  
   }

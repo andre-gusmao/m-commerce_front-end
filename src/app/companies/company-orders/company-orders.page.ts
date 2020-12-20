@@ -69,6 +69,7 @@ export class CompanyOrdersPage implements OnInit {
 
   public async loadOrders() {
     this.orderList = [];
+    this.toolsService.showLoading("Carregando pedidos");
     return await new Promise(res => {
       this.requestService.getRequestById(this.url, 'company', this.authService.getProfileID()).subscribe(dataResponse => {
         if(dataResponse['success']) {
@@ -81,8 +82,11 @@ export class CompanyOrdersPage implements OnInit {
         } else {
           this.hasOrders = false;
         }
+        this.toolsService.hideLoading();
       }, error => {
-        this.toolsService.showAlert();
+        this.toolsService.hideLoading().finally(() => {
+          this.toolsService.showAlert();
+        })
       })
     });
   }
