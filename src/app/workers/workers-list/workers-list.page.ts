@@ -59,10 +59,12 @@ export class WorkersListPage implements OnInit {
   }
 
   private async loadWorkers(){
+    let phone: string = "";
     return new Promise(res => {
       this.requestService.getRequestById(this.url, 'company', this.id_company).subscribe(dataResponse => {
         if(dataResponse['success']) {
           for (let worker of dataResponse['result']) {
+            worker['worker_cell_phone'] = this.toolsService.formattedPhone(worker['worker_cell_phone']);
             this.listWorkers.push(worker);
           }
           this.hasWorker = true;

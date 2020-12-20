@@ -1,13 +1,14 @@
 <app-header></app-header>
-<ion-content>
+<ion-content fullscreen="true">
+  <app-svg></app-svg>
   <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
     <ion-refresher-content pullingIcon="chevron-down-circle-outline" refreshingSpinner="circles"
       refreshingText="Carregando...">
     </ion-refresher-content>
   </ion-refresher>
-  <ion-item>
+  <div>
     <h4>Entregadores</h4>
-  </ion-item>
+  </div>
   <div *ngIf="!hasWorker">
     <ion-item class="ion-no-padding;">
       <h5>Você não tem entregadores cadastrados</h5>
