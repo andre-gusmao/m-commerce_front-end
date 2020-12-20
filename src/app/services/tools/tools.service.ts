@@ -315,4 +315,13 @@ export class ToolsService {
     return result;
   }
 
+  public formattedPhone(phone: string) {
+    let formattedNumber: string = "";
+    phone = phone.replace(/[^\d]+/g,'');
+    formattedNumber = '(' + phone.substr(0,2) + ') ';
+    formattedNumber += phone.substr(2,1) + '.' + phone.substr(3,4);
+    formattedNumber += '-' + phone.substr(7,4);
+    return formattedNumber;
+  }
+
 }
