@@ -154,20 +154,20 @@ export class ProductsPage implements OnInit {
     let resized_picture;
     const options: CameraOptions = {
       quality: 50,
-      destinationType: this.camera.PictureSourceType.SAVEDPHOTOALBUM,
+      destinationType: this.camera.DestinationType.DATA_URL,
       allowEdit: true,
       encodingType: this.camera.EncodingType.JPEG,
       targetWidth: 400,
       targetHeight: 400,
       correctOrientation: true,
-      mediaType: this.camera.MediaType.PICTURE
+      mediaType: this.camera.MediaType.PICTURE,
+      sourceType: this.camera.PictureSourceType.PHOTOLIBRARY
     }
     this.camera.getPicture(options).then((imageData) => {
       this.product_picture = 'data:image/jpeg;base64,' + imageData;
     }, (error) => {
      this.toolsService.showToast("Não foi possível selecionar a foto",1000,"warning");
     });
-    this.toolsService.showToast("Em desenvolvimento",1000,"warning");
   }
 
   private cleanForm(): void {
