@@ -61,12 +61,6 @@ export class ProductsPage implements OnInit {
     }
   }
 
-  public onFileChange(fileChangeEvent){
-    console.log("before onFileChange");
-    this.product_picture = 'data:image/jpeg;base64,' + fileChangeEvent.target.files[0];
-    console.log("after onFileChange");
-  }
-
   private async loadProduct(id_product) {
     let dataRequest = {
       id_product: id_product,
@@ -126,19 +120,14 @@ export class ProductsPage implements OnInit {
 
   private async loadProductCategory(id_company) {
     this.clearCategoryList();
-    //this.toolsService.showLoading("Carregando grupos");
     return await new Promise(res => {
       this.requestService.getRequestById(this.urlCategory, 'company', this.id_company).subscribe(dataResponse => {
         for (let category of dataResponse['result']) {
           this.categoryList.push(category);
         }
       }, error => {
-        //this.toolsService.hideLoading().finally(() => {
           this.toolsService.showAlert();
-        //})
-      }, () => {
-        //this.toolsService.hideLoading();
-      })
+      }, () => {})
     });
   }
 
@@ -156,85 +145,29 @@ export class ProductsPage implements OnInit {
     }
     this.camera.getPicture(options).then((imageData) => {
       this.product_picture = 'data:image/jpeg;base64,' + imageData;
-      console.info("getPicture ok");
     }, (error) => {
      this.toolsService.showToast("Não foi possível capturar a foto",1000,"warning");
-     console.log("error",error);
     });
   }
 
   public selectPicture(){
-    this.toolsService.showToast("Em desenvolvimento",1000,"warning");
-  }
-
-  /*
-    CM: L x A = 15,87 x 10,58
-    PX: L x A = 600 x 400
-    Resolução Máxima 100 DPI
-  */
-  public compressImage(source, newWidth: number = 600, newHeigth: number = 400){
-    return new Promise((resolve, reject) => {
-      const img = new Image();
-      img.src = source;
-      img.onload = () => {
-        const elem = document.createElement('canvas');
-        elem.width = newWidth;
-        elem.height = newHeigth;
-        const ctx = elem.getContext('2d');
-        ctx.drawImage(img,0,0,newWidth,newHeigth);
-        const data = ctx.canvas.toDataURL();
-        resolve(data);
-      }
-      img.onerror = error => reject(error);
-    })
-  }
-
-  public comprimir(){
     let resized_picture;
     const options: CameraOptions = {
-      quality: 100,
-      destinationType: this.camera.DestinationType.DATA_URL,
+      quality: 50,
+      destinationType: this.camera.PictureSourceType.SAVEDPHOTOALBUM,
+      allowEdit: true,
       encodingType: this.camera.EncodingType.JPEG,
+      targetWidth: 400,
+      targetHeight: 400,
+      correctOrientation: true,
       mediaType: this.camera.MediaType.PICTURE
     }
-    this.compressImage(this.product_picture)
-      .then(compressed => {
-        resized_picture = compressed;
-        console.log("sucsess compressImage");
-      })
-      .catch( error => {
-        console.log(error);
-      })
-    this.product_picture = resized_picture;
-  }
-
-  public savendPhoto(){
-    let fileName: string = this.requestService.getFileName(this.id_company,"product",".png");
-    let url: string = environment.endpointURL + "companies/photo.php";
-    let dataReq = {
-      request_type: "insert",
-      id_company: this.id_company,
-      file_name: fileName,
-      photo: this.product_picture
-    }
-    this.http.post(url,dataReq).subscribe((response) => {
-      console.info(response);
-    }, error => (
-      console.log(error)
-    ))
-  }
-
-  public async sendPhoto(){
-    let url: string = environment.endpointURL + "companies/photo.php"
-    let formData = new FormData;
-    let fileName: string = this.requestService.getFileName(this.id_company,"product",".png");
-    formData.append("request_type","insert");
-    formData.append("id_company",this.id_company);
-    formData.append("file_name",fileName);
-    formData.append("photo",this.product_picture, fileName)
-    this.http.post(url,formData).subscribe((response) => {
-      console.log(response);
-    })
+    this.camera.getPicture(options).then((imageData) => {
+      this.product_picture = 'data:image/jpeg;base64,' + imageData;
+    }, (error) => {
+     this.toolsService.showToast("Não foi possível selecionar a foto",1000,"warning");
+    });
+    this.toolsService.showToast("Em desenvolvimento",1000,"warning");
   }
 
   private cleanForm(): void {
