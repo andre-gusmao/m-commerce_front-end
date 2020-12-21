@@ -79,7 +79,7 @@ export class CompaniesPage implements OnInit {
       { value: this.cellPhone, message: 'Informe o celular' },
       { value: this.company_document_type, message: 'Selecione o tipo de documento' },
       { value: this.company_document_number, message: 'Informe o documento' },
-      { value: this.zipCode, message: 'Informe o CEP com 8 dígitos', lenght: 8 }
+      { value: this.zipCode, message: 'Informe o CEP com 8 dígitos', length: 8 }
     ]
 
     if (this.toolsService.validField(fields) == false) {

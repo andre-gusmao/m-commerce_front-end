@@ -55,12 +55,12 @@ export class ToolsService {
     for (var i in _fields) {
       if (_fields[i].value == undefined || _fields[i].value == "") {
         isEmpty = false;
-        this.showToast(_fields[i].message,2000,'warning');
+        this.showToast(_fields[i].message,1500,'warning');
         break;
       }
-      if (_fields[i].lenght != undefined && _fields[i].lenght != _fields[i].value.toString().length) {
+      if (_fields[i].length != undefined && _fields[i].length != _fields[i].value.toString().length) {
         isEmpty = false;
-        this.showToast(_fields[i].message);
+        this.showToast(_fields[i].message,1500,'warning');
         break;
       }
     }

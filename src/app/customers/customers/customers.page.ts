@@ -97,7 +97,7 @@ export class CustomersPage implements OnInit {
       { value: this.cellPhone, message: 'Informe o celular' },
       { value: this.password, message: 'Informe a senha' },
       { value: this.confirmPassword, message: 'Informe confirme a senha' },
-      { value: this.zipCode, message: 'Informe o CEP com 8 dígitos', lenght: 8 }
+      { value: this.zipCode, message: 'Informe o CEP com 8 dígitos', length: 8 }
     ];
 
     if(this.toolsService.isValidCPF(this.customer_cpf) == false){
