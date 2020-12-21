@@ -75,8 +75,9 @@ export class ProductsPage implements OnInit {
           this.product_description = data['result'][0]['product_description'];
           this.product_picture = data['result'][0]['product_picture'];
         } else {
-          this.toolsService.showToast(data['message'], 2000, 'success');
+          this.toolsService.showToast(data['message'],1500, 'success');
         }
+        this.toolsService.hideLoading();
       }, error => {
         this.toolsService.hideLoading().finally(() => {
           this.toolsService.showAlert();
