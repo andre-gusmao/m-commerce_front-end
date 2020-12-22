@@ -1,4 +1,3 @@
-import { async } from '@angular/core/testing';
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import { IOrder } from '../../inferfaces/order';
@@ -50,16 +49,11 @@ export class ShoppingBagService {
   /* orderItem functions */
   public setOrderItem(item: IOrderItem){
     let result: boolean;
-
-    this.storage.set(item.order_item_name,item)
-    .then(
-      () => { 
-        result = true;
-      },
-      error => {
-        result = false;
-      }
-    );
+    this.storage.set(item.order_item_name,item).then(() => { 
+      result = true;
+    }, error => {
+      result = false;
+    });
     return result;
   }
 
@@ -112,16 +106,11 @@ export class ShoppingBagService {
   /* order functions */
   public setOrder(order: IOrder){
     let result: boolean;
-
-    this.storage.set(order.order_name,order)
-    .then(
-      () => { 
-        result = true;
-      },
-      error => {
-        result = false;
-      }
-    );
+    this.storage.set(order.order_name,order).then(() => { 
+      result = true;
+    }, error => {
+      result = false;
+    });
     return result;
   }
 
@@ -157,11 +146,23 @@ export class ShoppingBagService {
     let list = await this.keys();
     if(list){
       for(let i = 0; i < list.length; i++){
-        if(list[i]!="creditCard") {
+        if(!list[i].startsWith("creditCard")) {
           await this.remove(list[i]);
         }
       }
     }
+  }
+
+  public generateCarKey(){
+    let now = new Date();
+    let key: string = "creditCard";
+    key += now.getFullYear().toString();
+    key += now.getMonth().toString();
+    key += now.getDate().toString();
+    key += now.getHours().toString();
+    key += now.getMinutes().toString();
+    key += now.getSeconds().toString();
+    return key;
   }
 
   public async hasCreditCard(){
@@ -176,24 +177,27 @@ export class ShoppingBagService {
 
   public async setCreditCard(creditCard: ICreditCard){
     let result: boolean;
-
-    this.storage.set("creditCard",creditCard)
-    .then(
-      () => { 
-        result = true;
-      },
-      error => {
-        result = false;
-      }
-    );
+    let key: string = "";
+    if(creditCard.id_credit_card == undefined || creditCard.id_credit_card == "") {
+      key = this.generateCarKey();
+      creditCard.id_credit_card = key;
+    } else {
+      key = creditCard.id_credit_card;
+    }
+    await this.storage.set(key,creditCard).then(() => {
+      result = true;
+    }, error => {
+      result = false;
+    });
     return result;    
   }
 
-  public async getCreditCard(){
+  public async getCreditCard(key){
     let creditCard: ICreditCard;
-    let storageCard = await this.storage.get("creditCard");
+    let storageCard = await this.storage.get(key);
     if(storageCard){
       creditCard = {
+        id_credit_card: storageCard.id_credit_card,
         card_number: storageCard.card_number,
         card_expiration_month: storageCard.card_expiration_month,
         card_expiration_year: storageCard.card_expiration_year,
@@ -203,6 +207,12 @@ export class ShoppingBagService {
       }
     }
     return creditCard;
+  }
+
+  public async getListCreditCard(key: string){
+    let cardList: Array<ICreditCard> = [];
+    await this.forEach(key).then((card) => { cardList = card; });
+    return cardList;
   }
 
   public moneyFormat(_money: number): string{

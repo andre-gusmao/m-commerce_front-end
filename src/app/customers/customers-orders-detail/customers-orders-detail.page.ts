@@ -79,7 +79,7 @@ export class CustomersOrdersDetailPage implements OnInit {
   private async creditCardExists(){
     this.hasCreditCard = await this.ShopBagSrc.hasCreditCard();
     if(this.hasCreditCard){
-      this.credit_card = await this.ShopBagSrc.getCreditCard()
+      //this.credit_card = await this.ShopBagSrc.getCreditCard()
       this.card_number = "Cartão final " + this.credit_card.card_number.substring(12);
     } else {
       this.card_number = "";

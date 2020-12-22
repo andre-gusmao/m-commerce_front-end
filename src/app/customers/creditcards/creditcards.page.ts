@@ -1,8 +1,11 @@
+import { async } from '@angular/core/testing';
+import { ICreditCard } from './../../inferfaces/creditCard';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AuthenticationsService } from '../../services/authentications/authentications.service';
 import { ToolsService } from 'src/app/services/tools/tools.service';
 import { RequestsService } from '../../services/requests/requests.service';
+import { ShoppingBagService } from '../../services/shopping-bag/shopping-bag.service';
 
 @Component({
   selector: 'app-creditcards',
@@ -13,19 +16,21 @@ export class CreditcardsPage implements OnInit {
   
   id_credit_card: string;
   id_customer: string;
-  credit_card_number: string;
-  credit_card_printed_name: string;
-  credit_card_expiration_month: string;
-  credit_card_expiration_year: string;
-  credit_card_security_code: string;
-  credit_card_company: string;
-  credit_card_label: string;
+  card_number: string = "";
+  card_printed_name: string = "";
+  card_expiration_month: string = "";
+  card_expiration_year: string = "";
+  card_security_code: string = "";
+  card_company: string = "";
+  credit_card_label: string = "";
+  customer_cpf: string = "";
   listYear: any = [];
   url: string = 'customers/creditcards.php';
   listPage: string = 'creditcards-list';
 
   constructor(
     private activatedRoute: ActivatedRoute,
+    public ShopBagSrc: ShoppingBagService,
     public requestService: RequestsService,
     public toolsService: ToolsService,
     public authService: AuthenticationsService
@@ -52,69 +57,26 @@ export class CreditcardsPage implements OnInit {
     }
   }
 
-  async registerCreditCard() {
-    let dataRequest = {
-      id_customer: this.id_customer,
-      credit_card_number: this.credit_card_number,
-      credit_card_printed_name: this.credit_card_printed_name,
-      credit_card_expiration_month: this.credit_card_expiration_month,
-      credit_card_expiration_year: this.credit_card_expiration_year,
-      credit_card_security_code: this.credit_card_security_code,
-      credit_card_company: this.credit_card_company,
-      request_type: ''
-    }
-    const fields = [
-      { value: this.credit_card_number, message: 'Informe um cartão válido', length: 16},
-      { value: this.credit_card_printed_name, message: 'Informe o nome'},
-      { value: this.credit_card_expiration_month, message: 'Selecione o mês', length: 2},
-      { value: this.credit_card_expiration_year, message: 'Selecione o ano', length: 4},
-      { value: this.credit_card_security_code, message: 'Informe o CVV', length: 3},
-      { value: this.credit_card_company, message: 'Selecione a bandeira do cartão'}
-    ]
-    if (this.toolsService.validField(fields) == false){
-      return;
-    }
-    if (this.id_credit_card != undefined && this.id_credit_card != ""){
-      dataRequest['id_credit_card'] = this.id_credit_card;
-      dataRequest['request_type'] = 'update';
-    }
-    this.requestService.postRequest(dataRequest, this.url).subscribe(async dataResponse => {
-      if (dataResponse['success']) {
-        this.toolsService.showToast(dataResponse['message'],2000,'success');
-        this.toolsService.goToPage(this.listPage);
-      }else{
-        this.toolsService.showToast(dataResponse['message'],2000,'warning');
-      }
-    });
-  }
-
-  private loadCreditCard(id_credit_card: string): void {
-    this.requestService.getRequestById(this.url, 'id',id_credit_card).subscribe(async data => {
-        if (data['success']) {
-          this.id_credit_card = data['result'][0]['id_credit_card'];
-          this.id_customer = data['result'][0]['id_customer'];
-          this.credit_card_number = data['result'][0]['credit_card_number'];
-          this.credit_card_printed_name = data['result'][0]['credit_card_printed_name'];
-          this.credit_card_expiration_month = data['result'][0]['credit_card_expiration_month'];
-          this.credit_card_expiration_year = data['result'][0]['credit_card_expiration_year'];
-          this.credit_card_security_code = data['result'][0]['credit_card_security_code'];
-          this.credit_card_company = data['result'][0]['credit_card_company'];
-        } else {
-          this.toolsService.showToast(data['message'], 2000, 'success');
-        }
-      }, error => {
-        this.toolsService.showAlert();
-      }
-    );
+  private async loadCreditCard(id_credit_card: string) {
+    let cardEdit: ICreditCard;
+    cardEdit = await this.ShopBagSrc.getCreditCard(id_credit_card);
+    this.id_credit_card = cardEdit.id_credit_card;
+    this.card_number = cardEdit.card_number;
+    this.card_expiration_month = cardEdit.card_expiration_month;
+    this.card_expiration_year = cardEdit.card_expiration_year;
+    this.card_security_code = cardEdit.card_security_code;
+    this.card_printed_name = cardEdit.card_printed_name;
+    this.customer_cpf = cardEdit.customer_cpf;
+    this.getCreditCardLabel();
   }
 
   private cleanForm() {
-    this.credit_card_number = "";
-    this.credit_card_printed_name = "";
-    this.credit_card_expiration_month = "";
-    this.credit_card_expiration_year = "";
-    this.credit_card_security_code = "";
-    this.credit_card_company = "";
+    this.card_number = "";
+    this.card_printed_name = "";
+    this.card_expiration_month = "";
+    this.card_expiration_year = "";
+    this.card_security_code = "";
+    this.card_company = "";
   };
 
   private createListYear(){
@@ -134,33 +96,72 @@ export class CreditcardsPage implements OnInit {
     var regexDiners = /^3(?:0[0-5]|[68][0-9])[0-9]{11}/;
     var regexDiscover = /^6(?:011|5[0-9]{2})[0-9]{12}/;
     var regexJCB = /^(?:2131|1800|35\d{3})\d{11}/;
-    var cardNumber = this.credit_card_number;
+    var cardNumber = this.card_number;
 
-    this.credit_card_company = '';
+    this.card_company = '';
   
     if(regexVisa.test(cardNumber)){
-     this.credit_card_company = '1';//Visa
+     this.card_company = '1';//Visa
     }
     if(regexMaster.test(cardNumber)){
-      this.credit_card_company = '2';//Master
+      this.card_company = '2';//Master
     }
     if(regexAmex.test(cardNumber)){
-      this.credit_card_company = '3';//Amex
+      this.card_company = '3';//Amex
     }
     if(regexDiners.test(cardNumber)){
-      this.credit_card_company = '4';//Diners
+      this.card_company = '4';//Diners
     }
     if(regexDiscover.test(cardNumber)){
-      this.credit_card_company = '5';//Discover
+      this.card_company = '5';//Discover
     }
     if(regexJCB.test(cardNumber)){
-      this.credit_card_company = '6';//JCB
+      this.card_company = '6';//JCB
     }
   
-    if(this.credit_card_company === '') {
-      this.credit_card_company = '0';//Outros
+    if(this.card_company === '') {
+      this.card_company = '0';//Outros
     }
   
+  }
+
+  public async registerCard(){
+    let newCreditCard: ICreditCard;
+    const fields = [
+      { value: this.card_number, message: 'Informe um cartão válido', length: 16},
+      { value: this.card_printed_name, message: 'Informe o nome'},
+      { value: this.card_expiration_month, message: 'Selecione o mês', length: 2},
+      { value: this.card_expiration_year, message: 'Selecione o ano', length: 4},
+      { value: this.card_security_code, message: 'Informe o CVV', length: 3},
+      { value: this.card_company, message: 'Selecione a bandeira do cartão'}
+    ]
+
+    if (this.toolsService.validField(fields) == false){
+      return;
+    }
+
+    if(this.customer_cpf != "" && this.toolsService.isValidCPF(this.customer_cpf) == false){
+      return;
+    }
+
+    newCreditCard = {
+      id_credit_card: this.id_credit_card,
+      card_number: this.card_number,
+      card_printed_name: this.card_printed_name,
+      card_expiration_month: this.card_expiration_month,
+      card_expiration_year: this.card_expiration_year,
+      card_security_code: this.card_security_code,
+      customer_cpf: this.customer_cpf
+    }
+
+    await this.ShopBagSrc.setCreditCard(newCreditCard).then((result) => {
+      if(result) {
+        this.toolsService.showToast("Cartão gravado com suceso",1000,"success");
+        this.toolsService.goToPage(this.listPage);
+      } else {
+        this.toolsService.showToast("Não foi possível gravar o cartão",1500,"warning");
+      }
+    });
   }
 
 }
