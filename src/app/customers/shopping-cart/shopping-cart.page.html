@@ -66,8 +66,8 @@
       <ion-icon name="logo-usd"></ion-icon>
       Pagar &nbsp; {{totalOrder | currency:"BRL":"symbol"}}
     </ion-button>
-    <ion-button expand="block" strong="true" *ngIf="!hasCreditCard" fill="outline" shape="round" (click)="addCreditCard()">
-      <ion-icon name="card-outline"></ion-icon>Adicionar cartão
+    <ion-button expand="block" strong="true" *ngIf="!hasCreditCard" fill="outline" shape="round" (click)="selectPayment()">
+      <ion-icon name="logo-usd"></ion-icon> Pagar
     </ion-button>
   </div>
 </ion-footer>

@@ -9,6 +9,7 @@ import { IOrder } from './../../inferfaces/order';
 import { ICreditCard } from './../../inferfaces/creditCard';
 import { ModalController, AlertController } from '@ionic/angular';
 import { ShoppingCartCardPage } from '../shopping-cart-card/shopping-cart-card.page'
+import { ok } from 'assert';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -28,6 +29,8 @@ export class ShoppingCartPage implements OnInit {
   customer_cpf: string = "";
   hasCPF: boolean = false;
   catalog: string = '/customers-catalogs';
+  cardList: ICreditCard[];
+  cardButtons: any = [];
 
   constructor(
     public toolsService: ToolsService,
@@ -43,47 +46,9 @@ export class ShoppingCartPage implements OnInit {
 
   ionViewWillEnter() {
     if (this.authService.getLoginSuccessful()) {
-      this.creditCardExists();
       this.loadOrderItems();
     } else {
       this.authService.setLogout();
-    }
-  }
-
-  public async addCreditCard(){
-    const cart_card = await this.modalCtrl.create({
-      component: ShoppingCartCardPage,
-      componentProps: {
-        credit_card: this.credit_card
-      }
-    });
-
-    await cart_card.present();
-    const { data } = await cart_card.onWillDismiss();
-
-    if(data){
-      this.credit_card = {
-        card_number: data.card_number,
-        card_expiration_month: data.card_expiration_month,
-        card_expiration_year: data.card_expiration_year,
-        card_security_code: data.card_security_code,
-        card_printed_name: data.card_printed_name,
-        customer_cpf: data.customer_cpf,
-      }
-      this.ShopBagSrc.setCreditCard(this.credit_card);
-      this.creditCardExists();
-    } else {
-      console.log("Nenhum cartão adicionado")
-    }
-  }
-
-  private async creditCardExists(){
-    this.hasCreditCard = await this.ShopBagSrc.hasCreditCard();
-    if(this.hasCreditCard){
-      //this.credit_card = await this.ShopBagSrc.getCreditCard()
-      this.card_number = "Cartão final " + this.credit_card.card_number.substring(12);
-    } else {
-      this.card_number = "";
     }
   }
 
@@ -230,14 +195,14 @@ export class ShoppingCartPage implements OnInit {
   }
 
   public removeCreditCard(){
-    this.ShopBagSrc.remove("creditCard");
+    this.credit_card = null;
     this.hasCreditCard = false;
     this.card_number = "";
   }
 
   public changeCreditCard(){
     this.removeCreditCard();
-    this.addCreditCard()
+    this.selectCreditCard()
   }
 
   public async addCPF(){
@@ -269,6 +234,121 @@ export class ShoppingCartPage implements OnInit {
   public clearCPF(){
     this.hasCPF = false;
     this.customer_cpf = "";
+  }
+
+  public async selectPayment() {
+    const alert = await this.alertCtrl.create({
+      header: 'Meio de pagametno',
+      message: 'Selecione a forma de pagamento',
+      buttons: [{
+        text: 'Cartão de Crédito',
+        handler: () => { this.selectCreditCard(); }
+      }, {
+        text: 'Dinheiro',
+        handler: () => { this.setMoney() }
+      }]
+    });
+    await alert.present();
+  }
+
+  public async selectCreditCard(){
+    const alert = this.alertCtrl;
+    this.clearCardList();
+    this.cardList = await this.ShopBagSrc.getListCreditCard("creditCard");
+    if(!this.cardList.length){
+      const alert = await this.alertCtrl.create({
+        header: 'Ops!!!',
+        message: 'Você não tem cartão cadastrado. Deseja cadastrar um agora ?',
+        buttons: [{
+          text: "Sim",
+          handler: () => { this.toolsService.goToPage('/creditcards'); }
+        },{
+          text: "Não",
+          role: 'cancel'
+        }]
+      });
+      await alert.present();
+    } else {
+      for(let i = 0; i < this.cardList.length; i++){
+        this.cardButtons.push({
+          text: this.getCreditCardLabel(this.cardList[i].card_number) +" final "+ this.cardList[i].card_number.substr(12,4),
+          handler: () => {
+            this.setCreditCard(this.cardList[i]);
+          }
+        });
+      }
+      const alert = await this.alertCtrl.create({
+        header: 'Cartão de Crédito',
+        message: 'Selecione o cartão de crédito',
+        buttons: this.cardButtons
+      });
+      await alert.present();
+    }
+  }
+
+  private async setCreditCard(creditCard: ICreditCard){
+    this.credit_card = {
+      card_number: creditCard.card_number,
+      card_expiration_month: creditCard.card_expiration_month,
+      card_expiration_year: creditCard.card_expiration_year,
+      card_security_code: creditCard.card_security_code,
+      card_printed_name: creditCard.card_printed_name,
+      customer_cpf: creditCard.customer_cpf,
+    }
+    this.card_number = "Cartão final " + creditCard.card_number.substring(12);
+    this.hasCreditCard = true;
+  }
+
+  private clearCardList(){
+    if(this.cardList){
+      while(this.cardList.length){
+        this.cardList.pop();
+      }
+    }
+    while(this.cardButtons.length){
+      this.cardButtons.pop();
+    }
+  }
+
+  public getCreditCardLabel(cardNumber){
+  
+    var regexVisa = /^4[0-9]{12}(?:[0-9]{3})?/;
+    var regexMaster = /^5[1-5][0-9]{14}/;
+    var regexAmex = /^3[47][0-9]{13}/;
+    var regexDiners = /^3(?:0[0-5]|[68][0-9])[0-9]{11}/;
+    var regexDiscover = /^6(?:011|5[0-9]{2})[0-9]{12}/;
+    var regexJCB = /^(?:2131|1800|35\d{3})\d{11}/;
+    let label = '';
+  
+    if(regexVisa.test(cardNumber)){
+     label = 'Visa';
+    }
+    if(regexMaster.test(cardNumber)){
+      label = 'Master';
+    }
+    if(regexAmex.test(cardNumber)){
+      label = 'Amex';
+    }
+    if(regexDiners.test(cardNumber)){
+      label = 'Diners';
+    }
+    if(regexDiscover.test(cardNumber)){
+      label = 'Discover';
+    }
+    if(regexJCB.test(cardNumber)){
+      label = 'JCB';
+    }
+  
+    if(label === '') {
+      label = 'Outros';
+    }
+
+    return label;
+  
+  }
+
+  private setMoney(){
+    console.log("Dinheiro");
   }
 
 }
