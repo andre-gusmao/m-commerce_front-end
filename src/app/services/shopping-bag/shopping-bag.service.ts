@@ -223,4 +223,23 @@ export class ShoppingBagService {
     return money;
   }
 
+  public async setPaymentMethod(id_payment_method: number = 1){
+    let order: IOrder = await this.getOrder("order");
+    if(order) {
+      order.id_payment_method = id_payment_method;
+      order.order_payment_method = this.getPaymentMethodLabel(id_payment_method);
+      this.setOrder(order);
+    }
+  }
+
+  public getPaymentMethodLabel(id_payment_method: number = 1){
+    let label: string = "";
+    if (id_payment_method === 1) {
+      label = "Cartão de Créito"
+    } else if (id_payment_method === 2) {
+      label = "Dinheiro"
+    }
+    return label;
+  }
+
 }
