@@ -24,23 +24,28 @@
     <ion-row><ion-col size="12">&nbsp;</ion-col></ion-row>
     <ion-row>
       <ion-col size="6" class="ion-text-center"><strong>Entrada</strong></ion-col>
-      <ion-col size="6" class="ion-text-center"><strong>Total</strong></ion-col>
+      <ion-col *ngIf="id_payment_method != 1" size="6" class="ion-text-center"><strong>Total</strong></ion-col>
+      <ion-col *ngIf="id_payment_method == 1" size="6" class="ion-text-center-danger"><strong>Total Pago</strong></ion-col>
     </ion-row>
     <ion-row>
       <ion-col size="6" class="ion-text-center"><strong>{{order_time | date: "dd/MM/yyyy H:mm"}}</strong></ion-col>
-      <ion-col size="6" class="ion-text-center"><strong>{{order_total_price | currency:"BRL":"symbol"}}</strong></ion-col>
+      <ion-col *ngIf="id_payment_method != 1" size="6" class="ion-text-center"><strong>{{order_total_price | currency:"BRL":"symbol"}}</strong></ion-col>
+      <ion-col *ngIf="id_payment_method == 1" size="6" class="ion-text-center-danger"><strong>{{order_total_price | currency:"BRL":"symbol"}}</strong></ion-col>
     </ion-row>
   </ion-grid>
 </ion-content>
 <ion-footer>
   <ion-toolbar style="text-align: center;">
+    <ion-label *ngIf="id_payment_method == 1" style="color: red;">
+      Atenção! Pagamento efetuado em dinheiro. Confira o recebimento antes de aceitar o pedido.
+    </ion-label>
     <ion-select cancelText="Cancelar" interface="action-sheet"
       *ngIf="hasWorker && (order_status == '3' || order_status == '4')" [(ngModel)]="id_worker" name="id_worker"
       placeholder="Selecione o entregador">
       <ion-select-option *ngFor="let worker of listWorkers" [value]="worker.id_worker">{{worker.worker_name}}
       </ion-select-option>
     </ion-select>
-    <ion-button *ngIf="order_status == '2'" fill="outline" shape="round" (click)="updateOrder('3')">
+    <ion-button *ngIf="order_status <= '2'" fill="outline" shape="round" (click)="updateOrder('3')">
       <ion-icon name="thumbs-up-outline"></ion-icon>Aceitar
     </ion-button>
     <ion-button *ngIf="order_status == '3'" fill="outline" shape="round" (click)="updateOrder('4')">
@@ -49,7 +54,7 @@
     <ion-button *ngIf="order_status == '4'" fill="outline" shape="round" (click)="updateOrder('5')">
       <ion-icon name="fast-food-outline"></ion-icon>Entregar
     </ion-button>
-    <ion-button *ngIf="order_status == '2'" fill="outline" shape="round" (click)="updateOrder('6')">
+    <ion-button *ngIf="order_status <= '2'" fill="outline" shape="round" (click)="updateOrder('6')">
       <ion-icon name="thumbs-down-outline"></ion-icon>Rejeitar
     </ion-button>
   </ion-toolbar>

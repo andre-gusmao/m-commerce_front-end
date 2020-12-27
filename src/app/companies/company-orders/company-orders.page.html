@@ -10,6 +10,22 @@
     <ion-row style="text-align: center;">
       <ion-col size="12"><b>Você não tem pedidos</b></ion-col>
     </ion-row>
+    <ion-row style="text-align: center;">
+      <ion-col size="8">
+        <ion-input [(ngModel)]="searchbar" placeholder="Pesquisar pedido" (ionChange)="filterOrder()"></ion-input>
+      </ion-col>
+      <ion-col size="4">
+        <ion-select multiple [(ngModel)]="statusFilter" name="statusFilter" cancelText="Cancelar"
+          (ionChange)="refreshStatusFilter()">
+          <ion-select-option value="1">Aguarda Pagto.</ion-select-option>
+          <ion-select-option value="2">Pago</ion-select-option>
+          <ion-select-option value="3">Em produção</ion-select-option>
+          <ion-select-option value="4">Pronto</ion-select-option>
+          <ion-select-option value="5">Entregue</ion-select-option>
+          <ion-select-option value="6">Cancelado</ion-select-option>
+        </ion-select>
+      </ion-col>
+    </ion-row>
   </ion-grid>
   <ion-grid *ngIf="orderList.length != 0 || searchbar">
     <ion-row style="text-align: center;">
@@ -22,6 +38,7 @@
       <ion-col size="4">
         <ion-select multiple [(ngModel)]="statusFilter" name="statusFilter" cancelText="Cancelar"
           (ionChange)="refreshStatusFilter()">
+          <ion-select-option value="1">Aguarda Pagto.</ion-select-option>
           <ion-select-option value="2">Pago</ion-select-option>
           <ion-select-option value="3">Em produção</ion-select-option>
           <ion-select-option value="4">Pronto</ion-select-option>
@@ -36,7 +53,7 @@
       <ion-col size="4">Status</ion-col>
       <ion-col class="ion-text-end" size="3">Valor</ion-col>
     </ion-row>
-    <ion-row *ngFor="let order of orderList; let i = index;" (click)="actionWithOrder(order.id_order)">
+    <ion-row *ngFor="let order of orderList; let i = index;" (click)="actionWithOrder(order.id_order,order.id_payment_method)">
       <ion-col size="3">
         <ion-text [ngClass]="(i % 2 == 0) ? 'odd' : 'even'">
           {{order.id_order}}

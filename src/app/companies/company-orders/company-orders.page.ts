@@ -23,7 +23,7 @@ export class CompanyOrdersPage implements OnInit {
   searchbar: string = "";
   id_company: string = "";
   id_worker: string = "";
-  statusFilter: Array<string> = ["2","3","4"];
+  statusFilter: Array<string> = ["1","2","3","4"];
 
   constructor(
     public requestService: RequestsService,
@@ -113,7 +113,7 @@ export class CompanyOrdersPage implements OnInit {
     })
   }
 
-  public async actionWithOrder(id_order){
+  public async actionWithOrder(id_order: string = "",id_payment_method: number){
     let dataRequest = {
       id_order: id_order,
       id_worker: "",
@@ -124,7 +124,8 @@ export class CompanyOrdersPage implements OnInit {
     const orderDetails = await this.modalCtrl.create({
       component: CompanyOrderDetailsPage,
       componentProps: {
-        id_order: id_order
+        id_order: id_order,
+        id_payment_method: id_payment_method,
       }
     });
 

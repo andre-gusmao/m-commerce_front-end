@@ -14,6 +14,7 @@ import { environment } from 'src/environments/environment';
 export class CompanyOrderDetailsPage implements OnInit {
   
   @Input() id_order: string;
+  @Input() id_payment_method: number;
   id_company: string;
   id_worker: string;
   listWorkers: any[];
