@@ -51,23 +51,27 @@
 </ion-content>
 <ion-footer>
   <div style="text-align: center;" *ngIf="totalOrder != 0">
-    <!-- <ion-item style="text-align: center;">
-      <ion-title>{{totalOrder | currency:"BRL":"symbol"}}</ion-title>
-    </ion-item> -->
+    <ion-item style="text-align: center;" lines="none">
+      <ion-title>TOTAL {{totalOrder | currency:"BRL":"symbol"}}</ion-title>
+    </ion-item>
     <ion-item *ngIf="hasCreditCard" style="text-align: center; font-size: smaller;">
       <ion-text>{{card_number}}</ion-text>
       <ion-icon color="primary" size="small" name="reload-circle-outline" (click)="changeCreditCard()" slot="end">
       </ion-icon>
       <ion-icon color="danger" size="small" name="trash-outline" (click)="removeCreditCard()" slot="end"></ion-icon>
     </ion-item>
+    <ion-item *ngIf="hasMoney" style="text-align: center; font-size: smaller;">
+      <ion-text>Pagamento em Dinheiro</ion-text>
+      <ion-icon color="danger" size="small" name="trash-outline" (click)="removeMoney()" slot="end"></ion-icon>
+    </ion-item>
   </div>
   <div>
-    <ion-button strong="true" expand="block" *ngIf="hasCreditCard" fill="outline" shape="round" (click)="registerOrder()">
-      <ion-icon name="logo-usd"></ion-icon>
-      Pagar &nbsp; {{totalOrder | currency:"BRL":"symbol"}}
+    <ion-button strong="true" expand="block" *ngIf="hasCreditCard || hasMoney" fill="outline" shape="round" (click)="registerOrder()">
+      <!-- <ion-icon name="logo-usd"></ion-icon> -->
+      {{totalOrder | currency:"BRL":"symbol"}} - Finalizar
     </ion-button>
-    <ion-button expand="block" strong="true" *ngIf="!hasCreditCard" fill="outline" shape="round" (click)="selectPayment()">
-      <ion-icon name="logo-usd"></ion-icon> Pagar
+    <ion-button expand="block" strong="true" *ngIf="!hasCreditCard && !hasMoney && totalOrder != 0" fill="outline" shape="round" (click)="selectPayment()">
+      <ion-icon name="logo-usd"></ion-icon> Forma de Pagamento
     </ion-button>
   </div>
 </ion-footer>

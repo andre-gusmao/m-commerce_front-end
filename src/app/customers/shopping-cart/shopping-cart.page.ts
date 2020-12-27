@@ -24,6 +24,7 @@ export class ShoppingCartPage implements OnInit {
   url: string = 'customers/orders.php';
   listPage: string = 'customers-orders';
   hasCreditCard: boolean = false;
+  hasMoney: boolean = false;
   authorized: boolean = false;
   card_number: string = "";
   customer_cpf: string = "";
@@ -92,6 +93,7 @@ export class ShoppingCartPage implements OnInit {
       order_status: order.order_status,
       order_payment_status: order.order_payment_status,
       order_payment_method: order.order_payment_method,
+      id_payment_method: order.id_payment_method,
       customer_cpf: this.customer_cpf,
       items: []
     }
@@ -296,7 +298,9 @@ export class ShoppingCartPage implements OnInit {
       customer_cpf: creditCard.customer_cpf,
     }
     this.card_number = "Cartão final " + creditCard.card_number.substring(12);
+    this.hasMoney = false;
     this.hasCreditCard = true;
+    await this.ShopBagSrc.setPaymentMethod(1);
   }
 
   private clearCardList(){
@@ -347,8 +351,14 @@ export class ShoppingCartPage implements OnInit {
   
   }
 
-  private setMoney(){
-    console.log("Dinheiro");
+  private async setMoney(){
+    this.hasMoney = true;
+    this.hasCreditCard = false;
+    await this.ShopBagSrc.setPaymentMethod(2);
+  }
+
+  public async removeMoney(){
+    this.hasMoney = false;
   }
 
 }
