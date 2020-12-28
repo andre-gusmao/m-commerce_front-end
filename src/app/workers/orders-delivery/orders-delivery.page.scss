@@ -1,0 +1,27 @@
+.container {
+    height: 60%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.head {
+    text-align: center;
+}
+
+ion-list {
+    width: 95%;
+    position: absolute;
+    top: 150px;
+    z-index: 99;
+    margin-left: 2.5%;
+    padding-top: 0;
+    padding-bottom: 0;
+    box-shadow: 0 5px 11px 3px rgba(0,0,0,0.75);
+    background-color: honeydew;
+} 
+
+#map {
+    height: 40%;
+    width: 100%;
+}
