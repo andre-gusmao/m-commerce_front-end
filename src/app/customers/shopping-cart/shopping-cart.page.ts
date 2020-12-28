@@ -118,7 +118,11 @@ export class ShoppingCartPage implements OnInit {
       if (dataResponse['success']) {
         await this.toolsService.showToast(dataResponse['message'],1000,'success');
         await this.toolsService.hideLoading();
-        await this.authorizeOrder(this.credit_card,dataResponse);
+        if(order.id_payment_method === 1){
+          await this.authorizeOrder(this.credit_card,dataResponse);
+        } else {
+          this.nextStep(dataResponse['id_order']);
+        }
       }else{
         await this.toolsService.showToast(dataResponse['message'],2000,'warning');
         await this.unauthorizedOrder(dataResponse['id_order']);
@@ -128,7 +132,22 @@ export class ShoppingCartPage implements OnInit {
         this.toolsService.showToast("Não foi possível enviar seu pedido",2000,"danger");
       });
     });
-    this.toolsService.goToPage("customers-orders");
+  }
+
+  private async nextStep(id_order: string = ""){
+    const alert = await this.alertCtrl.create({
+      header: 'KioskWide',
+      message: 'Deseja informar local de entrega ?',
+      buttons: [{
+        text: 'Não',
+        role: 'cancel',
+        handler: () => { this.toolsService.goToPage('customers-orders'); }
+      }, {
+        text: 'Sim',
+        handler: () => { this.toolsService.goToPage('orders-delivery/'); }
+      }]
+    });
+    await alert.present();
   }
 
   private async authorizeOrder(creditCard: ICreditCard, order: any){
@@ -162,7 +181,8 @@ export class ShoppingCartPage implements OnInit {
         this.clearOrderItems();
         this.ShopBagSrc.clearOrder();
         await this.toolsService.hideLoading();
-        await this.toolsService.showToast(dataResponse['message'],2000,'success');
+        await this.toolsService.showToast(dataResponse['message'],1500,'success');
+        this.nextStep(order.id_order.toString());
       } else {
         this.authorized = false;
         this.toolsService.showToast(dataResponse['message'],2000,'warning');
