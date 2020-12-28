@@ -8,8 +8,6 @@ import { IOrderItem } from './../../inferfaces/orderItem';
 import { IOrder } from './../../inferfaces/order';
 import { ICreditCard } from './../../inferfaces/creditCard';
 import { ModalController, AlertController } from '@ionic/angular';
-import { ShoppingCartCardPage } from '../shopping-cart-card/shopping-cart-card.page'
-import { ok } from 'assert';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -144,7 +142,7 @@ export class ShoppingCartPage implements OnInit {
         handler: () => { this.toolsService.goToPage('customers-orders'); }
       }, {
         text: 'Sim',
-        handler: () => { this.toolsService.goToPage('orders-delivery/'); }
+        handler: () => { this.toolsService.goToPage('orders-delivery/'+id_order); }
       }]
     });
     await alert.present();

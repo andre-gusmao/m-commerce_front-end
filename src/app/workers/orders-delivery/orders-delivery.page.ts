@@ -1,6 +1,7 @@
 import { Component, ElementRef, NgZone, OnInit, ViewChild } from '@angular/core';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { ToolsService } from 'src/app/services/tools/tools.service';
+import { AuthenticationsService } from 'src/app/services/authentications/authentications.service';
 
 @Component({
   selector: 'app-orders-delivery',
@@ -24,6 +25,7 @@ export class OrdersDeliveryPage implements OnInit {
   constructor(
     public toolsService: ToolsService,
     private ngZone: NgZone,
+    public authService: AuthenticationsService,
     private geolocation: Geolocation
   ) { }
 
@@ -32,8 +34,12 @@ export class OrdersDeliveryPage implements OnInit {
   }
 
   ionViewWillEnter(){
-    this.showMap();
-    this.pinCompanyPosition(this.companyPosition);
+    if (this.authService.getLoginSuccessful()) {
+      this.showMap();
+      this.pinCompanyPosition(this.companyPosition);
+    } else {
+      this.authService.setLogout();
+    }
   }
 
   private showMap(){
