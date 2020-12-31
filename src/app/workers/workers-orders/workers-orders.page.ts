@@ -49,7 +49,7 @@ export class WorkersOrdersPage implements OnInit {
     setTimeout(() => {
       this.ionViewWillEnter();
       event.target.complete();
-    }, 500);
+    }, 5000);
   }
 
   loadData(event) {

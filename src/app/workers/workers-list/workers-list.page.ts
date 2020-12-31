@@ -46,7 +46,7 @@ export class WorkersListPage implements OnInit {
     setTimeout(() => {
       this.ionViewWillEnter();
       event.target.complete();
-    }, 500);
+    }, 5000);
   }
 
   loadData(event) {
@@ -55,7 +55,7 @@ export class WorkersListPage implements OnInit {
       this.loadWorkers().then(() => {
         event.target.complete();
       });
-    }, 500);
+    }, 5000);
   }
 
   private async loadWorkers(){

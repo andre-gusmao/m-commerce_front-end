@@ -41,7 +41,7 @@ export class CustomersOrdersPage implements OnInit {
     setTimeout(() => {
       this.ionViewWillEnter();
       event.target.complete();
-    }, 500);
+    }, 5000);
   }
 
   loadData(event) {
@@ -49,7 +49,7 @@ export class CustomersOrdersPage implements OnInit {
       this.loadOrders().then(() => {
         event.target.complete();
       });
-    }, 500);
+    }, 5000);
   }
 
   public async loadOrders() {
