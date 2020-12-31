@@ -21,7 +21,7 @@ export class CustomersFeedbackPage implements OnInit {
   }
 
   public registerFeedback(){
-    this.toolsService.showToast("Obrigado pelo feedback!");
+    this.toolsService.showToast("#TODO Obrigado pelo feedback!");
     this.toolsService.goToPage("/customers-catalogs/");
   }
 

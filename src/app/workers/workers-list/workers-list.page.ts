@@ -59,7 +59,6 @@ export class WorkersListPage implements OnInit {
   }
 
   private async loadWorkers(){
-    let phone: string = "";
     return new Promise(res => {
       this.requestService.getRequestById(this.url, 'company', this.id_company).subscribe(dataResponse => {
         if(dataResponse['success']) {
@@ -98,7 +97,7 @@ export class WorkersListPage implements OnInit {
         this.toolsService.showToast(dataResponse['message'],2000,'warning');
       }
     });
-}
+  }
 
   public edit(id_worker: string){
     this.toolsService.goToPage(this.editPage + id_worker);
@@ -135,7 +134,8 @@ export class WorkersListPage implements OnInit {
         }
       ]
     })
-    question.present();}
+    question.present();
+  }
 
   public insert(){
     this.toolsService.goToPage(this.editPage);

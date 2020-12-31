@@ -44,7 +44,6 @@ export class ProductsCategoriesPage implements OnInit {
   }
 
   async registerProductCategory() {
-
     let dataRequest = {
       product_category_name: this.product_category_name,
       id_company: this.id_company,
@@ -76,9 +75,6 @@ export class ProductsCategoriesPage implements OnInit {
   }
 
   private loadProductCategory(id_product_category): void {
-    let dataRequest = {
-      id_product_category: id_product_category,
-    };
     this.requestService.getRequestById(this.url, 'id',id_product_category).subscribe(async data => {
         if (data['success']) {
           this.id_product_category = data['result'][0]['id_product_category'];

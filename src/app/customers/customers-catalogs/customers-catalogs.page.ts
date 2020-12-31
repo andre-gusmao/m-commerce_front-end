@@ -66,7 +66,7 @@ export class CustomersCatalogsPage implements OnInit {
       }
     } else {
       this.ShopCartSrc.clearCatalog();
-      this.toolsService.showToast("Faça checkin para carregar o cardapio");
+      this.toolsService.showToast("Faça checkin para carregar o cardápio");
       this.toolsService.goToPage('checkins');
     }
   } 
@@ -94,7 +94,6 @@ export class CustomersCatalogsPage implements OnInit {
         this.toolsService.hideLoading();
       })
     });
-
   }
 
   public async showItem(product: any) {
@@ -160,7 +159,6 @@ export class CustomersCatalogsPage implements OnInit {
       }
 
     }
-
   }
 
   private loadGroups(): void {
@@ -217,5 +215,4 @@ export class CustomersCatalogsPage implements OnInit {
   public checkIn(){
     this.toolsService.goToPage("checkins")
   }
-
 }

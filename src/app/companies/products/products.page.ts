@@ -62,9 +62,6 @@ export class ProductsPage implements OnInit {
   }
 
   private async loadProduct(id_product) {
-    let dataRequest = {
-      id_product: id_product,
-    };
     this.toolsService.showLoading("Carregando produto");
     this.requestService.getRequestById(this.url, 'id', id_product).subscribe(async data => {
         if (data['success']) {
@@ -133,7 +130,6 @@ export class ProductsPage implements OnInit {
   }
 
   public takePictures() {
-    let resized_picture;
     const options: CameraOptions = {
       quality: 50,
       destinationType: this.camera.DestinationType.DATA_URL,
@@ -152,7 +148,6 @@ export class ProductsPage implements OnInit {
   }
 
   public selectPicture(){
-    let resized_picture;
     const options: CameraOptions = {
       quality: 50,
       destinationType: this.camera.DestinationType.DATA_URL,

@@ -83,13 +83,12 @@ export class CreditcardsPage implements OnInit {
     let now = new Date();
     let year = now.getFullYear();
     let i = 0;
-    for(i = 0; i <= 15; i++){
+    for(i = 0; i <= 10; i++){
       this.listYear.push(year+i);
     }
   }
 
   public getCreditCardLabel(){
-  
     var regexVisa = /^4[0-9]{12}(?:[0-9]{3})?/;
     var regexMaster = /^5[1-5][0-9]{14}/;
     var regexAmex = /^3[47][0-9]{13}/;
@@ -97,7 +96,6 @@ export class CreditcardsPage implements OnInit {
     var regexDiscover = /^6(?:011|5[0-9]{2})[0-9]{12}/;
     var regexJCB = /^(?:2131|1800|35\d{3})\d{11}/;
     var cardNumber = this.card_number;
-
     this.card_company = '';
   
     if(regexVisa.test(cardNumber)){
@@ -122,7 +120,6 @@ export class CreditcardsPage implements OnInit {
     if(this.card_company === '') {
       this.card_company = '0';//Outros
     }
-  
   }
 
   public async registerCard(){

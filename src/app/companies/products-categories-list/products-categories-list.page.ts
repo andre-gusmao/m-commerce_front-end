@@ -45,7 +45,7 @@ export class ProductsCategoriesListPage implements OnInit {
     setTimeout(() => {
       this.ionViewWillEnter();
       event.target.complete();
-    }, 500);
+    }, 5000);
   }
 
   loadData(event) {
@@ -54,7 +54,7 @@ export class ProductsCategoriesListPage implements OnInit {
       this.loadProductsCategories().then(() => {
         event.target.complete();
       });
-    }, 500);
+    }, 5000);
   }
 
   private async loadProductsCategories() {
@@ -84,12 +84,10 @@ export class ProductsCategoriesListPage implements OnInit {
   }
 
   public async delete(id_product_category: string) {
-
     let dataRequest = {
       id_product_category: id_product_category,
       request_type: 'delete',
     }
-
     const question = await this.alertCtrl.create({
       header: "Atenção!",
       message: "Confirma exclusão do grupo ?",

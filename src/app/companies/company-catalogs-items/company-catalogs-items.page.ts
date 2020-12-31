@@ -87,7 +87,7 @@ export class CompanyCatalogsItemsPage implements OnInit {
     }
   }
 
-  async registerCatalogsItems(){
+  public async registerCatalogsItems(){
     let dataRequest = {
       id_company: this.id_company,
       id_catalog: this.id_catalog,
@@ -126,7 +126,4 @@ export class CompanyCatalogsItemsPage implements OnInit {
     this.catalog_item_price = 0;
     this.catalog_item_note = "";
   }
-
-  private clearPrice(){}
-
 }

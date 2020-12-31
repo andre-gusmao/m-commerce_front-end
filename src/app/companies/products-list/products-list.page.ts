@@ -52,7 +52,7 @@ export class ProductsListPage implements OnInit {
     setTimeout(() => {
       this.ionViewWillEnter();
       event.target.complete();
-    }, 500);
+    }, 5000);
   }
 
   loadData(event) {
@@ -61,7 +61,7 @@ export class ProductsListPage implements OnInit {
       this.loadProducts().then(() => {
         event.target.complete();
       });
-    }, 500);
+    }, 5000);
   }
 
   private async loadProducts(){
@@ -95,12 +95,10 @@ export class ProductsListPage implements OnInit {
   }
 
   public async delete(id_product){
-
     let dataRequest = {
       id_product: id_product,
       request_type: 'delete',
     }
-
     const question = await this.alertCtrl.create({
       header: "Atenção!",
       message: "Confirma exclusão do produto ?",

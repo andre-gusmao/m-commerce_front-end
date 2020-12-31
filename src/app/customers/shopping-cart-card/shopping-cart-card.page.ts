@@ -43,7 +43,7 @@ export class ShoppingCartCardPage implements OnInit {
     let n_year = 0;
     let s_year = "";
     let i = 0;
-    for(i = 0; i <= 12; i++){
+    for(i = 0; i <= 10; i++){
       n_year = year+i;
       s_year = n_year.toString();
       this.listYear.push(s_year);
@@ -51,7 +51,6 @@ export class ShoppingCartCardPage implements OnInit {
   }
 
   public getCreditCardLabel(){
-  
     var regexVisa = /^4[0-9]{12}(?:[0-9]{3})?/;
     var regexMaster = /^5[1-5][0-9]{14}/;
     var regexAmex = /^3[47][0-9]{13}/;
@@ -59,7 +58,6 @@ export class ShoppingCartCardPage implements OnInit {
     var regexDiscover = /^6(?:011|5[0-9]{2})[0-9]{12}/;
     var regexJCB = /^(?:2131|1800|35\d{3})\d{11}/;
     var cardNumber = this.card_number;
-
     this.card_company = '';
   
     if(regexVisa.test(cardNumber)){
@@ -84,7 +82,6 @@ export class ShoppingCartCardPage implements OnInit {
     if(this.card_company === '') {
       this.card_company = '0';//Outros
     }
-  
   }
 
   public registerCreditCard(){
@@ -121,5 +118,4 @@ export class ShoppingCartCardPage implements OnInit {
       () => { this.modalCtrl = null }
     );
   }
-
 }

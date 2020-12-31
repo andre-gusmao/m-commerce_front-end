@@ -53,7 +53,7 @@ export class CompanyCatalogsItemsListPage implements OnInit {
     setTimeout(() => {
       this.ionViewWillEnter();
       event.target.complete();
-    }, 500);
+    }, 5000);
   }
 
   loadData(event) {
@@ -62,7 +62,7 @@ export class CompanyCatalogsItemsListPage implements OnInit {
       this.loadListCatalogItems().then(() => {
         event.target.complete();
       });
-    }, 500);
+    }, 5000);
   }
 
   private async loadListCatalogItems(){
@@ -129,7 +129,7 @@ export class CompanyCatalogsItemsListPage implements OnInit {
     this.toolsService.goToPage(this.editPage + this.id_catalog);
   }
 
-  async statusItemCardapio(id_catalog_item: string ,catalog_item_status: string){
+  public async statusItemCardapio(id_catalog_item: string ,catalog_item_status: string){
     let dataRequest = {
       id_catalog_item: id_catalog_item,
       request_type: 'status',

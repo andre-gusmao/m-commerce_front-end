@@ -42,7 +42,6 @@ export class ShoppingBagService {
         list.push(value);
       }
     });
-
     return list;
   }
 
@@ -241,5 +240,4 @@ export class ShoppingBagService {
     }
     return label;
   }
-
 }

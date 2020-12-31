@@ -57,7 +57,6 @@ export class CheckinsPage implements OnInit {
   }
 
   async enterQRCode() {
-    let quiosqueMesa: string;
     const msgPrompt = await this.alertCtrl.create({
       header: 'Informe o codigo do QRCode',
       inputs: [{
@@ -91,7 +90,7 @@ export class CheckinsPage implements OnInit {
 
   public validCatalog(QRCodeText: string): boolean {
     let valid: boolean = true;
-    let url: string = "companies/companies.php?id=" + this.id_company + "?checkin=1";
+    //let url: string = "companies/companies.php?id=" + this.id_company + "?checkin=1";
     this.authService.setCompanyID("");
     if (QRCodeText.length > 0) {
       if ((QRCodeText.substr(0, 1).toLocaleUpperCase() != "Q") || (QRCodeText.indexOf('M') == 0) ) {
@@ -109,7 +108,6 @@ export class CheckinsPage implements OnInit {
   private async requestCompanyName(id_company:string = ""){
     let url: string = environment.endpointURL + "companies/companies.php?id=" + id_company + "?checkin=1";
     return await new Promise(res => {
-      let companyName: string = "";
       this.requestService.getRequest(url).subscribe( dataRes => {
         if (dataRes['success']) {
           this.authService.setCompanyName(dataRes['companyName']);
@@ -127,15 +125,10 @@ export class CheckinsPage implements OnInit {
   }
 
 }
-
-  /*
-
-  iOS: To add this entry you can use the edit-config tag in the config.xml like this:
-
-  <edit-config target="NSCameraUsageDescription" file="*-Info.plist" mode="merge">
-      <string>To scan barcodes</string>
-  </edit-config>
-
-  Fonte: https://enappd-apps.gitbook.io/apps/ionic-4-full-app/pro-pack-features/qr-and-barcode-scanning#integrating-scanner-in-ionic-5
-
-  */
+/*
+iOS: To add this entry you can use the edit-config tag in the config.xml like this:
+<edit-config target="NSCameraUsageDescription" file="*-Info.plist" mode="merge">
+    <string>To scan barcodes</string>
+</edit-config>
+Fonte: https://enappd-apps.gitbook.io/apps/ionic-4-full-app/pro-pack-features/qr-and-barcode-scanning#integrating-scanner-in-ionic-5
+*/

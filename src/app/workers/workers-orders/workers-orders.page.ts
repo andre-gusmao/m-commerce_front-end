@@ -57,7 +57,7 @@ export class WorkersOrdersPage implements OnInit {
       this.loadOrders().then(() => {
         event.target.complete();
       });
-    }, 500);
+    }, 5000);
   }
 
   public async loadOrders() {
@@ -100,15 +100,13 @@ export class WorkersOrdersPage implements OnInit {
       dataRequest.order_status = this.newStatus;
       this.requestService.postRequest(dataRequest, this.url).subscribe(async dataResponse => {
         if (dataResponse['success']) {
-          this.toolsService.showToast(dataResponse['message'],2000,'success');
+          this.toolsService.showToast(dataResponse['message'],1500,'success');
           this.loadOrders();
         }else{
-          this.toolsService.showToast(dataResponse['message'],2000,'warning');
+          this.toolsService.showToast(dataResponse['message'],1500,'warning');
         }
       });
-
-    } 
-
+    }
   }
 
 }

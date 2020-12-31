@@ -41,39 +41,12 @@ export class YapayService {
     .set('Access-Control-Allow-Credentials','true')
     .set('Authorization', 'Basic ' + authBasic)
     return headers;
-  }//--data-binary
-
-  /*
-  //retorna um observable
-  public getConsultTransaction(_transaction: string = ""){
-    let url = environment.endpointYaPay +"/"+ environment.storeCode +"/"+ _transaction;
-    let headers = this.getHeaders();
-    let transaction = from(this.http.get(url,{headers: headers}));
-    console.log(transaction);
   }
-  */
- /*
-  //retorna um observable
-  public getConsultTransaction(_transaction: string = ""): Observable<any>{
-    let url = environment.endpointYaPay +"/"+ environment.storeCode +"/"+ _transaction;
-    let headers = this.getHead();
-    console.log(headers);
-    return this.http.get(url,{headers: headers}).pipe(map(result => result));
-  }*/
-  //retorna um observable
+  
   public getConsultTransaction(_transaction: string = ""): Observable<any>{
     let url = environment.endpointYaPay +"/"+ environment.storeCode +"/"+ _transaction;
     let headers = this.getHeaders();
     console.log(headers);
     return this.http.get(url,{headers: headers}).pipe(map(result => result));
   }
- /*
-    //retorna um observable
-    public getConsultTransaction(_transaction: string = ""): Observable<any>{
-      let url = environment.endpointYaPay +"/"+ environment.storeCode +"/"+ _transaction;
-      let headers = this.getHeaders();
-      console.log(headers);
-      return this.requestService.getTransaction().pipe(map(result => result));
-    }
-*/
 }

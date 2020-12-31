@@ -64,7 +64,7 @@ export class CompanyOrdersPage implements OnInit {
       this.loadOrders().then(() => {
         event.target.complete();
       });
-    }, 500);
+    }, 5000);
   }
 
   public async loadOrders() {

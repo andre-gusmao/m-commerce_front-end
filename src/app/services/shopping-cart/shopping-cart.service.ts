@@ -27,8 +27,6 @@ export class ShoppingCartService {
       order_payment_status: orderItem.order_payment_status,
       order_payment_method: orderItem.order_payment_method,
       id_payment_method: orderItem.id_payment_method,
-      // order_date: default
-      // order_time: default
       items: []
     }
 
@@ -114,5 +112,4 @@ export class ShoppingCartService {
       this.companyOrders.push(order);
     }
   }
-  
 }

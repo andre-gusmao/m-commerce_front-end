@@ -29,6 +29,7 @@ export class CustomersOrdersDetailPage implements OnInit {
   authorized: boolean = false;
   card_number: string = "";
   order: IOrder;
+  cardList: ICreditCard[];
   url: string = 'customers/orders.php';
 
   constructor(
@@ -43,7 +44,7 @@ export class CustomersOrdersDetailPage implements OnInit {
 
   ngOnInit() {
     if(this.id_order != ""){
-      this.loadOrderDetails(this.id_order);
+      this.loadOrderDetails();
     }
   }
 
@@ -59,7 +60,7 @@ export class CustomersOrdersDetailPage implements OnInit {
     );
   }
 
-  private async loadOrderDetails(id_order){
+  private async loadOrderDetails(){
     return new Promise(res => {
       this.requestService.getRequestById(this.url, 'order', this.id_order).subscribe(dataResponse => {
         for (let item of dataResponse['result']) {
@@ -77,12 +78,14 @@ export class CustomersOrdersDetailPage implements OnInit {
   }
 
   private async creditCardExists(){
-    this.hasCreditCard = await this.ShopBagSrc.hasCreditCard();
-    if(this.hasCreditCard){
-      //this.credit_card = await this.ShopBagSrc.getCreditCard()
+    this.cardList = await this.ShopBagSrc.getListCreditCard("creditCard");
+    if(this.cardList.length > 0){
+      this.hasCreditCard = true;
+      this.credit_card = this.cardList[0];
       this.card_number = "Cartão final " + this.credit_card.card_number.substring(12);
     } else {
       this.card_number = "";
+      this.hasCreditCard = false;
     }
   }
 
@@ -155,12 +158,12 @@ export class CustomersOrdersDetailPage implements OnInit {
         this.order_status_id = "2";
         this.ShopBagSrc.clearOrder();
         await this.toolsService.hideLoading();
-        await this.toolsService.showToast(dataResponse['message'],2000,'success');
+        await this.toolsService.showToast(dataResponse['message'],1500,'success');
         this.closeOrderDetails();
       } else {
         this.authorized = false;
         await this.toolsService.hideLoading();
-        this.toolsService.showToast(dataResponse['message'],2000,'warning');
+        this.toolsService.showToast(dataResponse['message'],1500,'warning');
       }
     }, error => {
       this.toolsService.hideLoading().finally(() => {

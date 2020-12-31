@@ -146,5 +146,4 @@ export class LoginPage implements OnInit {
       this.passwordIcon = 'eye';
     }
   }
-
 }

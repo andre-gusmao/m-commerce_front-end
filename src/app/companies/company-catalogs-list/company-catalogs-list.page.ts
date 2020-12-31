@@ -46,7 +46,7 @@ export class CompanyCatalogsListPage implements OnInit {
     setTimeout(() => {
       this.ionViewWillEnter();
       event.target.complete();
-    }, 500);
+    }, 5000);
   }
 
   loadData(event) {
@@ -55,7 +55,7 @@ export class CompanyCatalogsListPage implements OnInit {
       this.loadcompanyCatalogsList().then(() => {
         event.target.complete();
       });
-    }, 500);
+    }, 5000);
   }
 
   private async loadcompanyCatalogsList() {

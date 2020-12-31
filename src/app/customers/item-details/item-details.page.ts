@@ -54,7 +54,6 @@ export class ItemDetailsPage implements OnInit {
   }
 
   public registerItem(){
-
     this.modalCtrl.dismiss({
       'dismissed': true,
       'id_item': this.id_item,
@@ -62,8 +61,5 @@ export class ItemDetailsPage implements OnInit {
       'total_price': this.total_price,
       'customer_note': this.customer_note
     });
-
-
   }
-
 }

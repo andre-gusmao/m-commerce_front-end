@@ -72,9 +72,6 @@ export class CompanyCatalogsPage implements OnInit {
   }
 
   private loadCompanyCatalogs(id_catalog: string){
-    let dataRequest = {
-      id_catalog: id_catalog,
-    };
     this.requestService.getRequestById(this.url, 'id',id_catalog).subscribe(async data => {
         if (data['success']) {
           this.id_catalog = data['result'][0]['id_catalog'];

@@ -156,10 +156,6 @@ const routes: Routes = [
     loadChildren: () => import('./customers/customers-feedback/customers-feedback.module').then( m => m.CustomersFeedbackPageModule)
   },
   {
-    path: 'payments',
-    loadChildren: () => import('./customers/payments/payments.module').then( m => m.PaymentsPageModule)
-  },
-  {
     path: 'workers-orders',
     loadChildren: () => import('./workers/workers-orders/workers-orders.module').then( m => m.WorkersOrdersPageModule)
   },
@@ -170,11 +166,7 @@ const routes: Routes = [
   {
     path: 'shopping-cart-card',
     loadChildren: () => import('./customers/shopping-cart-card/shopping-cart-card.module').then( m => m.ShoppingCartCardPageModule)
-  },
-  {
-    path: 'orders-delivery/:id',
-    loadChildren: () => import('./workers/orders-delivery/orders-delivery.module').then( m => m.OrdersDeliveryPageModule)
-  },
+  }
 ];
 
 @NgModule({

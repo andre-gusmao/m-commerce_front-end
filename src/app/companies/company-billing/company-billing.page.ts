@@ -4,14 +4,12 @@ import { RequestsService } from 'src/app/services/requests/requests.service';
 import { ToolsService } from 'src/app/services/tools/tools.service';
 import { AuthenticationsService } from 'src/app/services/authentications/authentications.service';
 
-
 @Component({
   selector: 'app-company-billing',
   templateUrl: './company-billing.page.html',
   styleUrls: ['./company-billing.page.scss'],
 })
 export class CompanyBillingPage implements OnInit {
-
   id_company: string = "";
 
   constructor(
@@ -25,16 +23,10 @@ export class CompanyBillingPage implements OnInit {
     });
   }
 
-  ngOnInit() {
-    if (this.authService.getLoginSuccessful()) {
-      //
-    } 
-  }
+  ngOnInit() {}
 
   ionViewWillEnter() {
-    if (this.authService.getLoginSuccessful()) {
-      //
-    } else {
+    if (!this.authService.getLoginSuccessful()) {
       this.authService.setLogout();
     }
   }

@@ -25,13 +25,11 @@ export class RequestsService {
     let day = now.getDate();
     let hour = now.getHours();
     let key = year.toString() + month.toString() + day.toString() + "kw" + hour.toString()
-
     if(URLToken == true) {
       kw = '?token=' + btoa(key);
     } else {
       kw = btoa(key);
     }
-
     return kw;
   }
 

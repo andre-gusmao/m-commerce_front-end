@@ -35,21 +35,19 @@ export class ToolsService {
     return platformName;
   }
 
-  async showToast(_message: string, _duration: number = 2000, _cssClass: string = 'success') {
-
+  public async showToast(_message: string, _duration: number = 2000, _cssClass: string = 'success') {
     const toast = await this.toast.create({
       message: _message,
       duration: _duration,
-      position: 'bottom',      
+      position: 'bottom',
+      keyboardClose: true,
+      animated: true,
       cssClass: _cssClass
     });
-
     toast.present();
-
   }
 
   public validField(_fields) {
-
     let isEmpty = true;
 
     for (var i in _fields) {
@@ -64,13 +62,10 @@ export class ToolsService {
         break;
       }
     }
-
     return isEmpty;
-
   }
 
   public validateEmail(_email: string, _showToast: boolean = false) {
-
     let format = new RegExp("[a-zA-Z0-9\\._-]+@[a-zA-Z0-9]+\\.[a-zA-Z]");
     let invalidChars = ["!", "#", "$", "%", "�", "&", "*", "(", ")", "+", "=", "[", "]", "{", "}", "�", "`", "^", "~", "<", ">", ":", ";", "?", "/", "\\", "|", "\"", "'", "�", "�", "�", "�", "�", "�", "�", "�", "�", "�", "�", "�", "�", "�", "�", "�", "�", "�", "�", "�"];
     let isValid = true;
@@ -79,14 +74,12 @@ export class ToolsService {
     isValid = format.test(_email.toLocaleLowerCase());
 
     if (isValid == true) {
-
       for (nFor = 0; nFor < invalidChars.length; nFor++) {
         if (_email.indexOf(invalidChars[nFor]) >= 0) {
           isValid = false;
           break;
         }
       }
-
     }
 
     if (isValid == false && _showToast == true) {
@@ -94,11 +87,9 @@ export class ToolsService {
     }
 
     return isValid;
-
   }
 
   public validatePassword(_password: string, _showToast: boolean = false) {
-
     let letters = RegExp("[a-zA-Z]");
     let numbers = RegExp("[0-9]");
     let isValid = false;
@@ -112,10 +103,9 @@ export class ToolsService {
     }
 
     return isValid;
-
   }
 
-  async showLoading(_message: string = "Carregando ...") {
+  public async showLoading(_message: string = "Carregando ...") {
     this.loading = true;
     return await this.loadingCtrl.create({
       message: _message,
@@ -130,14 +120,14 @@ export class ToolsService {
     });
   }
 
-  async hideLoading() {
+  public async hideLoading() {
     this.loading = false;
     return await this.loadingCtrl.dismiss().then(() => {
       this.loading = false;
     });
   }
 
-  async showAlert(_header: string = "Atenção", _subHeader: string = "Falha de conexão", _message: string = "Verifique sua conexão com a internet"){
+  public async showAlert(_header: string = "Atenção", _subHeader: string = "Falha de conexão", _message: string = "Verifique sua conexão com a internet"){
     const alert = this.alertCtrl.create({
       header: _header,
       subHeader: _subHeader,
@@ -147,7 +137,6 @@ export class ToolsService {
   }
 
   public decodeOrderStatus(status: string = ""){
-
     let statusText: string = "";
 
     switch (status){

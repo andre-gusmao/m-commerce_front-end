@@ -54,7 +54,6 @@ export class WorkersPage implements OnInit {
   }
 
   async registerWorker(){
-
     let dataRequest = {
       id_company: this.id_company,
       worker_cpf: this.worker_cpf,
@@ -112,9 +111,6 @@ export class WorkersPage implements OnInit {
   }
 
   private loadWorkers(id_worker: string): void {
-    let dataRequest = {
-      id_worker: id_worker,
-    };
     this.requestService.getRequestById(this.url, 'id',id_worker).subscribe(async data => {
         if (data['success']) {
           this.id_worker = data['result'][0]['id_worker'];
@@ -146,7 +142,6 @@ export class WorkersPage implements OnInit {
 
   public togglePassword(){
     this.showPassword = !this.showPassword;
-
     if(this.showPassword){
       this.passwordIcon = 'eye-off';
     } else {
@@ -156,7 +151,6 @@ export class WorkersPage implements OnInit {
 
   public toggleConfirmPassword(){
     this.showConfirmPassword = !this.showConfirmPassword;
-
     if(this.showConfirmPassword){
       this.confirmPasswordIcon = 'eye-off';
     } else {

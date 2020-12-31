@@ -179,10 +179,8 @@ export class MenuService {
 
   constructor() { }
 
-  setMenu(menu){
-
+  public setMenu(menu){
     switch(menu){
-
       case "0"://admin
         this.menu = this.menu0;
       break;
@@ -202,9 +200,7 @@ export class MenuService {
       default:
         this.menu = this.menuD;
       break;
-
     }
-
   }
 
 }

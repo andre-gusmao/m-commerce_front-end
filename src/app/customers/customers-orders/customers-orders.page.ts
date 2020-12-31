@@ -87,5 +87,4 @@ export class CustomersOrdersPage implements OnInit {
       this.orderList.pop();
     }
   }
-
 }

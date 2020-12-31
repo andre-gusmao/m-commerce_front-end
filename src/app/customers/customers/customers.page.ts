@@ -150,7 +150,6 @@ export class CustomersPage implements OnInit {
 
   public togglePassword(){
     this.showPassword = !this.showPassword;
-
     if(this.showPassword){
       this.passwordIcon = 'eye-off';
     } else {
@@ -160,7 +159,6 @@ export class CustomersPage implements OnInit {
 
   public toggleConfirmPassword(){
     this.showConfirmPassword = !this.showConfirmPassword;
-
     if(this.showConfirmPassword){
       this.confirmPasswordIcon = 'eye-off';
     } else {
@@ -171,7 +169,7 @@ export class CustomersPage implements OnInit {
   public async getAddress(){
     let url: string = "https://viacep.com.br/ws/" + this.zipCode + "/json/";
     if (!(this.zipCode && this.zipCode.length >= 8)) {
-      this.toolsService.showToast("Informe CEP válido de 8 dígitos",2000,"warning");
+      this.toolsService.showToast("Informe CEP válido de 8 dígitos",1500,"warning");
       return;
     }
     if(this.zipCode && this.zipCode.length >= 8) {
@@ -180,7 +178,7 @@ export class CustomersPage implements OnInit {
           this.state = res['uf'];
           this.city = res['localidade'];
         } else {
-          this.toolsService.showToast("CEP nao encontrado",2000,"warning");
+          this.toolsService.showToast("CEP não encontrado",1500,"warning");
           this.clearAddress();
         }
       })
@@ -190,29 +188,6 @@ export class CustomersPage implements OnInit {
   private clearAddress(){
     this.city = "";
     this.state = "";
-  }
-
-  public getAddress2(){
-    let url: string = "https://viacep.com.br/ws/" + this.zipCode + "/json/";
-    this.toolsService.showLoading("Carregando UF e Cidade").then( () => {
-      if(this.zipCode && this.zipCode.length >= 8) {
-        this.http.get(url).subscribe( (res) => {
-          if(res && res['uf']) {
-            this.city = res['localidade'];
-            this.state = res['uf'];
-          } else {
-            this.toolsService.showToast("CEP nao encontrado",2000,"warning");
-            this.city = "";
-            this.state = "";
-          }
-        });
-      } else {
-        this.toolsService.showToast("Informe CEP válido de 8 dígitos",2000,"warning");
-      }
-    })
-    .finally( () => {
-      this.toolsService.hideLoading();
-    })
   }
 
 }

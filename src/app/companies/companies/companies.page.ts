@@ -139,7 +139,7 @@ export class CompaniesPage implements OnInit {
   }
   
   private async loadCompanyProfile(profileID: string = "") {
-    return new Promise(res => {
+    return await new Promise(res => {
       this.requestService.getRequestById('companies/companies.php', 'id', profileID).subscribe( dataRes => {
         if (dataRes['success']) {
           this.email = dataRes['email'];
