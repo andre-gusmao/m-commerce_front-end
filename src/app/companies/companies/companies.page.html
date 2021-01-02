@@ -46,31 +46,15 @@
     <ion-input type="text" [(ngModel)]="cellPhone" [brmasker]="{phone: true}"></ion-input>
   </div>
   <div>
-    <ion-label>Tipo de Documento</ion-label>
-    <ion-select [(ngModel)]="company_document_type" name="company_document_type" interface="action-sheet"
-      cancelText="Cancelar">
-      <ion-select-option value="CNPJ">CNPJ</ion-select-option>
-      <ion-select-option value="CPF">CPF</ion-select-option>
-    </ion-select>
-  </div>
-  <div>
-    <ion-label>Documento</ion-label>
-    <ion-input type="text" [(ngModel)]="company_document_number"></ion-input>
-  </div>
-  <div>
-    <ion-label>Inscrição municipal</ion-label>
-    <ion-input type="text" [(ngModel)]="company_municipal_registry"></ion-input>
-  </div>
-  <div>
     <ion-label>CEP</ion-label>
     <ion-input [(ngModel)]="zipCode" (ionBlur)="getAddress()" maxlength="8" type="numeric">
     </ion-input>
   </div>
-  <div>
+  <div hidden>
     <ion-label>UF</ion-label>
     <ion-input [(ngModel)]="state" readonly></ion-input>
   </div>
-  <div>
+  <div hidden>
     <ion-label>Cidade</ion-label>
     <ion-input [(ngModel)]="city" readonly></ion-input>
   </div>
